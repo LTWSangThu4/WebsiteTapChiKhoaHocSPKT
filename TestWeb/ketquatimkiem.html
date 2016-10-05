@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tạp chí Khoa Học SPKT</title>
+	<!-- Latest compiled and minified CSS & JS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css" >
+	<link rel="stylesheet" href="css/myweb.css" >
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.min.js" ></script>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 well	">
+<!--header-->
+			<div id="header" >
+			<!--row logo-->
+				<div class="row">
+					<div class="col-md-8">
+						<div class="image" href="">
+							<img src="images/banner.png" alt="">
+						</div>
+					</div><!--end cột image-->
+				<!--login-siging-search-->
+					<div class="col-md-4">
+					<!--Login-->
+						<div class="row">
+							<div class="col-md-12">
+								<div class="nav navbar-right">
+									<div class="btn">
+										<div class="btn-group">
+
+											<button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">
+											  Đăng Nhập
+											</button>
+
+										<!-- Modal 1 -->
+											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Đăng Nhập</h4>
+											      </div>
+											      <!--body-->
+											      <div class="modal-body">
+												      	<label class="radio-inline">
+														  <a href="admin1.html"><input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>  Admin</a>
+														</label>
+														<label class="radio-inline">
+														  <a href="tongbientap.html"><input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Tổng Biên Tập</a>
+														</label>
+														<label class="radio-inline">
+														  <a href="bientapvien1.html"><input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Biên Tập viên</a>
+														</label>
+														<label class="radio-inline">
+														  <a href="tacgia.html"><input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4"> Tác Giả</a>
+														</label>
+														<label class="radio-inline">
+														  <a href="phanbien1.html"><input type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5"> Phản Biện </a>
+														</label>
+														<br><br>
+
+												        <form action="" class="form-horizontal">
+															<div class="form-group">
+																<label class="col-md-3">User Name </label><input class="col-md-7" type="text/submit/hidden/button/etc" >
+															</div>
+															<div class="form-group">
+																<label class="col-md-3">PassWord </label><input class="col-md-7" type="text/submit/hidden/button/etc" >
+															</div>
+														</form>
+
+														<label class="col-md-8">
+												          <input type="checkbox"> Nhớ Tài Khoản?
+												        </label><br>
+											      </div>
+											      <!--end body-->
+											      <div class="modal-footer modal-footer-left">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+											        <a ><button type="button" class="btn btn-primary">OK</button></a>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+										<!--end modal 1-->
+										</div>
+
+										<div class="btn-group">
+											<button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal1">
+											  Đăng Ký
+											</button>
+										<!--modal thong báo-->
+											<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Thông Báo</h4>
+											      </div>
+											      <div class="modal-body">
+											        BẠN ĐÃ ĐĂNG KÝ THÀNH CÔNG!!
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-primary navbar-btn " data-dismiss="modal">OK</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+										<!--end modal thong bao-->
+
+										<!-- Modal 2 -->
+											<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Đăng Ký</h4>
+											      </div>
+											      <!--body-->
+											      <div class="modal-body">
+											        	<form action="" class="form-horizontal">
+
+															<div class="form-group">
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="col-md-6">
+																			<label class="col-md-6">Họ Tên </label><input class="col-md-6" type="text/submit/hidden/button/etc" placeholder="Họ" >
+
+																		</div>
+																		<div class="col-md-6">
+																			<label class="col-md-1"></label><input class="col-md-7" type="text/submit/hidden/button/etc" placeholder="Tên" >
+
+																		</div>
+																		
+																		
+																	</div>
+																</div>
+																
+															</div>
+
+															<div class="form-group">
+																<label class="col-md-3">UserName</label><input class="col-md-7" type="text/submit/hidden/button/etc" >
+															</div>
+
+															<div class="form-group">
+																<label class="col-md-3">Email </label> <input class="col-md-7" type="text/submit/hidden/button/etc" >
+															</div>
+
+															<div class="form-group">
+																<label class="col-md-3">PassWord </label> <input class="col-md-7" type="text/submit/hidden/button/etc" >
+															</div>
+
+															<div class="form-group">
+																<label class="col-md-3">Confirm PassWord </label> <input class="col-md-7" type="text/submit/hidden/button/etc" >
+															</div>
+
+														</form>
+											      </div>
+											      <!--endbody-->
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModal2">Đăng Ký</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+										<!--end modal 2-->
+										
+										</div>
+									</div>
+								</div>
+			
+							</div>
+						</div>
+					<!--end login-->
+					<!--search-->
+						<div class="row">
+							
+								<div class="col-md-12">
+									<form class="navbar-form navbar-right" role="search">
+								  		<div class="form-group">
+								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
+								 		</div>
+								  		<a href="ketquatimkiem.html"><button type="button" class="btn btn-primary">TÌM</button></a>
+									</form>
+								</div>
+							
+						</div><!--end search-->
+						<div class="row">
+							<div class="col-md-4">
+								
+							</div>
+							<div class="col-md-8">
+								<a href="" data-toggle="modal" data-target="#myModal3">Tìm Kiếm Nâng Cao</a>
+								<!-- Modal -->
+								<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        <h4 class="modal-title" id="myModalLabel">Tìm Kiếm Nâng Cao</h4>
+								      </div>
+								      <div class="modal-body">
+								        <form action="" class="form-horizontal">
+											<div class="form-group">
+												<div class="row">
+													<div class="col-md-6 col-md-offset-1">
+														<label>Tìm Kiếm Theo:</label>
+														<div class="dropdown">
+														  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+														    Chọn mục...
+														    <span class="caret"></span>
+														  </button>
+														  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+														    <li><a href="#">Bài viết</a></li>
+														    <li><a href="#">Tác giả</a></li>
+														    <li><a href="#">Lĩnh vực</a></li>
+														  </ul>
+														</div>
+													</div>
+													<div class="col-md-5">
+														<label>Thời Gian:</label>
+														<span class="glyphicon glyphicon glyphicon-calendar" aria-hidden="true"></span>
+													</div>
+												</div><br>
+												<div class="row">
+													<div class="col-md-2 col-md-offset-1">
+														<label>Nội Dung:</label>
+													</div>
+													<div class="col-md-8">
+														<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
+													</div>
+												</div>
+											</div>
+										</form>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+								       <a href="ketquatimkiem.html"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								      </div>
+								    </div>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div><!--end Cột login-siging-->
+				</div><!--end row logo--><br>
+			<div class="row">
+					<div class="col-md-12">
+						<nav class="navbar navbar-inverse "  role="navigation">
+							<div class="navbar-header">
+								<button class="navbar-toggle" data-toggle="collapse" data-target="#main-menu">
+						           <span class="sr-only">Toggle navigation</span>
+						           <span class="icon-bar"></span>
+						           <span class="icon-bar"></span>
+						           <span class="icon-bar"></span>
+						        </button>
+							</div>
+							<div class="navbar-collapse collapse" id="main-menu">
+								<ul class="nav nav-pills nav-justified" >
+									<li><a href="index.html"><strong>Trang chủ</strong></a></li>
+									<li><a href="gioithieu.html"><strong>Giới Thiệu</strong></a></li>
+									<li><a href="quydinh_huongdan.html"><strong>Quy Định-Hướng Dẫn</strong></a></li>
+									<li><a href="lienhe.html"><strong>Liên Hệ</strong></a></li>
+									<li><a href="lienket.html"><strong>Liên Kết</strong></a></li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div><!--end thanh dieu huong-->
+					
+			</div>
+<!--endhead-->
+<!--Main-->
+			<div id="Main">
+					<div class="row">
+					<!--cột trái-->
+						<div class="col-md-2">
+							<nav class="navbar navbar-default"  role="navigation">
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#"><strong>Bản Tin Định Kỳ</strong></a></li>
+								<li><a href="#"><strong>Tạp Chí Khoa Học</strong></a></li>
+								<li><a href="#"><strong>Trong-Ngoài Nước</strong></a></li>
+							</ul>
+							</nav>
+							<!--quang cao-->
+							<div class="media">
+							  <a class="pull-left" href="#">
+							    <img class="media-object" src="images/quangcao.png" alt="...">
+							  </a>
+							</div>
+						</div>
+					<!--end cột trái-->
+
+					<!--cột giữa-->
+						<div class="col-md-7">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title"><strong>TẠP CHÍ</strong></h3>
+								</div>
+								<div class="panel-body">
+									<div class="text-center">
+										<strong>NGHIÊN CỨU LÍ LUẬN</strong>
+									</div>
+									<div class="text-justify">
+
+										<a href="xemnoidung.html"><h1>Đồ Án Bảo Vệ Môi Trường</h1></a>
+									<p>Tỷ lệ che phủ rừng đạt 44-45%. (năm 2015: 42%). Trong bốn nguy cơ mà Đảng ta đã chỉ ra thì nguy cơ nào là lớn nhất trong 5 năm sắp tới (2016- 2020)? ( . Tụt hậu xa hơn về kinh tế so với các nước trong khu vực và trên thế giới)</p>
+									<a href="xemnoidung.html"><h1>Đồ Án Bảo Vệ Tốt Nghiệp</h1></a>
+									<p>Nghị quyết số 09-NQ/TW ngày 09/2/2007 “Về chiến lược biển Việt Nam đến năm 2020” được thông qua tại Hội nghị lần thứ mấy của Ban Chấp hành Trung ương Đảng khóa X?( Hội nghị lần thứ tư.)</p>
+									<a href="xemnoidung.html"><h1>Đồ Án ádasdsadsad</h1></a>
+									<p> Năng suất lao động xã hội bình quân tăng 4-5%/năm</p>
+									<a href="xemnoidung.html"><h1>Đồ Án Bảo Vệ Môi Trường</h1></a>
+									<p>Trong mục tiêu tổng quát, Đại hội XII đã thống nhất cần: Đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới; phát triển kinh tế nhanh, bền vững, phấn đấu sớm đưa nước ta….(Cơ bản trở thành nước công nghiệp theo hướng hiện đại)</p>
+									<a href="xemnoidung.html"><h1>Đồ Án Bảo Vệ Môi Trường</h1></a>
+									<p>Tổng giá trị thiệt hại do thiên tai gây ra trong 7 tháng đầu năm 2016 ước tính là bao nhiêu?(. Gần 1,5 nghìn tỷ đồng)Khi đánh giá tổng thể 30 năm đổi mới, Nghị quyết Đại hội XII của Đảng đã cho rằng chúng ta đã….(Đạt được những thành tựu to lớn, có ý nghĩa lịch sử).Trong mục tiêu tổng quát, Đại hội XII đã thống nhất cần: Đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới; phát triển kinh tế nhanh, bền vững, phấn đấu sớm đưa nước ta….(Cơ bản trở thành nước công nghiệp theo hướng hiện đại)</p>
+										
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					<!--end cột giữa-->
+
+					<!--cột 3-->
+						<div class="col-md-3">
+							<div class="panel panel-default ">
+								<div class="panel-heading">
+									<h3 class="panel-title"><strong>Được Đọc nhiều</strong></h3>
+								</div>
+								<div class="panel-body">
+									<marquee scrolldelay="6" scrollamount="2" onmouseover="this.stop()"" onmouseout="this.start()" direction="up" height="300" style="height:300px;"  behavior="" direction="">
+										<div class="media">
+										  <a class="pull-left" href="#">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="#">Nhà Giáo VN</a></h6>
+										    chào mừng ngày nahf giáo việt nam......
+										  </div>
+										</div>
+										<!--continute-->
+										<div class="media">
+										  <a class="pull-left" href="#">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="">University</a></h6>
+										    cẩn thận số khi nghe.............
+										  </div>
+										</div>
+										<!--continute-->
+										<div class="media">
+										  <a class="pull-left" href="#">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href=""> HCMUTE</a></h6>
+										    nhà trường tăng học phí gấp 5 lần......
+										  </div>
+										</div>
+
+										<div class="media">
+										  <a class="pull-left" href="#">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="">University</a></h6>
+										    cẩn thận số khi nghe.............
+										  </div>
+										</div>
+										<div class="media">
+										  <a class="pull-left" href="#">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="">University</a></h6>
+										    cẩn thận số khi nghe.............
+										  </div>
+										</div>
+										<div class="media">
+										  <a class="pull-left" href="#">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="">University</a></h6>
+										    cẩn thận số khi nghe.............
+										  </div>
+										</div>
+
+										
+									</marquee>
+								</div>
+							</div><!--end panel-->
+						</div>
+					<!--end cột 3-->
+					</div><!--endrow chinh-->
+			</div>
+<!--endMain-->
+		</div>
+	</div>
+</div>
+</body>
+<footer>
+	<div class="container well">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="text">
+						<h6>Copyright © 2013, Trường Đại Học Sư Phạm Kỹ Thuật - Tp.HCM </h6>
+						<h6>Địa chỉ: 1 Võ Văn Ngân, Phường Linh Chiểu, Quận Thủ Đức, Thành phố Hồ Chí Minh.</h6>
+						<h6>Điện thoại: (+84 - 8) 38968641 - (+84 - 8) 38961333</h6>
+						<h6>E-mail: ic@hcmute.edu.vn</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+</html>
