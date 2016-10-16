@@ -83,16 +83,12 @@
 
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo: </label>
-												<div class="dropdown col-sm-5">
-													<button class="btn btn-default dropdown-toggle form-control" type="button" id="timkiemtheo" name="timkiemtheo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-												    Chọn mục ...
-												    <span class="caret"></span>
-												  </button>
-												  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-												    <li><a href="#">Bài Viết</a></li>
-												    <li><a href="#">Tác Giả</a></li>
-												    <li><a href="#">Lĩnh Vực</a></li>
-												  </ul>
+												<div class="col-sm-5">
+													<select class="form-control">
+														<option>Bài Viết</option>
+														<option>Tác Giả</option>
+														<option>Lĩnh Vực</option>
+													</select>
 												</div>
 											</div>
 											<div class="form-group">
@@ -105,7 +101,7 @@
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="NoiDung">Nội Dung: </label>
 												<div class="col-sm-5">
-													<input type="text" class="form-control" id="noidung" name="noidung" placeholder="Nhập từ khóa cần tìm ...">
+													<textarea class="form-control" rows="3"></textarea>
 												</div>
 											</div>
 											
@@ -127,14 +123,23 @@
 				<div class="row">
 					<div class="col-md-12">
 						<nav class="navbar navbar-default" style="background: #0a408a;">
-						
-							<ul class="nav nav-justified " >
-									<li><a class="textcolor" href="index.html"><strong>Trang chủ</strong></a></li>
-									<li><a class="textcolor" href="gioithieu.html"><strong>Giới Thiệu</strong></a></li>
-									<li><a class="textcolor" href="quydinh_huongdan.html"><strong>Quy Định-Hướng Dẫn</strong></a></li>
-									<li><a class="textcolor" href="lienhe.html"><strong>Liên Hệ</strong></a></li>
-									<li><a class="textcolor" href="lienket.html"><strong>Liên Kết</strong></a></li>
-							</ul>
+							<div class="navbar-header">
+								<button class="navbar-toggle" data-toggle="collapse" data-target="#main-menu">
+						           <span class="sr-only">Toggle navigation</span>
+						           <span class="icon-bar"></span>
+						           <span class="icon-bar"></span>
+						           <span class="icon-bar"></span>
+						        </button>
+							</div>
+							<div class="navbar-collapse collapse" id="main-menu">
+								<ul class="nav nav-justified " >
+										<li><a class="textcolor" href="index.html"><strong>Trang chủ</strong></a></li>
+										<li><a class="textcolor" href="gioithieu.html"><strong>Giới Thiệu</strong></a></li>
+										<li><a class="textcolor" href="quydinh_huongdan.html"><strong>Quy Định-Hướng Dẫn</strong></a></li>
+										<li><a class="textcolor" href="lienhe.html"><strong>Liên Hệ</strong></a></li>
+										<li><a class="textcolor" href="lienket.html"><strong>Liên Kết</strong></a></li>
+								</ul>
+							</div>
 						
 								
 						</nav>
@@ -185,6 +190,7 @@
 												<th>ID</th>
 												<th>Userame</th>
 												<th>PassWord</th>
+												<th>Trạng Thái</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -192,17 +198,19 @@
 												<td>012</td>
 												<td>tungmountain</td>
 												<td>&8#!3&$</td>
+												<td>Hoạt Động</td>
 											</tr>
 											<tr>
 												<td>072</td>
 												<td>DinhSa</td>
 												<td>@#$&!%</td>
+												<td>Khóa</td>
 											</tr>
 										</tbody>
 									</table>
 									
-									<button type="button" class="btn btn-default">khóa</button>
-									<button type="button" class="btn btn-default">Bỏ Khóa</button>
+									<button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Khóa</button>
+									<button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Bỏ Khóa</button>
 
 									
 								<!-- Modal xóa -->
@@ -217,12 +225,12 @@
 									      </div>
 									      <div class="modal-body">
 									        <div class="text-center">
-									        	Xóa người dùng này?
+									        	Đồng ý thực hiện thao tác ?
 									        </div>
 									      </div>
 									      <div class="modal-footer">
 									        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-									        <button type="button" class="btn btn-primary">OK</button>
+									        <a href="admin2.html"><button type="button" class="btn btn-primary">OK</button></a>
 									      </div>
 									    </div><!--k-->
 									  </div>
@@ -244,7 +252,7 @@
 												<th>Họ Tên</th>
 												<th>EMail</th>
 												<th>Quyền Truy cập</th>
-												<th>CHỉnh sửa</th>
+
 											</tr>
 										</thead>
 										<tbody>
@@ -252,18 +260,47 @@
 												<td>01</td>
 												<td>Tùng</td>
 												<td>Tungmountain@gmail.com</td>
-												<td>Tác Giả</td>
-												<td><a href="admin3.html" class="glyphicon glyphicon-pencil">edit</a></td>
+												<td>
+													<select class="form-control" id="select01" disabled>
+													  <option selected>Admin</option>
+													  <option>Tổng Biên Tập</option>
+													  <option>Biên Tập Viên</option>
+													  <option>Phản Biện</option>
+													  <option>Tác Giả</option>
+													</select>
+												</td>
+
 											</tr>
 											<tr>
 												<td>072</td>
 												<td>Đinh Sa</td>
 												<td>Kaioshin95@gmail.com</td>
-												<td>Độc Giả</td>
-												<td><a href="admin3.html" class="glyphicon glyphicon-pencil">edit</a></td>
+												<td>
+													<select class="form-control" id="select072" disabled>
+													  <option>Admin</option>
+													  <option>Tổng Biên Tập</option>
+													  <option>Biên Tập Viên</option>
+													  <option>Phản Biện</option>
+													  <option selected>Tác Giả</option>
+													</select>
+												</td>
+
 											</tr>
 										</tbody>
 									</table>
+									<button class="btn btn-default" id="btnChinhSua">Chỉnh Sửa</button>
+									<button class="btn btn-default" id="btnLuu" disabled data-toggle="modal" data-target=".bs-example-modal-sm">Lưu</button>
+
+									<script>
+										$('#btnChinhSua').click(function(){
+											$('#select01').removeAttr('disabled')
+											$('#select072').removeAttr('disabled')
+											$('#btnLuu').removeAttr('disabled')
+											$('#btnChinhSua').addClass('disabled')
+										});
+
+
+									</script>
 									
 								</div>
 							</div>

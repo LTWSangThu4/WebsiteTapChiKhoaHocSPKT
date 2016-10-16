@@ -35,12 +35,12 @@
 										<div class="btn-group">
 											<div class="dropdown">
 											  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-											    TBT
+											    BTV
 											    <span class="caret"></span>
 											  </button>
 											  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 											    <li><a href="thongtincanhan.html">Thông Tin Cá Nhân</a></li>
-											    <li><a href="tongbientap2.html">Quản Lý Bài Viết</a></li>
+											    <li><a href="bientapvien2.html">Biên Tập Bài</a></li>
 											    <li role="separator" class="divider"></li>
 											    <li><a href="index.html">Thoát</a></li>
 											  </ul>
@@ -179,129 +179,53 @@
 
 					<!--cột giữa-->
 						<div class="col-md-10">
-		
 							<div class="panel panel-info">
 								<div class="panel-heading">
-									<h3 class="panel-title">Quản Lý Bài</h3>
+									<h3 class="panel-title">Biên Tập Bài</h3>
 								</div>
 								<div class="panel-body">
-									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>Tên Bài</th>
-												<th>Tác Giả</th>
-												<th>Ngày Gửi</th>
-												<th>File</th>
-												<th>Phản Biện</th>
-												<th>Biên Tập</th>
-												<th>Trạng Thái</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>101 chú chó đốm</td>
-												<td>Tùng</td>
-												<td>12/01/2016</td>
-												<td><button type="button" class="btn btn-link">101conchodom.pdf</button></td>
-												<td>Đã Phản Biện</td>
-												<td>Đã Biên Tập</td>
-												<td>Đã Đăng</td>
-											</tr>
-											<tr>
-												<td>101 chú chó đốm</td>
-												<td>Tùng</td>
-												<td>12/01/2016</td>
-												<td><button type="button" class="btn btn-link">101conchodom.pdf</button></td>
-												<td>Đã Phản Biện</td>
-												<td>Chưa Biên Tập</td>
-												<td>Chưa Đăng</td>
-											</tr>
-											
-										</tbody>
-									</table>
+									<form action="" class="form-horizontal">
 
-									<div class="col-md-offset-4">
-										<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#xembaidabientap">Xem bài biên tập</button></a>
-										<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#xemphanbien">Xem phản biện</button></a>
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dangbai">Đăng Bài</button></a>
-									</div><br><br>
-									<div class="collapse" id="xembaidabientap">
-										<form action="" class="form-horizontal">
+										<div class="form-group">
+											<label class="col-md-3">Tiêu Đề: </label>
+											<input class="col-md-7" type="text" >
+										</div>
 
-											<div class="form-group">
-												<label class="col-md-2">Người Biên Tập: </label>
-												<p class="col-md-8">BTV. Đinh Sa</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Tiêu Đề: </label>
-												<p class="col-md-8">Lập Trình Web</p>
-											</div>
+										<div class="form-group">
+											<label class="col-md-3">Nội dung tiêu biểu: </label> 
+											<textarea class="col-md-7" rows="10"></textarea>
+										    
+										</div>
 
-											<div class="form-group">
-												<label class="col-md-2">Nội dung tiêu biểu: </label> 
-												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
-									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
+										<div class="form-group">
+											<label class="col-md-3">File đính kèm: </label>
+											<input class="col-md-7" type="file" >
+										</div>
 
-											    
-											</div>
+										<button class="btn btn-primary col-md-offset-3" type="button" data-toggle="modal" data-target="#guitongbientap">GỬI TỔNG BIÊN TẬP</button>
 
-											<div class="form-group">
-												<label class="col-md-2">File đính kèm: </label>
-												<div class="col-md-8">
-													<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> filedinhkem.docx</a>
-												</div>
+										<!-- Modal -->
+										<div class="modal fade" id="guitongbientap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+										  <div class="modal-dialog" role="document">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        <h4 class="modal-title" id="myModalLabel">Thông Báo</h4>
+										      </div>
+										      <div class="modal-body">
+										        <div class="text-center">
+									        		Đồng ý gửi cho tổng biên tập
+									        	</div>
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+										        <a href="bientapvien2.html"><button type="button" class="btn btn-primary">Yes</button></a>
+										      </div>
+										    </div>
+										  </div>
+										</div>
 
-											</div>
-
-										</form>
-									</div>
-									<div class="collapse" id="xemphanbien">
-										<form action="" class="form-horizontal">
-
-											<div class="form-group">
-												<label class="col-md-2">Người Phản Biện: </label>
-												<p class="col-md-8">Mr. Tùng</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Bài Phản Biện: </label>
-												<p class="col-md-8">Lập Trình Web</p>
-											</div>
-
-											<div class="form-group">
-												<label class="col-md-2">Nội dung tiêu biểu: </label> 
-												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
-									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
-											    
-											</div>
-
-											<div class="form-group">
-												<label class="col-md-2">File đính kèm (nếu có): </label>
-												
-
-											</div>
-										</form>
-									</div>
-									<!-- Modal -->
-									<div class="modal fade" id="dangbai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-									  <div class="modal-dialog" role="document">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									        <h4 class="modal-title" id="myModalLabel">Thông Báo</h4>
-									      </div>
-									      <div class="modal-body">
-									        <div class="text-center">
-									        	Đồng ý đăng bài 
-									        </div>
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-									        <a href="tongbientap2.html"><button type="button" class="btn btn-primary">Yes</button></a>
-									      </div>
-									    </div>
-									  </div>
-									</div>
-									
+									</form>
 								</div>
 							</div>
 						</div>

@@ -83,16 +83,12 @@
 
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo: </label>
-												<div class="dropdown col-sm-5">
-													<button class="btn btn-default dropdown-toggle form-control" type="button" id="timkiemtheo" name="timkiemtheo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-												    Chọn mục ...
-												    <span class="caret"></span>
-												  </button>
-												  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-												    <li><a href="#">Bài Viết</a></li>
-												    <li><a href="#">Tác Giả</a></li>
-												    <li><a href="#">Lĩnh Vực</a></li>
-												  </ul>
+												<div class="col-sm-5">
+													<select class="form-control">
+														<option>Bài Viết</option>
+														<option>Tác Giả</option>
+														<option>Lĩnh Vực</option>
+													</select>
 												</div>
 											</div>
 											<div class="form-group">
@@ -105,7 +101,7 @@
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="NoiDung">Nội Dung: </label>
 												<div class="col-sm-5">
-													<input type="text" class="form-control" id="noidung" name="noidung" placeholder="Nhập từ khóa cần tìm ...">
+													<textarea class="form-control" rows="3"></textarea>
 												</div>
 											</div>
 											
@@ -123,18 +119,27 @@
 					</div><!--end Cột login-siging-->
 				</div><!--end row logo--><br>
 
-<!--thanh dieu huong-->
+			<!--thanh dieu huong-->
 				<div class="row">
 					<div class="col-md-12">
 						<nav class="navbar navbar-default" style="background: #0a408a;">
-						
-							<ul class="nav nav-justified " >
-									<li><a class="textcolor" href="index.html"><strong>Trang chủ</strong></a></li>
-									<li><a class="textcolor" href="gioithieu.html"><strong>Giới Thiệu</strong></a></li>
-									<li><a class="textcolor" href="quydinh_huongdan.html"><strong>Quy Định-Hướng Dẫn</strong></a></li>
-									<li><a class="textcolor" href="lienhe.html"><strong>Liên Hệ</strong></a></li>
-									<li><a class="textcolor" href="lienket.html"><strong>Liên Kết</strong></a></li>
-							</ul>
+							<div class="navbar-header">
+								<button class="navbar-toggle" data-toggle="collapse" data-target="#main-menu">
+						           <span class="sr-only">Toggle navigation</span>
+						           <span class="icon-bar"></span>
+						           <span class="icon-bar"></span>
+						           <span class="icon-bar"></span>
+						        </button>
+							</div>
+							<div class="navbar-collapse collapse" id="main-menu">
+								<ul class="nav nav-justified " >
+										<li><a class="textcolor" href="index.html"><strong>Trang chủ</strong></a></li>
+										<li><a class="textcolor" href="gioithieu.html"><strong>Giới Thiệu</strong></a></li>
+										<li><a class="textcolor" href="quydinh_huongdan.html"><strong>Quy Định-Hướng Dẫn</strong></a></li>
+										<li><a class="textcolor" href="lienhe.html"><strong>Liên Hệ</strong></a></li>
+										<li><a class="textcolor" href="lienket.html"><strong>Liên Kết</strong></a></li>
+								</ul>
+							</div>
 						
 								
 						</nav>

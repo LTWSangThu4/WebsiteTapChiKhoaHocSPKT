@@ -33,347 +33,23 @@
 								<div class="nav navbar-right">
 									<div class="btn">
 										<div class="btn-group">
-
-											<button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal">
-											  Đăng Nhập
-											</button>
-
-										<!-- Modal 1 -->
-											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-											  <div class="modal-dialog">
-											    <div class="modal-content">
-											      <div class="modal-header">
-											        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											        <h4 class="modal-title" id="myModalLabel">Đăng Nhập</h4>
-											      </div>
-											      <!--body-->
-											      <div class="modal-body">
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0" checked>  Admin
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">  Tổng Biên Tập
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="2">  Biên Tập Viên
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="3">  Phản Biện
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="4">  Tác Giả
-											      	</label>
-											      	<br><br>
-
-											      	<form id="FormDangNhap" method="post" action="" class="form-horizontal">
-														<div class="form-group">
-															<label class="col-sm-4 control-label" for="Username">User Name </label>
-															<div class="col-sm-5">
-																<input type="text" class="form-control" id="username" name="username" placeholder="Username" />
-															</div>
-														</div>
-														<div class="form-group">
-															<label class="col-sm-4 control-label" for="Password">Password</label>
-															<div class="col-sm-5">
-																<input type="password" class="form-control" id="password" name="password" placeholder="Password" />
-															</div>
-														</div>
-													</form>
-
-												    <a id="btnDangNhap" class="btn btn-primary" role="button" >Đăng nhập</a> 
-												 
-												    <script type="text/javascript">
-														$.validator.setDefaults( {
-															submitHandler: function () {
-																alert( "submitted!" );
-															}
-														} );
-
-														$( document ).ready( function () {
-															$( "#FormDangNhap" ).validate( {
-																rules: {
-																	username: {
-																		required: true,
-																		minlength: 2
-																	},
-																	password: {
-																		required: true,
-																		minlength: 5
-																	},
-																},
-																messages: {
-																	username: {
-																		required: "Vui lòng nhập lại Username",
-																		minlength: "Username không được ít hơn 2 ký tự"
-																	},
-																	password: {
-																		required: "Vui lòng nhập lại Password",
-																		minlength: "Password không được ít hơn 5 ký tự"
-																	},
-																},
-																errorElement: "em",
-																errorPlacement: function ( error, element ) {
-																	// Add the `help-block` class to the error element
-																	error.addClass( "help-block" );
-
-																	// Add `has-feedback` class to the parent div.form-group
-																	// in order to add icons to inputs
-																	element.parents( ".col-sm-5" ).addClass( "has-feedback" );
-
-																	if ( element.prop( "type" ) === "checkbox" ) {
-																		error.insertAfter( element.parent( "label" ) );
-																	} else {
-																		error.insertAfter( element );
-																	}
-
-																	// Add the span element, if doesn't exists, and apply the icon classes to it.
-																	if ( !element.next( "span" )[ 0 ] ) {
-																		$( "<span class='glyphicon glyphicon-remove form-control-feedback'></span>" ).insertAfter( element );
-																	}
-																},
-																success: function ( label, element ) {
-																	// Add the span element, if doesn't exists, and apply the icon classes to it.
-																	if ( !$( element ).next( "span" )[ 0 ] ) {
-																		$( "<span class='glyphicon glyphicon-ok form-control-feedback'></span>" ).insertAfter( $( element ) );
-																	}
-																},
-																highlight: function ( element, errorClass, validClass ) {
-																	$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
-																	$( element ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
-																},
-																unhighlight: function ( element, errorClass, validClass ) {
-																	$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
-																	$( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
-																}
-															} );
-														} );
-													</script>
-
-												    <script >
-       
-												        $("#btnDangNhap").click(function(){
-												          var chon = $('input[type="radio"]:checked');
-												          if(chon.val()==0)
-												            $('#btnDangNhap').attr('href','admin1.html')
-												          else if(chon.val()==1)
-												            $('#btnDangNhap').attr('href','tongbientap.html')
-												          else if(chon.val()==2)
-												            $('#btnDangNhap').attr('href','bientapvien1.html')
-												          else if(chon.val()==3)
-												            $('#btnDangNhap').attr('href','phanbien1.html')
-												          else
-												            $('#btnDangNhap').attr('href','tacgia.html')
-												        });
-												       
-												    </script>
-											      </div>
-											      <!--end body-->
-											      <div class="modal-footer modal-footer-left">
-											        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button> -->
-											      </div>
-											    </div>
-											  </div>
+											<div class="dropdown">
+											  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+											    PB
+											    <span class="caret"></span>
+											  </button>
+											  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+											    <li><a href="thongtincanhan.html">Thông Tin Cá Nhân</a></li>
+											    <li><a href="phanbien2.html">Phản Biện Bài Viết</a></li>
+											    <li role="separator" class="divider"></li>
+											    <li><a href="index.html">Thoát</a></li>
+											  </ul>
 											</div>
-										<!--end modal 1-->
 										</div>
-
-										<div class="btn-group">
-											<button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal1">
-											  Đăng Ký
-											</button>
-										<!--modal thong báo-->
-											<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-											  <div class="modal-dialog">
-											    <div class="modal-content">
-											      <div class="modal-header">
-											        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											        <h4 class="modal-title" id="myModalLabel">Thông Báo</h4>
-											      </div>
-											      <div class="modal-body">
-											        BẠN ĐÃ ĐĂNG KÝ THÀNH CÔNG!!
-											      </div>
-											      <div class="modal-footer">
-											        <button type="button" class="btn btn-primary navbar-btn " data-dismiss="modal">OK</button>
-											      </div>
-											    </div>
-											  </div>
-											</div>
-										<!--end modal thong bao-->
-
-										<!-- Modal 2 -->
-											<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-											  <div class="modal-dialog">
-											    <div class="modal-content">
-											      <div class="modal-header">
-											        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											        <h4 class="modal-title" id="myModalLabel">Đăng Ký</h4>
-											      </div>
-											      <!--body-->
-											      <div class="modal-body">
-											        	<form id="FormDangKy" method="post" class="form-horizontal" action="">
-
-															<div class="form-group">
-																<label class="col-sm-4 control-label" for="Ho">Họ</label>
-																<div class="col-sm-5">
-																	<input type="text" class="form-control" id="ho" name="ho" placeholder="Họ">
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-sm-4 control-label" for="Ten">Tên</label>
-																<div class="col-sm-5">
-																	<input type="text" class="form-control" id="ten" name="ten" placeholder="Tên">
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-sm-4 control-label" for="Username">UserName</label>
-																<div class="col-sm-5">
-																	<input type="text" class="form-control" id="username" name="username" placeholder="Username">
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-sm-4 control-label" for="Email">Email </label>
-																<div class="col-sm-5">
-																	<input type="email" class="form-control" id="email" name="email" placeholder="Email">
-																</div> 
-															</div>
-
-															<div class="form-group">
-																<label class="col-sm-4 control-label" for="Password">Password </label> 
-																<div class="col-sm-5">
-																	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-																</div>
-															</div>
-
-															<div class="form-group">
-																<label class="col-sm-4 control-label" for="confirm">Confirm PassWord </label> 
-																<div class="col-sm-5">
-																	<input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm Password">
-																</div>
-															</div>
-
-															<div class="form-group">
-																<div class="col-sm-5 col-sm-offset-4">
-																	<div class="checkbox">
-																		<label>
-																			<input type="checkbox" id="agree1" name="agree1" value="agree" />Đồng ý điều khoản 
-																		</label>
-																	</div>
-																</div>
-															</div>
-
-															<div class="form-group">
-																<div class="col-sm-9 col-sm-offset-2">
-																	<button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Đăng Ký</button>
-																</div>
-															</div>
-															
-														</form>
-											      </div>
-											      <!--endbody-->
-											      <div class="modal-footer">
-											        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-											        
-											      </div>
-											    </div>
-											  </div>
-											</div>
-											<script type="text/javascript">
-												$.validator.setDefaults( {
-													submitHandler: function () {
-														alert( "submitted!" );
-													}
-												} );
-
-												$( document ).ready( function () {
-													$( "#FormDangKy" ).validate( {
-														rules: {
-															ho: "required",
-															ten: "required",
-															username: {
-																required: true,
-																minlength: 2
-															},
-															password: {
-																required: true,
-																minlength: 5
-															},
-															confirm: {
-																required: true,
-																minlength: 5,
-																equalTo: "#password"
-															},
-															email: {
-																required: true,
-																email: true
-															},
-															agree1: "required"
-														},
-														messages: {
-															ho: "Vui lòng nhập lại Họ",
-															ten: "Vui lòng nhập lại Tên",
-															username: {
-																required: "Vui lòng nhập lại Username",
-																minlength: "Username không được ít hơn 2 ký tự"
-															},
-															password: {
-																required: "Vui lòng nhập lại Password",
-																minlength: "Password không được ít hơn 5 ký tự"
-															},
-															confirm: {
-																required: "Vui lòng nhập lại Password",
-																minlength: "Password không được ít hơn 5 ký tự",
-																equalTo: "Password không khớp !!!"
-															},
-															email: "Vui lòng nhập lại email",
-															agree1: "Vui lòng đồng ý điều khoản"
-														},
-														errorElement: "em",
-														errorPlacement: function ( error, element ) {
-															// Add the `help-block` class to the error element
-															error.addClass( "help-block" );
-
-															// Add `has-feedback` class to the parent div.form-group
-															// in order to add icons to inputs
-															element.parents( ".col-sm-5" ).addClass( "has-feedback" );
-
-															if ( element.prop( "type" ) === "checkbox" ) {
-																error.insertAfter( element.parent( "label" ) );
-															} else {
-																error.insertAfter( element );
-															}
-
-															// Add the span element, if doesn't exists, and apply the icon classes to it.
-															if ( !element.next( "span" )[ 0 ] ) {
-																$( "<span class='glyphicon glyphicon-remove form-control-feedback'></span>" ).insertAfter( element );
-															}
-														},
-														success: function ( label, element ) {
-															// Add the span element, if doesn't exists, and apply the icon classes to it.
-															if ( !$( element ).next( "span" )[ 0 ] ) {
-																$( "<span class='glyphicon glyphicon-ok form-control-feedback'></span>" ).insertAfter( $( element ) );
-															}
-														},
-														highlight: function ( element, errorClass, validClass ) {
-															$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
-															$( element ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
-														},
-														unhighlight: function ( element, errorClass, validClass ) {
-															$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
-															$( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
-														}
-													} );
-												} );
-											</script>
-										<!--end modal 2-->
-										
-										</div>
-									</div>
+									</div>			
 								</div>
-			
 							</div>
-						</div>
+						</div><br>
 					<!--end login-->
 					<!--search-->
 						<div class="row">
@@ -407,16 +83,12 @@
 
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo: </label>
-												<div class="dropdown col-sm-5">
-													<button class="btn btn-default dropdown-toggle form-control" type="button" id="timkiemtheo" name="timkiemtheo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-												    Chọn mục ...
-												    <span class="caret"></span>
-												  </button>
-												  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-												    <li><a href="#">Bài Viết</a></li>
-												    <li><a href="#">Tác Giả</a></li>
-												    <li><a href="#">Lĩnh Vực</a></li>
-												  </ul>
+												<div class="col-sm-5">
+													<select class="form-control">
+														<option>Bài Viết</option>
+														<option>Tác Giả</option>
+														<option>Lĩnh Vực</option>
+													</select>
 												</div>
 											</div>
 											<div class="form-group">
@@ -429,7 +101,7 @@
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="NoiDung">Nội Dung: </label>
 												<div class="col-sm-5">
-													<input type="text" class="form-control" id="noidung" name="noidung" placeholder="Nhập từ khóa cần tìm ...">
+													<textarea class="form-control" rows="3"></textarea>
 												</div>
 											</div>
 											
@@ -451,14 +123,23 @@
 				<div class="row">
 					<div class="col-md-12">
 						<nav class="navbar navbar-default" style="background: #0a408a;">
-						
-							<ul class="nav nav-justified " >
-									<li><a class="textcolor" href="index.html"><strong>Trang chủ</strong></a></li>
-									<li><a class="textcolor" href="gioithieu.html"><strong>Giới Thiệu</strong></a></li>
-									<li><a class="textcolor" href="quydinh_huongdan.html"><strong>Quy Định-Hướng Dẫn</strong></a></li>
-									<li><a class="textcolor" href="lienhe.html"><strong>Liên Hệ</strong></a></li>
-									<li><a class="textcolor" href="lienket.html"><strong>Liên Kết</strong></a></li>
-							</ul>
+							<div class="navbar-header">
+								<button class="navbar-toggle" data-toggle="collapse" data-target="#main-menu">
+						           <span class="sr-only">Toggle navigation</span>
+						           <span class="icon-bar"></span>
+						           <span class="icon-bar"></span>
+						           <span class="icon-bar"></span>
+						        </button>
+							</div>
+							<div class="navbar-collapse collapse" id="main-menu">
+								<ul class="nav nav-justified " >
+										<li><a class="textcolor" href="index.html"><strong>Trang chủ</strong></a></li>
+										<li><a class="textcolor" href="gioithieu.html"><strong>Giới Thiệu</strong></a></li>
+										<li><a class="textcolor" href="quydinh_huongdan.html"><strong>Quy Định-Hướng Dẫn</strong></a></li>
+										<li><a class="textcolor" href="lienhe.html"><strong>Liên Hệ</strong></a></li>
+										<li><a class="textcolor" href="lienket.html"><strong>Liên Kết</strong></a></li>
+								</ul>
+							</div>
 						
 								
 						</nav>
@@ -510,23 +191,29 @@
 												<form action="" class="form-horizontal">
 
 													<div class="form-group">
-													    <label for="inputEmail3" class="col-sm-3 control-label">Tên người phản biện</label>
+													    <label class="col-sm-3 control-label">Tên người phản biện</label>
 													    <div class="col-sm-9">
 													      <p class="form-control-static">Mr.Tùng</p>
 													    </div>
 													  </div>
 
 													<div class="form-group">
-													    <label for="inputEmail3" class="col-sm-3 control-label">Bài phản biện</label>
+													    <label class="col-sm-3 control-label">Bài phản biện</label>
 													    <div class="col-sm-9">
 													      <p class="form-control-static">Lập trình web nâng cao</p>
 													    </div>
 													  </div>
 
 													<div class="form-group">
-													    <label for="inputEmail3" class="col-sm-3 control-label">Nội dung</label>
+													    <label class="col-sm-3 control-label">Nội dung</label>
 													    <div class="col-sm-9">
 													      <textarea class="form-control" rows="5"></textarea>
+													    </div>
+													  </div>
+													 <div class="form-group">
+													    <label class="col-sm-3 control-label">File đính kèm (nếu có)</label><br>
+													    <div class="col-sm-9">
+													      <input type="File">
 													    </div>
 													  </div>	
 

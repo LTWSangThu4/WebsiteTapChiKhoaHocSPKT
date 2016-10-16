@@ -30,10 +30,7 @@
 					<!--Login-->
 						<div class="row">
 							<div class="col-md-12">
-								<div class="nav navbar-right">
-									<div class="btn">
-										<div class="btn-group">
-
+								<div class="nav navbar col-md-push-6">						
 											<button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal">
 											  Đăng Nhập
 											</button>
@@ -67,20 +64,20 @@
 
 											      	<form id="FormDangNhap" method="post" action="" class="form-horizontal">
 														<div class="form-group">
-															<label class="col-sm-4 control-label" for="Username">User Name </label>
+															<label class="col-sm-4 control-label" for="username_signin">User Name </label>
 															<div class="col-sm-5">
-																<input type="text" class="form-control" id="username" name="username" placeholder="Username" />
+																<input type="text" class="form-control" id="username_signin" name="username_signin" placeholder="Username" />
 															</div>
 														</div>
 														<div class="form-group">
-															<label class="col-sm-4 control-label" for="Password">Password</label>
+															<label class="col-sm-4 control-label" for="password_signin">Password</label>
 															<div class="col-sm-5">
-																<input type="password" class="form-control" id="password" name="password" placeholder="Password" />
+																<input type="password" class="form-control" id="password_signin" name="password_signin" placeholder="Password" />
 															</div>
 														</div>
 													</form>
 
-												    <a id="btnDangNhap" class="btn btn-primary" role="button" >Đăng nhập</a> 
+												    <a id="btnDangNhap" class="btn btn-primary col-md-offset-5" role="button" >Đăng nhập</a> 
 												 
 												    <script type="text/javascript">
 														$.validator.setDefaults( {
@@ -92,21 +89,21 @@
 														$( document ).ready( function () {
 															$( "#FormDangNhap" ).validate( {
 																rules: {
-																	username: {
+																	username_signin: {
 																		required: true,
 																		minlength: 2
 																	},
-																	password: {
+																	password_signin: {
 																		required: true,
 																		minlength: 5
 																	},
 																},
 																messages: {
-																	username: {
+																	username_signin: {
 																		required: "Vui lòng nhập lại Username",
 																		minlength: "Username không được ít hơn 2 ký tự"
 																	},
-																	password: {
+																	password_signin: {
 																		required: "Vui lòng nhập lại Password",
 																		minlength: "Password không được ít hơn 5 ký tự"
 																	},
@@ -174,32 +171,11 @@
 											    </div>
 											  </div>
 											</div>
-										<!--end modal 1-->
-										</div>
+										<!-- end Modal 1 -->
 
-										<div class="btn-group">
 											<button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal1">
 											  Đăng Ký
 											</button>
-										<!--modal thong báo-->
-											<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-											  <div class="modal-dialog">
-											    <div class="modal-content">
-											      <div class="modal-header">
-											        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											        <h4 class="modal-title" id="myModalLabel">Thông Báo</h4>
-											      </div>
-											      <div class="modal-body">
-											        BẠN ĐÃ ĐĂNG KÝ THÀNH CÔNG!!
-											      </div>
-											      <div class="modal-footer">
-											        <button type="button" class="btn btn-primary navbar-btn " data-dismiss="modal">OK</button>
-											      </div>
-											    </div>
-											  </div>
-											</div>
-										<!--end modal thong bao-->
-
 										<!-- Modal 2 -->
 											<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											  <div class="modal-dialog">
@@ -213,34 +189,34 @@
 											        	<form id="FormDangKy" method="post" class="form-horizontal" action="">
 
 															<div class="form-group">
-																<label class="col-sm-4 control-label" for="Ho">Họ</label>
+																<label class="col-sm-4 control-label" for="ho">Họ</label>
 																<div class="col-sm-5">
 																	<input type="text" class="form-control" id="ho" name="ho" placeholder="Họ">
 																</div>
 															</div>
 															<div class="form-group">
-																<label class="col-sm-4 control-label" for="Ten">Tên</label>
+																<label class="col-sm-4 control-label" for="ten">Tên</label>
 																<div class="col-sm-5">
 																	<input type="text" class="form-control" id="ten" name="ten" placeholder="Tên">
 																</div>
 															</div>
 
 															<div class="form-group">
-																<label class="col-sm-4 control-label" for="Username">UserName</label>
+																<label class="col-sm-4 control-label" for="username">UserName</label>
 																<div class="col-sm-5">
 																	<input type="text" class="form-control" id="username" name="username" placeholder="Username">
 																</div>
 															</div>
 
 															<div class="form-group">
-																<label class="col-sm-4 control-label" for="Email">Email </label>
+																<label class="col-sm-4 control-label" for="email">Email </label>
 																<div class="col-sm-5">
 																	<input type="email" class="form-control" id="email" name="email" placeholder="Email">
 																</div> 
 															</div>
 
 															<div class="form-group">
-																<label class="col-sm-4 control-label" for="Password">Password </label> 
+																<label class="col-sm-4 control-label" for="password">Password </label> 
 																<div class="col-sm-5">
 																	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 																</div>
@@ -265,7 +241,7 @@
 
 															<div class="form-group">
 																<div class="col-sm-9 col-sm-offset-2">
-																	<button type="submit" class="btn btn-primary" name="signup1" value="Sign up">Đăng Ký</button>
+																	<button type="submit" class="btn btn-primary col-md-offset-4" name="signup1" value="Sign up">Đăng Ký</button>
 																</div>
 															</div>
 															
@@ -282,7 +258,7 @@
 											<script type="text/javascript">
 												$.validator.setDefaults( {
 													submitHandler: function () {
-														alert( "submitted!" );
+														alert( "Bạn đã đăng ký thành công !!!" );
 													}
 												} );
 
@@ -366,10 +342,7 @@
 													} );
 												} );
 											</script>
-										<!--end modal 2-->
-										
-										</div>
-									</div>
+										<!--end modal 2-->										
 								</div>
 			
 							</div>
@@ -407,16 +380,12 @@
 
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo: </label>
-												<div class="dropdown col-sm-5">
-													<button class="btn btn-default dropdown-toggle form-control" type="button" id="timkiemtheo" name="timkiemtheo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-												    Chọn mục ...
-												    <span class="caret"></span>
-												  </button>
-												  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-												    <li><a href="#">Bài Viết</a></li>
-												    <li><a href="#">Tác Giả</a></li>
-												    <li><a href="#">Lĩnh Vực</a></li>
-												  </ul>
+												<div class="col-sm-5">
+													<select class="form-control">
+														<option>Bài Viết</option>
+														<option>Tác Giả</option>
+														<option>Lĩnh Vực</option>
+													</select>
 												</div>
 											</div>
 											<div class="form-group">
@@ -429,7 +398,7 @@
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="NoiDung">Nội Dung: </label>
 												<div class="col-sm-5">
-													<input type="text" class="form-control" id="noidung" name="noidung" placeholder="Nhập từ khóa cần tìm ...">
+													<textarea class="form-control" rows="3"></textarea>
 												</div>
 											</div>
 											
@@ -451,14 +420,23 @@
 				<div class="row">
 					<div class="col-md-12">
 						<nav class="navbar navbar-default" style="background: #0a408a;">
-						
-							<ul class="nav nav-justified " >
-									<li><a class="textcolor" href="index.html"><strong>Trang chủ</strong></a></li>
-									<li><a class="textcolor" href="gioithieu.html"><strong>Giới Thiệu</strong></a></li>
-									<li><a class="textcolor" href="quydinh_huongdan.html"><strong>Quy Định-Hướng Dẫn</strong></a></li>
-									<li><a class="textcolor" href="lienhe.html"><strong>Liên Hệ</strong></a></li>
-									<li><a class="textcolor" href="lienket.html"><strong>Liên Kết</strong></a></li>
-							</ul>
+							<div class="navbar-header">
+								<button class="navbar-toggle" data-toggle="collapse" data-target="#main-menu">
+						           <span class="sr-only">Toggle navigation</span>
+						           <span class="icon-bar"></span>
+						           <span class="icon-bar"></span>
+						           <span class="icon-bar"></span>
+						        </button>
+							</div>
+							<div class="navbar-collapse collapse" id="main-menu">
+								<ul class="nav nav-justified " >
+										<li><a class="textcolor" href="index.html"><strong>Trang chủ</strong></a></li>
+										<li><a class="textcolor" href="gioithieu.html"><strong>Giới Thiệu</strong></a></li>
+										<li><a class="textcolor" href="quydinh_huongdan.html"><strong>Quy Định-Hướng Dẫn</strong></a></li>
+										<li><a class="textcolor" href="lienhe.html"><strong>Liên Hệ</strong></a></li>
+										<li><a class="textcolor" href="lienket.html"><strong>Liên Kết</strong></a></li>
+								</ul>
+							</div>
 						
 								
 						</nav>
@@ -519,6 +497,9 @@
 										     Từ khóa: Năng lực;chương trình môn học; sách giáo khoa; phương pháp dạy học; đánh giá kết quả học tập.
 										
 									</div><br>
+
+									<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> filedinhkem.docx</a>
+									<br><br>
 									<form class="form-horizontal" role="form">
 									  <div class="form-group">
 									    <label class="col-sm-2 control-label">Đánh GIá:</label>
