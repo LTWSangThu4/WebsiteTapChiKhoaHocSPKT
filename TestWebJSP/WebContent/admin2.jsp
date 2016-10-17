@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -191,18 +194,17 @@
 											</tr>
 										</thead>
 										<tbody>
+										<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+										url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
+										<sql:query var="result" sql="select * from acc" dataSource="${con }"/>
+										<c:forEach var="rows" items="${result.rows }">
 											<tr>
-												<td>012</td>
-												<td>tungmountain</td>
-												<td>&8#!3&$</td>
-												<td>Hoạt Động</td>
+												<td>${rows.ID }</td>
+												<td>${rows.user }</td>
+												<td>${rows.Pass }</td>
+												<td>${rows.TrangThai }</td>
 											</tr>
-											<tr>
-												<td>072</td>
-												<td>DinhSa</td>
-												<td>@#$&!%</td>
-												<td>Khóa</td>
-											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
 									
@@ -253,10 +255,14 @@
 											</tr>
 										</thead>
 										<tbody>
+										<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+										url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
+										<sql:query var="result" sql="select * from acc" dataSource="${con }"/>
+										<c:forEach var="rows" items="${result.rows }">
 											<tr>
-												<td>01</td>
-												<td>Tùng</td>
-												<td>Tungmountain@gmail.com</td>
+												<td>${rows.ID }</td>
+												<td>${rows.HoTen }</td>
+												<td>${rows.Email }</td>
 												<td>
 													<select class="form-control" id="select01" disabled>
 													  <option selected>Admin</option>
@@ -268,21 +274,7 @@
 												</td>
 
 											</tr>
-											<tr>
-												<td>072</td>
-												<td>Đinh Sa</td>
-												<td>Kaioshin95@gmail.com</td>
-												<td>
-													<select class="form-control" id="select072" disabled>
-													  <option>Admin</option>
-													  <option>Tổng Biên Tập</option>
-													  <option>Biên Tập Viên</option>
-													  <option>Phản Biện</option>
-													  <option selected>Tác Giả</option>
-													</select>
-												</td>
-
-											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
 									<button class="btn btn-default" id="btnChinhSua">Chỉnh Sửa</button>
@@ -291,7 +283,6 @@
 									<script>
 										$('#btnChinhSua').click(function(){
 											$('#select01').removeAttr('disabled')
-											$('#select072').removeAttr('disabled')
 											$('#btnLuu').removeAttr('disabled')
 											$('#btnChinhSua').addClass('disabled')
 										});
