@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -198,18 +200,17 @@
 														</tr>
 													</thead>
 													<tbody>
+													<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+													url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
+													<sql:query var="result" sql="select * from dsbaiduocgiaophanbien" dataSource="${con }"/>
+													<c:forEach var="rows" items="${result.rows }">
 														<tr>
-															<td>101 chú chó đốm</td>
-															<td>tungmountain</td>
-															<td>19/09/2016</td>
-															<td><button type="button" class="btn btn-link">101conchodom.pdf</button></td>
+															<td>${rows.TenBai }</td>
+															<td>${rows.TacGia}</td>
+															<td>${rows.NgayGui }</td>
+															<td><button type="button" class="btn btn-link">${rows.File }</button></td>
 														</tr>
-														<tr>
-															<td>50 sắc thái</td>
-															<td>Sino</td>
-															<td>25/0/2016</td>
-															<td><button type="button" class="btn btn-link">50sacthai.docx</button></td>
-														</tr>
+													</c:forEach>
 													</tbody>
 												</table>
 												<div class="col-md-offset-5">
@@ -230,22 +231,19 @@
 														</tr>
 													</thead>
 													<tbody>
+													<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+													url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
+													<sql:query var="result" sql="select * from dsbaidapb" dataSource="${con }"/>
+													<c:forEach var="rows" items="${result.rows }">
 														<tr>
-															<td>101 chú chó đốm</td>
-															<td>tungmountain</td>
-															<td>19/09/2016</td>
-															<td><button type="button" class="btn btn-link">101conchodom.pdf</button></td>
-															<td>20/09/2016</td>
-															<td>Chưa Đăng</td>
+															<td>${rows.TenBai }</td>
+															<td>${rows.TacGia }</td>
+															<td>${rows.NgayGui }</td>
+															<td><button type="button" class="btn btn-link">${rows.File}</button></td>
+															<td>${rows.NgayPhanBien }</td>
+															<td>${rows.TrangThai }</td>
 														</tr>
-														<tr>
-															<td>50 sắc thái</td>
-															<td>Sino</td>
-															<td>25/0/2016</td>
-															<td><button type="button" class="btn btn-link">50sacthai.docx</button></td>
-															<td>15/09/2016</td>
-															<td>Đã Đăng</td>
-														</tr>
+													</c:forEach>
 													</tbody>
 												</table>
 												<!-- <button type="submit" class="btn btn-default navbar-btn col-md-offset-5"><strong>GỬI PHẢN BIỆN</strong></button> -->

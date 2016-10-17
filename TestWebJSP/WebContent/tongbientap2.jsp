@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -194,25 +197,20 @@
 											</tr>
 										</thead>
 										<tbody>
+										<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+										url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
+										<sql:query var="result" sql="select * from ds_bai_viet" dataSource="${con }"/>
+										<c:forEach var="rows" items="${result.rows }">
 											<tr>
-												<td>101 chú chó đốm</td>
-												<td>Tùng</td>
-												<td>12/01/2016</td>
-												<td><button type="button" class="btn btn-link">101conchodom.pdf</button></td>
-												<td>Đã Phản Biện</td>
-												<td>Đã Biên Tập</td>
-												<td>Đã Đăng</td>
+												<td>${rows.TenBai }</td>
+												<td>${rows.TacGia }</td>
+												<td>${rows.NgayGui }</td>
+												<td><button type="button" class="btn btn-link">${rows.File }</button></td>
+												<td>${rows.PhanBien }</td>
+												<td>${rows.Bientap }</td>
+												<td>${rows.TrangThai }</td>
 											</tr>
-											<tr>
-												<td>101 chú chó đốm</td>
-												<td>Tùng</td>
-												<td>12/01/2016</td>
-												<td><button type="button" class="btn btn-link">101conchodom.pdf</button></td>
-												<td>Đã Phản Biện</td>
-												<td>Chưa Biên Tập</td>
-												<td>Chưa Đăng</td>
-											</tr>
-											
+										</c:forEach>	
 										</tbody>
 									</table>
 									<div class="col-md-4">

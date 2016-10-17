@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,7 +42,7 @@
 									</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 										<li><a href="thongtincanhan.jsp">Thông Tin Cá Nhân</a></li>
-										<li><a href="" id="BienTapBai">Biên Tập Bài</a></li>
+										<li><a href="bientapvien2.jsp">Biên Tập Bài</a></li>
 										<li role="separator" class="divider"></li>
 										<li><a href="index.jsp">Thoát</a></li>
 									</ul>
@@ -200,18 +203,17 @@
 													</tr>
 												</thead>
 												<tbody>
+												<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+												url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
+												<sql:query var="result" sql="select * from dsbaiduocgiaobt" dataSource="${con }"/>
+												<c:forEach var="rows" items="${result.rows }">
 													<tr>
-														<td>101 chú chó đốm</td>
-														<td>tungmountain</td>
-														<td>19/09/2016</td>
-														<td><button type="button" class="btn btn-link">101conchodom.pdf</button></td>
+														<td>${rows.TenBai }</td>
+														<td>${rows.TacGia }</td>
+														<td>1${rows.NgayGui }</td>
+														<td><button type="button" class="btn btn-link">${rows.File}</button></td>
 													</tr>
-													<tr>
-														<td>50 sắc thái</td>
-														<td>Sino</td>
-														<td>25/0/2016</td>
-														<td><button type="button" class="btn btn-link">50sacthai.docx</button></td>
-													</tr>
+												</c:forEach>
 												</tbody>
 											</table>
 											<div class="col-md-offset-5">
@@ -233,22 +235,19 @@
 													</tr>
 												</thead>
 												<tbody>
+												<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+												url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
+												<sql:query var="result" sql="select * from dsbaidagui" dataSource="${con }"/>
+												<c:forEach var="rows" items="${result.rows }">
 													<tr>
-														<td>101 chú chó đốm</td>
-														<td>tungmountain</td>
-														<td>19/09/2016</td>
-														<td>101conchodom.pdf</td>
-														<td>30/11/2016</td>
-														<td>Đã Đăng</td>
+														<td>${rows.Tenbai }</td>
+														<td>${rows.TacGia}</td>
+														<td>${rows.NgayGui }</td>
+														<td>${rows.File }</td>
+														<td>${rows.NgayBienTap }</td>
+														<td>${rows.TrangThai }</td>
 													</tr>
-													<tr>
-														<td>50 sắc thái</td>
-														<td>Sino</td>
-														<td>25/0/2016</td>
-														<td>50sacthai.docx</td>
-														<td>22/7/2016</td>
-														<td>Chưa Đăng</td>
-													</tr>
+												</c:forEach>
 												</tbody>
 											</table>
 											
