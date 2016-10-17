@@ -178,48 +178,71 @@
 									<h3 class="panel-title">Biên Tập Bài</h3>
 								</div>
 								<div class="panel-body">
-									<form action="" class="form-horizontal">
+									<form id="FormBienTap" method="post" action="" class="form-horizontal">
 
 										<div class="form-group">
 											<label class="col-md-3">Tiêu Đề: </label>
-											<input class="col-md-7" type="text" >
+											<div class="col-md-7">
+												<input class="form-control" type="text" id="tieude" placeholder="Nhập tiêu đề">
+											</div>
 										</div>
 
 										<div class="form-group">
 											<label class="col-md-3">Nội dung tiêu biểu: </label> 
-											<textarea class="col-md-7" rows="10"></textarea>
+											<div class="col-md-7">
+												<textarea class="form-control" rows="10" id="noidung" placeholder="Nhập nội dung tiêu biểu"></textarea>
+											</div>
 										    
 										</div>
 
 										<div class="form-group">
 											<label class="col-md-3">File đính kèm: </label>
-											<input class="col-md-7" type="file" >
+											<div class="col-md-7">
+												<input class="form-control" type="file" id="file">
+											</div>
 										</div>
 
-										<button class="btn btn-primary col-md-offset-3" type="button" data-toggle="modal" data-target="#guitongbientap">GỬI TỔNG BIÊN TẬP</button>
-
-										<!-- Modal -->
-										<div class="modal fade" id="guitongbientap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-										  <div class="modal-dialog" role="document">
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										        <h4 class="modal-title" id="myModalLabel">Thông Báo</h4>
-										      </div>
-										      <div class="modal-body">
-										        <div class="text-center">
-									        		Đồng ý gửi cho tổng biên tập
-									        	</div>
-										      </div>
-										      <div class="modal-footer">
-										        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-										        <a href="bientapvien2.html"><button type="button" class="btn btn-primary">Yes</button></a>
-										      </div>
-										    </div>
-										  </div>
+										<div class="col-md-offset-3">
+											<button type="button" id="guibientap" class="btn btn-primary">Gửi Bài Biên Tập</button>
 										</div>
 
 									</form>
+									<script>
+													
+										function validateText(id)
+										{
+											if($("#"+id).val()==null || $("#"+id).val()=="")
+											{
+												var div=$("#"+id).closest("div");
+												div.addClass("has-error");
+												return false;
+											}
+											else
+											{
+												var div=$("#"+id).closest("div");
+												div.removeClass("has-error");
+												return true
+											};
+										}
+										$(document).ready(
+											function()
+											{
+												$("#guibientap").click(function()
+												{
+													
+													if(!validateText("tieude"))
+														return false;
+													
+													if(!validateText("noidung"))
+														return false;
+													
+													if(!validateText("file"))
+														return false;
+													
+													$("form#FormBienTap").submit();
+												});
+											});
+									</script>
 								</div>
 							</div>
 						</div>

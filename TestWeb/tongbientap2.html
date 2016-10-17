@@ -213,45 +213,42 @@
 											
 										</tbody>
 									</table>
+									<div class="col-md-4">
+										<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#thongtinbaiviet">Thông tin bài viết</button></a>
+									</div>
+									
 
-									<div class="col-md-offset-4">
-										<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#xembaidabientap">Xem bài biên tập</button></a>
-										<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#xemphanbien">Xem phản biện</button></a>
+									<div class="col-md-8">
+										
+										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#phancong">Phân công bài viết</button></a>
 										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dangbai">Đăng Bài</button></a>
-									</div><br><br>
-									<div class="collapse" id="xembaidabientap">
+									</div><br><br><br><br>
+									<div class="collapse" id="thongtinbaiviet">
 										<form action="" class="form-horizontal">
 
 											<div class="form-group">
-												<label class="col-md-2">Người Biên Tập: </label>
-												<p class="col-md-8">BTV. Đinh Sa</p>
+												<label class="col-md-2">Tác Giả: </label>
+												<p class="col-md-8"> Huyền Hoàng</p>
 											</div>
 											<div class="form-group">
 												<label class="col-md-2">Tiêu Đề: </label>
 												<p class="col-md-8">Lập Trình Web</p>
 											</div>
-
+											
 											<div class="form-group">
-												<label class="col-md-2">Nội dung tiêu biểu: </label> 
-												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
-									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
-
-											    
+												<label class="col-md-2">Cơ Quan: </label>
+												<p class="col-md-8">Cty.ABC</p>
 											</div>
-
 											<div class="form-group">
-												<label class="col-md-2">File đính kèm: </label>
+												<label class="col-md-2">Thông Tin Liên Lạc: </label>
+												<p class="col-md-8">C9/10 ap TN1, TPHCM</p>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2">Danh Sách Từ Khóa</label>
 												<div class="col-md-8">
-													<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> filedinhkem.docx</a>
+													<textarea class="form-control" id="dstukhoa" rows="10"></textarea>
 												</div>
-
 											</div>
-
-										</form>
-									</div>
-									<div class="collapse" id="xemphanbien">
-										<form action="" class="form-horizontal">
-
 											<div class="form-group">
 												<label class="col-md-2">Người Phản Biện: </label>
 												<p class="col-md-8">Mr. Tùng</p>
@@ -262,7 +259,7 @@
 											</div>
 
 											<div class="form-group">
-												<label class="col-md-2">Nội dung tiêu biểu: </label> 
+												<label class="col-md-2">Nội dung phản biện: </label> 
 												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
 									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
 											    
@@ -273,8 +270,29 @@
 												
 
 											</div>
+											<div class="form-group">
+												<label class="col-md-2">Người Biên Tập: </label>
+												<p class="col-md-8">Mr. Tùng</p>
+											</div>
+
+											<div class="form-group">
+												<label class="col-md-2">Nội dung đã biên tập: </label> 
+												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
+									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2">File đã biên tập: </label>
+												<div class="col-md-8">
+													<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> filedinhkem.docx</a>
+												</div>
+											</div>
+
+											
+											
+
 										</form>
 									</div>
+									
 									<!-- Modal -->
 									<div class="modal fade" id="dangbai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 									  <div class="modal-dialog" role="document">
@@ -287,6 +305,55 @@
 									        <div class="text-center">
 									        	Đồng ý đăng bài 
 									        </div>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+									        <a href="tongbientap2.html"><button type="button" class="btn btn-primary">Yes</button></a>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+									<!-- Modal -->
+									<div class="modal fade" id="phancong" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="myModalLabel">Gửi Bài Cho PB và BTV</h4>
+									      </div>
+									      <div class="modal-body">
+									        <form class="form-horizontal" action="">
+									        	<div class="form-group">
+													<label class="col-md-4">Bài Viết: </label>
+													<p class="col-md-8">Lập Trình Web</p>
+												</div>
+												<div class="form-group">
+													<label class="col-md-4">File Bài Viết: </label>
+													<div class="col-md-8">
+														<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> 101conchodom.docx</a>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-4">Người Phản Biện: </label>
+													<div class="col-md-8">
+														<select class="form-control">
+														<option>Thanh Tùng</option>
+														<option>Đinh Sa</option>
+														<option>Sino</option>
+													</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-4">Người Biên Tập: </label>
+													<div class="col-md-8">
+														<select class="form-control">
+														<option>Sino</option>
+														<option>Đinh Sa</option>
+														<option>Thanh Tùng</option>
+													</select>
+													</div>
+												</div>
+									        </form>
 									      </div>
 									      <div class="modal-footer">
 									        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>

@@ -182,7 +182,7 @@
 										<!--cot trái-->
 											<div class="col-md-8">
 												
-												<form action="" class="form-horizontal">
+												<form id="FormPhanBien" method="post" action="" class="form-horizontal">
 
 													<div class="form-group">
 													    <label class="col-sm-3 control-label">Tên người phản biện</label>
@@ -201,51 +201,57 @@
 													<div class="form-group">
 													    <label class="col-sm-3 control-label">Nội dung</label>
 													    <div class="col-sm-9">
-													      <textarea class="form-control" rows="5"></textarea>
+													      <textarea class="form-control" rows="5" id="noidung" placeholder="Nhập nội dung phản biện"></textarea>
 													    </div>
 													  </div>
 													 <div class="form-group">
 													    <label class="col-sm-3 control-label">File đính kèm (nếu có)</label><br>
 													    <div class="col-sm-9">
-													      <input type="File">
+													      <input type="file" class="form-control">
 													    </div>
-													  </div>	
+													  </div>
+													  <div class="col-sm-offset-3">
+													  	<button type="button" id="guiphanbien" class="btn btn-primary">Gửi Phản Biện</button>	
+													  </div>
 
 												</form>
+												<script>
+													
+													function validateText(id)
+													{
+														if($("#"+id).val()==null || $("#"+id).val()=="")
+														{
+															var div=$("#"+id).closest("div");
+															div.addClass("has-error");
+															return false;
+														}
+														else
+														{
+															var div=$("#"+id).closest("div");
+															div.removeClass("has-error");
+															return true
+														};
+													}
+													$(document).ready(
+														function()
+														{
+															$("#guiphanbien").click(function()
+															{
+																
+																if(!validateText("noidung"))
+																	return false;
+																
+																
+																
+																$("form#FormPhanBien").submit();
+															});
+														});
+												</script>
 												
 											</div>
 										<!--end cột trái-->
 										</div>
-										<div class="row">
-											<div class="col-md-offset-4">
-												<button class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
-												  Gửi
-												</button>
-
-												<!-- Modal -->
-												<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-												  <div class="modal-dialog">
-												    <div class="modal-content">
-												      <div class="modal-header">
-												        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-												        <h4 class="modal-title" id="myModalLabel">Thông Báo!</h4>
-												      </div>
-												      <div class="modal-body">
-													      	<div class="text-center">
-													       		Bài đã được gửi!!
-													       	</div>
-												      </div>
-												      <div class="modal-footer">
-												        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
-												        
-												      </div>
-												    </div>
-												  </div>
-												</div>
-												<a href="phanbien2.html"><button type="button" class="btn btn-warning">Hủy</button></a>
-											</div>
-												
-										</div>
+										
 								</div>
 							</div>
 						

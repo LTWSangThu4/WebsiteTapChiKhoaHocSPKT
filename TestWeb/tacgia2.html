@@ -178,41 +178,92 @@
 									<h3 class="panel-title">Gửi Bài Online</h3>
 								</div>
 								<div class="panel-body">
-										<div class="row">
 										<!--cot trái-->
 											<div class="col-md-8">
-												
-												<form action="" class="form-horizontal">
-
+												<form id="FormGuiBai" method="post" class="form-horizontal" action="" role="form">
 													<div class="form-group">
-														<label class="col-md-3">Tiêu đề </label><input class=" col-md-7" type="text/submit/hidden/button/etc" >
+														<label for="tieude" class="col-sm-2">Tiêu Đề</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề">
+														</div>
 													</div>
-
 													<div class="form-group">
-														<label class="col-md-3">Nội dung </label> 
-														<div class="form-group"><input type="file" id="exampleInputFile">
-													    
-													  	</div>
+														<label for="noidung" class="col-sm-2">Nội Dung</label>
+														<div class="col-sm-10">
+															<input type="file" class="form-control" id="noidung">
+														</div>
 													</div>
-
 													<div class="form-group">
-														<label class="col-md-3">Tên tác giả </label><input class="col-md-7" type="text/submit/hidden/button/etc" >
+														<label for="tentacgia" class="col-sm-2">Tên Tác Giả</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control" id="tentacgia" placeholder="Nhập tên tác giả">
+														</div>
 													</div>
-
 													<div class="form-group">
-														<label class="col-md-3">Cơ quan </label> <input class="col-md-7" type="text/submit/hidden/button/etc" >
+														<label for="coquan" class="col-sm-2">Cơ Quan</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control" id="coquan" placeholder="Nhập cơ quan">
+														</div>
 													</div>
-
 													<div class="form-group">
-														<label class="col-md-3">Thông tin liên lạc </label> <input class="col-md-7" type="text/submit/hidden/button/etc" >
+														<label for="thongtinlienlac" class="col-sm-2">Thông Tin Liên Lạc</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control" id="thongtinlienlac" placeholder="Nhập thông tin liên lạc">
+														</div>
 													</div>
-
 													<div class="form-group">
-														<label class="col-md-3">Danh sách từ khóa </label> <input class="col-md-7" type="text/submit/hidden/button/etc" >
+														<label for="dstukhoa" class="col-sm-2">Danh Sách Từ Khóa (nếu có)</label>
+														<div class="col-sm-10">
+															<textarea class="form-control" id="dstukhoa" rows="10" placeholder="Nhập danh sách từ khóa"></textarea>
+														</div>
 													</div>
-
+													<div class="col-sm-offset-2">
+														<button type="button" id="guibai" class="btn btn-primary">Gửi Bài</button>
+													</div>
 												</form>
-												
+												<script>
+													
+													function validateText(id)
+													{
+														if($("#"+id).val()==null || $("#"+id).val()=="")
+														{
+															var div=$("#"+id).closest("div");
+															div.addClass("has-error");
+															return false;
+														}
+														else
+														{
+															var div=$("#"+id).closest("div");
+															div.removeClass("has-error");
+															return true
+														};
+													}
+													$(document).ready(
+														function()
+														{
+															$("#guibai").click(function()
+															{
+																
+																if(!validateText("tieude"))
+																	return false;
+																
+																if(!validateText("noidung"))
+																	return false;
+																
+																if(!validateText("tentacgia"))
+																	return false;
+																
+																if(!validateText("coquan"))
+																	return false;
+															
+																if(!validateText("thongtinlienlac"))
+																	return false;
+																
+																$("form#FormGuiBai").submit();
+															});
+														});
+												</script>
+
 											</div>
 										<!--end cột trái-->
 
@@ -229,9 +280,11 @@
 										</div>
 										<div class="row">
 											<div class="col-md-offset-4">
-												<button class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
+												<!-- <button type="submit" id="guibai" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
 												  Gửi Bài
-												</button>
+												</button> -->
+												<br><br>
+												
 
 												<!-- Modal -->
 												<div class="modal" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
