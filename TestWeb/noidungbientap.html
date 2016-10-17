@@ -30,23 +30,17 @@
 					<!--Login-->
 						<div class="row">
 							<div class="col-md-12">
-								<div class="nav navbar-right">
-									<div class="btn">
-										<div class="btn-group">
-											<div class="dropdown">
-											  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-											    BTV
-											    <span class="caret"></span>
-											  </button>
-											  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-											    <li><a href="thongtincanhan.html">Thông Tin Cá Nhân</a></li>
-											    <li><a href="bientapvien2.html">Biên Tập Bài</a></li>
-											    <li role="separator" class="divider"></li>
-											    <li><a href="index.html">Thoát</a></li>
-											  </ul>
-											</div>
-										</div>
-									</div>			
+								<div class="dropdown col-md-push-10">
+									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										 BTV
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										<li><a href="thongtincanhan.html">Thông Tin Cá Nhân</a></li>
+										<li><a href="" id="BienTapBai">Biên Tập Bài</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="index.html">Thoát</a></li>
+									</ul>
 								</div>
 							</div>
 						</div><br>
@@ -133,11 +127,11 @@
 							</div>
 							<div class="navbar-collapse collapse" id="main-menu">
 								<ul class="nav nav-justified " >
-										<li><a class="textcolor" href="index.html"><strong>Trang chủ</strong></a></li>
-										<li><a class="textcolor" href="gioithieu.html"><strong>Giới Thiệu</strong></a></li>
-										<li><a class="textcolor" href="quydinh_huongdan.html"><strong>Quy Định-Hướng Dẫn</strong></a></li>
-										<li><a class="textcolor" href="lienhe.html"><strong>Liên Hệ</strong></a></li>
-										<li><a class="textcolor" href="lienket.html"><strong>Liên Kết</strong></a></li>
+										<li><a class="textcolor" href="noidungbientap.html"><strong>Trang chủ</strong></a></li>
+										<li><a class="textcolor" href="" id="GioiThieu"><strong>Giới Thiệu</strong></a></li>
+										<li><a class="textcolor" href="" id="QDHD"><strong>Quy Định-Hướng Dẫn</strong></a></li>
+										<li><a class="textcolor" href="" id="LienHe"><strong>Liên Hệ</strong></a></li>
+										<li><a class="textcolor" href="" id="LienKet"><strong>Liên Kết</strong></a></li>
 								</ul>
 							</div>
 						
@@ -149,7 +143,7 @@
 <!--endhead-->
 <!--Main-->
 			<div id="Main">
-					<div class="row">
+					<div class="row" id="nd">
 					<!--cột trái-->
 						<div class="col-md-2">
 							<div class="panel panel-success" >
@@ -231,6 +225,60 @@
 						</div>
 					<!--end cột giữa-->
 					</div><!--endrow chinh-->
+					<!--Ajax-->	
+						<!--Xem giới Thiệu-->
+						 <script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#GioiThieu').click(function(e) {
+							 e.preventDefault();
+							 $.get('gioithieu.html', function(ketqua) {
+							 $('#nd').html(ketqua);
+							 $('#nd').html($('#nd2-canlay').html());
+							 });
+							 
+							 });
+							 });
+						</script>
+						<!--Xem QD HD-->
+						 <script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#QDHD').click(function(e) {
+							 e.preventDefault();
+							 $.get('quydinh_huongdan.html', function(ketqua) {
+							 $('#nd').html(ketqua);
+							 $('#nd').html($('#nd2-canlay').html());
+							 });
+							 
+							 });
+							 });
+						</script>
+						<!--xem liên hệ-->
+						<script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#LienHe').click(function(e) {
+							 e.preventDefault();
+							 $.get('lienhe.html', function(ketqua) {
+							 $('#nd').html(ketqua);
+							 $('#nd').html($('#nd2-canlay').html());
+							 });
+							 
+							 });
+							 });
+						</script>
+						<!--xem Liên Kết-->
+						 <script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#LienKet').click(function(e) {
+							 e.preventDefault();
+							 $.get('lienket.html', function(ketqua) {
+							 $('#nd').html(ketqua);
+							 $('#nd').html($('#nd2-canlay').html());
+							 });
+							 
+							 });
+							 });
+						</script>
+	  				<!--endAjax-->
 			</div>
 <!--endMain-->
 		</div>
