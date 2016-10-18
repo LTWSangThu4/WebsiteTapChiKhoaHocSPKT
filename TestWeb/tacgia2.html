@@ -228,14 +228,20 @@
 														if($("#"+id).val()==null || $("#"+id).val()=="")
 														{
 															var div=$("#"+id).closest("div");
-															div.addClass("has-error");
+															div.removeClass("has-success");
+															div.addClass("has-error has-feedback");
+															$("#glypcn"+id).remove();
+															div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
 															return false;
 														}
 														else
 														{
 															var div=$("#"+id).closest("div");
 															div.removeClass("has-error");
-															return true
+															div.addClass("has-success has-feedback");
+															$("#glypcn"+id).remove();
+															div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-ok form-control-feedback"></span>');
+															return true;
 														};
 													}
 													$(document).ready(

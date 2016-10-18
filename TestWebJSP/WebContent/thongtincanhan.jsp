@@ -191,40 +191,71 @@
 										<br>
 										<!-- <label>Ảnh Đại Diện</label> -->
 									</div>
-									<div class="col-sm-7">
+									<div class="col-sm-9">
 										<form class="form-horizontal">
-										  <div class="form-group">
+										  <div class="form-group" >
 										    <label class="col-sm-3 control-label">Họ Tên</label>
-										    <div class="col-sm-9">
+										    <div class="col-sm-8" >
 										      <p class="form-control-static">Nguyễn Hoàng Thanh Tùng</p>
 										    </div>
+										    <span  id="suahoten" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 										  </div>
 										  <div class="form-group">
 										    <label class="col-sm-3 control-label">Email</label>
-										    <div class="col-sm-9">
-										      <p class="form-control-static">nguyenhoangthanhtung1610@gmail.com</p>
+										    <div class="col-sm-8">
+										      <p class="form-control-static">nguyentung@gmail.com</p>
 										    </div>
+										    <span id="suaemail" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 										  </div>
 										  <div class="form-group">
 										    <label class="col-sm-3 control-label">Username</label>
-										    <div class="col-sm-9">
+										    <div class="col-sm-8">
 										      <p class="form-control-static">accessax2016</p>
 										    </div>
+										    <!-- <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> -->
 										  </div>
 										  <div class="form-group">
 										    <label class="col-sm-3 control-label">Password</label>
-										    <div class="col-sm-9">
+										    <div class="col-sm-8">
 										      <p class="form-control-static">713********</p>
 										    </div>
+										    <span id="suapassword" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+
 										  </div>
 										  <div class="form-group">
-										    <button type="submit" class="btn btn-primary col-sm-offset-4" name="update" value="update">Chỉnh Sửa</button>
+										    <button type="submit" class="btn btn-primary col-sm-offset-4" name="update" value="update">OK</button>
 										  </div>
-										</form>										
+										</form>
+
+										<script>
+										function update(id)
+										{
+											var div=$("#"+id).closest("div");
+											div.append('<div class="col-sm-8 col-sm-offset-3"><input type="text" class="form-control" placeholder="Nhập thông tin mới"></div>');
+										}
+										$(document).ready(
+											function()
+											{
+												$("#suahoten").click(function()
+												{
+													update("suahoten");
+												});
+												$("#suaemail").click(function()
+												{
+													update("suaemail");
+												});
+												$("#suapassword").click(function()
+												{
+													update("suapassword");
+												});
+											});
+											
+											
+										</script>										
 									</div>
-									<div class="col-sm-2">
+									<!-- <div class="col-sm-2">
 										
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
