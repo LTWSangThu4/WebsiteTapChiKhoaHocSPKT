@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -194,17 +195,19 @@
 											</tr>
 										</thead>
 										<tbody>
-										<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-										url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
-										<sql:query var="result" sql="select * from acc" dataSource="${con }"/>
-										<c:forEach var="rows" items="${result.rows }">
-											<tr>
-												<td>${rows.ID }</td>
-												<td>${rows.user }</td>
-												<td>${rows.Pass }</td>
-												<td>${rows.TrangThai }</td>
-											</tr>
-										</c:forEach>
+										
+											<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+												url="jdbc:mysql://mysql176502-nhom8.jelastic.servint.net/tckh" user="root" password="oNxaAn4YNN"/>
+											<sql:query var="result" sql="select * from acc" dataSource="${con }"/>
+											<c:forEach var="rows" items="${result.rows }">
+												<tr>
+													<td>${rows.ID }</td>
+													<td>${rows.user }</td>
+													<td>${rows.Pass }</td>
+													<td>${rows.TrangThai }</td>
+												</tr>
+											</c:forEach>
+										
 										</tbody>
 									</table>
 									
@@ -255,9 +258,6 @@
 											</tr>
 										</thead>
 										<tbody>
-										<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-										url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
-										<sql:query var="result" sql="select * from acc" dataSource="${con }"/>
 										<c:forEach var="rows" items="${result.rows }">
 											<tr>
 												<td>${rows.ID }</td>

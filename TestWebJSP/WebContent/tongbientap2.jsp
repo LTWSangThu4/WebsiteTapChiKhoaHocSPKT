@@ -198,7 +198,7 @@
 										</thead>
 										<tbody>
 										<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-										url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
+										url="jdbc:mysql://mysql176502-nhom8.jelastic.servint.net/tckh" user="root" password="oNxaAn4YNN"/>
 										<sql:query var="result" sql="select * from ds_bai_viet" dataSource="${con }"/>
 										<c:forEach var="rows" items="${result.rows }">
 											<tr>
