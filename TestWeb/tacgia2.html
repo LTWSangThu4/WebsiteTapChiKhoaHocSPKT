@@ -200,115 +200,158 @@
 						<div class="col-md-10 line">
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Gửi Bài Online</h3>
+									<h3 class="panel-title">Gửi Bài</h3>
 								</div>
 								<div class="panel-body">
-										<!--cot trái-->
-											<div class="col-md-8">
-												<form id="FormGuiBai" method="post" class="form-horizontal" action="" role="form">
-													<div class="form-group">
-														<label for="tieude" class="col-sm-2">Tiêu Đề</label>
-														<div class="col-sm-10">
-															<input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề">
+									<div>
+										<ul class="nav nav-tabs">
+											<li class="active"><a href="#guibaionline" data-toggle="tab">Gửi Bài Online</a></li>
+										    <li><a href="#dsbaidaviet" data-toggle="tab">Danh Sách Bài Đã Viết</a></li>
+										</ul>
+										<div class="tab-content">
+											<div class="tab-pane fade in active" id="guibaionline">
+												<!--cot trái-->
+												<div class="col-md-8">
+													<form id="FormGuiBai" method="post" class="form-horizontal" action="" role="form">
+														<div class="form-group">
+															<label for="tieude" class="col-sm-2">Tiêu Đề</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề">
+															</div>
 														</div>
-													</div>
-													<div class="form-group">
-														<label for="noidung" class="col-sm-2">Nội Dung</label>
-														<div class="col-sm-10">
-															<input type="file" class="form-control" id="noidung">
+														<div class="form-group">
+															<label for="noidung" class="col-sm-2">Nội Dung</label>
+															<div class="col-sm-10">
+																<input type="file" class="form-control" id="noidung">
+															</div>
 														</div>
-													</div>
-													<div class="form-group">
-														<label for="tentacgia" class="col-sm-2">Tên Tác Giả</label>
-														<div class="col-sm-10">
-															<input type="text" class="form-control" id="tentacgia" placeholder="Nhập tên tác giả">
+														<div class="form-group">
+															<label for="tentacgia" class="col-sm-2">Tên Tác Giả</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="tentacgia" placeholder="Nhập tên tác giả">
+															</div>
 														</div>
-													</div>
-													<div class="form-group">
-														<label for="coquan" class="col-sm-2">Cơ Quan</label>
-														<div class="col-sm-10">
-															<input type="text" class="form-control" id="coquan" placeholder="Nhập cơ quan">
+														<div class="form-group">
+															<label for="coquan" class="col-sm-2">Cơ Quan</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="coquan" placeholder="Nhập cơ quan">
+															</div>
 														</div>
-													</div>
-													<div class="form-group">
-														<label for="thongtinlienlac" class="col-sm-2">Thông Tin Liên Lạc</label>
-														<div class="col-sm-10">
-															<input type="text" class="form-control" id="thongtinlienlac" placeholder="Nhập thông tin liên lạc">
+														<div class="form-group">
+															<label for="thongtinlienlac" class="col-sm-2">Thông Tin Liên Lạc</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="thongtinlienlac" placeholder="Nhập thông tin liên lạc">
+															</div>
 														</div>
-													</div>
-													<div class="form-group">
-														<label for="dstukhoa" class="col-sm-2">Danh Sách Từ Khóa (nếu có)</label>
-														<div class="col-sm-10">
-															<textarea class="form-control" id="dstukhoa" rows="10" placeholder="Nhập danh sách từ khóa"></textarea>
+														<div class="form-group">
+															<label for="dstukhoa" class="col-sm-2">Danh Sách Từ Khóa (nếu có)</label>
+															<div class="col-sm-10">
+																<textarea class="form-control" id="dstukhoa" rows="10" placeholder="Nhập danh sách từ khóa"></textarea>
+															</div>
 														</div>
-													</div>
-													<div class="col-sm-offset-2">
-														<button type="button" id="guibai" class="btn btn-primary">Gửi Bài</button>
-													</div>
-												</form>
-												<script>
-													
-													function validateText(id)
-													{
-														if($("#"+id).val()==null || $("#"+id).val()=="")
+														<div class="col-sm-offset-2">
+															<button type="button" id="guibai" class="btn btn-primary">Gửi Bài</button>
+														</div>
+													</form>
+													<script>
+														
+														function validateText(id)
 														{
-															var div=$("#"+id).closest("div");
-															div.removeClass("has-success");
-															div.addClass("has-error has-feedback");
-															$("#glypcn"+id).remove();
-															div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
-															return false;
-														}
-														else
-														{
-															var div=$("#"+id).closest("div");
-															div.removeClass("has-error");
-															div.addClass("has-success has-feedback");
-															$("#glypcn"+id).remove();
-															div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-ok form-control-feedback"></span>');
-															return true;
-														};
-													}
-													$(document).ready(
-														function()
-														{
-															$("#guibai").click(function()
+															if($("#"+id).val()==null || $("#"+id).val()=="")
 															{
+																var div=$("#"+id).closest("div");
+																div.removeClass("has-success");
+																div.addClass("has-error has-feedback");
+																$("#glypcn"+id).remove();
+																div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
+																return false;
+															}
+															else
+															{
+																var div=$("#"+id).closest("div");
+																div.removeClass("has-error");
+																div.addClass("has-success has-feedback");
+																$("#glypcn"+id).remove();
+																div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-ok form-control-feedback"></span>');
+																return true;
+															};
+														}
+														$(document).ready(
+															function()
+															{
+																$("#guibai").click(function()
+																{
+																	
+																	if(!validateText("tieude"))
+																		return false;
+																	
+																	if(!validateText("noidung"))
+																		return false;
+																	
+																	if(!validateText("tentacgia"))
+																		return false;
+																	
+																	if(!validateText("coquan"))
+																		return false;
 																
-																if(!validateText("tieude"))
-																	return false;
-																
-																if(!validateText("noidung"))
-																	return false;
-																
-																if(!validateText("tentacgia"))
-																	return false;
-																
-																if(!validateText("coquan"))
-																	return false;
-															
-																if(!validateText("thongtinlienlac"))
-																	return false;
-																
-																$("form#FormGuiBai").submit();
+																	if(!validateText("thongtinlienlac"))
+																		return false;
+																	
+																	$("form#FormGuiBai").submit();
+																});
 															});
-														});
-												</script>
+													</script>
 
+												</div>
+											<!--end cột trái-->
+
+											<!--cot phải-->
+												<div class="col-md-4">
+													<img src="images/anh.png" alt="..." class="img-thumbnail"> <br>
+													<br>
+													<label>Ảnh Bìa</label>
+
+													<input type="file" id="">
+														    
+												</div>
+											<!--end cot phải-->
 											</div>
-										<!--end cột trái-->
-
-										<!--cot phải-->
-											<div class="col-md-4">
-												<img src="images/anh.png" alt="..." class="img-thumbnail"> <br>
-												<br>
-												<label>Ảnh Bìa</label>
-
-												<input type="file" id="">
-													    
+											<div class="tab-pane fade in active" id="dsbaidaviet">
+												<table class="table table-bordered table-hover">
+													<thead>
+														<tr>
+															<th>Tên Bài</th>
+															<th>Ngày gửi</th>
+															<th>File</th>
+															<th>Trạng thái</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>101 chú chó đốm</td>
+															<td>19/09/2016</td>
+															<td><button type="button" class="btn btn-link">101conchodom.pdf</button></td>
+															<td>Từ chối</td>
+														</tr>
+														<tr>
+															<td>50 sắc thái</td>
+															<td>25/0/2016</td>
+															<td><button type="button" class="btn btn-link">50sacthai.docx</button></td>
+															<td>Được đăng</td>
+														</tr>
+														<tr>
+															<td>49 sắc thái</td>
+															<td>22/10/2016</td>
+															<td><button type="button" class="btn btn-link">49sacthai.docx</button></td>
+															<td>Đang biên tập và phản biện</td>
+														</tr>
+													</tbody>
+												</table>
 											</div>
-										<!--end cot phải-->
 										</div>
+									</div>
+										
+								</div>
 										<div class="row">
 											<div class="col-md-offset-4">
 												<!-- <button type="submit" id="guibai" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
