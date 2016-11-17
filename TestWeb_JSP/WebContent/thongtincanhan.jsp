@@ -236,31 +236,57 @@
 													<!-- <label>Ảnh Đại Diện</label> -->
 												</div>
 												<div class="col-sm-9">
-									    			<form class="form-horizontal">	
+									    			<form class="form-horizontal" method="post" action="updatedb_tt.jsp">	
+									    	<!-- Thông Báo -->								    
+											        <font color="green"><c:if test="${not empty param.susMsg}">
+											            <c:out value="${param.susMsg}" />										            									           
+											        </c:if></font>		
 									    	<!-- Họ Tên -->									    				
 													  <div class="form-group" >	  
 														  <div class="tab-content">
-														  	<div class="tab-pane fade in active" id="">
-															  	<label class="col-sm-3 control-label">Họ Tên</label>
+														  	<div class="tab-pane fade in active" id="edten">
+															  	<label class="col-sm-3 control-label">Tên</label>
 															    <div class="col-sm-8" >
-															      <p class="form-control-static"><c:out value="${r.last_name}"/> <c:out value="${r.first_name}"/> </p>
+															      <p class="form-control-static"><c:out value="${r.first_name}"/> </p>
 															    </div>
-															    <a href="#edit_hoten" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+															    <a href="#edit_ten" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
 														  	</div>
 														  
-															  <div class="tab-pane fade" id="edit_hoten">
-																  	<label class="col-sm-3 control-label">Họ Tên</label>
+															  <div class="tab-pane fade" id="edit_ten">
+																  	<label class="col-sm-3 control-label">Tên</label>
 																    <div class="col-sm-8" >
-																      <input type="text" value="${r.last_name} ${r.first_name}" name="maquyen"/>
+																      <input type="text" value="${r.first_name}" name="tencn"/>
 																    </div>
-																    <a href="#edit_hoten" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+																    <button type="submit" class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
+																    <a href="#edten" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>															    														    
 															  </div>														  
 														  </div>							 
 													   </div>
+												<!-- Họ -->	  
+														 <div class="form-group" >	  
+														  <div class="tab-content">
+														  	<div class="tab-pane fade in active" id="edho">
+															  	<label class="col-sm-3 control-label">Họ</label>
+															    <div class="col-sm-8" >
+															      <p class="form-control-static"><c:out value="${r.last_name}"/> </p>
+															    </div>
+															    <a href="#edit_ho" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+														  	</div>
+														  
+															  <div class="tab-pane fade" id="edit_ho">
+																  	<label class="col-sm-3 control-label">Họ</label>
+																    <div class="col-sm-8" >
+																      <input type="text" value="${r.last_name}" name="hocn"/>
+																    </div>
+																    <button type="submit"  class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
+																    <a href="#edho" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
+															  </div>														  
+														  </div>							 
+													   </div> 
 												<!-- Email -->  
 														<div class="form-group" >	  
 														  <div class="tab-content">
-														  	<div class="tab-pane fade in active" id="">
+														  	<div class="tab-pane fade in active" id="edemail">
 															  	<label class="col-sm-3 control-label">Email</label>
 															    <div class="col-sm-8" >
 															      <p class="form-control-static"><c:out value="${r.email}"/></p>
@@ -271,9 +297,10 @@
 															  <div class="tab-pane fade" id="tab_email">
 																  	<label class="col-sm-3 control-label">Email</label>
 																    <div class="col-sm-8" >
-																      <input type="text" value="${r.email}" name="maquyen"/>
+																      <input type="text" value="${r.email}" name="emailcn"/>
 																    </div>
-																    <a href="#edit_hoten" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+																    <button type="submit"  class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
+																    <a href="#edemail" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
 															  </div>														  
 															  </div>							 
 														   </div>
@@ -296,7 +323,7 @@
 															
 															<div class="form-group" >	  
 															  <div class="tab-content">
-															  	<div class="tab-pane fade in active" id="">
+															  	<div class="tab-pane fade in active" id="edcq">
 																  	<label class="col-sm-3 control-label">Cơ Quan</label>
 																    <div class="col-sm-8" >
 																      <p class="form-control-static"><c:out value="${r.CoQuan}"/></p>
@@ -307,16 +334,17 @@
 																  <div class="tab-pane fade" id="tab_coquan">
 																	  	<label class="col-sm-3 control-label">Cơ Quan</label>
 																	    <div class="col-sm-8" >
-																	      <input type="text" value="${r.CoQuan}" name="maquyen"/>
+																	      <input type="text" value="${r.CoQuan}" name="coquancn"/>
 																	    </div>
-																	    <a href="#tab_coquan" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+																	    <button type="submit"  class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
+																    	<a href="#edcq" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
 																  </div>														  
 																  </div>							 
 															   </div>
 														<!-- Thông tin -->	
 																<div class="form-group" >	  
 																  <div class="tab-content">
-																  	<div class="tab-pane fade in active" id="">
+																  	<div class="tab-pane fade in active" id="edtt">
 																	  	<label class="col-sm-3 control-label">Info</label>
 																	    <div class="col-sm-8" >
 																	      <p class="form-control-static"><c:out value="${r.ThongTinLienlac}"/></p>
@@ -327,9 +355,10 @@
 																	  <div class="tab-pane fade" id="tab_tt">
 																		  	<label class="col-sm-3 control-label">Info</label>
 																		    <div class="col-sm-8" >
-																		      <input type="text" value="${r.ThongTinLienlac}" name="maquyen"/>
+																		      <input type="text" value="${r.ThongTinLienlac}" name="ttllcn"/>
 																		    </div>
-																		    <a href="#tab_tt" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+																		    <button type="submit"  class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
+																    		<a href="#edtt" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
 																	  </div>														  
 																	  </div>							 
 																   </div>
@@ -339,7 +368,7 @@
 																	    <div class="col-sm-8" >
 																	      <p class="form-control-static"><c:out value="${r.regdate}"/></p>
 																	    </div>																     
-																 </div>						  												  
+																 </div>																	  												  
 														</form>
 									    		
 									    	
