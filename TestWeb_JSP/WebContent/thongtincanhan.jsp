@@ -236,73 +236,118 @@
 													<!-- <label>Ảnh Đại Diện</label> -->
 												</div>
 												<div class="col-sm-9">
-													<form class="form-horizontal">
-													  <div class="form-group" >
-													    <label class="col-sm-3 control-label">Họ Tên</label>
-													    <div class="col-sm-8" >
-													      <p class="form-control-static"><c:out value="${r.last_name}"/> <c:out value="${r.first_name}"/> </p>
-													    </div>
-													    <span  id="suahoten" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-													  </div>
-													  <div class="form-group">
-													    <label class="col-sm-3 control-label">Email</label>
-													    <div class="col-sm-8">
-													      <p class="form-control-static"><c:out value="${r.email}"/></p>
-													    </div>
-													    <span id="suaemail" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-													  </div>
-													  <div class="form-group">
-													    <label class="col-sm-3 control-label">Username</label>
-													    <div class="col-sm-8">
-													      <p class="form-control-static"><c:out value="${r.Username}"/></p>
-													    </div>
-													    <!-- <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> -->
-													  </div>
-													  <div class="form-group">
-													    <label class="col-sm-3 control-label">Password</label>
-													    <div class="col-sm-8">
-													      <p class="form-control-static">********</p>
-													    </div>
-													    <span id="suapassword" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-													  </div>
-													   <div class="form-group">
-													    <label class="col-sm-3 control-label">Date Reg</label>
-													    <div class="col-sm-8">
-													      <p class="form-control-static"><c:out value="${r.regdate}"/></p>
-													    </div>
-													    <!-- <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> -->
-													  </div>
-													  
-													  <div class="form-group">
-													    <button type="submit" class="btn btn-primary col-sm-offset-4" name="update" value="update">OK</button>
-													  </div>
-													</form>
+									    			<form class="form-horizontal">	
+									    	<!-- Họ Tên -->									    				
+													  <div class="form-group" >	  
+														  <div class="tab-content">
+														  	<div class="tab-pane fade in active" id="">
+															  	<label class="col-sm-3 control-label">Họ Tên</label>
+															    <div class="col-sm-8" >
+															      <p class="form-control-static"><c:out value="${r.last_name}"/> <c:out value="${r.first_name}"/> </p>
+															    </div>
+															    <a href="#edit_hoten" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+														  	</div>
+														  
+															  <div class="tab-pane fade" id="edit_hoten">
+																  	<label class="col-sm-3 control-label">Họ Tên</label>
+																    <div class="col-sm-8" >
+																      <input type="text" value="${r.last_name} ${r.first_name}" name="maquyen"/>
+																    </div>
+																    <a href="#edit_hoten" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+															  </div>														  
+														  </div>							 
+													   </div>
+												<!-- Email -->  
+														<div class="form-group" >	  
+														  <div class="tab-content">
+														  	<div class="tab-pane fade in active" id="">
+															  	<label class="col-sm-3 control-label">Email</label>
+															    <div class="col-sm-8" >
+															      <p class="form-control-static"><c:out value="${r.email}"/></p>
+															    </div>
+															    <a href="#tab_email" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+														  	</div>
+														  
+															  <div class="tab-pane fade" id="tab_email">
+																  	<label class="col-sm-3 control-label">Email</label>
+																    <div class="col-sm-8" >
+																      <input type="text" value="${r.email}" name="maquyen"/>
+																    </div>
+																    <a href="#edit_hoten" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+															  </div>														  
+															  </div>							 
+														   </div>
+												<!-- User -->
+															<div class="form-group" >	  													  
+															  	<label class="col-sm-3 control-label">Username</label>
+															    <div class="col-sm-8" >
+															      <p class="form-control-static"><c:out value="${r.Username}"/></p>
+															    </div>														    											  								 
+														   </div>
+												<!-- Pass -->		
+														<div class="form-group" >	  
+																<label class="col-sm-3 control-label">Password</label>
+															    <div class="col-sm-8" >
+															      <p class="form-control-static"><c:out value="${r.Password}"/></p>
+															    </div>
+															    <a href="#tab_pass" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>												  							 
+														  </div>	
+													<!-- Cơ Quan -->	
+															
+															<div class="form-group" >	  
+															  <div class="tab-content">
+															  	<div class="tab-pane fade in active" id="">
+																  	<label class="col-sm-3 control-label">Cơ Quan</label>
+																    <div class="col-sm-8" >
+																      <p class="form-control-static"><c:out value="${r.CoQuan}"/></p>
+																    </div>
+																    <a href="#tab_coquan" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+															  	</div>
+															  
+																  <div class="tab-pane fade" id="tab_coquan">
+																	  	<label class="col-sm-3 control-label">Cơ Quan</label>
+																	    <div class="col-sm-8" >
+																	      <input type="text" value="${r.CoQuan}" name="maquyen"/>
+																	    </div>
+																	    <a href="#tab_coquan" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+																  </div>														  
+																  </div>							 
+															   </div>
+														<!-- Thông tin -->	
+																<div class="form-group" >	  
+																  <div class="tab-content">
+																  	<div class="tab-pane fade in active" id="">
+																	  	<label class="col-sm-3 control-label">Info</label>
+																	    <div class="col-sm-8" >
+																	      <p class="form-control-static"><c:out value="${r.ThongTinLienlac}"/></p>
+																	    </div>
+																	    <a href="#tab_tt" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+																  	</div>
+																  
+																	  <div class="tab-pane fade" id="tab_tt">
+																		  	<label class="col-sm-3 control-label">Info</label>
+																		    <div class="col-sm-8" >
+																		      <input type="text" value="${r.ThongTinLienlac}" name="maquyen"/>
+																		    </div>
+																		    <a href="#tab_tt" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+																	  </div>														  
+																	  </div>							 
+																   </div>
+															<!-- Ngày Đk -->
+																<div class="form-group" >	  															  	
+																	  	<label class="col-sm-3 control-label">RegDate</label>
+																	    <div class="col-sm-8" >
+																	      <p class="form-control-static"><c:out value="${r.regdate}"/></p>
+																	    </div>																     
+																 </div>						  												  
+														</form>
+									    		
+									    	
+									    		
+									    		
+													
 			
-													<script>
-													function update(id)
-													{
-														var div=$("#"+id).closest("div");
-														div.append('<div class="col-sm-8 col-sm-offset-3"><input type="text" class="form-control" placeholder="Nhập thông tin mới"></div>');
-													}
-													$(document).ready(
-														function()
-														{
-															$("#suahoten").click(function()
-															{
-																update("suahoten");
-															});
-															$("#suaemail").click(function()
-															{
-																update("suaemail");
-															});
-															$("#suapassword").click(function()
-															{
-																update("suapassword");
-															});
-														});
-														
-														
-													</script>										
+																			
 												</div>
 												<!-- <div class="col-sm-2">
 													
