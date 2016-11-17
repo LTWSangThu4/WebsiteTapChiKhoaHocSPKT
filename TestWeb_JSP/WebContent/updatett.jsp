@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,19 +35,19 @@
 					<!--Login-->
 						<div class="row">
 							<div class="col-md-12">
-						
-								<div class="dropdown col-md-push-10">
-									<button class="btn btn-default dropdown-toggle textcolor" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background: #0c6b63;">
-									 TG
-									 <span class="caret"></span>
-								    </button>
+								<div class="dropdown navbar-form navbar-right">
+									<button class="btn btn-default dropdown-toggle textcolor" style="background: #0c6b63;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										 <c:out value="${sessionScope['loginUser']}"/>
+										<span class="caret"></span>
+									</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 										<li><a href="thongtincanhan.jsp">Thông Tin Cá Nhân</a></li>
-									    <li><a href="tacgia2.jsp">Gửi Bài Viết</a></li>
+									    <li><a href="chuyentrang.jsp"><c:out value="${sessionScope['phanquyen']}"/></a></li>
 										<li role="separator" class="divider"></li>
-										<li><a href="index.jsp">Thoát</a></li>
+										<li><a href="logout.jsp">Thoát</a></li>
 									</ul>
-								</div>
+								</div>	
+							
 							</div>
 						</div><br>
 					<!--end login-->
@@ -56,14 +59,13 @@
 								  		<div class="form-group">
 								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
 									</form>
+									
 								</div>
-							
 						</div><!--end search-->
 						<div class="row">
-							<div class="col-md-4">
-								
+							<div class="col-md-4">							
 							</div>
 							<div class="col-md-8">
 								<a href="" data-toggle="modal" data-target="#myModal3">Tìm Kiếm Nâng Cao</a>
@@ -106,12 +108,22 @@
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
 								      </div>
 								    </div>
 								  </div>
 								</div>
 							</div>
+							<!--Ajax-->	
+									  <script type="text/javascript">
+										 $(document).ready(function() {
+										 $('#tim').click(function(e) {
+										 e.preventDefault();
+										 $('#nd').load('ketquatimkiem.jsp #ndtk-canlay');
+										 });
+										 });
+									</script>
+				  				<!--endAjax-->
 						</div>
 					</div><!--end Cột login-siging-->
 				</div><!--end row logo--><br>
@@ -130,7 +142,7 @@
 							</div>
 							<div class="navbar-collapse collapse" id="main-menu">
 								<ul class="nav nav-justified " >
-										<li><a class="textcolor" href="tacgia.jsp"><strong>Trang chủ</strong></a></li>
+										<li><a class="textcolor" href="trangchu.jsp"><strong>Trang chủ</strong></a></li>
 										<li><a class="textcolor" href="" id="GioiThieu"><strong>Giới Thiệu</strong></a></li>
 										<li><a class="textcolor" href="" id="QDHD"><strong>Quy Định-Hướng Dẫn</strong></a></li>
 										<li><a class="textcolor" href="" id="LienHe"><strong>Liên Hệ</strong></a></li>
@@ -147,7 +159,7 @@
 <!--Main-->
 			<div id="Main">
 					<div class="row">
-						<!--cột trái-->
+					<!--cột trái-->
 						<div class="col-md-2">
 							<div class="panel">
 								<div class="panel-heading">
@@ -198,234 +210,111 @@
 
 						</div>
 					<!--end cột trái-->
+
 					<!--cột giữa-->
-						<div class="col-md-7 line" id="nd">
+					<div id="nd">
+						<div class="col-md-10 line" >
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title"><strong>Tiêu Điểm</strong></h3>
+									<h3 class="panel-title">Update Thông Tin </h3>
 								</div>
-								<div class="panel-body ">
-									<div class="row ">
-									  <div class="col-md-6">
-									  	<div class="col-sm-12 col-md-12">
-									    <div class="thumbnail">
-									      <a href="xemnoidung.jsp"><img src="images/tin5.jpg" alt="..."></a>
-									      <ul class="caption">
-									        <a href="xemnoidung.jsp">Tạp chí 1</a>
-									        <p>.....................</p>
-									        
-									      </ul>
-									    </div>
-									  </div>
-									  </div>
-
-									  <div class="col-md-6">
-									  	<div class="col-sm-12 col-md-12">
-									    <div class="thumbnail">
-									      <a href="xemnoidung.jsp"><img src="images/tin4.jpg" alt="..."></a>
-									      <ul class="caption">
-									        <a href="xemnoidung.jsp">Tạp chí 2</a>
-									        <p>.....................</p>
-									        
-									      </ul>
-									    </div>
-									  </div>
-									  </div>
-									</div>
-									<div class="row">
-										<div class="col-md-4">
-											<div class="col-sm-12 col-md-12">
-									    	<div class="thumbnail">
-									      		<a href="xemnoidung.jsp"><img src="images/tin3.jpg" alt="..."></a>
-									     			<ul class="caption">
-									        			<a href="xemnoidung.jsp">Tạp chí 3</a>
-													        <p>.....................</p>
-									        
-									      			</ul>
-									    	</div>
-									  	</div>
-										</div>
-										<div class="col-md-4">
-											<div class="col-sm-12 col-md-12">
-									    	<div class="thumbnail">
-									      		<a href="xemnoidung.jsp"><img src="images/tin2.jpg" alt="..."></a>
-									     			<ul class="caption">
-									        			<a href="xemnoidung.jsp">Tạp chí 4</a>
-													       <p>.....................</p>
-									        
-									      			</ul>
-									    	</div>
-									  	</div>
-										</div>
-										<div class="col-md-4">
-											<div class="col-sm-12 col-md-12">
-									    	<div class="thumbnail">
-									      		<a href="xemnoidung.jsp"><img src="images/tin1.jpg" alt="..."></a>
-									     			<ul class="caption">
-									        			<a href="xemnoidung.jsp">Tạp chí 5</a>
-													        <p>.....................</p>
-									        
-									      			</ul>
-									    	</div>
-									  	</div>
-										</div>
-									</div><!--!endrow 2-->
-
-										
-									</div>
-
-								</div><!--end panel-->
-								<div class="panel">
-									<div class="panel-heading">
-										<h3 class="panel-title"><strong>Bài Viết Mới</strong></h3>
-									</div>
-									<div class="panel-body">
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/2.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h4 class="media-heading"><a href="xemnoidung.jsp">HCMUTE</a></h4>
-										    nhà trường tăng học phí gấp 5 lần......
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/2.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h4 class="media-heading"><a href="xemnoidung.jsp">University</a></h4>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/2.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h4 class="media-heading"><a href="xemnoidung.jsp">Nhà Giáo VN</a></h4>
-										    chào mừng ngày nahf giáo việt nam......
-										  </div>
-										</div>
-
-									</div>
-								</div><!--end panel-->
+								<div class="panel-body">
+											<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+					                           url="jdbc:mysql://localhost/tckh"
+					                           user="root"  password="123456"/>
+					                        <sql:query dataSource="${dbsource}" var="result">
+									            SELECT * from taikhoan where id=?;
+									            <sql:param value="${param.id}" />					    
+									        </sql:query>														  
+									            <form class="form-horizontal" action="updatedb_tt.jsp" method="post"> 
+									              <c:forEach var="row" items="${result.rows}">
+									                <div class="form-group">
+														<label class="col-sm-4 control-label" for="email">Username</label>
+															<div class="col-sm-5">
+																<c:out value="${row.Username}"/>
+																<input type="hidden" value="${param.id}" name="id"/>
+									                        	
+															</div> 
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label" for="email">Họ</label>
+															<div class="col-sm-5">
+																<input class="form-control"  type="text" value="${row.last_name}" name="ho"/>
+															</div> 
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label" for="email">Tên</label>
+															<div class="col-sm-5">
+																<input class="form-control" type="text" value="${row.first_name}" name="ten"/>
+															</div> 
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label" for="email">Email</label>
+															<div class="col-sm-5">
+																<c:out value="${row.email}"/>
+															</div> 
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label" for="email">Cơ Quan</label>
+															<div class="col-sm-5">
+																<input class="form-control" type="text" value="${row.CoQuan}" name="coquan"/>	
+															</div> 
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label" for="email">Thông Tin Liên Lạc</label>
+															<div class="col-sm-5">
+																<input class="form-control" type="text" value="${row.ThongTinLienlac}" name="ttll"/>
+															</div> 
+													</div>								                    
+									              </c:forEach>
+									            <input type="submit" class="btn btn-primary col-md-offset-5" role="button" value="Update"/>
+									            <a href="admin2.jsp"class="btn btn-default" >Cancel</a>
+									           	
+									       	</form>	
+									       	
+								</div><!--end-->
+							</div>
 						</div>
+					</div>
 					<!--end cột giữa-->
-
+					</div><!--endrow chinh-->
+					
 					<!--Ajax-->	
-						 <script type="text/javascript">
+						  <script type="text/javascript">
 							 $(document).ready(function() {
 							 $('#GioiThieu').click(function(e) {
 							 e.preventDefault();
-							 $('#nd').load('gioithieu.jsp #ndgt-canlay');
+							 $('#nd').load('gioithieu.jsp #nd2-canlay');
 							 });
 							 });
 
 							 $(document).ready(function() {
 							 $('#QDHD').click(function(e) {
 							 e.preventDefault();
-							 $('#nd').load('quydinh_huongdan.jsp #ndqd-canlay');
+							 $('#nd').load('quydinh_huongdan.jsp #nd2-canlay');
 							 });
 							 });
 
 							 $(document).ready(function() {
 							 $('#LienHe').click(function(e) {
 							 e.preventDefault();
-							 $('#nd').load('lienhe.jsp #ndlh-canlay');
+							 $('#nd').load('lienhe.jsp #nd2-canlay');
 							 });
 							 });
 
 							 $(document).ready(function() {
 							 $('#LienKet').click(function(e) {
 							 e.preventDefault();
-							 $('#nd').load('lienket.jsp #ndlk-canlay');
+							 $('#nd').load('lienket.jsp #nd2-canlay');
 							 });
 							 });
 						</script>
 	  				<!--endAjax-->
-
-					<!--cột 3-->
-						<div class="col-md-3">
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title"><strong>Được Đọc nhiều</strong></h3>
-								</div>
-								<div class="panel-body">
-									<marquee scrolldelay="6" scrollamount="2" onmouseover="this.stop()"" onmouseout="this.start()" direction="up" height="300" style="height:300px;"  behavior="" direction="">
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">Nhà Giáo VN</a></h6>
-										    chào mừng ngày nhà giáo việt nam......
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp"> HCMUTE</a></h6>
-										    nhà trường tăng học phí gấp 5 lần......
-										  </div>
-										</div>
-
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-
-										
-									</marquee>
-								</div>
-							</div><!--end panel-->
-							<div class="media">
-							 <h3 class="glyphicon glyphicon-earphone"><strong> 0166.680.7064</strong></h3>
-							  <a class="pull-left" href="">
-							    <img class="media-object" src="images/quangcao.jpg" alt="...">
-							  </a>
-							</div>
-						</div>
-					<!--end cột 3-->
-					</div><!--endrow chinh-->
 			</div>
 <!--endMain-->
 		</div>

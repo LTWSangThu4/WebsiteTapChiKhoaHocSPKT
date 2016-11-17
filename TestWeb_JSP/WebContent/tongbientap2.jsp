@@ -35,16 +35,16 @@
 					<!--Login-->
 						<div class="row">
 							<div class="col-md-12">
-								<div class="dropdown col-md-push-10">
+								<div class="dropdown navbar-form navbar-right">
 									<button class="btn btn-default dropdown-toggle textcolor" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background: #0c6b63;">
-										TBT
+										<c:out value="${sessionScope['loginUser']}"/>
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 										<li><a href="thongtincanhan.jsp">Thông Tin Cá Nhân</a></li>
-										<li><a href="tongbientap2.jsp">Quản Lý Bài Viết</a></li>
+										<li><a href="chuyentrang.jsp"><c:out value="${sessionScope['phanquyen']}"/></a></li>
 										<li role="separator" class="divider"></li>
-										<li><a href="index.jsp">Thoát</a></li>
+										<li><a href="logout.jsp">Thoát</a></li>
 									</ul>
 								</div>
 							</div>
@@ -58,14 +58,22 @@
 								  		<div class="form-group">
 								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
 									</form>
+									<!--Ajax-->	
+									  <script type="text/javascript">
+										 $(document).ready(function() {
+										 $('#tim').click(function(e) {
+										 e.preventDefault();
+										 $('#nd').load('ketquatimkiem.jsp #ndtk-canlay');
+										 });
+										 });
+									</script>
+				  				<!--endAjax-->
 								</div>
-							
 						</div><!--end search-->
 						<div class="row">
-							<div class="col-md-4">
-								
+							<div class="col-md-4">							
 							</div>
 							<div class="col-md-8">
 								<a href="" data-toggle="modal" data-target="#myModal3">Tìm Kiếm Nâng Cao</a>
@@ -108,7 +116,7 @@
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
 								      </div>
 								    </div>
 								  </div>
@@ -132,7 +140,7 @@
 							</div>
 							<div class="navbar-collapse collapse" id="main-menu">
 								<ul class="nav nav-justified " >
-										<li><a class="textcolor" href="tongbientap2.jsp"><strong>Trang chủ</strong></a></li>
+										<li><a class="textcolor" href="trangchu.jsp"><strong>Trang chủ</strong></a></li>
 										<li><a class="textcolor" href="" id="GioiThieu"><strong>Giới Thiệu</strong></a></li>
 										<li><a class="textcolor" href="" id="QDHD"><strong>Quy Định-Hướng Dẫn</strong></a></li>
 										<li><a class="textcolor" href="" id="LienHe"><strong>Liên Hệ</strong></a></li>
@@ -148,7 +156,7 @@
 <!--endhead-->
 <!--Main-->
 			<div id="Main">
-					<div class="row" id="nd">
+					<div class="row" >
 						<!--cột trái-->
 						<div class="col-md-2">
 							<div class="panel">
@@ -202,6 +210,7 @@
 					<!--end cột trái-->
 
 					<!--cột giữa-->
+					<div id="nd">
 						<div class="col-md-10 line">
 		
 							<div class="panel">
@@ -416,6 +425,7 @@
 								</div>
 							</div>
 						</div>
+					</div>	
 					<!--end cột giữa-->
 					</div><!--endrow chinh-->
 
@@ -424,28 +434,28 @@
 							 $(document).ready(function() {
 							 $('#GioiThieu').click(function(e) {
 							 e.preventDefault();
-							 $('#Main').load('gioithieu.jsp #nd2-canlay');
+							 $('#nd').load('gioithieu.jsp #nd2-canlay');
 							 });
 							 });
 
 							 $(document).ready(function() {
 							 $('#QDHD').click(function(e) {
 							 e.preventDefault();
-							 $('#Main').load('quydinh_huongdan.jsp #nd2-canlay');
+							 $('#nd').load('quydinh_huongdan.jsp #nd2-canlay');
 							 });
 							 });
 
 							 $(document).ready(function() {
 							 $('#LienHe').click(function(e) {
 							 e.preventDefault();
-							 $('#Main').load('lienhe.jsp #nd2-canlay');
+							 $('#nd').load('lienhe.jsp #nd2-canlay');
 							 });
 							 });
 
-							  $(document).ready(function() {
+							 $(document).ready(function() {
 							 $('#LienKet').click(function(e) {
 							 e.preventDefault();
-							 $('#Main').load('lienket.jsp #nd2-canlay');
+							 $('#nd').load('lienket.jsp #nd2-canlay');
 							 });
 							 });
 						</script>

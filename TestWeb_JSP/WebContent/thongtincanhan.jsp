@@ -1,3 +1,6 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="s" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,43 +35,46 @@
 					<!--Login-->
 						<div class="row">
 							<div class="col-md-12">
-								<div class="nav navbar-right">
-									<div class="btn">
-										<div class="btn-group">
-											<div class="dropdown">
-											  <button class="btn btn-default dropdown-toggle textcolor" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background: #0c6b63;">
-											    TÙNG
-											    <span class="caret"></span>
-											  </button>
-											  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-											    <li><a href="thongtincanhan.jsp">Thông Tin Cá Nhân</a></li>
-											    <li><a href="admin2.jsp">Quản Lý Tài Khoản</a></li>
-											    <li role="separator" class="divider"></li>
-											    <li><a href="index.jsp">Thoát</a></li>
-											  </ul>
-											</div>	
-										</div>
-									</div>
-								</div>
+								<div class="dropdown navbar-form navbar-right">
+									<button class="btn btn-default dropdown-toggle textcolor" type="button" style="background: #0c6b63;" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										 <c:out value="${sessionScope['loginUser']}"/>
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										<li><a href="thongtincanhan.jsp">Thông Tin Cá Nhân</a></li>
+										<li><a href="chuyentrang.jsp"><c:out value="${sessionScope['phanquyen']}"/></a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="logout.jsp">Thoát</a></li>
+									
+									</ul>
+								</div>	
 							</div>
 						</div><br>
 					<!--end login-->
 					<!--search-->
-						<div class="row">
+					<div class="row">
 							
 								<div class="col-md-12">
 									<form class="navbar-form navbar-right" role="search">
 								  		<div class="form-group">
 								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
 									</form>
+									<!--Ajax-->	
+									  <script type="text/javascript">
+										 $(document).ready(function() {
+										 $('#tim').click(function(e) {
+										 e.preventDefault();
+										 $('#ndtk').load('ketquatimkiem.jsp #ndtk-canlay');
+										 });
+										 });
+									</script>
+				  				<!--endAjax-->
 								</div>
-							
 						</div><!--end search-->
 						<div class="row">
-							<div class="col-md-4">
-								
+							<div class="col-md-4">							
 							</div>
 							<div class="col-md-8">
 								<a href="" data-toggle="modal" data-target="#myModal3">Tìm Kiếm Nâng Cao</a>
@@ -111,7 +117,7 @@
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
 								      </div>
 								    </div>
 								  </div>
@@ -135,11 +141,11 @@
 							</div>
 							<div class="navbar-collapse collapse" id="main-menu">
 								<ul class="nav nav-justified " >
-										<li><a class="textcolor" href="index.jsp"><strong>Trang chủ</strong></a></li>
-										<li><a class="textcolor" href="gioithieu.jsp"><strong>Giới Thiệu</strong></a></li>
-										<li><a class="textcolor" href="quydinh_huongdan.jsp"><strong>Quy Định-Hướng Dẫn</strong></a></li>
-										<li><a class="textcolor" href="lienhe.jsp"><strong>Liên Hệ</strong></a></li>
-										<li><a class="textcolor" href="lienket.jsp"><strong>Liên Kết</strong></a></li>
+										<li><a class="textcolor" href="trangchu.jsp"><strong>Trang chủ</strong></a></li>
+										<li><a class="textcolor" href="" id="GioiThieu"><strong>Giới Thiệu</strong></a></li>
+										<li><a class="textcolor" href="" id="QDHD"><strong>Quy Định-Hướng Dẫn</strong></a></li>
+										<li><a class="textcolor" href="" id="LienHe"><strong>Liên Hệ</strong></a></li>
+										<li><a class="textcolor" href="" id="LienKet"><strong>Liên Kết</strong></a></li>
 								</ul>
 							</div>
 						
@@ -203,88 +209,153 @@
 
 						</div>
 					<!--end cột trái-->
-
 					<!--cột giữa-->
-						<div class="col-md-7 line">
+						<div class="col-md-7 line" id="nd">
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title"><strong>Thông Tin Cá Nhân</strong></h3>
 								</div>
 								<div class="panel-body">
-									<div class="col-sm-3">
-										<img src="images/anh.png" alt="..." class="img-thumbnail"> <br>
-										<br>
-										<!-- <label>Ảnh Đại Diện</label> -->
-									</div>
-									<div class="col-sm-9">
-										<form class="form-horizontal">
-										  <div class="form-group" >
-										    <label class="col-sm-3 control-label">Họ Tên</label>
-										    <div class="col-sm-8" >
-										      <p class="form-control-static">Nguyễn Hoàng Thanh Tùng</p>
-										    </div>
-										    <span  id="suahoten" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-										  </div>
-										  <div class="form-group">
-										    <label class="col-sm-3 control-label">Email</label>
-										    <div class="col-sm-8">
-										      <p class="form-control-static">nguyentung@gmail.com</p>
-										    </div>
-										    <span id="suaemail" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-										  </div>
-										  <div class="form-group">
-										    <label class="col-sm-3 control-label">Username</label>
-										    <div class="col-sm-8">
-										      <p class="form-control-static">accessax2016</p>
-										    </div>
-										    <!-- <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> -->
-										  </div>
-										  <div class="form-group">
-										    <label class="col-sm-3 control-label">Password</label>
-										    <div class="col-sm-8">
-										      <p class="form-control-static">713********</p>
-										    </div>
-										    <span id="suapassword" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-
-										  </div>
-										  <div class="form-group">
-										    <button type="submit" class="btn btn-primary col-sm-offset-4" name="update" value="update">OK</button>
-										  </div>
-										</form>
-
-										<script>
-										function update(id)
-										{
-											var div=$("#"+id).closest("div");
-											div.append('<div class="col-sm-8 col-sm-offset-3"><input type="text" class="form-control" placeholder="Nhập thông tin mới"></div>');
-										}
-										$(document).ready(
-											function()
-											{
-												$("#suahoten").click(function()
-												{
-													update("suahoten");
-												});
-												$("#suaemail").click(function()
-												{
-													update("suaemail");
-												});
-												$("#suapassword").click(function()
-												{
-													update("suapassword");
-												});
-											});
-											
-											
-										</script>										
-									</div>
-									<!-- <div class="col-sm-2">
-										
-									</div> -->
+								<c:choose>
+									<c:when test="${not empty sessionScope['loginUser']}">
+								      <s:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
+								                       url="jdbc:mysql://localhost:3306/tckh"
+								                       user="root" password="123456"/>
+								                       
+									 <s:query dataSource="${ds}" var="selectQ">
+								        select * from TaiKhoan
+								        where Username='${sessionScope['loginUser']}'
+								      </s:query>
+								 
+								      <c:forEach items="${selectQ.rows}" var="r">
+								        <c:choose>
+								          <c:when test="${r.Username != NULL}">
+								          		<div class="col-sm-3">
+													<img src="images/anh.png" alt="..." class="img-thumbnail"> <br>
+													<br>
+													<!-- <label>Ảnh Đại Diện</label> -->
+												</div>
+												<div class="col-sm-9">
+													<form class="form-horizontal">
+													  <div class="form-group" >
+													    <label class="col-sm-3 control-label">Họ Tên</label>
+													    <div class="col-sm-8" >
+													      <p class="form-control-static"><c:out value="${r.last_name}"/> <c:out value="${r.first_name}"/> </p>
+													    </div>
+													    <span  id="suahoten" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+													  </div>
+													  <div class="form-group">
+													    <label class="col-sm-3 control-label">Email</label>
+													    <div class="col-sm-8">
+													      <p class="form-control-static"><c:out value="${r.email}"/></p>
+													    </div>
+													    <span id="suaemail" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+													  </div>
+													  <div class="form-group">
+													    <label class="col-sm-3 control-label">Username</label>
+													    <div class="col-sm-8">
+													      <p class="form-control-static"><c:out value="${r.Username}"/></p>
+													    </div>
+													    <!-- <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> -->
+													  </div>
+													  <div class="form-group">
+													    <label class="col-sm-3 control-label">Password</label>
+													    <div class="col-sm-8">
+													      <p class="form-control-static">********</p>
+													    </div>
+													    <span id="suapassword" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+													  </div>
+													   <div class="form-group">
+													    <label class="col-sm-3 control-label">Date Reg</label>
+													    <div class="col-sm-8">
+													      <p class="form-control-static"><c:out value="${r.regdate}"/></p>
+													    </div>
+													    <!-- <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> -->
+													  </div>
+													  
+													  <div class="form-group">
+													    <button type="submit" class="btn btn-primary col-sm-offset-4" name="update" value="update">OK</button>
+													  </div>
+													</form>
+			
+													<script>
+													function update(id)
+													{
+														var div=$("#"+id).closest("div");
+														div.append('<div class="col-sm-8 col-sm-offset-3"><input type="text" class="form-control" placeholder="Nhập thông tin mới"></div>');
+													}
+													$(document).ready(
+														function()
+														{
+															$("#suahoten").click(function()
+															{
+																update("suahoten");
+															});
+															$("#suaemail").click(function()
+															{
+																update("suaemail");
+															});
+															$("#suapassword").click(function()
+															{
+																update("suapassword");
+															});
+														});
+														
+														
+													</script>										
+												</div>
+												<!-- <div class="col-sm-2">
+													
+												</div> -->
+											            
+											            
+											</c:when>
+											 <c:otherwise>
+												<font color='red'>Không Tồn Tại Người Này! </font>
+											 </c:otherwise>
+										</c:choose>										 
+									</c:forEach>
+								  </c:when>
+								   <c:otherwise>
+										<font color='red'>Không Tồn Tại Người Này! </font>
+									</c:otherwise>
+								  </c:choose>
+								  
 								</div>
 							</div>
 						</div>
 					<!--end cột giữa-->
+					<!--Ajax-->	
+						 <script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#GioiThieu').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('gioithieu.jsp #ndgt-canlay');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#QDHD').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('quydinh_huongdan.jsp #ndqd-canlay');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#LienHe').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('lienhe.jsp #ndlh-canlay');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#LienKet').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('lienket.jsp #ndlk-canlay');
+							 });
+							 });
+						</script>
+	  				<!--endAjax-->
 
 					<!--cột 3-->
 						<div class="col-md-3">

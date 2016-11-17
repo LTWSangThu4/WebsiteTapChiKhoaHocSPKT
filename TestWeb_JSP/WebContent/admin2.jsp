@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,6 +8,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<script>
+            function confirmGo(m,u) {
+                if ( confirm(m) ) {
+                    window.location = u;
+                }
+            }
+     </script>
 	<title>Tạp chí Khoa Học SPKT</title>
 	<!-- Latest compiled and minified CSS & JS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css" >
@@ -35,16 +44,16 @@
 					<!--Login-->
 						<div class="row">
 							<div class="col-md-12">
-								<div class="dropdown col-md-push-9">
+								<div class="dropdown navbar-form navbar-right">
 									<button class="btn btn-default dropdown-toggle textcolor" style="background: #0c6b63;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										ADMIN
+										 <c:out value="${sessionScope['loginUser']}"/>
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 										<li><a href="thongtincanhan.jsp">Thông Tin Cá Nhân</a></li>
-									    <li><a href="admin2.jsp">Quản Lý Tài Khoản</a></li>
+									    <li><a href="chuyentrang.jsp"><c:out value="${sessionScope['phanquyen']}"/></a></li>
 										<li role="separator" class="divider"></li>
-										<li><a href="index.jsp">Thoát</a></li>
+										<li><a href="logout.jsp">Thoát</a></li>
 									</ul>
 								</div>	
 							
@@ -59,14 +68,13 @@
 								  		<div class="form-group">
 								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
 									</form>
+									
 								</div>
-							
 						</div><!--end search-->
 						<div class="row">
-							<div class="col-md-4">
-								
+							<div class="col-md-4">							
 							</div>
 							<div class="col-md-8">
 								<a href="" data-toggle="modal" data-target="#myModal3">Tìm Kiếm Nâng Cao</a>
@@ -109,12 +117,22 @@
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
 								      </div>
 								    </div>
 								  </div>
 								</div>
 							</div>
+							<!--Ajax-->	
+									  <script type="text/javascript">
+										 $(document).ready(function() {
+										 $('#tim').click(function(e) {
+										 e.preventDefault();
+										 $('#nd').load('ketquatimkiem.jsp #ndtk-canlay');
+										 });
+										 });
+									</script>
+				  				<!--endAjax-->
 						</div>
 					</div><!--end Cột login-siging-->
 				</div><!--end row logo--><br>
@@ -133,7 +151,7 @@
 							</div>
 							<div class="navbar-collapse collapse" id="main-menu">
 								<ul class="nav nav-justified " >
-										<li><a class="textcolor" href="admin2.jsp"><strong>Trang chủ</strong></a></li>
+										<li><a class="textcolor" href="trangchu.jsp"><strong>Trang chủ</strong></a></li>
 										<li><a class="textcolor" href="" id="GioiThieu"><strong>Giới Thiệu</strong></a></li>
 										<li><a class="textcolor" href="" id="QDHD"><strong>Quy Định-Hướng Dẫn</strong></a></li>
 										<li><a class="textcolor" href="" id="LienHe"><strong>Liên Hệ</strong></a></li>
@@ -149,7 +167,7 @@
 <!--endhead-->
 <!--Main-->
 			<div id="Main">
-					<div class="row" id="nd">
+					<div class="row">
 					<!--cột trái-->
 						<div class="col-md-2">
 							<div class="panel">
@@ -200,121 +218,84 @@
 							<p style=" "><embed height="210" width="180" type="application/x-shockwave-flash" allowscriptaccess="always" wmode="transparent" allowfullscreen="false" scale="noborder" quality="high" src="Flash/135.swf" title=" "/></p>
 
 						</div>
-					<!--end cột trái-->
 
-					<!--cột giữa-->
-						<div class="col-md-10 line">
-							<div class="panel">
+					<div id="nd">
+					  <div class="container"> 
+						<div class="col-md-10 line" >
+						  		<div class="panel"  >
 								<div class="panel-heading">
 									<h3 class="panel-title">Quản Lý Tài Khoản</h3>
 								</div>
 								<div class="panel-body">
-									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>Userame</th>
-												<th>PassWord</th>
-												<th>Trạng Thái</th>
-											</tr>
-										</thead>
-										<tbody>
-											<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-											url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
-											<sql:query var="result" sql="select * from acc" dataSource="${con }"/>
-											<c:forEach var="rows" items="${result.rows }">
-												<tr>
-													<td>${rows.ID }</td>
-													<td>${rows.user }</td>
-													<td>${rows.Pass }</td>
-													<td>${rows.TrangThai }</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									
-									<button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Khóa</button>
-									<button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Bỏ Khóa</button>
-
-									
-								<!-- Modal xóa -->
-									<button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">Xóa</button>
-
-									<div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-									  <div class="modal-dialog modal-sm">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-									        <h4 class="modal-title" id="myModalLabel">Thông báo!</h4>
-									      </div>
-									      <div class="modal-body">
-									        <div class="text-center">
-									        	Đồng ý thực hiện thao tác ?
-									        </div>
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
-									        <a href="admin2.jsp"><button type="button" class="btn btn-primary">OK</button></a>
-									      </div>
-									    </div><!--k-->
-									  </div>
-									</div>
-								<!--end modal xóa-->
-									
+										<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+				                           url="jdbc:mysql://localhost/tckh"
+				                           user="root"  password="123456"/>
+									        <sql:query dataSource="${dbsource}" var="result">
+									            SELECT * from taikhoan;
+									        </sql:query>
+									        <table class="table table-bordered table-hover" >
+									                <tr>
+									                    <th>UserName</th>
+									                    <th>PassWord</th>
+									                    <th>Ngày DK</th>
+									                    <th>Mã Quyền</th>
+									                    <th colspan="2">Action</th>
+									                </tr>
+									                <c:forEach var="row" items="${result.rows}">
+									                    <tr>
+									                        <td><c:out value="${row.Username}"/></td>
+									                        <td><c:out value="${row.Password}"/></td>
+									                        <td><c:out value="${row.regdate}"/></td>
+									                        <td><c:out value="${row.MaQuyen}"/></td>
+									                        <td><a href="updatetk.jsp?id=<c:out value="${row.id}"/>" >Sửa</a></td>
+                        									<td><a href="javascript:confirmGo('Sure to delete this record?','deletedb.jsp?id=<c:out value="${row.id}"/>')">Delete</a></td>
+									                    </tr>
+									                </c:forEach>     
+											</table>
+											<a href="inserttk.jsp"class="btn btn-primary" >Add User</a>
 								</div><!--end-->
-							</div>
-
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title">Quản Lý Thông Tin</h3>
-								</div>
-								<div class="panel-body">
-									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>Họ Tên</th>
-												<th>EMail</th>
-												<th>Quyền Truy cập</th>
-
-											</tr>
-										</thead>
-										<tbody>
-										<c:forEach var="rows" items="${result.rows }">
-											<tr>
-												<td>${rows.ID }</td>
-												<td>${rows.HoTen }</td>
-												<td>${rows.Email }</td>
-												<td>
-													<select class="form-control" id="select01" disabled>
-													  <option selected>Admin</option>
-													  <option>Tổng Biên Tập</option>
-													  <option>Biên Tập Viên</option>
-													  <option>Phản Biện</option>
-													  <option>Tác Giả</option>
-													</select>
-												</td>
-											</tr>
-										</c:forEach>
-										</tbody>
-									</table>
-									<button class="btn btn-default" id="btnChinhSua">Chỉnh Sửa</button>
-									<button class="btn btn-default" id="btnLuu" disabled data-toggle="modal" data-target=".bs-example-modal-sm">Lưu</button>
-
-									<script>
-										$('#btnChinhSua').click(function(){
-											$('#select01').removeAttr('disabled')
-											$('#select072').removeAttr('disabled')
-											$('#btnLuu').removeAttr('disabled')
-											$('#btnChinhSua').addClass('disabled')
-										});
-
-
-									</script>
+									
 									
 								</div>
-							</div>
+
+								<div class="panel">
+									<div class="panel-heading">
+										<h3 class="panel-title">Quản Lý Thông Tin</h3>
+									</div>
+									<div class="panel-body">				   							      
+										        <table  class="table table-bordered table-hover">
+										       		 <thead>
+										                <tr>
+										               	    <th>UserName</th>
+										                    <th>Tên</th>
+										                    <th>Họ</th>
+										                    <th>Email</th>
+										                    <th>Cơ Quan</th>
+										                    <th>Thông Tin Liên Lạc</th>
+										                    <th colspan="1">Action</th>
+										                </tr>
+										         	</thead>
+										                <tbody>
+										                	<c:forEach var="row" items="${result.rows}">
+										                    <tr>
+										                    	<td><c:out value="${row.Username}"/></td>
+										                        <td><c:out value="${row.first_name}"/></td>
+										                        <td><c:out value="${row.last_name}"/></td>
+										                        <td><c:out value="${row.email}"/></td>     
+										                        <td><c:out value="${row.coquan}"/></td>
+										                        <td><c:out value="${row.thongtinlienlac}"/></td>
+										                       <td><a href="updatett.jsp?id=<c:out value="${row.id}"/>" >Sửa</a></td>
+	                        									
+										                    </tr>
+										                	</c:forEach>
+										                </tbody>
+										                
+												</table>
+										
+									</div><!--end-->
+								</div>
 						</div>
+					</div>
 					<!--end cột giữa-->
 					</div><!--endrow chinh-->
 					
@@ -323,28 +304,28 @@
 							 $(document).ready(function() {
 							 $('#GioiThieu').click(function(e) {
 							 e.preventDefault();
-							 $('#Main').load('gioithieu.jsp #nd2-canlay');
+							 $('#nd').load('gioithieu.jsp #nd2-canlay');
 							 });
 							 });
 
 							 $(document).ready(function() {
 							 $('#QDHD').click(function(e) {
 							 e.preventDefault();
-							 $('#Main').load('quydinh_huongdan.jsp #nd2-canlay');
+							 $('#nd').load('quydinh_huongdan.jsp #nd2-canlay');
 							 });
 							 });
 
 							 $(document).ready(function() {
 							 $('#LienHe').click(function(e) {
 							 e.preventDefault();
-							 $('#Main').load('lienhe.jsp #nd2-canlay');
+							 $('#nd').load('lienhe.jsp #nd2-canlay');
 							 });
 							 });
 
-							  $(document).ready(function() {
+							 $(document).ready(function() {
 							 $('#LienKet').click(function(e) {
 							 e.preventDefault();
-							 $('#Main').load('lienket.jsp #nd2-canlay');
+							 $('#nd').load('lienket.jsp #nd2-canlay');
 							 });
 							 });
 						</script>

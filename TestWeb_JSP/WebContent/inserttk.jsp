@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 
@@ -37,17 +36,18 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="dropdown navbar-form navbar-right">
-									<button class="btn btn-default dropdown-toggle textcolor" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background: #0c6b63;">
+									<button class="btn btn-default dropdown-toggle textcolor" style="background: #0c6b63;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 										 <c:out value="${sessionScope['loginUser']}"/>
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 										<li><a href="thongtincanhan.jsp">Thông Tin Cá Nhân</a></li>
-										<li><a href="chuyentrang.jsp"><c:out value="${sessionScope['phanquyen']}"/></a></li>
+									    <li><a href="chuyentrang.jsp"><c:out value="${sessionScope['phanquyen']}"/></a></li>
 										<li role="separator" class="divider"></li>
 										<li><a href="logout.jsp">Thoát</a></li>
 									</ul>
-								</div>			
+								</div>	
+							
 							</div>
 						</div><br>
 					<!--end login-->
@@ -61,16 +61,7 @@
 								 		</div>
 								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
 									</form>
-									<!--Ajax-->	
-									  <script type="text/javascript">
-										 $(document).ready(function() {
-										 $('#tim').click(function(e) {
-										 e.preventDefault();
-										 $('#nd').load('ketquatimkiem.jsp #ndtk-canlay');
-										 });
-										 });
-									</script>
-				  				<!--endAjax-->
+									
 								</div>
 						</div><!--end search-->
 						<div class="row">
@@ -123,6 +114,16 @@
 								  </div>
 								</div>
 							</div>
+							<!--Ajax-->	
+									  <script type="text/javascript">
+										 $(document).ready(function() {
+										 $('#tim').click(function(e) {
+										 e.preventDefault();
+										 $('#nd').load('ketquatimkiem.jsp #ndtk-canlay');
+										 });
+										 });
+									</script>
+				  				<!--endAjax-->
 						</div>
 					</div><!--end Cột login-siging-->
 				</div><!--end row logo--><br>
@@ -158,7 +159,7 @@
 <!--Main-->
 			<div id="Main">
 					<div class="row">
-						<!--cột trái-->
+					<!--cột trái-->
 						<div class="col-md-2">
 							<div class="panel">
 								<div class="panel-heading">
@@ -209,87 +210,57 @@
 
 						</div>
 					<!--end cột trái-->
+
 					<!--cột giữa-->
-					<div id="nd" >
-						<div class="col-md-10 line">
+					<div id="nd">
+						<div class="col-md-10 line" >
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Quản Lý Bài</h3>
+									<h3 class="panel-title">Update Thông Tin </h3>
 								</div>
 								<div class="panel-body">
-									<div>
-									  <!-- Nav tabs -->
-									  <ul class="nav nav-tabs">
-									    <li class="active"><a href="#dsbaiduocgiao" data-toggle="tab">Danh Sách Bài Được Giao</a></li>
-									    <li><a href="#dsbaidagui" data-toggle="tab">Danh Sách Bài Đã Gửi</a></li>
-									  </ul>
-
-									  <!-- Tab panes -->
-									  <div class="tab-content">
-									    <div class="tab-pane fade in active" id="dsbaiduocgiao">
-									    	<table class="table table-bordered table-hover">
-												<thead>
-													<tr>
-														<th>Tên Bài</th>
-														<th>Tác Giả</th>
-														<th>Ngày gửi</th>
-														<th>File</th>
-													</tr>
-												</thead>
-												<tbody>
-												<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-												url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
-												<sql:query var="result" sql="select * from dsbaiduocgiaobt" dataSource="${con }"/>
-												<c:forEach var="rows" items="${result.rows }">
-													<tr>
-														<td>${rows.TenBai }</td>
-														<td>${rows.TacGia }</td>
-														<td>${rows.File }</td>
-														<td><button type="button" class="btn btn-link">101conchodom.pdf</button></td>
-													</tr>
-												</c:forEach>
-												</tbody>
-											</table>
-											<div class="col-md-offset-5">
-												<a href="noidungbientap.jsp"><button class="btn btn-default" id="btnBienTap">Biên Tập</button></a>
-											</div>
-											
-							    		</div>
-									    <div class="tab-pane fade" id="dsbaidagui">
-									    	<table class="table table-bordered table-hover">
-												<thead>
-													<tr>
-														<th>Tên Bài</th>
-														<th>Tác Giả</th>
-														<th>Ngày gửi</th>
-														<th>File</th>
-														<th>Ngày Biên Tập</th>
-														<th>Trạng thái</th>
-
-													</tr>
-												</thead>
-												<tbody>
-													<sql:query var="result" sql="select * from dsbaidagui" dataSource="${con }"/>
-													<c:forEach var="rows" items="${result.rows }">
-														<tr>
-															<td>${rows.TenBai }</td>
-															<td>${rows.TacGia }</td>
-															<td>${rows.NgayGui }</td>
-															<td>${rows.File }</td>
-															<td>${rows.NgayBienTap }</td>
-															<td>${rows.TrangThai }</td>
-														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
-											
-										</div>
-									    </div>
-									  </div>
-									</div>
-								</div>
+								 <form class="form-horizontal" action="insertdb.jsp" method="post"> 
+									              
+									                <div class="form-group">
+														<label class="col-sm-4 control-label" for="email">Username</label>
+															<div class="col-sm-5">
+																<input class="form-control" type="text" value="" name="Username"/>
+									                        	
+															</div> 
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label" for="password">Password</label>
+															<div class="col-sm-5">
+																<input class="form-control"  type="password" value="" name="Password"/>
+															</div> 
+													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-4 control-label" for="email">Quyền</label>
+															<div class="col-sm-5">
+																<input class="form-control" type="number" value="" name="MaQuyen"/>
+															</div> 
+													</div>
+								
+									            <input type="submit" class="btn btn-primary col-md-offset-5" role="button" value="Insert"/>
+									            <a href="admin2.jsp"class="btn btn-default" >Cancel</a>
+									           	
+									       	</form>	
+									<font color="red"><c:if test="${not empty param.errMsg}">
+							            <c:out value="${param.errMsg}" />
+							            <a href="index.jsp">Go Back</a>
+							        </c:if></font>
+							        <font color="green"><c:if test="${not empty param.susMsg}">
+							            <c:out value="${param.susMsg}" />
+							            <br>
+							            <a href="admin2.jsp">Go Back</a>
+							        </c:if></font>													  
+									            
+								</div><!--end-->
 							</div>
-				    </div>
+						</div>
+					</div>
 					<!--end cột giữa-->
 					</div><!--endrow chinh-->
 					

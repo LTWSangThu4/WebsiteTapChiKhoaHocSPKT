@@ -38,6 +38,7 @@
 											</button>
 
 										<!-- Modal 1 -->
+									
 											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											  <div class="modal-dialog">
 											    <div class="modal-content">
@@ -47,67 +48,52 @@
 											      </div>
 											      <!--body-->
 											      <div class="modal-body">
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0" checked>  Admin
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">  Tổng Biên Tập
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="2">  Biên Tập Viên
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="3">  Phản Biện
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="4">  Tác Giả
-											      	</label>
-											      	<br><br>
-
-											      	<form id="FormDangNhap" method="post" action="" class="form-horizontal">
+											      	<form id="FormDangNhap" method="post" action="loginAuthenticate.jsp"  class="form-horizontal">
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="0" checked>  Admin
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="1">  Tổng Biên Tập
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="2">  Biên Tập Viên
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="3">  Phản Biện
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="4">  Tác Giả
+												      	</label>
+												      	<br><br>
 														<div class="form-group">
 															<label class="col-sm-4 control-label" for="username_signin">User Name </label>
 															<div class="col-sm-5">
-																<input type="text" class="form-control" id="username_signin" name="username_signin" placeholder="Username" />
+																<input type="text" class="form-control" id="username_signin" name="uname" placeholder="Username" />
 															</div>
 														</div>
 														<div class="form-group">
 															<label class="col-sm-4 control-label" for="password_signin">Password</label>
 															<div class="col-sm-5">
-																<input type="password" class="form-control" id="password_signin" name="password_signin" placeholder="Password" />
+																<input type="password" class="form-control" id="password_signin" name="pass" placeholder="Password" />
 															</div>
 														</div>
+														
+														<div class="modal-footer modal-footer-left">
+													        <input type="submit" class="btn btn-primary col-md-offset-5" role="button" value="Đăng Nhập"/> 
+													        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>												    
+												        </div>
 													</form>
-
-												    <a id="btnDangNhap" class="btn btn-primary col-md-offset-5" role="button" >Đăng nhập</a> 
-												 
-												    <script type="text/javascript">
-														$.validator.setDefaults( {
-															submitHandler: function () {
-																alert( "submitted!" );
-															}
-														} );
-
+													 <script type="text/javascript">
 														$( document ).ready( function () {
 															$( "#FormDangNhap" ).validate( {
 																rules: {
-																	username_signin: {
+																	uname: {
 																		required: true,
 																		minlength: 2
 																	},
-																	password_signin: {
+																	pass: {
 																		required: true,
 																		minlength: 5
-																	},
-																},
-																messages: {
-																	username_signin: {
-																		required: "Vui lòng nhập lại Username",
-																		minlength: "Username không được ít hơn 2 ký tự"
-																	},
-																	password_signin: {
-																		required: "Vui lòng nhập lại Password",
-																		minlength: "Password không được ít hơn 5 ký tự"
 																	},
 																},
 																errorElement: "em",
@@ -147,29 +133,8 @@
 															} );
 														} );
 													</script>
-
-												    <script >
-       
-												        $("#btnDangNhap").click(function(){
-												          var chon = $('input[type="radio"]:checked');
-												          if(chon.val()==0)
-												            $('#btnDangNhap').attr('href','admin1.jsp')
-												          else if(chon.val()==1)
-												            $('#btnDangNhap').attr('href','tongbientap.jsp')
-												          else if(chon.val()==2)
-												            $('#btnDangNhap').attr('href','bientapvien1.jsp')
-												          else if(chon.val()==3)
-												            $('#btnDangNhap').attr('href','phanbien1.jsp')
-												          else
-												            $('#btnDangNhap').attr('href','tacgia.jsp')
-												        });
-												       
-												    </script>
-											      </div>
+											      </div>   
 											      <!--end body-->
-											      <div class="modal-footer modal-footer-left">
-											        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button> -->
-											      </div>
 											    </div>
 											  </div>
 											</div>
@@ -257,13 +222,7 @@
 											    </div>
 											  </div>
 											</div>
-											<script type="text/javascript">
-												$.validator.setDefaults( {
-													submitHandler: function () {
-														alert( "Bạn đã đăng ký thành công !!!" );
-													}
-												} );
-
+											<script .>
 												$( document ).ready( function () {
 													$( "#FormDangKy" ).validate( {
 														rules: {
@@ -287,25 +246,6 @@
 																email: true
 															},
 															agree1: "required"
-														},
-														messages: {
-															ho: "Vui lòng nhập lại Họ",
-															ten: "Vui lòng nhập lại Tên",
-															username: {
-																required: "Vui lòng nhập lại Username",
-																minlength: "Username không được ít hơn 2 ký tự"
-															},
-															password: {
-																required: "Vui lòng nhập lại Password",
-																minlength: "Password không được ít hơn 5 ký tự"
-															},
-															confirm: {
-																required: "Vui lòng nhập lại Password",
-																minlength: "Password không được ít hơn 5 ký tự",
-																equalTo: "Password không khớp !!!"
-															},
-															email: "Vui lòng nhập lại email",
-															agree1: "Vui lòng đồng ý điều khoản"
 														},
 														errorElement: "em",
 														errorPlacement: function ( error, element ) {
@@ -358,14 +298,22 @@
 								  		<div class="form-group">
 								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
 									</form>
+									<!--Ajax-->	
+									  <script type="text/javascript">
+										 $(document).ready(function() {
+										 $('#tim').click(function(e) {
+										 e.preventDefault();
+										 $('#ndtk').load('ketquatimkiem.jsp #ndtk-canlay');
+										 });
+										 });
+									</script>
+				  				<!--endAjax-->
 								</div>
-							
 						</div><!--end search-->
 						<div class="row">
-							<div class="col-md-4">
-								
+							<div class="col-md-4">							
 							</div>
 							<div class="col-md-8">
 								<a href="" data-toggle="modal" data-target="#myModal3">Tìm Kiếm Nâng Cao</a>
@@ -408,7 +356,7 @@
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
 								      </div>
 								    </div>
 								  </div>
@@ -448,7 +396,7 @@
 <!--endhead-->
 <!--Main-->
 			<div id="Main">
-					<div class="row">
+					<div class="row" >
 						<!--cột trái-->
 						<div class="col-md-2">
 							<div class="panel">
@@ -500,31 +448,16 @@
 
 						</div>
 					<!--end cột trái-->
-
+				<div id="ndtk-canlay">
 					<!--cột giữa-->
-						<div class="col-md-7 line">
+						<div class="col-md-7 line" id="ndlh-canlay">
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title"><strong>TẠP CHÍ</strong></h3>
 								</div>
 								<div class="panel-body">
-									<div class="text-center">
-										<strong>NGHIÊN CỨU LÍ LUẬN</strong>
-									</div>
-									<div class="text-justify">
-
-										<a href="xemnoidung.jsp"><h1>Đồ Án Bảo Vệ Môi Trường</h1></a>
-									<p>Tỷ lệ che phủ rừng đạt 44-45%. (năm 2015: 42%). Trong bốn nguy cơ mà Đảng ta đã chỉ ra thì nguy cơ nào là lớn nhất trong 5 năm sắp tới (2016- 2020)? ( . Tụt hậu xa hơn về kinh tế so với các nước trong khu vực và trên thế giới)</p>
-									<a href="xemnoidung.jsp"><h1>Đồ Án Bảo Vệ Tốt Nghiệp</h1></a>
-									<p>Nghị quyết số 09-NQ/TW ngày 09/2/2007 “Về chiến lược biển Việt Nam đến năm 2020” được thông qua tại Hội nghị lần thứ mấy của Ban Chấp hành Trung ương Đảng khóa X?( Hội nghị lần thứ tư.)</p>
-									<a href="xemnoidung.jsp"><h1>Đồ Án ádasdsadsad</h1></a>
-									<p> Năng suất lao động xã hội bình quân tăng 4-5%/năm</p>
-									<a href="xemnoidung.jsp"><h1>Đồ Án Bảo Vệ Môi Trường</h1></a>
-									<p>Trong mục tiêu tổng quát, Đại hội XII đã thống nhất cần: Đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới; phát triển kinh tế nhanh, bền vững, phấn đấu sớm đưa nước ta….(Cơ bản trở thành nước công nghiệp theo hướng hiện đại)</p>
-									<a href="xemnoidung.jsp"><h1>Đồ Án Bảo Vệ Môi Trường</h1></a>
-									<p>Tổng giá trị thiệt hại do thiên tai gây ra trong 7 tháng đầu năm 2016 ước tính là bao nhiêu?(. Gần 1,5 nghìn tỷ đồng)Khi đánh giá tổng thể 30 năm đổi mới, Nghị quyết Đại hội XII của Đảng đã cho rằng chúng ta đã….(Đạt được những thành tựu to lớn, có ý nghĩa lịch sử).Trong mục tiêu tổng quát, Đại hội XII đã thống nhất cần: Đẩy mạnh toàn diện, đồng bộ công cuộc đổi mới; phát triển kinh tế nhanh, bền vững, phấn đấu sớm đưa nước ta….(Cơ bản trở thành nước công nghiệp theo hướng hiện đại)</p>
-										
-									</div>
+									
+									CODE TÌM KIẾM
 									
 								</div>
 							</div>
@@ -609,6 +542,7 @@
 							</div>
 						</div>
 					<!--end cột 3-->
+				</div>
 					</div><!--endrow chinh-->
 			</div>
 <!--endMain-->

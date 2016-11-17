@@ -33,11 +33,12 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="nav navbar col-md-push-6">						
-											<button class="btn btn-default textcolor" data-toggle="modal" data-target="#myModal" style="background: #0c6b63;">
+											<button class="btn btn-default textcolor" style="background: #0c6b63;" data-toggle="modal" data-target="#myModal">
 											  Đăng Nhập
 											</button>
 
 										<!-- Modal 1 -->
+									
 											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											  <div class="modal-dialog">
 											    <div class="modal-content">
@@ -47,67 +48,52 @@
 											      </div>
 											      <!--body-->
 											      <div class="modal-body">
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0" checked>  Admin
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">  Tổng Biên Tập
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="2">  Biên Tập Viên
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="3">  Phản Biện
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="4">  Tác Giả
-											      	</label>
-											      	<br><br>
-
-											      	<form id="FormDangNhap" method="post" action="" class="form-horizontal">
+											      	<form id="FormDangNhap" method="post" action="loginAuthenticate.jsp"  class="form-horizontal">
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="0" checked>  Admin
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="1">  Tổng Biên Tập
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="2">  Biên Tập Viên
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="3">  Phản Biện
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="4">  Tác Giả
+												      	</label>
+												      	<br><br>
 														<div class="form-group">
 															<label class="col-sm-4 control-label" for="username_signin">User Name </label>
 															<div class="col-sm-5">
-																<input type="text" class="form-control" id="username_signin" name="username_signin" placeholder="Username" />
+																<input type="text" class="form-control" id="username_signin" name="uname" placeholder="Username" />
 															</div>
 														</div>
 														<div class="form-group">
 															<label class="col-sm-4 control-label" for="password_signin">Password</label>
 															<div class="col-sm-5">
-																<input type="password" class="form-control" id="password_signin" name="password_signin" placeholder="Password" />
+																<input type="password" class="form-control" id="password_signin" name="pass" placeholder="Password" />
 															</div>
 														</div>
+														
+														<div class="modal-footer modal-footer-left">
+													        <input type="submit" class="btn btn-primary col-md-offset-5" role="button" value="Đăng Nhập"/> 
+													        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>												    
+												        </div>
 													</form>
-
-												    <a id="btnDangNhap" class="btn btn-primary col-md-offset-5" role="button" >Đăng nhập</a> 
-												 
-												    <script type="text/javascript">
-														$.validator.setDefaults( {
-															submitHandler: function () {
-																alert( "submitted!" );
-															}
-														} );
-
+													 <script type="text/javascript">
 														$( document ).ready( function () {
 															$( "#FormDangNhap" ).validate( {
 																rules: {
-																	username_signin: {
+																	uname: {
 																		required: true,
 																		minlength: 2
 																	},
-																	password_signin: {
+																	pass: {
 																		required: true,
 																		minlength: 5
-																	},
-																},
-																messages: {
-																	username_signin: {
-																		required: "Vui lòng nhập lại Username",
-																		minlength: "Username không được ít hơn 2 ký tự"
-																	},
-																	password_signin: {
-																		required: "Vui lòng nhập lại Password",
-																		minlength: "Password không được ít hơn 5 ký tự"
 																	},
 																},
 																errorElement: "em",
@@ -147,29 +133,8 @@
 															} );
 														} );
 													</script>
-
-												    <script >
-       
-												        $("#btnDangNhap").click(function(){
-												          var chon = $('input[type="radio"]:checked');
-												          if(chon.val()==0)
-												            $('#btnDangNhap').attr('href','admin1.jsp')
-												          else if(chon.val()==1)
-												            $('#btnDangNhap').attr('href','tongbientap.jsp')
-												          else if(chon.val()==2)
-												            $('#btnDangNhap').attr('href','bientapvien1.jsp')
-												          else if(chon.val()==3)
-												            $('#btnDangNhap').attr('href','phanbien1.jsp')
-												          else
-												            $('#btnDangNhap').attr('href','tacgia.jsp')
-												        });
-												       
-												    </script>
-											      </div>
+											      </div>   
 											      <!--end body-->
-											      <div class="modal-footer modal-footer-left">
-											        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button> -->
-											      </div>
 											    </div>
 											  </div>
 											</div>
@@ -257,13 +222,7 @@
 											    </div>
 											  </div>
 											</div>
-											<script type="text/javascript">
-												$.validator.setDefaults( {
-													submitHandler: function () {
-														alert( "Bạn đã đăng ký thành công !!!" );
-													}
-												} );
-
+											<script .>
 												$( document ).ready( function () {
 													$( "#FormDangKy" ).validate( {
 														rules: {
@@ -287,25 +246,6 @@
 																email: true
 															},
 															agree1: "required"
-														},
-														messages: {
-															ho: "Vui lòng nhập lại Họ",
-															ten: "Vui lòng nhập lại Tên",
-															username: {
-																required: "Vui lòng nhập lại Username",
-																minlength: "Username không được ít hơn 2 ký tự"
-															},
-															password: {
-																required: "Vui lòng nhập lại Password",
-																minlength: "Password không được ít hơn 5 ký tự"
-															},
-															confirm: {
-																required: "Vui lòng nhập lại Password",
-																minlength: "Password không được ít hơn 5 ký tự",
-																equalTo: "Password không khớp !!!"
-															},
-															email: "Vui lòng nhập lại email",
-															agree1: "Vui lòng đồng ý điều khoản"
 														},
 														errorElement: "em",
 														errorPlacement: function ( error, element ) {
@@ -358,14 +298,22 @@
 								  		<div class="form-group">
 								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
 									</form>
+									<!--Ajax-->	
+									  <script type="text/javascript">
+										 $(document).ready(function() {
+										 $('#tim').click(function(e) {
+										 e.preventDefault();
+										 $('#ndtk').load('ketquatimkiem.jsp #ndtk-canlay');
+										 });
+										 });
+									</script>
+				  				<!--endAjax-->
 								</div>
-							
 						</div><!--end search-->
 						<div class="row">
-							<div class="col-md-4">
-								
+							<div class="col-md-4">							
 							</div>
 							<div class="col-md-8">
 								<a href="" data-toggle="modal" data-target="#myModal3">Tìm Kiếm Nâng Cao</a>
@@ -408,7 +356,7 @@
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
 								      </div>
 								    </div>
 								  </div>
@@ -433,10 +381,10 @@
 							<div class="navbar-collapse collapse" id="main-menu">
 								<ul class="nav nav-justified " >
 										<li><a class="textcolor" href="index.jsp"><strong>Trang chủ</strong></a></li>
-										<li><a class="textcolor" href="gioithieu.jsp"><strong>Giới Thiệu</strong></a></li>
-										<li><a class="textcolor" href="quydinh_huongdan.jsp"><strong>Quy Định-Hướng Dẫn</strong></a></li>
-										<li><a class="textcolor" href="lienhe.jsp"><strong>Liên Hệ</strong></a></li>
-										<li><a class="textcolor" href="lienket.jsp"><strong>Liên Kết</strong></a></li>
+										<li><a class="textcolor" href="" id="GioiThieu"><strong>Giới Thiệu</strong></a></li>
+										<li><a class="textcolor" href="" id="QDHD"><strong>Quy Định-Hướng Dẫn</strong></a></li>
+										<li><a class="textcolor" href="" id="LienHe"><strong>Liên Hệ</strong></a></li>
+										<li><a class="textcolor" href="" id="LienKet"><strong>Liên Kết</strong></a></li>
 								</ul>
 							</div>
 						
@@ -502,7 +450,7 @@
 					<!--end cột trái-->
 
 					<!--cột giữa-->
-						<div class="col-md-7 line">
+						<div class="col-md-7 line" id="nd">
 							<div class="panel">
 								<div class="panel-heading">
 									<h3 class="panel-title"><strong>TẠP CHÍ</strong></h3>
@@ -553,6 +501,38 @@
 							</div>
 						</div>
 					<!--end cột giữa-->
+					
+					<!--Ajax-->	
+						 <script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#GioiThieu').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('gioithieu.jsp #ndgt-canlay');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#QDHD').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('quydinh_huongdan.jsp #ndqd-canlay');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#LienHe').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('lienhe.jsp #ndlh-canlay');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#LienKet').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('lienket.jsp #ndlk-canlay');
+							 });
+							 });
+						</script>
+	  				<!--endAjax-->
 
 					<!--cột 3-->
 						<div class="col-md-3">
