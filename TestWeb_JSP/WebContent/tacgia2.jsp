@@ -222,11 +222,12 @@
 											<li class="active"><a href="#guibaionline" data-toggle="tab">Gửi Bài Online</a></li>
 										    <li><a href="#dsbaidaviet" data-toggle="tab">Danh Sách Bài Đã Viết</a></li>
 										</ul>
+										<br>
 										<div class="tab-content">
 											<div class="tab-pane fade in active" id="guibaionline">
 												<!--cot trái-->
 												<div class="col-md-8">
-													<form id="FormGuiBai" method="post" class="form-horizontal" action="insertdb.jsp" role="form">
+													<form id="FormGuiBai" method="post" class="form-horizontal" action="tacgia_guibai.jsp" role="form">
 														<div class="form-group">
 															<label for="tieude" class="col-sm-2">Tiêu Đề</label>
 															<div class="col-sm-10">
@@ -234,27 +235,15 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="noidung" class="col-sm-2">Nội Dung</label>
+															<label for="tieude" class="col-sm-2">Nội Dung</label>
 															<div class="col-sm-10">
-																<input type="file" class="form-control" id="noidung" name="noidung">
+																<input type="text" class="form-control" id="noidung" name="noidung" placeholder="Nhập nội dung">
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="tentacgia" class="col-sm-2">Tên Tác Giả</label>
+															<label for="noidung" class="col-sm-2">File</label>
 															<div class="col-sm-10">
-																<input type="text" class="form-control" id="tentacgia" name="tentacgia" placeholder="Nhập tên tác giả">
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="coquan" class="col-sm-2">Cơ Quan</label>
-															<div class="col-sm-10">
-																<input type="text" class="form-control" id="coquan" name="coquan" placeholder="Nhập cơ quan">
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="thongtinlienlac" class="col-sm-2">Thông Tin Liên Lạc</label>
-															<div class="col-sm-10">
-																<input type="text" class="form-control" id="thongtinlienlac" placeholder="Nhập thông tin liên lạc">
+																<input type="file" class="form-control" id="file" name="file">
 															</div>
 														</div>
 														<div class="form-group">
@@ -264,17 +253,19 @@
 															</div>
 														</div>
 														<div class="col-sm-offset-2">
-															<button type="button" id="guibai" class="btn btn-primary">Gửi Bài</button>
+															<button type="submit" id="guibai" class="btn btn-primary">Gửi Bài</button>
+															
+															<font color="red"><c:if test="${not empty param.errMsg}">
+													            <c:out value="${param.errMsg}" />
+		
+													        </c:if></font>
+													        <font color="green"><c:if test="${not empty param.susMsg}">
+													            <c:out value="${param.susMsg}" />
+													       
+													        </c:if></font>
 														</div>
 													</form>
-													<font color="red"><c:if test="${not empty param.errMsg}">
-											            <c:out value="${param.errMsg}" />
-											            <a href="index.jsp">Go Back</a>
-											        </c:if></font>
-											        <font color="green"><c:if test="${not empty param.susMsg}">
-											            <c:out value="${param.susMsg}" />
-											            <a href="index.jsp">Go Back</a>
-											        </c:if></font>
+													
 													<script>
 														
 														function validateText(id)
@@ -310,14 +301,9 @@
 																	if(!validateText("noidung"))
 																		return false;
 																	
-																	if(!validateText("tentacgia"))
+																	if(!validateText("file"))
 																		return false;
-																	
-																	if(!validateText("coquan"))
-																		return false;
-																
-																	if(!validateText("thongtinlienlac"))
-																		return false;
+
 																	
 																	$("form#FormGuiBai").submit();
 																});
@@ -342,22 +328,28 @@
 												<table class="table table-bordered table-hover">
 													<thead>
 														<tr>
-															<th>Tên Bài</th>
-															<th>Ngày gửi</th>
+															<th>Tiêu Đề</th>
+															<th>Nội Dung</th>
 															<th>File</th>
-															<th>Trạng thái</th>
+															<th>DS Từ Khóa</th>
+															<th>Trạng Thái</th>
 														</tr>
 													</thead>
 													<tbody>
 													<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
 													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
-													<sql:query var="result" sql="select * from ds_baiviet_dagui" dataSource="${con }"/>
+													<sql:query dataSource="${con}" var="result">
+														select *
+														from taikhoan,ds_baiviet_dagui
+														where taikhoan.Username=ds_baiviet_dagui.username_taikhoan and taikhoan.Username='${sessionScope['loginUser']}'
+													</sql:query>
 													<c:forEach var="rows" items="${result.rows }">
 														<tr>
 															<td>${rows.tieude }</td>
-															<td>${rows.NgayGui }</td>
-															<td><button type="button" class="btn btn-link">${rows.File }</button></td>
-															<td>${rows.TrangThai }</td>
+															<td>${rows.noidung }</td>
+															<td><button type="button" class="btn btn-link">${rows.file }</button></td>
+															<td>${rows.dstukhoa }</td>
+															<td>${rows.trangthai }</td>
 														</tr>
 													</c:forEach>
 													</tbody>
