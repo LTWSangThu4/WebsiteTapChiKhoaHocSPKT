@@ -14,7 +14,11 @@
     <body>
     <!-- update thông tin -->
         <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+<<<<<<< HEAD
                            url="jdbc:mysql://localhost/tapchikhoahoc?useUnicode=true&characterEncoding=UTF-8"
+=======
+                           url="jdbc:mysql://localhost/tapchikhoahoc"
+>>>>>>> origin/master
                            user="root"  password="123456"/>
         <sql:update dataSource="${dbsource}" var="count">
             UPDATE taikhoan SET last_name =?, first_name=?, CoQuan=?, thongtinlienlac=?
@@ -25,28 +29,10 @@
             <sql:param value="${param.ttll}" />
         </sql:update>
         <c:if test="${count>=1}">
-            <font size="5" color='green'> Congratulations ! Data updated
+            <font size="5" color='green'>Data updated
             successfully.</font>
             <br>
             <a href="admin2.jsp"class="btn btn-default">Back</a> 
-        </c:if>
-        
-        
-       <!-- update trang cá nhân -->
-       	<sql:update dataSource="${dbsource}" var="count1">
-            UPDATE taikhoan SET last_name =?, first_name=?, email=?, CoQuan=?, thongtinlienlac=?
-            WHERE Username='${sessionScope['loginUser']}'
-            <sql:param value="${param.hocn}" />
-            <sql:param value="${param.tencn}" />
-            <sql:param value="${param.emailcn}"/>
-            <sql:param value="${param.coquancn}"/>
-            <sql:param value="${param.ttllcn}" />
-        </sql:update>
-        <c:if test="${count1>=1}">        
-            <c:redirect url="thongtincanhan.jsp" >
-                <c:param name="susMsg" value="Data updated
-            successfully." />
-            </c:redirect>
         </c:if>
     </body>
 </html>

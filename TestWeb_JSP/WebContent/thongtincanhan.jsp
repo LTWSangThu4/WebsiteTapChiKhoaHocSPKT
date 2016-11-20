@@ -20,7 +20,7 @@
 <body>
 <div class="container">
 	<div class="row">
-		<div class="col-md-12 well	">
+		<div class="col-md-12 well">
 <!--header-->
 			<div id="header" >
 			<!--row logo-->
@@ -230,18 +230,24 @@
 								      <c:forEach items="${selectQ.rows}" var="r">
 								        <c:choose>
 								          <c:when test="${r.Username != NULL}">
-								          		<div class="col-sm-3">
-													<img src="images/anh.png" alt="..." class="img-thumbnail"> <br>
-													<br>
-													<!-- <label>Ảnh Đại Diện</label> -->
+								          	
+								          		<div class="col-sm-3">							          		
+								          			<img alt="" src="GetImage" class="img-rounded"
+								          			style="border-width:3px;height:128px;width:93px;">					          									
+								          
+													<form method="post" action="FileUploadDBServlet" enctype="multipart/form-data">													
+	                									<input type="file" name="photo" size="1"/>
+	                									<br>
+														<button class="btn btn-default" type="submit">Save</button>
+													</form>											
 												</div>
-												<div class="col-sm-9">
-									    			<form class="form-horizontal" method="post" action="updatedb_tt.jsp">	
-									    	<!-- Thông Báo -->								    
+											<form class="form-horizontal" method="post" action="edit_trangcanhan.jsp" >	
+												<div class="col-sm-9">													    			
+									    		<!-- Thông Báo -->								    
 											        <font color="green"><c:if test="${not empty param.susMsg}">
 											            <c:out value="${param.susMsg}" />										            									           
 											        </c:if></font>		
-									    	<!-- Họ Tên -->									    				
+									    	 	<!-- Họ Tên -->									    				
 													  <div class="form-group" >	  
 														  <div class="tab-content">
 														  	<div class="tab-pane fade in active" id="edten">
@@ -319,7 +325,7 @@
 															    </div>
 															    <a href="#tab_pass" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>												  							 
 														  </div>	
-													<!-- Cơ Quan -->	
+												<!-- Cơ Quan -->	
 															
 															<div class="form-group" >	  
 															  <div class="tab-content">
@@ -341,7 +347,7 @@
 																  </div>														  
 																  </div>							 
 															   </div>
-														<!-- Thông tin -->	
+												<!-- Thông tin -->	
 																<div class="form-group" >	  
 																  <div class="tab-content">
 																  	<div class="tab-pane fade in active" id="edtt">
@@ -362,27 +368,17 @@
 																	  </div>														  
 																	  </div>							 
 																   </div>
-															<!-- Ngày Đk -->
+												<!-- Ngày Đk -->
 																<div class="form-group" >	  															  	
 																	  	<label class="col-sm-3 control-label">RegDate</label>
 																	    <div class="col-sm-8" >
 																	      <p class="form-control-static"><c:out value="${r.regdate}"/></p>
 																	    </div>																     
-																 </div>																	  												  
-														</form>
-									    		
-									    	
-									    		
-									    		
-													
-			
-																			
-												</div>
-												<!-- <div class="col-sm-2">
-													
-												</div> -->
-											            
-											            
+																 </div>		
+													<a href="thongtincanhan.jsp" class="btn btn-primary col-md-offset-3" role="button">Refresh</a>	
+												
+												</div>															  												  
+											</form>	
 											</c:when>
 											 <c:otherwise>
 												<font color='red'>Không Tồn Tại Người Này! </font>
@@ -393,10 +389,10 @@
 								   <c:otherwise>
 										<font color='red'>Không Tồn Tại Người Này! </font>
 									</c:otherwise>
-								  </c:choose>
-								  
+								</c:choose>
+								  								    							
 								</div>
-							</div>
+							</div>				
 						</div>
 					<!--end cột giữa-->
 					<!--Ajax-->	

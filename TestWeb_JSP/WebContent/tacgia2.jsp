@@ -336,6 +336,7 @@
 													<tbody>
 													<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
 													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+<<<<<<< HEAD
 													<sql:query dataSource="${con}" var="result">
 														select *
 														from taikhoan,ds_baiviet_dagui
@@ -348,6 +349,15 @@
 															<td><button type="button" class="btn btn-link">${rows.file }</button></td>
 															<td>${rows.dstukhoa }</td>
 															<td>${rows.trangthai }</td>
+=======
+													<sql:query var="result" sql="select * from ds_baiviet_dagui" dataSource="${con }"/>
+													<c:forEach var="rows" items="${result.rows }">
+														<tr>
+															<td>${rows.tieude }</td>
+															<td>${rows.NgayGui }</td>
+															<td><button type="button" class="btn btn-link">${rows.File }</button></td>
+															<td>${rows.TrangThai }</td>
+>>>>>>> origin/master
 														</tr>
 													</c:forEach>
 													</tbody>
