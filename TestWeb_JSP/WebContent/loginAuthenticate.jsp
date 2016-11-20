@@ -1,6 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="s" %>
- 
+ <%@ page import ="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,7 +13,7 @@
   <body>
     <c:if test="${not empty param.uname and not empty param.pass}">
       <s:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-                       url="jdbc:mysql://localhost:3306/tckh"
+                       url="jdbc:mysql://localhost:3306/tapchikhoahoc"
                        user="root" password="123456"/>
  
       <s:query dataSource="${ds}" var="selectQ">
@@ -25,8 +25,7 @@
  
       <c:forEach items="${selectQ.rows}" var="r">
         <c:choose>
-          <c:when test="${r.kount gt 0}">
-          
+          <c:when test="${r.kount gt 0}">     	    	
             <c:set scope="session"
                    var="loginUser"
                    value="${param.uname}"/>

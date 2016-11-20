@@ -350,11 +350,11 @@
 													</thead>
 													<tbody>
 													<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-													url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
-													<sql:query var="result" sql="select * from dsbai_daviet" dataSource="${con }"/>
+													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+													<sql:query var="result" sql="select * from ds_baiviet_dagui" dataSource="${con }"/>
 													<c:forEach var="rows" items="${result.rows }">
 														<tr>
-															<td>${rows.TenBai }</td>
+															<td>${rows.tieude }</td>
 															<td>${rows.NgayGui }</td>
 															<td><button type="button" class="btn btn-link">${rows.File }</button></td>
 															<td>${rows.TrangThai }</td>
