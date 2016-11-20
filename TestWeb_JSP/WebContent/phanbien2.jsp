@@ -237,7 +237,7 @@
 												</thead>
 												<tbody>
 												<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-												url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
+												url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
 												<sql:query var="result" sql="select * from dsbaiduocgiaophanbien" dataSource="${con }"/>
 												<c:forEach var="rows" items="${result.rows }">
 													<tr>

@@ -14,7 +14,7 @@
     <body>
     <!-- update thông tin -->
         <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-                           url="jdbc:mysql://localhost/tckh?useUnicode=true&characterEncoding=UTF-8"
+                           url="jdbc:mysql://localhost/tapchikhoahoc?useUnicode=true&characterEncoding=UTF-8"
                            user="root"  password="123456"/>
         <sql:update dataSource="${dbsource}" var="count">
             UPDATE taikhoan SET last_name =?, first_name=?, CoQuan=?, thongtinlienlac=?

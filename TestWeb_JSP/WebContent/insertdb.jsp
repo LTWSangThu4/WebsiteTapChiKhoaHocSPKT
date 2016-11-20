@@ -15,7 +15,7 @@
  
         </c:if>
         <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-                           url="jdbc:mysql://localhost/tckh"
+                           url="jdbc:mysql://localhost/tapchikhoahoc"
                            user="root"  password="123456"/>
  
  

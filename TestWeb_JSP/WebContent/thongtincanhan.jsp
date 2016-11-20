@@ -219,7 +219,7 @@
 								<c:choose>
 									<c:when test="${not empty sessionScope['loginUser']}">
 								      <s:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-								                       url="jdbc:mysql://localhost:3306/tckh"
+								                       url="jdbc:mysql://localhost:3306/tapchikhoahoc"
 								                       user="root" password="123456"/>
 								                       
 									 <s:query dataSource="${ds}" var="selectQ">
@@ -315,7 +315,7 @@
 														<div class="form-group" >	  
 																<label class="col-sm-3 control-label">Password</label>
 															    <div class="col-sm-8" >
-															      <p class="form-control-static"><c:out value="${r.Password}"/></p>
+															      <p class="form-control-static" ><c:out value="${r.Password}"/></p>
 															    </div>
 															    <a href="#tab_pass" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>												  							 
 														  </div>	
@@ -345,7 +345,7 @@
 																<div class="form-group" >	  
 																  <div class="tab-content">
 																  	<div class="tab-pane fade in active" id="edtt">
-																	  	<label class="col-sm-3 control-label">Info</label>
+																	  	<label class="col-sm-3 control-label">SĐT</label>
 																	    <div class="col-sm-8" >
 																	      <p class="form-control-static"><c:out value="${r.ThongTinLienlac}"/></p>
 																	    </div>

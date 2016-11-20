@@ -13,11 +13,11 @@
   <body>
     <c:if test="${not empty param.uname and not empty param.pass}">
       <s:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-                       url="jdbc:mysql://localhost:3306/tckh"
+                       url="jdbc:mysql://localhost:3306/tapchikhoahoc"
                        user="root" password="123456"/>
  
       <s:query dataSource="${ds}" var="selectQ">
-        select count(*) as kount from TaiKhoan
+        select count(*) as kount from taikhoan
         where Username='${param.uname}'
         and Password='${param.pass}'
         and MaQuyen ='${param.q}'
