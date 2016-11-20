@@ -17,7 +17,7 @@
                        user="root" password="123456"/>
  
       <s:query dataSource="${ds}" var="selectQ">
-        select count(*) as kount from taikhoan
+        select count(*) as kount from TaiKhoan
         where Username='${param.uname}'
         and Password='${param.pass}'
         and MaQuyen ='${param.q}'

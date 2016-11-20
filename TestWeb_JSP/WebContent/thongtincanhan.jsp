@@ -211,188 +211,287 @@
 					<!--end cột trái-->
 					<!--cột giữa-->
 						<div class="col-md-7 line" id="nd">
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title"><strong>Thông Tin Cá Nhân</strong></h3>
-								</div>
-								<div class="panel-body">
-								<c:choose>
-									<c:when test="${not empty sessionScope['loginUser']}">
-								      <s:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-								                       url="jdbc:mysql://localhost:3306/tapchikhoahoc"
-								                       user="root" password="123456"/>
-								                       
-									 <s:query dataSource="${ds}" var="selectQ">
-								        select * from TaiKhoan
-								        where Username='${sessionScope['loginUser']}'
-								      </s:query>
-								 
-								      <c:forEach items="${selectQ.rows}" var="r">
-								        <c:choose>
-								          <c:when test="${r.Username != NULL}">
-								          	
-								          		<div class="col-sm-3">							          		
-								          			<img alt="" src="GetImage" class="img-rounded"
-								          			style="border-width:3px;height:128px;width:93px;">					          									
-								          
-													<form method="post" action="FileUploadDBServlet" enctype="multipart/form-data">													
-	                									<input type="file" name="photo" size="1"/>
-	                									<br>
-														<button class="btn btn-default" type="submit">Save</button>
-													</form>											
-												</div>
-											<form class="form-horizontal" method="post" action="edit_trangcanhan.jsp" >	
-												<div class="col-sm-9">													    			
-									    		<!-- Thông Báo -->								    
-											        <font color="green"><c:if test="${not empty param.susMsg}">
-											            <c:out value="${param.susMsg}" />										            									           
-											        </c:if></font>		
-									    	 	<!-- Họ Tên -->									    				
-													  <div class="form-group" >	  
-														  <div class="tab-content">
-														  	<div class="tab-pane fade in active" id="edten">
-															  	<label class="col-sm-3 control-label">Tên</label>
-															    <div class="col-sm-8" >
-															      <p class="form-control-static"><c:out value="${r.first_name}"/> </p>
-															    </div>
-															    <a href="#edit_ten" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
-														  	</div>
-														  
-															  <div class="tab-pane fade" id="edit_ten">
+							 <div class="tab-content">
+						<!-- tab Info -->
+							 	<div class="tab-pane fade in active" id="info">
+								 	<div class="panel">
+									<div class="panel-heading">
+										<h3 class="panel-title"><strong>Thông Tin Cá Nhân</strong></h3>
+									</div>
+									<div class="panel-body">
+									<c:choose>
+										<c:when test="${not empty sessionScope['loginUser']}">
+									      <s:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
+									                       url="jdbc:mysql://localhost:3306/tapchikhoahoc"
+									                       user="root" password="123456"/>
+									                       
+										 <s:query dataSource="${ds}" var="selectQ">
+									        select * from TaiKhoan
+									        where Username='${sessionScope['loginUser']}'
+									      </s:query>
+									 
+									      <c:forEach items="${selectQ.rows}" var="r">
+									        <c:choose>
+									          <c:when test="${r.Username != NULL}">
+									          	
+									          		<div class="col-sm-3">							          		
+									          			<img alt="" src="GetImage" class="img-rounded"
+									          			style="border-width:3px;height:128px;width:93px;">					          									
+									          
+														<form method="post" action="FileUploadDBServlet" enctype="multipart/form-data">													
+		                									<input type="file" name="photo" size="1"/>
+		                									<br>
+															<button class="btn btn-default" type="submit">Save</button>
+														</form>											
+													</div>
+												<form class="form-horizontal" method="post" action="edit_trangcanhan.jsp" >	
+													<div class="col-sm-9">													    			
+										    		<!-- Thông Báo -->								    
+												        <font color="green"><c:if test="${not empty param.susMsg}">
+												            <c:out value="${param.susMsg}" />										            									           
+												        </c:if></font>		
+										    	 	<!-- Họ Tên -->									    				
+														  <div class="form-group" >	  
+															  <div class="tab-content">
+															  	<div class="tab-pane fade in active" id="edten">
 																  	<label class="col-sm-3 control-label">Tên</label>
 																    <div class="col-sm-8" >
-																      <input type="text" value="${r.first_name}" name="tencn"/>
+																      <p class="form-control-static"><c:out value="${r.first_name}"/> </p>
 																    </div>
-																    <button type="submit" class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
-																    <a href="#edten" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>															    														    
-															  </div>														  
-														  </div>							 
-													   </div>
-												<!-- Họ -->	  
-														 <div class="form-group" >	  
-														  <div class="tab-content">
-														  	<div class="tab-pane fade in active" id="edho">
-															  	<label class="col-sm-3 control-label">Họ</label>
-															    <div class="col-sm-8" >
-															      <p class="form-control-static"><c:out value="${r.last_name}"/> </p>
-															    </div>
-															    <a href="#edit_ho" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
-														  	</div>
-														  
-															  <div class="tab-pane fade" id="edit_ho">
-																  	<label class="col-sm-3 control-label">Họ</label>
-																    <div class="col-sm-8" >
-																      <input type="text" value="${r.last_name}" name="hocn"/>
-																    </div>
-																    <button type="submit"  class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
-																    <a href="#edho" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
-															  </div>														  
-														  </div>							 
-													   </div> 
-												<!-- Email -->  
-														<div class="form-group" >	  
-														  <div class="tab-content">
-														  	<div class="tab-pane fade in active" id="edemail">
-															  	<label class="col-sm-3 control-label">Email</label>
-															    <div class="col-sm-8" >
-															      <p class="form-control-static"><c:out value="${r.email}"/></p>
-															    </div>
-															    <a href="#tab_email" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
-														  	</div>
-														  
-															  <div class="tab-pane fade" id="tab_email">
-																  	<label class="col-sm-3 control-label">Email</label>
-																    <div class="col-sm-8" >
-																      <input type="text" value="${r.email}" name="emailcn"/>
-																    </div>
-																    <button type="submit"  class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
-																    <a href="#edemail" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
-															  </div>														  
-															  </div>							 
-														   </div>
-												<!-- User -->
-															<div class="form-group" >	  													  
-															  	<label class="col-sm-3 control-label">Username</label>
-															    <div class="col-sm-8" >
-															      <p class="form-control-static"><c:out value="${r.Username}"/></p>
-															    </div>														    											  								 
-														   </div>
-												<!-- Pass -->		
-														<div class="form-group" >	  
-																<label class="col-sm-3 control-label">Password</label>
-															    <div class="col-sm-8" >
-															      <p class="form-control-static" ><c:out value="${r.Password}"/></p>
-															    </div>
-															    <a href="#tab_pass" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>												  							 
-														  </div>	
-												<!-- Cơ Quan -->	
-															
-															<div class="form-group" >	  
-															  <div class="tab-content">
-															  	<div class="tab-pane fade in active" id="edcq">
-																  	<label class="col-sm-3 control-label">Cơ Quan</label>
-																    <div class="col-sm-8" >
-																      <p class="form-control-static"><c:out value="${r.CoQuan}"/></p>
-																    </div>
-																    <a href="#tab_coquan" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+																    <a href="#edit_ten" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
 															  	</div>
 															  
-																  <div class="tab-pane fade" id="tab_coquan">
-																	  	<label class="col-sm-3 control-label">Cơ Quan</label>
+																  <div class="tab-pane fade" id="edit_ten">
+																	  	<label class="col-sm-3 control-label">Tên</label>
 																	    <div class="col-sm-8" >
-																	      <input type="text" value="${r.CoQuan}" name="coquancn"/>
+																	      <input type="text" value="${r.first_name}" name="tencn"/>
+																	    </div>
+																	    <button type="submit" class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
+																	    <a href="#edten" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>															    														    
+																  </div>														  
+															  </div>							 
+														   </div>
+													<!-- Họ -->	  
+															 <div class="form-group" >	  
+															  <div class="tab-content">
+															  	<div class="tab-pane fade in active" id="edho">
+																  	<label class="col-sm-3 control-label">Họ</label>
+																    <div class="col-sm-8" >
+																      <p class="form-control-static"><c:out value="${r.last_name}"/> </p>
+																    </div>
+																    <a href="#edit_ho" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+															  	</div>
+															  
+																  <div class="tab-pane fade" id="edit_ho">
+																	  	<label class="col-sm-3 control-label">Họ</label>
+																	    <div class="col-sm-8" >
+																	      <input type="text" value="${r.last_name}" name="hocn"/>
 																	    </div>
 																	    <button type="submit"  class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
-																    	<a href="#edcq" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
+																	    <a href="#edho" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
+																  </div>														  
+															  </div>							 
+														   </div> 
+													<!-- Email -->  
+															<div class="form-group" >	  
+															  <div class="tab-content">
+															  	<div class="tab-pane fade in active" id="edemail">
+																  	<label class="col-sm-3 control-label">Email</label>
+																    <div class="col-sm-8" >
+																      <p class="form-control-static"><c:out value="${r.email}"/></p>
+																    </div>
+																    <a href="#tab_email" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+															  	</div>
+															  
+																  <div class="tab-pane fade" id="tab_email">
+																	  	<label class="col-sm-3 control-label">Email</label>
+																	    <div class="col-sm-8" >
+																	      <input type="text" value="${r.email}" name="emailcn"/>
+																	    </div>
+																	    <button type="submit"  class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
+																	    <a href="#edemail" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
 																  </div>														  
 																  </div>							 
 															   </div>
-												<!-- Thông tin -->	
+													<!-- User -->
+																<div class="form-group" >	  													  
+																  	<label class="col-sm-3 control-label">Username</label>
+																    <div class="col-sm-8" >
+																      <p class="form-control-static"><c:out value="${r.Username}"/></p>
+																    </div>														    											  								 
+															   </div>
+													<!-- Pass -->		
+															<div class="form-group" >	  
+																	<label class="col-sm-3 control-label">Password</label>
+																    <div class="col-sm-8" >
+																      <p class="form-control-static"><c:out value="${r.Password}"/></p>
+																    </div>
+																    <a href="#resetpass" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>												  							 
+															  </div>	
+													<!-- Cơ Quan -->	
+																
 																<div class="form-group" >	  
 																  <div class="tab-content">
-																  	<div class="tab-pane fade in active" id="edtt">
-																	  	<label class="col-sm-3 control-label">SĐT</label>
+																  	<div class="tab-pane fade in active" id="edcq">
+																	  	<label class="col-sm-3 control-label">Cơ Quan</label>
 																	    <div class="col-sm-8" >
-																	      <p class="form-control-static"><c:out value="${r.ThongTinLienlac}"/></p>
+																	      <p class="form-control-static"><c:out value="${r.CoQuan}"/></p>
 																	    </div>
-																	    <a href="#tab_tt" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+																	    <a href="#tab_coquan" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
 																  	</div>
 																  
-																	  <div class="tab-pane fade" id="tab_tt">
-																		  	<label class="col-sm-3 control-label">Info</label>
+																	  <div class="tab-pane fade" id="tab_coquan">
+																		  	<label class="col-sm-3 control-label">Cơ Quan</label>
 																		    <div class="col-sm-8" >
-																		      <input type="text" value="${r.ThongTinLienlac}" name="ttllcn"/>
+																		      <input type="text" value="${r.CoQuan}" name="coquancn"/>
 																		    </div>
 																		    <button type="submit"  class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
-																    		<a href="#edtt" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
+																	    	<a href="#edcq" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
 																	  </div>														  
 																	  </div>							 
 																   </div>
-												<!-- Ngày Đk -->
-																<div class="form-group" >	  															  	
-																	  	<label class="col-sm-3 control-label">RegDate</label>
-																	    <div class="col-sm-8" >
-																	      <p class="form-control-static"><c:out value="${r.regdate}"/></p>
-																	    </div>																     
-																 </div>		
-													<a href="thongtincanhan.jsp" class="btn btn-primary col-md-offset-3" role="button">Refresh</a>	
-												
-												</div>															  												  
-											</form>	
-											</c:when>
-											 <c:otherwise>
-												<font color='red'>Không Tồn Tại Người Này! </font>
-											 </c:otherwise>
-										</c:choose>										 
-									</c:forEach>
-								  </c:when>
-								   <c:otherwise>
-										<font color='red'>Không Tồn Tại Người Này! </font>
-									</c:otherwise>
-								</c:choose>
-								  								    							
+													<!-- Thông tin -->	
+																	<div class="form-group" >	  
+																	  <div class="tab-content">
+																	  	<div class="tab-pane fade in active" id="edtt">
+																		  	<label class="col-sm-3 control-label">Info</label>
+																		    <div class="col-sm-8" >
+																		      <p class="form-control-static"><c:out value="${r.ThongTinLienlac}"/></p>
+																		    </div>
+																		    <a href="#tab_tt" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>
+																	  	</div>
+																	  
+																		  <div class="tab-pane fade" id="tab_tt">
+																			  	<label class="col-sm-3 control-label">Info</label>
+																			    <div class="col-sm-8" >
+																			      <input type="text" value="${r.ThongTinLienlac}" name="ttllcn"/>
+																			    </div>
+																			    <button type="submit"  class="glyphicon glyphicon-floppy-save col-sm-offset-3 btn"></button>
+																	    		<a href="#edtt" data-toggle="tab"  class="glyphicon glyphicon-floppy-remove btn btn-default"></a>	
+																		  </div>														  
+																		  </div>							 
+																	   </div>
+													<!-- Ngày Đk -->
+																	<div class="form-group" >	  															  	
+																		  	<label class="col-sm-3 control-label">RegDate</label>
+																		    <div class="col-sm-8" >
+																		      <p class="form-control-static"><c:out value="${r.regdate}"/></p>
+																		    </div>																     
+																	 </div>		
+														<a href="thongtincanhan.jsp" class="btn btn-primary col-md-offset-3" role="button">Refresh</a>	
+													
+													</div>															  												  
+												</form>	
+												</c:when>
+												 <c:otherwise>
+													<font color='red'>Không Tồn Tại Người Này! </font>
+												 </c:otherwise>
+											</c:choose>										 
+										</c:forEach>
+									  </c:when>
+									   <c:otherwise>
+											<font color='red'>Không Tồn Tại Người Này! </font>
+										</c:otherwise>
+									</c:choose>					  								    							
+									</div>
+									</div>	
+							 	</div>
+						<!-- tab reset password -->
+								<div class="tab-pane fade" id="resetpass">
+									<div class="panel">
+										<div class="panel-heading">
+											<h3 class="panel-title"><strong>Reset PassWord</strong></h3>
+										</div>
+										<div class="panel-body">
+											<form id="FormChangePass" method="post" class="form-horizontal" action="">
+															<div class="form-group">
+																<label class="col-sm-4 control-label" for="password">Old Password </label> 
+																<div class="col-sm-5">
+																	<input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Old Password">
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label class="col-sm-4 control-label" for="password">New Password </label> 
+																<div class="col-sm-5">
+																	<input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="New Password">
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label class="col-sm-4 control-label" for="confirm">Confirm </label> 
+																<div class="col-sm-5">
+																	<input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm New Password">
+																</div>
+															</div>
+
+															<button type="submit" class="btn btn-primary col-md-offset-5">OK</button>
+															<a href="#info" data-toggle="tab"  class="btn btn-default">Cancel </a>															
+														</form>	
+												<script>
+												$( document ).ready( function () {
+													$( "#FormChangePass" ).validate( {
+														rules: {
+															
+															oldpassword: {
+																required: true,
+																minlength: 5
+															},
+															newpassword: {
+																required: true,
+																minlength: 5
+															},
+															confirm: {
+																required: true,
+																minlength: 5,
+																equalTo: "#newpassword"
+															},
+														},
+														errorElement: "em",
+														errorPlacement: function ( error, element ) {
+															// Add the `help-block` class to the error element
+															error.addClass( "help-block" );
+
+															// Add `has-feedback` class to the parent div.form-group
+															// in order to add icons to inputs
+															element.parents( ".col-sm-5" ).addClass( "has-feedback" );
+
+															if ( element.prop( "type" ) === "checkbox" ) {
+																error.insertAfter( element.parent( "label" ) );
+															} else {
+																error.insertAfter( element );
+															}
+
+															// Add the span element, if doesn't exists, and apply the icon classes to it.
+															if ( !element.next( "span" )[ 0 ] ) {
+																$( "<span class='glyphicon glyphicon-remove form-control-feedback'></span>" ).insertAfter( element );
+															}
+														},
+														success: function ( label, element ) {
+															// Add the span element, if doesn't exists, and apply the icon classes to it.
+															if ( !$( element ).next( "span" )[ 0 ] ) {
+																$( "<span class='glyphicon glyphicon-ok form-control-feedback'></span>" ).insertAfter( $( element ) );
+															}
+														},
+														highlight: function ( element, errorClass, validClass ) {
+															$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+															$( element ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
+														},
+														unhighlight: function ( element, errorClass, validClass ) {
+															$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+															$( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
+														}
+													} );
+												} );
+											</script>														    							
+										</div>
+									</div>	
+									
 								</div>
-							</div>				
+								
+							</div>
+								
+									
 						</div>
 					<!--end cột giữa-->
 					<!--Ajax-->	

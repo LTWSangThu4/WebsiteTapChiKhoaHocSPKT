@@ -222,12 +222,11 @@
 											<li class="active"><a href="#guibaionline" data-toggle="tab">Gửi Bài Online</a></li>
 										    <li><a href="#dsbaidaviet" data-toggle="tab">Danh Sách Bài Đã Viết</a></li>
 										</ul>
-										<br>
 										<div class="tab-content">
 											<div class="tab-pane fade in active" id="guibaionline">
 												<!--cot trái-->
 												<div class="col-md-8">
-													<form id="FormGuiBai" method="post" class="form-horizontal" action="tacgia_guibai.jsp" role="form">
+													<form id="FormGuiBai" method="post" class="form-horizontal" action="insertdb.jsp" role="form">
 														<div class="form-group">
 															<label for="tieude" class="col-sm-2">Tiêu Đề</label>
 															<div class="col-sm-10">
@@ -237,34 +236,45 @@
 														<div class="form-group">
 															<label for="noidung" class="col-sm-2">Nội Dung</label>
 															<div class="col-sm-10">
-																<input type="text" class="form-control" id="noidung" name="noidung" placeholder="Nhập tiêu đề">
+																<input type="file" class="form-control" id="noidung" name="noidung">
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="file" class="col-sm-2">File</label>
+															<label for="tentacgia" class="col-sm-2">Tên Tác Giả</label>
 															<div class="col-sm-10">
-																<input type="file" class="form-control" id="file" name="file">
+																<input type="text" class="form-control" id="tentacgia" name="tentacgia" placeholder="Nhập tên tác giả">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="coquan" class="col-sm-2">Cơ Quan</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="coquan" name="coquan" placeholder="Nhập cơ quan">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="thongtinlienlac" class="col-sm-2">Thông Tin Liên Lạc</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="thongtinlienlac" placeholder="Nhập thông tin liên lạc">
 															</div>
 														</div>
 														<div class="form-group">
 															<label for="dstukhoa" class="col-sm-2">Danh Sách Từ Khóa (nếu có)</label>
 															<div class="col-sm-10">
-																<textarea class="form-control" id="dstukhoa" name="dstukhoa" rows="10" placeholder="Nhập danh sách từ khóa"></textarea>
+																<textarea class="form-control" id="dstukhoa" rows="10" placeholder="Nhập danh sách từ khóa"></textarea>
 															</div>
 														</div>
 														<div class="col-sm-offset-2">
-															<button type="submit" id="guibai" class="btn btn-primary">Gửi Bài</button>
-															<font color="red"><c:if test="${not empty param.errMsg}">
-													            <c:out value="${param.errMsg}" />
-		
-													        </c:if></font>
-													        <font color="green"><c:if test="${not empty param.susMsg}">
-													            <c:out value="${param.susMsg}" />
-													       
-													        </c:if></font>
+															<button type="button" id="guibai" class="btn btn-primary">Gửi Bài</button>
 														</div>
 													</form>
-													
+													<font color="red"><c:if test="${not empty param.errMsg}">
+											            <c:out value="${param.errMsg}" />
+											            <a href="index.jsp">Go Back</a>
+											        </c:if></font>
+											        <font color="green"><c:if test="${not empty param.susMsg}">
+											            <c:out value="${param.susMsg}" />
+											            <a href="index.jsp">Go Back</a>
+											        </c:if></font>
 													<script>
 														
 														function validateText(id)
@@ -300,7 +310,13 @@
 																	if(!validateText("noidung"))
 																		return false;
 																	
-																	if(!validateText("file"))
+																	if(!validateText("tentacgia"))
+																		return false;
+																	
+																	if(!validateText("coquan"))
+																		return false;
+																
+																	if(!validateText("thongtinlienlac"))
 																		return false;
 																	
 																	$("form#FormGuiBai").submit();
@@ -326,30 +342,15 @@
 												<table class="table table-bordered table-hover">
 													<thead>
 														<tr>
-															<th>Tiêu Đề</th>
-															<th>Nội Dung</th>
+															<th>Tên Bài</th>
+															<th>Ngày gửi</th>
 															<th>File</th>
-															<th>DS Từ Khóa</th>
-															<th>Trạng Thái</th>
+															<th>Trạng thái</th>
 														</tr>
 													</thead>
 													<tbody>
 													<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
 													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
-<<<<<<< HEAD
-													<sql:query dataSource="${con}" var="result">
-														select *
-														from taikhoan,ds_baiviet_dagui
-														where taikhoan.Username=ds_baiviet_dagui.username_taikhoan and taikhoan.Username='${sessionScope['loginUser']}'
-													</sql:query>
-													<c:forEach var="rows" items="${result.rows }">
-														<tr>
-															<td>${rows.tieude }</td>
-															<td>${rows.noidung }</td>
-															<td><button type="button" class="btn btn-link">${rows.file }</button></td>
-															<td>${rows.dstukhoa }</td>
-															<td>${rows.trangthai }</td>
-=======
 													<sql:query var="result" sql="select * from ds_baiviet_dagui" dataSource="${con }"/>
 													<c:forEach var="rows" items="${result.rows }">
 														<tr>
@@ -357,7 +358,6 @@
 															<td>${rows.NgayGui }</td>
 															<td><button type="button" class="btn btn-link">${rows.File }</button></td>
 															<td>${rows.TrangThai }</td>
->>>>>>> origin/master
 														</tr>
 													</c:forEach>
 													</tbody>

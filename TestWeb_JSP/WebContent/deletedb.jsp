@@ -10,7 +10,7 @@
     </head>
     <body>
         <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-                           url="jdbc:mysql://localhost/tapchikhoahoc"
+                           url="jdbc:mysql://localhost/tckh"
                            user="root"  password="123456"/>
         <sql:update dataSource="${dbsource}" var="count">
             DELETE FROM taikhoan

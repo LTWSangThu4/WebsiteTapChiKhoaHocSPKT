@@ -154,7 +154,7 @@
 											      </div>
 											      <!--body-->
 											      <div class="modal-body">
-											        	<form id="FormDangKy" method="post" class="form-horizontal" action="registration.jsp">
+											        	<form id="FormDangKy" method="post" class="form-horizontal" action="">
 
 															<div class="form-group">
 																<label class="col-sm-4 control-label" for="ho">Họ</label>
