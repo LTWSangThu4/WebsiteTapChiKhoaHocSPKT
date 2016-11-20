@@ -226,18 +226,18 @@
 										<div class="tab-content">
 											<div class="tab-pane fade in active" id="guibaionline">
 												<!--cot trái-->
-												<div class="col-md-8">
-													<form id="FormGuiBai" method="post" class="form-horizontal" action="tacgia_guibai.jsp" role="form">
+											<form id="FormGuiBai" method="post" class="form-horizontal" action="GuibaiServlet" enctype="multipart/form-data" >
+												<div class="col-md-8">											
 														<div class="form-group">
 															<label for="tieude" class="col-sm-2">Tiêu Đề</label>
 															<div class="col-sm-10">
-																<input type="text" class="form-control" id="tieude" name="tieude" placeholder="Nhập tiêu đề">
+																<input type="text" value="" class="form-control" id="tieude" name="tieude" placeholder="Nhập tiêu đề">
 															</div>
 														</div>
 														<div class="form-group">
 															<label for="tieude" class="col-sm-2">Nội Dung</label>
 															<div class="col-sm-10">
-																<input type="text" class="form-control" id="noidung" name="noidung" placeholder="Nhập nội dung">
+																<input type="text" value="" class="form-control" id="noidung" name="noidung" placeholder="Nhập nội dung">
 															</div>
 														</div>
 														<div class="form-group">
@@ -249,7 +249,7 @@
 														<div class="form-group">
 															<label for="dstukhoa" class="col-sm-2">Danh Sách Từ Khóa (nếu có)</label>
 															<div class="col-sm-10">
-																<textarea class="form-control" id="dstukhoa" rows="10" placeholder="Nhập danh sách từ khóa"></textarea>
+																<textarea  type="text" value=""  class="form-control" id="dstukhoa" name="dstukhoa" rows="10" placeholder="Nhập danh sách từ khóa"></textarea>
 															</div>
 														</div>
 														<div class="col-sm-offset-2">
@@ -264,9 +264,7 @@
 													       
 													        </c:if></font>
 														</div>
-													</form>
-													
-													<script>
+														<script>
 														
 														function validateText(id)
 														{
@@ -309,20 +307,32 @@
 																});
 															});
 													</script>
+													
+											</div>
+											<!--end cột nội dung-->
 
-												</div>
-											<!--end cột trái-->
-
-											<!--cot phải-->
+											<!--cot ảnh bìa-->
+											<script type="text/javascript">
+												function file_change(f){
+													var reader = new FileReader();
+													reader.onload = function (e) {
+														var img = document.getElementById("img");
+														img.src = e.target.result;
+														img.style.display = "inline";
+													};
+													reader.readAsDataURL(f.files[0]);
+												}
+											</script>
 												<div class="col-md-4">
-													<img src="images/anh.png" alt="..." class="img-thumbnail"> <br>
+													<img id="img"  class="img-rounded" style="border-width:3px;height:140px;width:100px;"/>
+													<br>
 													<br>
 													<label>Ảnh Bìa</label>
-
-													<input type="file" id="">
-														    
+													<input id="f" type="file" name="anhbia" onchange="file_change(this)" style="display: none" />
+													<input class="btn btn-default" type="button" value="Chọn ảnh" onclick="document.getElementById('f').click()" />														    
 												</div>
-											<!--end cot phải-->
+											</form>
+											<!--end cot ảnh bìa-->
 											</div>
 											<div class="tab-pane fade" id="dsbaidaviet">
 												<table class="table table-bordered table-hover">

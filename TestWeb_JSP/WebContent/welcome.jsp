@@ -48,62 +48,52 @@
 											      </div>
 											      <!--body-->
 											      <div class="modal-body">
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0" checked>  Admin
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">  Tổng Biên Tập
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="2">  Biên Tập Viên
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="3">  Phản Biện
-											      	</label>
-											      	<label class="radio-inline">
-											      		<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="4">  Tác Giả
-											      	</label>
-											      	<br><br>
-
-											      	<form id="FormDangNhap" method="post" action="" class="form-horizontal">
+											      	<form id="FormDangNhap" method="post" action="loginAuthenticate.jsp"  class="form-horizontal">
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="0" checked>  Admin
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="1">  Tổng Biên Tập
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="2">  Biên Tập Viên
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="3">  Phản Biện
+												      	</label>
+												      	<label class="radio-inline">
+												      		<input type="radio" name="q"  value="4">  Tác Giả
+												      	</label>
+												      	<br><br>
 														<div class="form-group">
 															<label class="col-sm-4 control-label" for="username_signin">User Name </label>
 															<div class="col-sm-5">
-																<input type="text" class="form-control" id="username_signin" name="username_signin" placeholder="Username" />
+																<input type="text" class="form-control" id="username_signin" name="uname" placeholder="Username" />
 															</div>
 														</div>
 														<div class="form-group">
 															<label class="col-sm-4 control-label" for="password_signin">Password</label>
 															<div class="col-sm-5">
-																<input type="password" class="form-control" id="password_signin" name="password_signin" placeholder="Password" />
+																<input type="password" class="form-control" id="password_signin" name="pass" placeholder="Password" />
 															</div>
 														</div>
-													</form>
-
-												    <a id="btnDangNhap" class="btn btn-primary col-md-offset-5" role="button" >Đăng nhập</a> 
-												 
-												    <script type="text/javascript">
 														
+														<div class="modal-footer modal-footer-left">
+													        <input type="submit" class="btn btn-primary col-md-offset-5" role="button" value="Đăng Nhập"/> 
+													        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>												    
+												        </div>
+													</form>
+													 <script type="text/javascript">
 														$( document ).ready( function () {
 															$( "#FormDangNhap" ).validate( {
 																rules: {
-																	username_signin: {
+																	uname: {
 																		required: true,
 																		minlength: 2
 																	},
-																	password_signin: {
+																	pass: {
 																		required: true,
 																		minlength: 5
-																	},
-																},
-																messages: {
-																	username_signin: {
-																		required: "Vui lòng nhập lại Username",
-																		minlength: "Username không được ít hơn 2 ký tự"
-																	},
-																	password_signin: {
-																		required: "Vui lòng nhập lại Password",
-																		minlength: "Password không được ít hơn 5 ký tự"
 																	},
 																},
 																errorElement: "em",
@@ -143,29 +133,8 @@
 															} );
 														} );
 													</script>
-
-												    <script >
-       
-												        $("#btnDangNhap").click(function(){
-												          var chon = $('input[type="radio"]:checked');
-												          if(chon.val()==0)
-												            $('#btnDangNhap').attr('href','admin1.jsp')
-												          else if(chon.val()==1)
-												            $('#btnDangNhap').attr('href','tongbientap.jsp')
-												          else if(chon.val()==2)
-												            $('#btnDangNhap').attr('href','bientapvien1.jsp')
-												          else if(chon.val()==3)
-												            $('#btnDangNhap').attr('href','phanbien1.jsp')
-												          else
-												            $('#btnDangNhap').attr('href','tacgia.jsp')
-												        });
-												       
-												    </script>
-											      </div>
+											      </div>   
 											      <!--end body-->
-											      <div class="modal-footer modal-footer-left">
-											        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button> -->
-											      </div>
 											    </div>
 											  </div>
 											</div>

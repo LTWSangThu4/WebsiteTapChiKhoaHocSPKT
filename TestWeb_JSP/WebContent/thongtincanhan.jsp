@@ -234,15 +234,30 @@
 									        <c:choose>
 									          <c:when test="${r.Username != NULL}">
 									          	
-									          		<div class="col-sm-3">							          		
-									          			<img alt="" src="GetImage" class="img-rounded"
-									          			style="border-width:3px;height:128px;width:93px;">					          									
-									          
+									          		<div class="col-sm-3">	
+									          <!-- ảnh đại diện -->
+									          			<script type="text/javascript">
+														function file_change(f){
+															var reader = new FileReader();
+															reader.onload = function (e) {
+																var img = document.getElementById("img");
+																img.src = e.target.result;
+																img.style.display = "inline";
+															};
+															reader.readAsDataURL(f.files[0]);
+														}
+														</script>						          		
+									          			<img id="img" src="GetImage"  class="img-rounded" style="border-width:3px;height:140px;width:100px;"/>	          						          									
+									          			<br>
+									          			<br>
 														<form method="post" action="FileUploadDBServlet" enctype="multipart/form-data">													
-		                									<input type="file" name="photo" size="1"/>
+		                									<input id="f" type="file" name="photo" onchange="file_change(this)" style="display: none" />
+															<input class="btn btn-default" type="button" value="Chọn ảnh" onclick="document.getElementById('f').click()" />	
+		                									<br>
 		                									<br>
 															<button class="btn btn-default" type="submit">Save</button>
-														</form>											
+														</form>	
+												<!-- end ảnh đại diện -->										
 													</div>
 												<form class="form-horizontal" method="post" action="edit_trangcanhan.jsp" >	
 													<div class="col-sm-9">													    			
