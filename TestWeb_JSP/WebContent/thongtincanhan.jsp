@@ -403,7 +403,7 @@
 											<h3 class="panel-title"><strong>Reset PassWord</strong></h3>
 										</div>
 										<div class="panel-body">
-											<form id="FormChangePass" method="post" class="form-horizontal" action="">
+											<form id="FormChangePass" method="post" class="form-horizontal" action="change_pass.jsp">
 															<div class="form-group">
 																<label class="col-sm-4 control-label" for="password">Old Password </label> 
 																<div class="col-sm-5">
