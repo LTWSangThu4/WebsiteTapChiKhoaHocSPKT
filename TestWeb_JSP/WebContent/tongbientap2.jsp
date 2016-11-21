@@ -215,39 +215,135 @@
 		
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Quản Lý Bài</h3>
+									<h3 class="panel-title">Quản Lý Bài Viết</h3>
 								</div>
 								<div class="panel-body">
+								<script type="text/javascript">
+									function layid(btn) {
+										var param=btn.parentElement.parentElement.id;
+										
+									}
+								</script>
 									<table class="table table-bordered table-hover">
 										<thead>
 											<tr>
-												<th>Tên Bài</th>
 												<th>Tác Giả</th>
-												<th>Ngày Gửi</th>
+												<th>Tiêu Đề</th>
+												<th>Nội Dung</th>
 												<th>File</th>
-												<th>Phản Biện</th>
-												<th>Biên Tập</th>
+												<th>Ngày Gửi</th>
 												<th>Trạng Thái</th>
+												<th colspan="2">Action</th>
 											</tr>
 										</thead>
 										<tbody>
 											<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-											url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
-											<sql:query var="result" sql="select * from ds_bai_viet" dataSource="${con }"/>
+											url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+											<sql:query var="result" sql="select * from ds_baiviet_dagui,taikhoan where taikhoan.Username=ds_baiviet_dagui.username_taikhoan" 
+											dataSource="${con}"/>
 											<c:forEach var="rows" items="${result.rows }">
-												<tr>
-													<td>${rows.TenBai }</td>
-													<td>${rows.TAcGia }</td>
-													<td>${rows.NgayGui }</td>
-													<td><button type="button" class="btn btn-link">${rows.File }</button></td>
-													<td>${rows.PhanBien }</td>
-													<td>${rows.Bientap }</td>
-													<td>${rows.TrangThai }</td>
+												<tr id="<c:out value="${rows.ID_baiviet_dagui}" />" >
+													<td>${rows.last_name} ${rows.first_name}</td>
+													<td>${rows.tieude }</td>
+													<td>${rows.noidung }</td>
+													<td><button type="button" class="btn btn-link">${rows.file }</button></td>
+													<td>${rows.ngaygui }</td>
+													<td>${rows.trangthai }</td>
+													<td><button class="btn btn-default" data-toggle="modal" data-target="#xemchitiet" onclick="layid(this)">Xem</button></td>
+													<td><a href="" >Xử Lý</a></td>
 												</tr>
 											</c:forEach>
 											
 										</tbody>
 									</table>
+									<!-- Modal -->
+									<div class="modal fade" id="xemchitiet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="myModalLabel">Xem Chi Tiết</h4>
+									      </div>
+									      <div class="modal-body">
+									      <sql:query var="chitiet" sql="select * from ds_baiviet_dagui where ds_baiviet_dagui.ID_baiviet_dagui=${param}" dataSource="${con}">
+									      	
+									      </sql:query>
+									        <form action="" class="form-horizontal">
+
+											<c:forEach var="row" items="${chitiet.rows}">
+											<div class="form-group">
+												<label class="col-sm-4">Tác Giả: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.tieude}"/></p>
+												</div>
+											</div>
+											</c:forEach>
+											<div class="form-group">
+												<label class="col-md-2">Tiêu Đề: </label>
+												<p class="col-md-8">Lập Trình Web</p>
+											</div>
+											
+											<div class="form-group">
+												<label class="col-md-2">Cơ Quan: </label>
+												<p class="col-md-8">Cty.ABC</p>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2">Thông Tin Liên Lạc: </label>
+												<p class="col-md-8">C9/10 ap TN1, TPHCM</p>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2">Danh Sách Từ Khóa</label>
+												<div class="col-md-8">
+													<textarea class="form-control" id="dstukhoa" rows="10"></textarea>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2">Người Phản Biện: </label>
+												<p class="col-md-8">Mr. Tùng</p>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2">Bài Phản Biện: </label>
+												<p class="col-md-8">Lập Trình Web</p>
+											</div>
+
+											<div class="form-group">
+												<label class="col-md-2">Nội dung phản biện: </label> 
+												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
+									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
+											    
+											</div>
+
+											<div class="form-group">
+												<label class="col-md-2">File đính kèm (nếu có): </label>
+												
+
+											</div>
+											<div class="form-group">
+												<label class="col-md-2">Người Biên Tập: </label>
+												<p class="col-md-8">Mr. Tùng</p>
+											</div>
+
+											<div class="form-group">
+												<label class="col-md-2">Nội dung đã biên tập: </label> 
+												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
+									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
+											</div>
+											<div class="form-group">
+												<label class="col-md-2">File đã biên tập: </label>
+												<div class="col-md-8">
+													<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> filedinhkem.docx</a>
+												</div>
+											</div>
+											
+										</form>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+									        <a href="tongbientap2.jsp"><button type="button" class="btn btn-primary">Yes</button></a>
+									      </div>
+									    </div>
+									  </div>
+									</div>
 									<div class="col-md-4">
 										<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#thongtinbaiviet">Thông tin bài viết</button></a>
 									</div>
