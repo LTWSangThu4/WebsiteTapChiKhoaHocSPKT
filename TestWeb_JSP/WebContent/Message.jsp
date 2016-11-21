@@ -216,7 +216,7 @@
 						<div class="col-md-10 line" >
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Update Thông Tin </h3>
+									<h3 class="panel-title">Message </h3>
 								</div>
 								<div class="panel-body">
 								<center>

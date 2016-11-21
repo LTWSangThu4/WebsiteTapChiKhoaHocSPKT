@@ -65,8 +65,7 @@
              	<c:set scope="session"
                    var="phanquyen"
                    value="Gửi Bài Viết"/>
-             	<c:redirect url="trangchu.jsp"/>
-             		
+             	<c:redirect url="trangchu.jsp"/>            		
              </c:if>
             
           </c:when>

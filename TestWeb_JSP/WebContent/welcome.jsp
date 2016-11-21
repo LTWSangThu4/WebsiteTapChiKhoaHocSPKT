@@ -390,24 +390,109 @@
 			</div>
 <!--endhead-->
 <!--Main-->
-			<div id="Main">	
+			<div id="Main">
 					<div class="row">
-
-					<!--cột giữa-->
-						<div class="col-md-12 line">
+					<!--cột trái-->
+						<div class="col-md-2">
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Thông Báo</h3>
+									<h3 class="panel-title" ><strong>Lĩnh vực</strong></h3>
+								</div >
+
+								
+								
+								<ul class="list-group"> 
+								<li class="list-group-item" data-id="journal1672"> 
+								  <a href="#" class="list-group-item"><strong>Khoa học tự nhiên và công nghệ</strong></a>
+								  		<ul id="journal1672" style="display: none;">
+											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+										</ul>
+								<li class="list-group-item" data-id="journal1673"> 
+								  <a href="#" class="list-group-item"><strong>Khoa học xã hội và nhân văn</strong></a>
+								  		<ul id="journal1673" style="display: none;">
+											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+										</ul>
+								 <li class="list-group-item" data-id="journal1674"> 
+								  <a href="#" class="list-group-item"><strong>Khoa học giáo dục</strong></a>
+								  		<ul id="journal1674" style="display: none;">
+											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+										</ul>
+								 <li class="list-group-item" data-id="journal1675"> 
+								  <a href="#" class="list-group-item"><strong>Khoa học môi trường</strong></a>
+								  		<ul id="journal1675" style="display: none;">
+											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+										</ul>
+								</ul>		
+							</div>
+						<script type="text/javascript">
+						<!--
+							var elm = null;
+							$(".list-group-item").hover(function(){
+								$("#"+$(this).attr("data-id")).show();
+							},function(){
+								$("#"+$(this).attr("data-id")).hide();
+							});
+						//-->
+						</script>
+							<!--quang cao-->
+							<p style=" "><embed height="210" width="180" type="application/x-shockwave-flash" allowscriptaccess="always" wmode="transparent" allowfullscreen="false" scale="noborder" quality="high" src="Flash/135.swf" title=" "/></p>
+
+						</div>
+					<!--end cột trái-->
+
+					<!--cột giữa-->
+					<div id="nd">
+						<div class="col-md-10 line" >
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">Message </h3>
 								</div>
 								<div class="panel-body">
-									<h1>Đăng ký thành công !!!!!!!!!</h1>
-									
-								</div>
+								<center>
+								 	<h3><font color='green'><%=request.getAttribute("Message")%></font></h3>
+								 </center>
+								</div><!--end-->
 							</div>
 						</div>
+					</div>
 					<!--end cột giữa-->
-
 					</div><!--endrow chinh-->
+					
+					<!--Ajax-->	
+						  <script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#GioiThieu').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('gioithieu.jsp #nd2-canlay');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#QDHD').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('quydinh_huongdan.jsp #nd2-canlay');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#LienHe').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('lienhe.jsp #nd2-canlay');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#LienKet').click(function(e) {
+							 e.preventDefault();
+							 $('#nd').load('lienket.jsp #nd2-canlay');
+							 });
+							 });
+						</script>
+	  				<!--endAjax-->
 			</div>
 <!--endMain-->
 		</div>

@@ -16,10 +16,11 @@
             DELETE FROM taikhoan
             WHERE id='${param.id}'
         </sql:update>
-        <c:if test="${count>=1}">
+        <c:redirect url="admin2.jsp"/>
+        <!-- <c:if test="${count>=1}">
             <font size="5" color='green'> Congratulations ! Data deleted
             successfully.</font>
               <a href="admin2.jsp">Back</a>          
-        </c:if>
+        </c:if> -->
     </body>
 </html>
