@@ -25,10 +25,30 @@ public class GuibaiServlet extends HttpServlet {
     private String dbURL = "jdbc:mysql://localhost:3306/tapchikhoahoc";
     private String dbUser = "root";
     private String dbPass = "123456";
-     
+    
+    //get only File's name
+    private String extractFileName(Part part) {
+        // form-data; name="file"; filename="C:\file1.zip"
+        // form-data; name="file"; filename="C:\Note\file2.zip"
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                // C:\file1.zip
+                // C:\Note\file2.zip
+                String clientFileName = s.substring(s.indexOf("=") + 2, s.length() - 1);
+                clientFileName = clientFileName.replace("\\", "/");
+                int i = clientFileName.lastIndexOf('/');
+                // file1.zip
+                // file2.zip
+                return clientFileName.substring(i + 1);
+            }
+        }
+        return null;
+    }
     protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
-       
+            HttpServletResponse response) throws ServletException, IOException { 
+    	
     	// gets session User
     	HttpSession session = request.getSession();
     	String user= (String) session.getAttribute("loginUser");
@@ -36,12 +56,23 @@ public class GuibaiServlet extends HttpServlet {
         String tieude = request.getParameter("tieude");
         String noidung = request.getParameter("noidung");
         String dstukhoa = request.getParameter("dstukhoa");
-         
-        InputStream inputStream = null; // input stream of the upload file
-         
-        // obtains the upload file part in this multipart request
+        
+        // input stream of the upload file picture
+        InputStream inputanh = null; //input picture
+        InputStream inputFile=null; //input file
+        //get file
+        Part anhbia=request.getPart("anhbia"); 
         Part filePart = request.getPart("file");
-        Part anhbia=request.getPart("anhbia");
+        
+        //get file's name
+	   	String fileName = extractFileName(filePart);
+	   	if (fileName != null && fileName.length() > 0) {
+            // File data
+	   		inputFile = filePart.getInputStream();
+         }
+	   	//get picture's name............
+       
+        
         if (filePart != null&& anhbia !=null) {
             // prints out some information for debugging
             System.out.println(filePart.getName());
@@ -53,9 +84,7 @@ public class GuibaiServlet extends HttpServlet {
             System.out.println(anhbia.getContentType());
              
             // obtains input stream of the upload file
-            inputStream  = filePart.getInputStream();
-            inputStream  = anhbia.getInputStream();
-            
+            inputanh  = anhbia.getInputStream();   
         }
          
         Connection conn = null; // connection to the database
@@ -67,17 +96,18 @@ public class GuibaiServlet extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // constructs SQL statement
-            String sql = "INSERT INTO ds_baiviet_dagui (tieude, noidung, file, dstukhoa, anh, ngaygui, trangthai, username_taikhoan) "
-            		+ "values (?, ?, ?, ?, ?, CURDATE(), 'Da Gui', '"+user+"')";
+            String sql = "INSERT INTO ds_baiviet_dagui (tieude, noidung, file, tenfile, dstukhoa, anh, ngaygui, trangthai, username_taikhoan) "
+            		+ "values (?, ?, ?, ?, ?, ?, CURDATE(), 'Da Gui', '"+user+"')";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, tieude);
             statement.setString(2, noidung);
-            statement.setString(4, dstukhoa);
+            statement.setString(4, fileName);
+            statement.setString(5, dstukhoa);
              
-            if (inputStream != null) {
+            if (inputanh != null && inputFile !=null) {
                 // fetches input stream of the upload file for the blob column
-                statement.setBlob(3, inputStream  = filePart.getInputStream());
-                statement.setBlob(5,  inputStream  = anhbia.getInputStream());
+                statement.setBlob(3, inputFile);
+                statement.setBlob(6,  inputanh);
             }
  
             // sends the statement to the database server
