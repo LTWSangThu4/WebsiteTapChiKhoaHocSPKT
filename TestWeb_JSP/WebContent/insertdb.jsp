@@ -20,7 +20,7 @@
  
  
         <sql:update dataSource="${dbsource}" var="result">
-            INSERT INTO taikhoan(Username, Password, MaQuyen, regdate) VALUES (?,?,?,CURDATE());
+            INSERT INTO taikhoan(Username, Password, MaQuyen, regdate, trangthaihoatdong) VALUES (?,?,?,CURDATE(),1);
             
             <sql:param value="${param.Username}" />
 			<sql:param value="${param.Password}" />

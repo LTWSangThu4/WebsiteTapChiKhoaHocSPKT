@@ -1,8 +1,5 @@
-/GetImage/
-/GuibaiServlet/
-/UpImage/
-/DownloadFile/
-/UploadToDBResultsServlet/
-/UploadToDBServlet/
-/DownloadFile_TBT/
-/ReadPDF/
+/SendEmail/
+/SendEmail.class
+/SendMail.class
+/SendMail$1.class
+/SendServlet/

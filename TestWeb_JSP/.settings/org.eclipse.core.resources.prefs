@@ -18,3 +18,5 @@ encoding//WebContent/tongbientap2.jsp=UTF-8
 encoding//WebContent/trangchu.jsp=UTF-8
 encoding//WebContent/xemnoidung.jsp=UTF-8
 encoding//src/GuibaiServlet/GuibaiServlet.java=UTF-8
+encoding//src/SendEmail/SendEmail.java=UTF-8
+encoding//src/SendServlet/SendServlet.java=UTF-8

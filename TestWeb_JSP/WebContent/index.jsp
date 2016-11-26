@@ -151,8 +151,8 @@
 											      </div>
 											      <!--body-->
 											      <div class="modal-body">
-											      	<form id="FormResetpw" method="post" action="EmailServlet"  class="form-horizontal">
-											      	<center><font color="blue" >Mật khẩu sẽ được reset và gửi vào địa chỉ Email này		</font></center>	
+											      	<form id="FormResetpw" method="post" action="SendServlet"  class="form-horizontal">
+											      	<center><font color="blue" >Mật khẩu sẽ được reset và gửi vào địa chỉ Email bạn đã đăng ký		</font></center>	
 											      		<br>
 											      		<br>			
 														<div class="form-group">

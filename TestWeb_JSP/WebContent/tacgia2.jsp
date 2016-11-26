@@ -353,15 +353,17 @@
 														from taikhoan,ds_baiviet_dagui
 														where taikhoan.Username=ds_baiviet_dagui.username_taikhoan and taikhoan.Username='${sessionScope['loginUser']}'
 													</sql:query>
+													<form method="get" action="DownloadFile_TBT">
 													<c:forEach var="rows" items="${result.rows }">
 														<tr>
 															<td>${rows.tieude }</td>
 															<td>${rows.noidung }</td>
-															<td><button type="button" class="btn btn-link">${rows.file }</button></td>
+															<td><button type="submit" value="${rows.ID_baiviet_dagui }" name="id"  class="btn btn-link">${rows.TenFile }</button></td>
 															<td>${rows.dstukhoa }</td>
 															<td>${rows.trangthai }</td>
 														</tr>
 													</c:forEach>
+													</form>
 													</tbody>
 												</table>
 											</div>
