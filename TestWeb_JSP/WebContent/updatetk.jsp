@@ -223,7 +223,9 @@
 					                           url="jdbc:mysql://localhost/tapchikhoahoc"
 					                           user="root"  password="123456"/>
 					                        <sql:query dataSource="${dbsource}" var="result">
-									            SELECT * from taikhoan where id=?;
+									            SELECT * from taikhoan,tenquyen,tentrangthaihoatdong where id=? and 
+									            taikhoan.MaQuyen=tenquyen.MaQuyen 
+									            and taikhoan.trangthaihoatdong=tentrangthaihoatdong.matrangthai ;
 									            <sql:param value="${param.id}" />					    
 									        </sql:query>														  
 									            <form action="updatedb_tk.jsp" method="post">
@@ -233,7 +235,8 @@
 									                    <th>UserName</th>
 									                    <th>PassWord</th>
 									                    <th>Ngày Đăng Ký</th>
-									                    <th>Mã Quyền</th>
+									                    <th>Quyền</th>
+									                    <th>Trạn Thái</th>
 									                </tr>
 									                <c:forEach var="row" items="${result.rows}">
 									                    <tr>
@@ -242,6 +245,7 @@
 									                        <td><c:out value="${row.Password}"/></td>
 									                        <td><c:out value="${row.regdate}" /></td>								                       
 									                        <td><input type="text" value="${row.MaQuyen}" name="maquyen"/></td>
+									                        <td><input type="text" value="${row.trangthaihoatdong}" name="tthd"/></td>
 									                    </tr>
 									                    
 									                </c:forEach>

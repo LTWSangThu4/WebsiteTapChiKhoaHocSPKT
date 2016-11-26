@@ -20,7 +20,8 @@
         select count(*) as kount from TaiKhoan
         where Username='${param.uname}'
         and Password='${param.pass}'
-        and MaQuyen ='${param.q}'
+        and MaQuyen ='${param.q}' 
+        and Trangthaihoatdong="1"
       </s:query>
  
       <c:forEach items="${selectQ.rows}" var="r">

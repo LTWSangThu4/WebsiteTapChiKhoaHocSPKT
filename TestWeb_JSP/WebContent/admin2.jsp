@@ -231,14 +231,16 @@
 				                           url="jdbc:mysql://localhost/tapchikhoahoc"
 				                           user="root"  password="123456"/>
 									        <sql:query dataSource="${dbsource}" var="result">
-									            SELECT * from taikhoan;
+									            SELECT * from taikhoan,tenquyen,tentrangthaihoatdong where taikhoan.MaQuyen=tenquyen.MaQuyen 
+									            and taikhoan.trangthaihoatdong=tentrangthaihoatdong.matrangthai;
 									        </sql:query>
 									        <table class="table table-bordered table-hover" >
 									                <tr>
 									                    <th>UserName</th>
 									                    <th>PassWord</th>
 									                    <th>Ngày DK</th>
-									                    <th>Mã Quyền</th>
+									                    <th>Quyền</th>
+									                    <th>Trạng Thái</th>
 									                    <th colspan="2">Action</th>
 									                </tr>
 									                <c:forEach var="row" items="${result.rows}">
@@ -246,7 +248,8 @@
 									                        <td><c:out value="${row.Username}"/></td>
 									                        <td><c:out value="${row.Password}"/></td>
 									                        <td><c:out value="${row.regdate}"/></td>
-									                        <td><c:out value="${row.MaQuyen}"/></td>
+									                        <td><c:out value="${row.TenQuyen}"/></td>
+									                        <td><c:out value="${row.tentrangthai }"/></td>
 									                        <td><a href="updatetk.jsp?id=<c:out value="${row.id}"/>" >Sửa</a></td>
                         									<td><a href="javascript:confirmGo('Sure to delete this record?','deletedb.jsp?id=<c:out value="${row.id}"/>')">Delete</a></td>
 									                    </tr>

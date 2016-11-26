@@ -13,9 +13,10 @@
                            url="jdbc:mysql://localhost/tapchikhoahoc"
                            user="root"  password="123456"/>
         <sql:update dataSource="${dbsource}" var="count">
-            UPDATE taikhoan SET MaQuyen = ?
+            UPDATE taikhoan SET MaQuyen = ?, Trangthaihoatdong=?
             WHERE id='${param.id}'
             <sql:param value="${param.maquyen}" />
+            <sql:param value="${param.tthd}" />
         </sql:update>
         <c:if test="${count>=1}">
             <font size="5" color='green'> Congratulations ! Data updated
