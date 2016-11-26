@@ -39,6 +39,7 @@
 											</button>
 
 										<!-- Modal 1 -->
+									
 											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											  <div class="modal-dialog">
 											    <div class="modal-content">
@@ -79,6 +80,7 @@
 														</div>
 														
 														<div class="modal-footer modal-footer-left">
+															<a href="" data-toggle="modal" data-target="#modalResetpw">Forgot Password? </a>
 													        <input type="submit" class="btn btn-primary col-md-offset-5" role="button" value="Đăng Nhập"/> 
 													        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>												    
 												        </div>
@@ -139,6 +141,87 @@
 											  </div>
 											</div>
 										<!-- end Modal 1 -->
+										<!-- modal reset pw -->
+										<div class="modal fade" id="modalResetpw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Khôi Phục Mật Khẩu</h4>
+											      </div>
+											      <!--body-->
+											      <div class="modal-body">
+											      	<form id="FormResetpw" method="post" action="SendServlet"  class="form-horizontal">
+											      	<center><font color="blue" >Mật khẩu sẽ được reset và gửi vào địa chỉ Email bạn đã đăng ký		</font></center>	
+											      		<br>
+											      		<br>			
+														<div class="form-group">
+															<label class="col-sm-4 control-label" for="password_signin">Email</label>
+															<div class="col-sm-5">
+																<input type="email" class="form-control" id="" name="email" placeholder="Email Address" />
+															</div>
+														</div>
+														<br>
+														<br>
+														<div class="modal-footer modal-footer-left">
+													        <input type="submit" class="btn btn-primary col-md-offset-5" role="button" value="Reset"/> 
+													        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>												    
+												        </div>
+													</form>
+													 <script type="text/javascript">
+														$( document ).ready( function () {
+															$( "#FormResetpw" ).validate( {
+																rules: {
+																	
+																	email: {
+																		required: true,
+																		email: true
+																	},
+																},
+																errorElement: "em",
+																errorPlacement: function ( error, element ) {
+																	// Add the `help-block` class to the error element
+																	error.addClass( "help-block" );
+
+																	// Add `has-feedback` class to the parent div.form-group
+																	// in order to add icons to inputs
+																	element.parents( ".col-sm-5" ).addClass( "has-feedback" );
+
+																	if ( element.prop( "type" ) === "checkbox" ) {
+																		error.insertAfter( element.parent( "label" ) );
+																	} else {
+																		error.insertAfter( element );
+																	}
+
+																	// Add the span element, if doesn't exists, and apply the icon classes to it.
+																	if ( !element.next( "span" )[ 0 ] ) {
+																		$( "<span class='glyphicon glyphicon-remove form-control-feedback'></span>" ).insertAfter( element );
+																	}
+																},
+																success: function ( label, element ) {
+																	// Add the span element, if doesn't exists, and apply the icon classes to it.
+																	if ( !$( element ).next( "span" )[ 0 ] ) {
+																		$( "<span class='glyphicon glyphicon-ok form-control-feedback'></span>" ).insertAfter( $( element ) );
+																	}
+																},
+																highlight: function ( element, errorClass, validClass ) {
+																	$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+																	$( element ).next( "span" ).addClass( "glyphicon-remove" ).removeClass( "glyphicon-ok" );
+																},
+																unhighlight: function ( element, errorClass, validClass ) {
+																	$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+																	$( element ).next( "span" ).addClass( "glyphicon-ok" ).removeClass( "glyphicon-remove" );
+																}
+															} );
+														} );
+													</script>
+											      </div>   
+											      <!--end body-->
+											    </div>
+											  </div>
+											</div>
+										
+										<!-- end reset -->
 
 											<button class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal1">
 											  Đăng Ký
@@ -223,7 +306,6 @@
 											  </div>
 											</div>
 											<script>
-												
 												$( document ).ready( function () {
 													$( "#FormDangKy" ).validate( {
 														rules: {
@@ -248,7 +330,6 @@
 															},
 															agree1: "required"
 														},
-														
 														errorElement: "em",
 														errorPlacement: function ( error, element ) {
 															// Add the `help-block` class to the error element
@@ -286,7 +367,6 @@
 													} );
 												} );
 											</script>
-											
 										<!--end modal 2-->										
 								</div>
 			
@@ -301,14 +381,22 @@
 								  		<div class="form-group">
 								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
 									</form>
+									<!--Ajax-->	
+									  <script type="text/javascript">
+										 $(document).ready(function() {
+										 $('#tim').click(function(e) {
+										 e.preventDefault();
+										 $('#ndtk').load('ketquatimkiem.jsp #ndtk-canlay');
+										 });
+										 });
+									</script>
+				  				<!--endAjax-->
 								</div>
-							
 						</div><!--end search-->
 						<div class="row">
-							<div class="col-md-4">
-								
+							<div class="col-md-4">							
 							</div>
 							<div class="col-md-8">
 								<a href="" data-toggle="modal" data-target="#myModal3">Tìm Kiếm Nâng Cao</a>
@@ -351,7 +439,7 @@
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="ketquatimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
 								      </div>
 								    </div>
 								  </div>

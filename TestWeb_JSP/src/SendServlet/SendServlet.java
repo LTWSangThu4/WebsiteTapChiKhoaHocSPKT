@@ -7,7 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
- 
+import java.util.Random;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +28,21 @@ public class SendServlet extends HttpServlet {
     private String dbURL = "jdbc:mysql://localhost:3306/tapchikhoahoc";
     private String dbUser = "root";
     private String dbPass = "123456";
-     
+    
+    //random
+    protected String getSaltString() {
+        String SALTCHARS = "abcdefghijkmnopqrsuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 10) {
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+
+    }
+    
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
       
@@ -47,16 +62,27 @@ public class SendServlet extends HttpServlet {
             ResultSet result = statement.executeQuery();
              
             if (result.next()) {
-            	String PassWord = result.getString("Password");
-            	String User = result.getString("Username");
-            	SendEmail.Send(Email, User, PassWord);
+            	String User = result.getString("Username");            	
+            	//create a new password
+            	String newpass= getSaltString();
+            	//send new password
+            	SendEmail.Send(Email, User, newpass);
+            	//update new password into database
+            	String sql1 = "UPDATE taikhoan SET Password=? where Email=?";
+                PreparedStatement statement1 = conn.prepareStatement(sql1);
+                statement1.setString(1, newpass);
+                statement1.setString(2, Email);
+                //message
+                int row = statement1.executeUpdate();
+                if (row > 0) {
+                    message = "Your Password Was Reset! Let's Check your Email !";
+                }
             }
- 
+            else{
+            	 message = "Email Doesn't Match!";
+            }
             
-           /* int row = statement.executeUpdate();
-            if (row > 0) {
-                message = "Let's Check your Email!";
-            }*/
+            
         } catch (SQLException ex) {
             message = "ERROR: " + ex.getMessage();
             ex.printStackTrace();
@@ -73,10 +99,7 @@ public class SendServlet extends HttpServlet {
             request.setAttribute("Message", message);
              
             // forwards to the message page
-            getServletContext().getRequestDispatcher("/Message.jsp").forward(request, response);
-        } 
-      
-         
-       
+            getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
+        }    
     }
 }
