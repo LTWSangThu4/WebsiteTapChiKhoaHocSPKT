@@ -75,7 +75,7 @@ public class SendServlet extends HttpServlet {
                 //message
                 int row = statement1.executeUpdate();
                 if (row > 0) {
-                    message = "Your Password Was Reset! Let's Check your Email !";
+                    message = "Password đã được reset! kiểm tra email của bạn! ";
                 }
             }
             else{

@@ -80,7 +80,7 @@
 														
 														<div class="modal-footer modal-footer-left">
 													        <input type="submit" class="btn btn-primary col-md-offset-5" role="button" value="Đăng Nhập"/> 
-													        <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>												    
+													        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>												    
 												        </div>
 													</form>
 													 <script type="text/javascript">
