@@ -1,10 +1,16 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="s" %>
- <%@ page import ="java.sql.*" %>
+<%@ page import ="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
- 
+<%@ page import ="MD5.MD5" %>
+
+
+ <% 
+  String password = request.getParameter("pass");
+  String passmd5= MD5.encryptMD5(password);
+  request.setAttribute("passwordmd5", passmd5);
+  %>
+   
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,11 +21,11 @@
       <s:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
                        url="jdbc:mysql://localhost:3306/tapchikhoahoc"
                        user="root" password="123456"/>
- 
+ 		
       <s:query dataSource="${ds}" var="selectQ">
         select count(*) as kount from TaiKhoan
         where Username='${param.uname}'
-        and Password='${param.pass}'
+        and Password='<%=request.getAttribute("passwordmd5")%>'
         and MaQuyen ='${param.q}' 
         and Trangthaihoatdong="1"
       </s:query>

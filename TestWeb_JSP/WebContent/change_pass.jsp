@@ -2,6 +2,19 @@
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ page import ="MD5.MD5" %>
+
+<% 
+  //old password
+  String password = request.getParameter("oldpassword");
+  String passmd5= MD5.encryptMD5(password);
+  request.setAttribute("passwordmd5", passmd5);
+  //new password
+  String newpassword = request.getParameter("newpassword");
+  String newpassmd5= MD5.encryptMD5(newpassword);
+  request.setAttribute("newpasswordmd5", newpassmd5);
+  %>
+  
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,9 +26,8 @@
                            url="jdbc:mysql://localhost/tapchikhoahoc"
                            user="root"  password="123456"/>
         <sql:update dataSource="${dbsource}" var="count">
-            UPDATE taikhoan SET Password = ?
-            WHERE Username='${sessionScope['loginUser']}' and Password ='${param.oldpassword}'
-            <sql:param value="${param.newpassword}" />
+            UPDATE taikhoan SET Password = '<%=request.getAttribute("newpasswordmd5")%>'
+            WHERE Username='${sessionScope['loginUser']}' and Password ='<%=request.getAttribute("passwordmd5")%>'         
         </sql:update> 
         <c:choose>
 	        <c:when test="${count>=1}">

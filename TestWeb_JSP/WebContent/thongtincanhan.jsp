@@ -339,7 +339,7 @@
 															<div class="form-group" >	  
 																	<label class="col-sm-3 control-label">Password</label>
 																    <div class="col-sm-8" >
-																      <p class="form-control-static"><c:out value="${r.Password}"/></p>
+																      <p class="form-control-static">***********</p>
 																    </div>
 																    <a href="#resetpass" data-toggle="tab"  class="glyphicon glyphicon-edit"></a>												  							 
 															  </div>	

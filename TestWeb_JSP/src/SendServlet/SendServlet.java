@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import SendEmail.SendEmail;
+import MD5.MD5;
 
 @WebServlet("/SendServlet")
 
@@ -67,10 +68,12 @@ public class SendServlet extends HttpServlet {
             	String newpass= getSaltString();
             	//send new password
             	SendEmail.Send(Email, User, newpass);
+            	//MD5
+            	String newpassword= MD5.encryptMD5(newpass); 	
             	//update new password into database
             	String sql1 = "UPDATE taikhoan SET Password=? where Email=?";
                 PreparedStatement statement1 = conn.prepareStatement(sql1);
-                statement1.setString(1, newpass);
+                statement1.setString(1, newpassword);
                 statement1.setString(2, Email);
                 //message
                 int row = statement1.executeUpdate();
