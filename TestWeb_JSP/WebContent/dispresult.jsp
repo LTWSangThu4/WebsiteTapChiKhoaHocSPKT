@@ -575,13 +575,6 @@
 									<c:set var="start" value="${pageNumber*rowsPerPage-rowsPerPage}"/>
 									<c:set var="stop" value="${pageNumber*rowsPerPage-1}"/>
 									
-									                   
-									        <c:set var="columns" value="0" scope="session"/>
-									        <c:forEach items="${categories.columnNames}" var="name">
-									            <c:set var="columns" value="${columns+1}"/>
-									           
-									        </c:forEach>
-									        <c:set var="columns" value="${columns-1}"/>
 									 		<div class="row">
 									        <c:forEach items="${categories.rows}" var="row" begin="${start}" end="${stop}">
 									                
@@ -631,36 +624,70 @@
 										<h3 class="panel-title"><strong>Bài Viết Mới</strong></h3>
 									</div>
 									<div class="panel-body">
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/2.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h4 class="media-heading"><a href="xemnoidung.jsp">HCMUTE</a></h4>
-										    nhà trường tăng học phí gấp 5 lần......
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/2.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h4 class="media-heading"><a href="xemnoidung.jsp">University</a></h4>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/2.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h4 class="media-heading"><a href="xemnoidung.jsp">Nhà Giáo VN</a></h4>
-										    chào mừng ngày nahf giáo việt nam......
-										  </div>
-										</div>
-
+									
+										<c:set var="categorie" value="${sessionScope.categories}" />
+										<c:set var="rowsPerPage1" value="3" />
+										<c:set var="pageNumber1" value="${param.pageNumber}"/>
+										<c:set var="a1">
+										    <fmt:formatNumber value="${categories.rowCount/rowsPerPage}" maxFractionDigits="0"/>
+										</c:set>
+										 
+										<c:set var="b1" value="${categorie.rowCount/rowsPerPage1}" />
+										 
+										 
+										<c:choose>
+										    <c:when test="${a1==0}">
+										        <c:set var="numberOfPages1" value="2" scope="session"/>   
+										    </c:when>
+										 
+										    <c:when test="${b1>a1}">
+										        <c:set var="xxx1" value="${b1%a1}"/>
+										        <c:if test="${xxx1>0}">
+										            <c:set var="numberOfPages1" value="${b-xxx1+1}" scope="session"/>   
+										        </c:if>
+										    </c:when>
+										 
+										    <c:when test="${a1>=b1}">
+										        <c:set var="numberOfPages1" value="${a1}" scope="session"/>    
+										    </c:when>
+										</c:choose>
+										 
+										<c:set var="start1" value="${pageNumber1*rowsPerPage1-rowsPerPage1}"/>
+										<c:set var="stop1" value="${pageNumber1*rowsPerPage1-1}"/>
+										 		
+										        <c:forEach items="${categorie.rows}" var="rows" begin="${start1}" end="${stop1}">
+										                <div class="media">
+														  <a class="pull-left" href="xemnoidung.jsp">
+														    <img class="media-object" src="images/2.jpg" alt="...">
+														  </a>
+														  <div class="media-body">
+														    <h4 class="media-heading"><a href="xemnoidung.jsp">HCMUTE</a></h4>
+														    nhà trường tăng học phí gấp 5 lần......
+														  </div>
+														</div>										
+										        </c:forEach>
+										 	
+										 <center>
+										    <%--For displaying Previous link --%>
+										    <c:if test="${pageNumber1 gt 1}">
+										        <a href="dispresult.jsp?pageNumber1=${pageNumber1 - 1}">Previous</a>
+										    </c:if>
+										    <c:forEach begin="1" end="${numberOfPages1}" var="j">
+										        <c:choose>
+										            <c:when test="${j!=pageNumber1}">
+										                <a href="dispresult.jsp?pageNumber1=<c:out value="${j}"/>"><c:out value="${j}"/></a>
+										            </c:when>
+										            <c:otherwise>
+										                <c:out value="${j}"/>
+										            </c:otherwise>        
+										        </c:choose>       
+										    </c:forEach>  
+										    <%--For displaying Next link --%>
+										    <c:if test="${pageNumber1 lt numberOfPages1}">
+										        <a href="dispresult.jsp?pageNumber1=${pageNumber1 + 1}">Next</a>
+										    </c:if>	
+										    </center>
+								
 									</div>
 								</div>
 						<!--end panel-->
