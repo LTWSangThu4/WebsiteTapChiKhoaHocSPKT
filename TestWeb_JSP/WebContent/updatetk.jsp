@@ -232,8 +232,7 @@
 									                
 									                <table class="table table-bordered table-hover">
 									                <tr>
-									                    <th>UserName</th>
-									                    <th>PassWord</th>
+									                    <th>UserName</th>								                 
 									                    <th>Ngày Đăng Ký</th>
 									                    <th>Quyền</th>
 									                    <th>Trạn Thái</th>
@@ -241,8 +240,7 @@
 									                <c:forEach var="row" items="${result.rows}">
 									                    <tr>
 									                        <td><input type="hidden" value="${param.id}" name="id"/>
-									                        	<c:out value="${row.Username}"/></td>
-									                        <td><c:out value="${row.Password}"/></td>
+									                        	<c:out value="${row.Username}"/></td>									                      
 									                        <td><c:out value="${row.regdate}" /></td>								                       
 									                        <td><input type="text" value="${row.MaQuyen}" name="maquyen"/></td>
 									                        <td><input type="text" value="${row.trangthaihoatdong}" name="tthd"/></td>

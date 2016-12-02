@@ -236,8 +236,7 @@
 									        </sql:query>
 									        <table class="table table-bordered table-hover" >
 									                <tr>
-									                    <th>UserName</th>
-									                    <th>PassWord</th>
+									                    <th>UserName</th>							                    
 									                    <th>Ngày DK</th>
 									                    <th>Quyền</th>
 									                    <th>Trạng Thái</th>
@@ -245,8 +244,7 @@
 									                </tr>
 									                <c:forEach var="row" items="${result.rows}">
 									                    <tr>
-									                        <td><c:out value="${row.Username}"/></td>
-									                        <td><c:out value="${row.Password}"/></td>
+									                        <td><c:out value="${row.Username}"/></td>							
 									                        <td><c:out value="${row.regdate}"/></td>
 									                        <td><c:out value="${row.TenQuyen}"/></td>
 									                        <td><c:out value="${row.tentrangthai }"/></td>
