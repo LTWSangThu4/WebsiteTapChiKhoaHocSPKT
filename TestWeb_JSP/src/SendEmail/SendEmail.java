@@ -14,7 +14,7 @@ public class SendEmail {
     private static final String SENDERS_EMAIL = "virus.hacker35@gmail.com";
     private static final String SENDERS_PWD = "vinhphuc410";
     
-    public static void Send(String RECIPIENTS_EMAIL, String User, String PassWord ) {
+    public static Boolean Send(String RECIPIENTS_EMAIL, String User, String PassWord ) {
         
         Properties mailProps = new Properties();
         
@@ -56,9 +56,10 @@ public class SendEmail {
             Transport.send(message);
             
             System.out.println("Email sent!");
-            
+            return true; 
         }catch(Exception e){
             System.err.println("Problem sending email. Exception : " + e.getMessage());
+            return false;
         }
     }
 }

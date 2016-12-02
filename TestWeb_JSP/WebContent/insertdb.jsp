@@ -1,7 +1,14 @@
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ page import ="MD5.MD5" %>
+
+<% 
+  String password = request.getParameter("Password");
+  String passmd5= MD5.encryptMD5(password);
+  request.setAttribute("passwordmd5", passmd5);
  
+  %>
 <html>
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -20,10 +27,9 @@
  
  
         <sql:update dataSource="${dbsource}" var="result">
-            INSERT INTO taikhoan(Username, Password, MaQuyen, regdate, trangthaihoatdong) VALUES (?,?,?,CURDATE(),1);
+            INSERT INTO taikhoan(Username, Password, MaQuyen, regdate, trangthaihoatdong) VALUES (?,'<%=request.getAttribute("passwordmd5")%>',?,CURDATE(),1);
             
             <sql:param value="${param.Username}" />
-			<sql:param value="${param.Password}" />
 			<sql:param value="${param.MaQuyen}" />
         </sql:update>
         <c:if test="${result>=1}">

@@ -11,7 +11,9 @@
         <%
             session.removeAttribute("loginUser");
 	        session.removeAttribute("qUser");
-	        session.removeAttribute("phanquyen");	
+	        session.removeAttribute("phanquyen");
+	        session.removeAttribute("passwordmd5");
+	        
         	response.sendRedirect("index.jsp");
         %>
     </body>

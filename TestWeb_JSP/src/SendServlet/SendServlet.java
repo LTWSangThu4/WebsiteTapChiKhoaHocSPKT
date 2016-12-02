@@ -67,19 +67,28 @@ public class SendServlet extends HttpServlet {
             	//create a new password
             	String newpass= getSaltString();
             	//send new password
-            	SendEmail.Send(Email, User, newpass);
-            	//MD5
-            	String newpassword= MD5.encryptMD5(newpass); 	
-            	//update new password into database
-            	String sql1 = "UPDATE taikhoan SET Password=? where Email=?";
-                PreparedStatement statement1 = conn.prepareStatement(sql1);
-                statement1.setString(1, newpassword);
-                statement1.setString(2, Email);
-                //message
-                int row = statement1.executeUpdate();
-                if (row > 0) {
-                    message = "Password đã được reset! kiểm tra email của bạn! ";
-                }
+            	
+            	boolean flag= SendEmail.Send(Email, User, newpass);
+            	if(flag==true)
+            	{
+            		//MD5
+                	String newpassword= MD5.encryptMD5(newpass); 	
+                	//update new password into database
+                	String sql1 = "UPDATE taikhoan SET Password=? where Email=?";
+                    PreparedStatement statement1 = conn.prepareStatement(sql1);
+                    statement1.setString(1, newpassword);
+                    statement1.setString(2, Email);
+                    //message
+                    int row = statement1.executeUpdate();
+                    if (row > 0) {
+                        message = "Password đã được reset! kiểm tra email của bạn! ";
+                    }
+            	}
+            	else
+            	{
+            		 message = "Vui lòng kiểm tra kết nối internet";
+            	}
+            	
             }
             else{
             	 message = "Email Doesn't Match!";
