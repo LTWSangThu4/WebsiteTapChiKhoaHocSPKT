@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -216,123 +215,171 @@
 		
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Quản Lý Bài Viết</h3>
+									<h3 class="panel-title">Thông tin chi tiết</h3>
 								</div>
 								<div class="panel-body">
-									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>Tác Giả</th>
-												<th>Tiêu Đề</th>
-												<th>Nội Dung</th>
-												<th>File</th>
-												<th>Ngày Gửi</th>
-												<th>Trạng Thái</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-											url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
-											<sql:query var="result" sql="select * from ds_baiviet_dagui,taikhoan where taikhoan.Username=ds_baiviet_dagui.username_taikhoan" 
-											dataSource="${con}"/>
-											<form method="get" action="DownloadFile_TBT">
-												<c:forEach var="rows" items="${result.rows }">
-													<tr>
-														<td>${rows.last_name} ${rows.first_name}</td>
-														<td>${rows.tieude }</td>
-														<td>${rows.noidung }</td>
-														<td><button type="submit" value="${rows.ID_baiviet_dagui }" name="id"  class="btn btn-link">${rows.TenFile }</button></td>
-														<td>${rows.ngaygui }</td>
-														<td>${rows.trangthai }</td>
-														<td><a href="xemchitiet.jsp?id=<c:out value="${rows.ID_baiviet_dagui}"/>" >Chi tiết</a></td>
-													</tr>
-												</c:forEach>
-											</form>
+								<div class="col-sm-6">
+									<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+					          				           url="jdbc:mysql://localhost/tapchikhoahoc"
+					                          		   user="root"  password="123456"/>
+					                <sql:query dataSource="${dbsource}" var="baivietdagui">
+										SELECT * from ds_baiviet_dagui,taikhoan
+										where ds_baiviet_dagui.username_taikhoan=taikhoan.Username
+										and ds_baiviet_dagui.ID_baiviet_dagui=?
+										<sql:param value="${param.id}" />					    
+									</sql:query>
+									<form method="get" action="DownloadFile_TBT">
+										<c:forEach var="row" items="${baivietdagui.rows}">
+											<div class="form-group">
+												<label class="col-sm-4">Tên Tác Giả: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.last_name} ${row.first_name}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Tiêu Đề: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.tieude}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Nội Dung: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.noidung}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">File: </label>
+												<div class="col-sm-8">
+													<button type="submit" value="${row.ID_baiviet_dagui }" name="id"  class="btn btn-link">${row.TenFile }</button>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">DS Từ Khóa: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.dstukhoa}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Ngày Gửi: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.ngaygui}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Trạng Thái: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.trangthai}"/></p>
+												</div>
+											</div>
+											<p>____________________________________________________________________________________________________________</p>
 											
-										</tbody>
-									</table>
-									
-									<div class="col-md-4">
-										<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#thongtinbaiviet">Thông tin bài viết</button></a>
+										</c:forEach>
+									</form>
+									<sql:query dataSource="${dbsource}" var="baivietphanbien">
+										SELECT * from ds_baiviet_phanbien,ds_noidung_phanbien,taikhoan,ds_baiviet_dagui
+										where ds_baiviet_phanbien.username_taikhoan=taikhoan.Username
+										and ds_baiviet_phanbien.ID_baiviet_dagui=ds_baiviet_dagui.ID_baiviet_dagui
+										and ds_baiviet_phanbien.ID_baiviet_phanbien=ds_noidung_phanbien.ID_baiviet_phanbien
+										and ds_baiviet_dagui.ID_baiviet_dagui=?
+										<sql:param value="${param.id}" />					    
+									</sql:query>
+									<form method="get" action="DownloadFile_TBT">
+										<c:forEach var="row" items="${baivietphanbien.rows}">
+											<div class="form-group">
+												<label class="col-sm-4">Tên Phản Biện: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.last_name} ${row.first_name}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Ngày Giao: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.ngaygiaophanbien}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Nội Dung: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.noidung_phanbien}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Ngày Phản Biện: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.ngayphanbien}"/></p>
+												</div>
+											</div>
+											<p>____________________________________________________________________________________________________________</p>
+											
+										</c:forEach>
+									</form>
+									<sql:query dataSource="${dbsource}" var="baivietbientap">
+										SELECT * from ds_baiviet_bientap,ds_noidung_bientap,taikhoan,ds_baiviet_dagui
+										where ds_baiviet_bientap.username_taikhoan=taikhoan.Username
+										and ds_baiviet_bientap.ID_baiviet_dagui=ds_baiviet_dagui.ID_baiviet_dagui
+										and ds_baiviet_bientap.ID_baiviet_bientap=ds_noidung_bientap.ID_baiviet_bientap
+										and ds_baiviet_dagui.ID_baiviet_dagui=?
+										<sql:param value="${param.id}" />					    
+									</sql:query>
+									<form method="get" action="DownloadFile_TBT">
+										<c:forEach var="row" items="${baivietbientap.rows}">
+											<div class="form-group">
+												<label class="col-sm-4">Tên Biên Tập: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.last_name} ${row.first_name}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Ngày Giao: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.ngaygiaobientap}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Tiêu Đề Mới: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${tieude_bientap}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Nội Dung Mới: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${noidung_bientap}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">File: </label>
+												<div class="col-sm-8">
+													<button type="submit" value="${row.ID_noidung_bientap}" name="id"  class="btn btn-link">${row.tenfile_bientap }</button>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">DS Từ Khóa: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.dstukhoa_bientap}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4">Ngày Biên Tập: </label>
+												<div class="col-sm-8">
+													<p class="form-control-static"><c:out value="${row.ngaybientap}"/></p>
+												</div>
+											</div>
+											
+										</c:forEach>
+									</form>
 									</div>
-									
-
-									<div class="col-md-8">
+									<div class="col-sm-4">
+							
+									</div>
+									<div class="col-sm-2">
+										<button class="btn btn-primary" data-toggle="modal" data-target="#dangbai">ĐĂNG BÀI VIẾT</button><br>
+										<br>
+										<button class="btn" data-toggle="modal" data-target="#giaophanbien">Giao Phản Biện</button><br>
+										<br>
+										<button class="btn" data-toggle="modal" data-target="#giaobientap">Giao Biên Tập</button><br>
 										
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#phancong">Phân công bài viết</button></a>
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dangbai">Đăng Bài</button></a>
-									</div><br><br><br><br>
-									<div class="collapse" id="thongtinbaiviet">
-										<form action="" class="form-horizontal">
-
-											<div class="form-group">
-												<label class="col-md-2">Tác Giả: </label>
-												<p class="col-md-8"> Huyền Hoàng</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Tiêu Đề: </label>
-												<p class="col-md-8">Lập Trình Web</p>
-											</div>
-											
-											<div class="form-group">
-												<label class="col-md-2">Cơ Quan: </label>
-												<p class="col-md-8">Cty.ABC</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Thông Tin Liên Lạc: </label>
-												<p class="col-md-8">C9/10 ap TN1, TPHCM</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Danh Sách Từ Khóa</label>
-												<div class="col-md-8">
-													<textarea class="form-control" id="dstukhoa" rows="10"></textarea>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Người Phản Biện: </label>
-												<p class="col-md-8">Mr. Tùng</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Bài Phản Biện: </label>
-												<p class="col-md-8">Lập Trình Web</p>
-											</div>
-
-											<div class="form-group">
-												<label class="col-md-2">Nội dung phản biện: </label> 
-												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
-									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
-											    
-											</div>
-
-											<div class="form-group">
-												<label class="col-md-2">File đính kèm (nếu có): </label>
-												
-
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Người Biên Tập: </label>
-												<p class="col-md-8">Mr. Tùng</p>
-											</div>
-
-											<div class="form-group">
-												<label class="col-md-2">Nội dung đã biên tập: </label> 
-												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
-									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">File đã biên tập: </label>
-												<div class="col-md-8">
-													<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> filedinhkem.docx</a>
-												</div>
-											</div>
-
-											
-											
-
-										</form>
-									</div>
-									
 									<!-- Modal -->
 									<div class="modal fade" id="dangbai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 									  <div class="modal-dialog" role="document">
@@ -342,92 +389,160 @@
 									        <h4 class="modal-title" id="myModalLabel">Thông Báo</h4>
 									      </div>
 									      <div class="modal-body">
-									        <form class="form-horizontal" action="">
-									        	<div class="form-group">
-													<label class="col-md-4">Mục đăng: </label>
-													<div class="col-md-8">
-														<select class="form-control">
-														<option>Khoa học tự nhiên và công nghệ</option>
-														<option>Khoa học xã hội và nhân văn</option>
-														<option>Khoa học giáo dục</option>
-														<option>Khoa học môi trường</option>
-														</select>
-													</div>
+									      <sql:query dataSource="${dbsource}" var="timid">
+											SELECT * from ds_baiviet_dagui
+											where ds_baiviet_dagui.ID_baiviet_dagui=?
+											<sql:param value="${param.id}" />					    
+										</sql:query>
+									        <form class="form-horizontal" action="dangbai.jsp" method="post">
+										        <div hidden="" class="form-group">
+														<label class="col-md-4">ID: </label>
+														<input type="text" name="idbaiviet" value="${param.id}">
 												</div>
-												<div class="form-group">
-													<label class="col-md-4">Thời gian đăng: </label>
+												<c:forEach var="row" items="${timid.rows}">
+													<div hidden="" class="form-group">
+														<label class="col-md-4">Username: </label>
+														<input type="text" name="usernametaikhoan" value="${row.username_taikhoan}">
+													</div>
+												</c:forEach>
+									        	<div class="form-group">
+													<label class="col-md-4">Danh Mục: </label>
 													<div class="col-md-8">
-														
-														<input class="form-control" type="date" id="thoigiandang">
-														
+														<select class="form-control" name="danhmuc">
+														<option value="Khoa hoc tu nhien va cong nghe">Khoa học tự nhiên và công nghệ</option>
+														<option value="Khoa hoc xa hoi va nhan van">Khoa học xã hội và nhân văn</option>
+														<option value="Khoa hoc giao duc">Khoa học giáo dục</option>
+														<option value="Khoa hoc moi truong">Khoa học môi trường</option>
+														</select>
 													</div>
 												</div>
 												<div class="form-group">
 													<label class="col-md-4">Ghi chú: </label>
 													<div class="col-md-8">
-														<textarea class="form-control" rows="5" placeholder="Nhập ghi chú cho bài viết"></textarea>
+														<textarea name="ghichu" class="form-control" rows="5" placeholder="Nhập ghi chú cho bài viết"></textarea>
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="col-md-4"></div>
+													<div class="col-md-8">
+														<button type="submit" class="btn btn-primary">ĐĂNG</button>
 													</div>
 												</div>
 									        </form>
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-									        <a href="tongbientap2.jsp"><button type="button" class="btn btn-primary">Yes</button></a>
 									      </div>
 									    </div>
 									  </div>
 									</div>
 									<!-- Modal -->
-									<div class="modal fade" id="phancong" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									<div class="modal fade" id="giaophanbien" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 									  <div class="modal-dialog" role="document">
 									    <div class="modal-content">
 									      <div class="modal-header">
 									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									        <h4 class="modal-title" id="myModalLabel">Gửi Bài Cho PB và BTV</h4>
+									        <h4 class="modal-title" id="myModalLabel">Phân Công Phản Biện</h4>
 									      </div>
 									      <div class="modal-body">
-									        <form class="form-horizontal" action="">
-									        	<div class="form-group">
-													<label class="col-md-4">Bài Viết: </label>
-													<p class="col-md-8">Lập Trình Web</p>
+									      	<sql:query dataSource="${dbsource}" var="dbgiaophanbien">
+												SELECT * from ds_baiviet_dagui
+												where ds_baiviet_dagui.ID_baiviet_dagui=?
+												<sql:param value="${param.id}" />					    
+											</sql:query>
+											<sql:query dataSource="${dbsource}" var="dsnguoiphanbien">
+												SELECT * from taikhoan
+												where MaQuyen=3					    
+											</sql:query>
+									        <form method="post" class="form-horizontal" action="giaophanbien.jsp">
+									        <c:forEach var="row" items="${dbgiaophanbien.rows}">
+									        	<div hidden="" class="form-group">
+													<label class="col-md-4">ID: </label>
+													<input type="text" name="idbaiviet" value="${row.ID_baiviet_dagui}">
 												</div>
-												<div class="form-group">
-													<label class="col-md-4">File Bài Viết: </label>
-													<div class="col-md-8">
-														<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> 101conchodom.docx</a>
-													</div>
+									        	<div class="form-group">
+													<label class="col-md-4">Tiêu Đề: </label>
+													<p class="col-md-8"><c:out value="${row.tieude}"></c:out></p>
 												</div>
 												<div class="form-group">
 													<label class="col-md-4">Người Phản Biện: </label>
 													<div class="col-md-8">
-														<select class="form-control">
-														<option>Thanh Tùng</option>
-														<option>Đinh Sa</option>
-														<option>Sino</option>
-													</select>
+														<select class="form-control" name="idnguoiphanbien">
+															<c:forEach var="ds" items="${dsnguoiphanbien.rows}">
+																<option value="${ds.Username}"><c:out value="${ds.last_name} ${ds.first_name}"></c:out></option>
+															</c:forEach>
+														</select>
 													</div>
+												</div>
+									
+											</c:forEach>
+											<div class="form-group">
+												<div class="col-md-4"></div>
+												<div class="col-md-8">
+													<button type="submit" class="btn btn-primary">Giao bài</button>
+												</div>
+											</div>
+
+									        </form>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+									<!-- Modal -->
+									<div class="modal fade" id="giaobientap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									  <div class="modal-dialog" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title" id="myModalLabel">Phân Công Biên Tập</h4>
+									      </div>
+									      <div class="modal-body">
+									      	<sql:query dataSource="${dbsource}" var="dbgiaobientap">
+												SELECT * from ds_baiviet_dagui
+												where ds_baiviet_dagui.ID_baiviet_dagui=?
+												<sql:param value="${param.id}" />					    
+											</sql:query>
+											<sql:query dataSource="${dbsource}" var="dsnguoibientap">
+												SELECT * from taikhoan
+												where MaQuyen=2					    
+											</sql:query>
+									        <form method="post" class="form-horizontal" action="giaobientap.jsp">
+									        <c:forEach var="row" items="${dbgiaobientap.rows}">
+									        	<div hidden="" class="form-group">
+													<label class="col-md-4">ID: </label>
+													<input type="text" name="idbaiviet" value="${row.ID_baiviet_dagui}">
+												</div>
+									        	<div class="form-group">
+													<label class="col-md-4">Tiêu Đề: </label>
+													<p class="col-md-8"><c:out value="${row.tieude}"></c:out></p>
 												</div>
 												<div class="form-group">
 													<label class="col-md-4">Người Biên Tập: </label>
 													<div class="col-md-8">
-														<select class="form-control">
-														<option>Sino</option>
-														<option>Đinh Sa</option>
-														<option>Thanh Tùng</option>
-													</select>
+														<select class="form-control" name="idnguoibientap">
+															<c:forEach var="ds" items="${dsnguoibientap.rows}">
+																<option value="${ds.Username}"><c:out value="${ds.last_name} ${ds.first_name}"></c:out></option>
+															</c:forEach>
+														</select>
 													</div>
 												</div>
+									
+											</c:forEach>
+											<div class="form-group">
+												<div class="col-md-4"></div>
+												<div class="col-md-8">
+													<button type="submit" class="btn btn-primary">Giao bài</button>
+												</div>
+											</div>
+
 									        </form>
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-									        <a href="tongbientap2.jsp"><button type="button" class="btn btn-primary">Yes</button></a>
 									      </div>
 									    </div>
 									  </div>
 									</div>
 									
-								</div>
+									</div>
+									
+									
+							</div>
+							
 							</div>
 						</div>
 					</div>	
