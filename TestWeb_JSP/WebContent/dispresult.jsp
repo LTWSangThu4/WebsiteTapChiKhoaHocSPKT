@@ -557,7 +557,7 @@
 									 
 									<c:choose>
 									    <c:when test="${a==0}">
-									        <c:set var="numberOfPages" value="2" scope="session"/>   
+									        <c:set var="numberOfPages" value="6" scope="session"/>   
 									    </c:when>
 									 
 									    <c:when test="${b>a}">
@@ -583,8 +583,8 @@
 													    	<div class="thumbnail">
 													      		<a href="xemnoidung.jsp"><img src="images/tin3.jpg" alt="..."></a>
 													     			<ul class="caption">
-													        			<a href="xemnoidung.jsp">Tạp chí 3</a>
-																	        <p><c:out value="${row.tieude}"/></p>
+													        			<a href="xemnoidung.jsp"><c:out value="${row.tieude}"/></a>
+																	        <p><c:out value="${row.noidung}"/></p>
 													        
 													      			</ul>
 													    	</div>
@@ -626,68 +626,27 @@
 									<div class="panel-body">
 									
 										<c:set var="categorie" value="${sessionScope.categories}" />
-										<c:set var="rowsPerPage1" value="3" />
-										<c:set var="pageNumber1" value="${param.pageNumber}"/>
-										<c:set var="a1">
-										    <fmt:formatNumber value="${categories.rowCount/rowsPerPage}" maxFractionDigits="0"/>
-										</c:set>
-										 
-										<c:set var="b1" value="${categorie.rowCount/rowsPerPage1}" />
-										 
-										 
-										<c:choose>
-										    <c:when test="${a1==0}">
-										        <c:set var="numberOfPages1" value="2" scope="session"/>   
-										    </c:when>
-										 
-										    <c:when test="${b1>a1}">
-										        <c:set var="xxx1" value="${b1%a1}"/>
-										        <c:if test="${xxx1>0}">
-										            <c:set var="numberOfPages1" value="${b-xxx1+1}" scope="session"/>   
-										        </c:if>
-										    </c:when>
-										 
-										    <c:when test="${a1>=b1}">
-										        <c:set var="numberOfPages1" value="${a1}" scope="session"/>    
-										    </c:when>
-										</c:choose>
-										 
-										<c:set var="start1" value="${pageNumber1*rowsPerPage1-rowsPerPage1}"/>
-										<c:set var="stop1" value="${pageNumber1*rowsPerPage1-1}"/>
+										<c:set var="rowsPerPage1" value="${categorie.rowCount-1}" />
+														
+										<c:set var="stop1" value="${rowsPerPage1}"/>
+										<c:set var="begin1" value="${rowsPerPage1-2}"/>
+										
 										 		
-										        <c:forEach items="${categorie.rows}" var="rows" begin="${start1}" end="${stop1}">
+										        <c:forEach items="${categorie.rows}" var="rows" begin="${begin1}" end="${stop1}">	
+										        	
 										                <div class="media">
 														  <a class="pull-left" href="xemnoidung.jsp">
 														    <img class="media-object" src="images/2.jpg" alt="...">
 														  </a>
 														  <div class="media-body">
-														    <h4 class="media-heading"><a href="xemnoidung.jsp">HCMUTE</a></h4>
-														    nhà trường tăng học phí gấp 5 lần......
+														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude}"/></a></h4>
+														    <c:out value="${rows.noidung}"/>
 														  </div>
-														</div>										
+														</div>
+																		
 										        </c:forEach>
-										 	
-										 <center>
-										    <%--For displaying Previous link --%>
-										    <c:if test="${pageNumber1 gt 1}">
-										        <a href="dispresult.jsp?pageNumber1=${pageNumber1 - 1}">Previous</a>
-										    </c:if>
-										    <c:forEach begin="1" end="${numberOfPages1}" var="j">
-										        <c:choose>
-										            <c:when test="${j!=pageNumber1}">
-										                <a href="dispresult.jsp?pageNumber1=<c:out value="${j}"/>"><c:out value="${j}"/></a>
-										            </c:when>
-										            <c:otherwise>
-										                <c:out value="${j}"/>
-										            </c:otherwise>        
-										        </c:choose>       
-										    </c:forEach>  
-										    <%--For displaying Next link --%>
-										    <c:if test="${pageNumber1 lt numberOfPages1}">
-										        <a href="dispresult.jsp?pageNumber1=${pageNumber1 + 1}">Next</a>
-										    </c:if>	
-										    </center>
-								
+										
+										
 									</div>
 								</div>
 						<!--end panel-->
