@@ -626,13 +626,13 @@
 									<div class="panel-body">
 									
 										<c:set var="categorie" value="${sessionScope.categories}" />
-										<c:set var="rowsPerPage1" value="${categorie.rowCount-1}" />
+										<c:set var="numberOfrow" value="${categorie.rowCount-1}" />
 														
-										<c:set var="stop1" value="${rowsPerPage1}"/>
+										<c:set var="stop1" value="${numberOfrow}"/>
 										<c:set var="begin1" value="${rowsPerPage1-2}"/>
-										
-										 		
-										        <c:forEach items="${categorie.rows}" var="rows" begin="${begin1}" end="${stop1}">	
+										<c:choose>
+											<c:when test="${stop1 gt 4 }">							
+											 <c:forEach items="${categorie.rows}" var="rows" begin="${begin1}" end="${stop1}">	
 										        	
 										                <div class="media">
 														  <a class="pull-left" href="xemnoidung.jsp">
@@ -645,8 +645,24 @@
 														</div>
 																		
 										        </c:forEach>
-										
-										
+										</c:when>
+										<c:otherwise>
+											 <c:forEach items="${categorie.rows}" var="rows">	
+										        	
+										                <div class="media">
+														  <a class="pull-left" href="xemnoidung.jsp">
+														    <img class="media-object" src="images/2.jpg" alt="...">
+														  </a>
+														  <div class="media-body">
+														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude}"/></a></h4>
+														    <c:out value="${rows.noidung}"/>
+														  </div>
+														</div>
+																		
+										        </c:forEach>
+										</c:otherwise>
+										</c:choose>
+																	 
 									</div>
 								</div>
 						<!--end panel-->
