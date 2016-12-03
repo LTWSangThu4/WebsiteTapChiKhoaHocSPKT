@@ -557,7 +557,7 @@
 									 
 									<c:choose>
 									    <c:when test="${a==0}">
-									        <c:set var="numberOfPages" value="2" scope="session"/>   
+									        <c:set var="numberOfPages" value="6" scope="session"/>   
 									    </c:when>
 									 
 									    <c:when test="${b>a}">
@@ -575,13 +575,6 @@
 									<c:set var="start" value="${pageNumber*rowsPerPage-rowsPerPage}"/>
 									<c:set var="stop" value="${pageNumber*rowsPerPage-1}"/>
 									
-									                   
-									        <c:set var="columns" value="0" scope="session"/>
-									        <c:forEach items="${categories.columnNames}" var="name">
-									            <c:set var="columns" value="${columns+1}"/>
-									           
-									        </c:forEach>
-									        <c:set var="columns" value="${columns-1}"/>
 									 		<div class="row">
 									        <c:forEach items="${categories.rows}" var="row" begin="${start}" end="${stop}">
 									                
@@ -590,8 +583,8 @@
 													    	<div class="thumbnail">
 													      		<a href="xemnoidung.jsp"><img src="images/tin3.jpg" alt="..."></a>
 													     			<ul class="caption">
-													        			<a href="xemnoidung.jsp">Tạp chí 3</a>
-																	        <p><c:out value="${row.tieude}"/></p>
+													        			<a href="xemnoidung.jsp"><c:out value="${row.tieude}"/></a>
+																	        <p><c:out value="${row.noidung}"/></p>
 													        
 													      			</ul>
 													    	</div>
@@ -631,36 +624,29 @@
 										<h3 class="panel-title"><strong>Bài Viết Mới</strong></h3>
 									</div>
 									<div class="panel-body">
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/2.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h4 class="media-heading"><a href="xemnoidung.jsp">HCMUTE</a></h4>
-										    nhà trường tăng học phí gấp 5 lần......
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/2.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h4 class="media-heading"><a href="xemnoidung.jsp">University</a></h4>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/2.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h4 class="media-heading"><a href="xemnoidung.jsp">Nhà Giáo VN</a></h4>
-										    chào mừng ngày nahf giáo việt nam......
-										  </div>
-										</div>
-
+									
+										<c:set var="categorie" value="${sessionScope.categories}" />
+										<c:set var="rowsPerPage1" value="${categorie.rowCount-1}" />
+														
+										<c:set var="stop1" value="${rowsPerPage1}"/>
+										<c:set var="begin1" value="${rowsPerPage1-2}"/>
+										
+										 		
+										        <c:forEach items="${categorie.rows}" var="rows" begin="${begin1}" end="${stop1}">	
+										        	
+										                <div class="media">
+														  <a class="pull-left" href="xemnoidung.jsp">
+														    <img class="media-object" src="images/2.jpg" alt="...">
+														  </a>
+														  <div class="media-body">
+														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude}"/></a></h4>
+														    <c:out value="${rows.noidung}"/>
+														  </div>
+														</div>
+																		
+										        </c:forEach>
+										
+										
 									</div>
 								</div>
 						<!--end panel-->

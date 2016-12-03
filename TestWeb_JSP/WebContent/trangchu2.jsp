@@ -1,5 +1,6 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,19 +34,21 @@
 					<div class="col-md-4">
 					<!--Login-->
 						<div class="row">
-							<div class="col-md-12">	
+							<div class="col-md-12">
 								<div class="dropdown navbar-form navbar-right">
-									<button class="btn btn-default dropdown-toggle textcolor" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background: #0c6b63;">
-										<c:out value="${sessionScope['loginUser']}"/>
-									  <span class="caret"></span>
+									<button class="btn btn-default dropdown-toggle textcolor" type="button" style="background: #0c6b63;" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										 <c:out value="${sessionScope['loginUser']}"/>
+										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 										<li><a href="thongtincanhan.jsp">Thông Tin Cá Nhân</a></li>
 										<li><a href="chuyentrang.jsp"><c:out value="${sessionScope['phanquyen']}"/></a></li>
 										<li role="separator" class="divider"></li>
 										<li><a href="logout.jsp">Thoát</a></li>
+									
 									</ul>
-								</div>
+								</div>	
+						
 							</div>
 						</div><br>
 					<!--end login-->
@@ -64,7 +67,7 @@
 										 $(document).ready(function() {
 										 $('#tim').click(function(e) {
 										 e.preventDefault();
-										 $('#nd').load('ketquatimkiem.jsp #ndtk-canlay');
+										 $('#ndtk').load('ketquatimkiem.jsp #ndtk-canlay');
 										 });
 										 });
 									</script>
@@ -154,7 +157,7 @@
 			</div>
 <!--endhead-->
 <!--Main-->
-			<div id="Main">
+			<div id="Main" >
 					<div class="row">
 						<!--cột trái-->
 						<div class="col-md-2">
@@ -207,143 +210,233 @@
 
 						</div>
 					<!--end cột trái-->
-
+					
 					<!--cột giữa-->
-					<div  id="nd">
-						<div class="col-md-10 line ">
+						<div class="col-md-7 line" id="nd">
+							<!-- panel tiêu điểm -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Phiếu Phản Biện</h3>
+									<h3 class="panel-title"><strong>Tiêu Điểm</strong></h3>
 								</div>
 								<div class="panel-body">
-										<div class="row">
-										<!--cot trái-->
-											<div class="col-md-8">
-												<s:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-												url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
-												<s:query var="thongtin" dataSource="${con}">
+									<c:set var="categories" value="${sessionScope.categories}" />
+									<c:set var="rowsPerPage" value="6" />
+									<c:set var="pageNumber" value="${param.pageNumber}"/>
+									<c:set var="a">
+									    <fmt:formatNumber value="${categories.rowCount/rowsPerPage}" maxFractionDigits="0"/>
+									</c:set>
+									 
+									<c:set var="b" value="${categories.rowCount/rowsPerPage}" />
+									 
+									 
+									<c:choose>
+									    <c:when test="${a==0}">
+									        <c:set var="numberOfPages" value="6" scope="session"/>   
+									    </c:when>
+									 
+									    <c:when test="${b>a}">
+									        <c:set var="xxx" value="${b%a}"/>
+									        <c:if test="${xxx>0}">
+									            <c:set var="numberOfPages" value="${b-xxx+1}" scope="session"/>   
+									        </c:if>
+									    </c:when>
+									 
+									    <c:when test="${a>=b}">
+									        <c:set var="numberOfPages" value="${a}" scope="session"/>    
+									    </c:when>
+									</c:choose>
+									 
+									<c:set var="start" value="${pageNumber*rowsPerPage-rowsPerPage}"/>
+									<c:set var="stop" value="${pageNumber*rowsPerPage-1}"/>
+									
+									 		<div class="row">
+									        <c:forEach items="${categories.rows}" var="row" begin="${start}" end="${stop}">
+									                
+														<div class="col-md-4">
+															<div class="col-sm-12 col-md-12">
+													    	<div class="thumbnail">
+													      		<a href="xemnoidung.jsp"><img src="images/tin3.jpg" alt="..."></a>
+													     			<ul class="caption">
+													        			<a href="xemnoidung.jsp"><c:out value="${row.tieude}"/></a>
+																	        <p><c:out value="${row.noidung}"/></p>
+													        
+													      			</ul>
+													    	</div>
+													  	</div>
+														</div>
 													
-													select ds_baiviet_phanbien.ID_baiviet_phanbien, taikhoan.last_name, taikhoan.first_name, ds_baiviet_dagui.tieude
-													from ds_baiviet_dagui,ds_baiviet_phanbien,taikhoan
-													where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_phanbien.ID_baiviet_dagui
-                                                    and ds_baiviet_phanbien.username_taikhoan=taikhoan.Username
-													and ds_baiviet_dagui.ID_baiviet_dagui='${param.id}'
-												</s:query>
-												<form id="FormPhanBien" method="post" action="GuiBaiPhanBien" class="form-horizontal" enctype="multipart/form-data">
-													<c:forEach var="row" items="${thongtin.rows}">
-														
-														<div class="form-group">
-														    <label class="col-sm-3 control-label">Tên người phản biện</label>
-														    <div class="col-sm-9">
-														      <p class="form-control-static">${row.last_name} ${row.first_name}</p>
-														    </div>
-														  </div>
-														  
-														  <div class="form-group" hidden="">
-														    <label class="col-sm-3 control-label">ID bài viết phản biện</label>
-														    <div class="col-sm-9">
-														    	<input name="id_baiviet_phanbien" value="${row.ID_baiviet_phanbien}">
-														    </div>
-														  </div>
-														  
-														<div class="form-group">
-														    <label class="col-sm-3 control-label">Bài phản biện</label>
-														    <div class="col-sm-9">
-														      <p class="form-control-static">${row.tieude}</p>
-														    </div>
-														  </div>
-	
-														<div class="form-group">
-														    <label class="col-sm-3 control-label">Nội dung</label>
-														    <div class="col-sm-9">
-														      <textarea class="form-control" rows="5" id="noidung" name="noidung_phanbien" placeholder="Nhập nội dung phản biện"></textarea>
-														    </div>
-														  </div>
-														 <div class="form-group">
-														    <label class="col-sm-3 control-label">File đính kèm (nếu có)</label><br>
-														    <div class="col-sm-9">
-														      <input type="file" class="form-control" name="file_phanbien">
-														    </div>
-														  </div>
-														  <div class="col-sm-offset-3">
-														  	<button type="submit" id="guiphanbien" class="btn btn-primary">Gửi Phản Biện</button>	
-														  </div>	
-													  </c:forEach>
-												</form>
-												<script>
-													
-													function validateText(id)
-													{
-														if($("#"+id).val()==null || $("#"+id).val()=="")
-														{
-															var div=$("#"+id).closest("div");
-															div.addClass("has-error");
-															return false;
-														}
-														else
-														{
-															var div=$("#"+id).closest("div");
-															div.removeClass("has-error");
-															return true
-														};
-													}
-													$(document).ready(
-														function()
-														{
-															$("#guiphanbien").click(function()
-															{
-																
-																if(!validateText("noidung"))
-																	return false;
-																
-																
-																
-																$("form#FormPhanBien").submit();
-															});
-														});
-												</script>
-												
-											</div>
-										<!--end cột trái-->
-										</div>
-										
+									        </c:forEach>
+									 	</div>
+									 <center>
+									    <%--For displaying Previous link --%>
+									    <c:if test="${pageNumber gt 1}">
+									        <a href="dispresult.jsp?pageNumber=${pageNumber - 1}">Previous</a>
+									    </c:if>
+									    <c:forEach begin="1" end="${numberOfPages}" var="i">
+									        <c:choose>
+									            <c:when test="${i!=pageNumber}">
+									                <a href="dispresult.jsp?pageNumber=<c:out value="${i}"/>"><c:out value="${i}"/></a>
+									            </c:when>
+									            <c:otherwise>
+									                <c:out value="${i}"/>
+									            </c:otherwise>        
+									        </c:choose>       
+									    </c:forEach>  
+									    <%--For displaying Next link --%>
+									    <c:if test="${pageNumber lt numberOfPages}">
+									        <a href="dispresult.jsp?pageNumber=${pageNumber + 1}">Next</a>
+									    </c:if>	
+									    </center>								
+									</div>
+
 								</div>
-							</div>
+						<!--end panel tiêu điểm-->
+						
+						<!-- panel bào viết mới -->
+								<div class="panel">
+									<div class="panel-heading">
+										<h3 class="panel-title"><strong>Bài Viết Mới</strong></h3>
+									</div>
+									<div class="panel-body">
+									
+										<c:set var="categorie" value="${sessionScope.categories}" />
+										<c:set var="rowsPerPage1" value="${categorie.rowCount-1}" />
+														
+										<c:set var="stop1" value="${rowsPerPage1}"/>
+										<c:set var="begin1" value="${rowsPerPage1-2}"/>
+										
+										 		
+										        <c:forEach items="${categorie.rows}" var="rows" begin="${begin1}" end="${stop1}">	
+										        	
+										                <div class="media">
+														  <a class="pull-left" href="xemnoidung.jsp">
+														    <img class="media-object" src="images/2.jpg" alt="...">
+														  </a>
+														  <div class="media-body">
+														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude}"/></a></h4>
+														    <c:out value="${rows.noidung}"/>
+														  </div>
+														</div>
+																		
+										        </c:forEach>
+										
+										
+									</div>
+								</div><!--end panel-->
 						</div>
-					</div>
 					<!--end cột giữa-->
-					</div><!--endrow chinh-->
+
 					<!--Ajax-->	
-						  <script type="text/javascript">
+						 <script type="text/javascript">
 							 $(document).ready(function() {
 							 $('#GioiThieu').click(function(e) {
 							 e.preventDefault();
-							 $('#nd').load('gioithieu.jsp #nd2-canlay');
+							 $('#nd').load('gioithieu.jsp #ndgt-canlay');
 							 });
 							 });
 
 							 $(document).ready(function() {
 							 $('#QDHD').click(function(e) {
 							 e.preventDefault();
-							 $('#nd').load('quydinh_huongdan.jsp #nd2-canlay');
+							 $('#nd').load('quydinh_huongdan.jsp #ndqd-canlay');
 							 });
 							 });
 
 							 $(document).ready(function() {
 							 $('#LienHe').click(function(e) {
 							 e.preventDefault();
-							 $('#nd').load('lienhe.jsp #nd2-canlay');
+							 $('#nd').load('lienhe.jsp #ndlh-canlay');
 							 });
 							 });
 
 							 $(document).ready(function() {
 							 $('#LienKet').click(function(e) {
 							 e.preventDefault();
-							 $('#nd').load('lienket.jsp #nd2-canlay');
+							 $('#nd').load('lienket.jsp #ndlk-canlay');
 							 });
 							 });
 						</script>
 	  				<!--endAjax-->
+
+					<!--cột 3-->
+						<div class="col-md-3">
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title"><strong>Được Đọc nhiều</strong></h3>
+								</div>
+								<div class="panel-body">
+									<marquee scrolldelay="6" scrollamount="2" onmouseover="this.stop()"" onmouseout="this.start()" direction="up" height="300" style="height:300px;"  behavior="" direction="">
+										<div class="media">
+										  <a class="pull-left" href="xemnoidung.jsp">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="xemnoidung.jsp">Nhà Giáo VN</a></h6>
+										    chào mừng ngày nhà giáo việt nam......
+										  </div>
+										</div>
+										<!--continute-->
+										<div class="media">
+										  <a class="pull-left" href="xemnoidung.jsp">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
+										    cẩn thận số khi nghe.............
+										  </div>
+										</div>
+										<!--continute-->
+										<div class="media">
+										  <a class="pull-left" href="xemnoidung.jsp">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="xemnoidung.jsp"> HCMUTE</a></h6>
+										    nhà trường tăng học phí gấp 5 lần......
+										  </div>
+										</div>
+
+										<div class="media">
+										  <a class="pull-left" href="xemnoidung.jsp">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
+										    cẩn thận số khi nghe.............
+										  </div>
+										</div>
+										<div class="media">
+										  <a class="pull-left" href="xemnoidung.jsp">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
+										    cẩn thận số khi nghe.............
+										  </div>
+										</div>
+										<div class="media">
+										  <a class="pull-left" href="xemnoidung.jsp">
+										    <img class="media-object" src="images/3.jpg" alt="...">
+										  </a>
+										  <div class="media-body">
+										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
+										    cẩn thận số khi nghe.............
+										  </div>
+										</div>
+
+										
+									</marquee>
+								</div>
+							</div><!--end panel-->
+							<div class="media">
+							 <h3 class="glyphicon glyphicon-earphone"><strong> 0166.680.7064</strong></h3>
+							  <a class="pull-left" href="">
+							    <img class="media-object" src="images/quangcao.jpg" alt="...">
+							  </a>
+							</div>
+						</div>
+					<!--end cột 3-->
+					</div><!--endrow chinh-->
 			</div>
 <!--endMain-->
 		</div>

@@ -223,6 +223,7 @@
 									    <li class="active"><a href="#dsbaiduocgiao" data-toggle="tab">Danh Sách Bài Được Giao</a></li>
 									    <li><a href="#dsbaidagui" data-toggle="tab">Danh Sách Bài Đã Gửi</a></li>
 									  </ul>
+									  <br>
 
 									  <!-- Tab panes -->
 									  <div class="tab-content">
@@ -230,56 +231,73 @@
 									    	<table class="table table-bordered table-hover">
 												<thead>
 													<tr>
-														<th>Tên Bài</th>
-														<th>Tác Giả</th>
-														<th>Ngày gửi</th>
+														<th>Tiêu Đề</th>
+														<th>Nội Dung</th>
 														<th>File</th>
+														<th>Ngày Giao</th>
+														<th>Trạng Thái</th>
+														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
 												<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-												url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
-												<sql:query var="result" sql="select * from dsbaiduocgiaobt" dataSource="${con }"/>
-												<c:forEach var="rows" items="${result.rows }">
-													<tr>
-														<td>${rows.TenBai }</td>
-														<td>${rows.TacGia }</td>
-														<td>${rows.File }</td>
-														<td><button type="button" class="btn btn-link">101conchodom.pdf</button></td>
-													</tr>
-												</c:forEach>
+												url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+												<sql:query var="dschuabientap" dataSource="${con}">
+													select *
+													from ds_baiviet_dagui,ds_baiviet_bientap
+													where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_bientap.ID_baiviet_dagui
+													and ds_baiviet_bientap.username_taikhoan='${sessionScope['loginUser']}'
+													and ds_baiviet_bientap.trangthai_bientap='Chua Bien Tap'
+												</sql:query>
+												<form method="get" action="DownloadFile_TBT">
+													<c:forEach var="row" items="${dschuabientap.rows}">
+														<tr>
+															<td>${row.tieude}</td>
+															<td>${row.noidung}</td>
+															<td><button type="submit" value="${row.ID_baiviet_dagui}" name="id"  class="btn btn-link">${row.TenFile}</button></td>
+															<td>${row.ngaygiaobientap}</td>
+															<td>${row.trangthai_bientap}</td>
+															<td><a href="noidungbientap.jsp?id=<c:out value="${row.ID_baiviet_dagui}"/>" >Biên Tập</a></td>
+														</tr>
+													</c:forEach>
+												</form>
 												</tbody>
 											</table>
-											<div class="col-md-offset-5">
-												<a href="noidungbientap.jsp"><button class="btn btn-default" id="btnBienTap">Biên Tập</button></a>
-											</div>
 											
 							    		</div>
 									    <div class="tab-pane fade" id="dsbaidagui">
 									    	<table class="table table-bordered table-hover">
 												<thead>
 													<tr>
-														<th>Tên Bài</th>
-														<th>Tác Giả</th>
-														<th>Ngày gửi</th>
+														<th>Tiêu Đề</th>
+														<th>Nội Dung</th>
 														<th>File</th>
+														<th>DS Từ Khóa</th>
 														<th>Ngày Biên Tập</th>
 														<th>Trạng thái</th>
 
 													</tr>
 												</thead>
 												<tbody>
-													<sql:query var="result" sql="select * from dsbaidagui" dataSource="${con }"/>
-													<c:forEach var="rows" items="${result.rows }">
+												<sql:query var="dsdabientap" dataSource="${con}">
+													select *
+													from ds_baiviet_bientap,ds_noidung_bientap
+													where ds_baiviet_bientap.ID_baiviet_bientap=ds_noidung_bientap.ID_baiviet_bientap
+													and ds_baiviet_bientap.username_taikhoan='${sessionScope['loginUser']}'
+													and ds_baiviet_bientap.trangthai_bientap='Da Bien Tap'
+												</sql:query>
+												<form method="get" action="DownloadFile_BTV">
+													<c:forEach var="row" items="${dsdabientap.rows }">
 														<tr>
-															<td>${rows.TenBai }</td>
-															<td>${rows.TacGia }</td>
-															<td>${rows.NgayGui }</td>
-															<td>${rows.File }</td>
-															<td>${rows.NgayBienTap }</td>
-															<td>${rows.TrangThai }</td>
+															<td>${row.tieude_bientap}</td>
+															<td>${row.noidung_bientap}</td>
+															<td><button type="submit" value="${row.ID_noidung_bientap}" name="id"  class="btn btn-link">${row.tenfile_bientap}</button></td>
+															<td>${row.dstukhoa_bientap}</td>
+															<td>${row.ngaybientap}</td>
+															<td>${row.trangthai_bientap}</td>
 														</tr>
 													</c:forEach>
+												</form>
 												</tbody>
 											</table>
 											

@@ -216,34 +216,77 @@
 									<h3 class="panel-title">Biên Tập Bài</h3>
 								</div>
 								<div class="panel-body">
-									<form id="FormBienTap" method="post" action="" class="form-horizontal">
-
-										<div class="form-group">
-											<label class="col-md-3">Tiêu Đề: </label>
-											<div class="col-md-7">
-												<input class="form-control" type="text" id="tieude" placeholder="Nhập tiêu đề">
-											</div>
+									<s:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+									url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+									<s:query var="thongtin" dataSource="${con}">				
+										select *
+										from ds_baiviet_dagui,ds_baiviet_bientap
+										where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_bientap.ID_baiviet_dagui
+										and ds_baiviet_dagui.ID_baiviet_dagui='${param.id}'
+									</s:query>						
+									<form id="FormBienTap" method="post" action="GuibaiBienTap" class="form-horizontal" enctype="multipart/form-data">
+										<div class="col-md-8">
+											<c:forEach var="row" items="${thongtin.rows}">
+												<div class="form-group" hidden="">
+													 <label class="col-md-3 control-label">ID bài viết biên tập</label>
+													 <div class="col-md-7">
+														<input name="id_baiviet_bientap" value="${row.ID_baiviet_bientap}">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-md-3">Tiêu Đề: </label>
+													<div class="col-md-7">
+														<input class="form-control" type="text" id="tieude" name="tieude_bientap" placeholder="Nhập tiêu đề">
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label class="col-md-3">Nội Dung: </label>
+													<div class="col-md-7">
+														<input class="form-control" type="text" id="noidung" name="noidung_bientap" placeholder="Nhập nội dung">
+													</div>
+												</div>
+		
+												<div class="form-group">
+													<label class="col-md-3">DS Từ Khóa: </label> 
+													<div class="col-md-7">
+														<textarea class="form-control" rows="10" id="dstukhoa" name="dstukhoa_bientap" placeholder="Nhập danh sách từ khóa"></textarea>
+													</div>
+												    
+												</div>
+		
+												<div class="form-group">
+													<label class="col-md-3">File đính kèm: </label>
+													<div class="col-md-7">
+														<input class="form-control" type="file" id="file" name="file_bientap">
+													</div>
+												</div>
+		
+												<div class="col-md-offset-3">
+													<button type="submit" id="guibientap" class="btn btn-primary">Gửi Bài Biên Tập</button>
+												</div>
+											</c:forEach>
 										</div>
-
-										<div class="form-group">
-											<label class="col-md-3">Nội dung tiêu biểu: </label> 
-											<div class="col-md-7">
-												<textarea class="form-control" rows="10" id="noidung" placeholder="Nhập nội dung tiêu biểu"></textarea>
-											</div>
-										    
+										<div class="col-md-4">
+											<script type="text/javascript">
+												function file_change(f){
+													var reader = new FileReader();
+													reader.onload = function (e) {
+														var img = document.getElementById("img");
+														img.src = e.target.result;
+														img.style.display = "inline";
+													};
+													reader.readAsDataURL(f.files[0]);
+												}
+											</script>
+											
+											<img id="img"  class="img-rounded" style="border-width:3px;height:140px;width:100px;"/>
+											<br>
+											<br>
+											<label>Ảnh Bìa</label>
+											<input id="f" type="file" name="anhbia" onchange="file_change(this)" style="display: none" />
+											<input class="btn btn-default" type="button" value="Chọn ảnh" onclick="document.getElementById('f').click()" />
 										</div>
-
-										<div class="form-group">
-											<label class="col-md-3">File đính kèm: </label>
-											<div class="col-md-7">
-												<input class="form-control" type="file" id="file">
-											</div>
-										</div>
-
-										<div class="col-md-offset-3">
-											<button type="button" id="guibientap" class="btn btn-primary">Gửi Bài Biên Tập</button>
-										</div>
-
 									</form>
 									<script>
 													
@@ -272,6 +315,9 @@
 														return false;
 													
 													if(!validateText("noidung"))
+														return false;
+													
+													if(!validateText("dstukhoa"))
 														return false;
 													
 													if(!validateText("file"))

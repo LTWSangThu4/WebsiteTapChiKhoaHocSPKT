@@ -224,60 +224,76 @@
 									  <li class="active"><a href="#dsbaiduocgiao" data-toggle="tab">Danh Sách Bài Được Giao</a></li>
 									  <li><a href="#dsbaidaphanbien" data-toggle="tab">Danh Sách Bài Đã Phản Biện</a></li>
 									</ul>
+									<br>
 									<div class="tab-content">
 									    <div class="tab-pane fade in active" id="dsbaiduocgiao">
 									    	<table class="table table-bordered table-hover">
 												<thead>
 													<tr>
-														<th>Tên Bài</th>
-														<th>Tác Giả</th>
-														<th>Ngày gửi</th>
+														<th>Tiêu Đề</th>
+														<th>Nội Dung</th>
 														<th>File</th>
+														<th>Ngày Giao</th>
+														<th>Trạng Thái</th>
+														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
 												<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-												url="jdbc:mysql://localhost/tckh" user="root" password="123456"/>
-												<sql:query var="result" sql="select * from dsbaiduocgiaophanbien" dataSource="${con }"/>
-												<c:forEach var="rows" items="${result.rows }">
-													<tr>
-														<td>${rows.TenBai }</td>
-														<td>${rows.TacGia }</td>
-														<td>${rows.NgayGui }</td>
-														<td><button type="button" class="btn btn-link">${rows.File }</button></td>
-													</tr>
-												</c:forEach>
+												url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+												<sql:query var="dschuaphanbien" dataSource="${con}">
+													select *
+													from ds_baiviet_dagui,ds_baiviet_phanbien
+													where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_phanbien.ID_baiviet_dagui
+													and ds_baiviet_phanbien.username_taikhoan='${sessionScope['loginUser']}'
+													and ds_baiviet_phanbien.trangthai_phanbien='Chua Phan Bien'
+												</sql:query>
+												<form method="get" action="DownloadFile_TBT">
+													<c:forEach var="row" items="${dschuaphanbien.rows}">
+														<tr>
+															<td>${row.tieude}</td>
+															<td>${row.noidung}</td>
+															<td><button type="submit" value="${row.ID_baiviet_dagui}" name="id"  class="btn btn-link">${row.TenFile}</button></td>
+															<td>${row.ngaygiaophanbien}</td>
+															<td>${row.trangthai_phanbien}</td>
+															<td><a href="noidungphanbien.jsp?id=<c:out value="${row.ID_baiviet_dagui}"/>" >Phản Biện</a></td>
+														</tr>
+													</c:forEach>
+												</form>
 												</tbody>
 											</table>
-											<div class="col-md-offset-5">
-												<!-- <a href="xemnoidung.jsp"><button type="submit" class="btn btn-default navbar-btn"><strong>XEM</strong></button></a> -->
-												<a href="noidungphanbien.jsp"><button type="submit" class="btn btn-default navbar-btn "><strong>PHẢN BIỆN</strong></button></a>
-											</div>
 								    	</div>
 								    	<div class="tab-pane fade" id="dsbaidaphanbien">
 								    		<table class="table table-bordered table-hover">
 												<thead>
 													<tr>
-														<th>Tên Bài</th>
-														<th>Tác Giả</th>
-														<th>Ngày gửi</th>
-														<th>File</th>
-														<th>Ngày phản biện</th>
+														<th>Tiêu Đề</th>
+														<th>Nội Dung PB</th>
+														<th>File đính kèm</th>
+														<th>Ngày PB</th>
 														<th>Trạng Thái</th>
 													</tr>
 												</thead>
 												<tbody>
-												<sql:query var="result" sql="select * from dsbaidapb" dataSource="${con }"/>
-												<c:forEach var="rows" items="${result.rows }">
-													<tr>
-														<td>${rows.TenBai }</td>
-														<td>${rows.TacGia }</td>
-														<td>${rows.Ngaygui }</td>
-														<td><button type="button" class="btn btn-link">${rows.File }</button></td>
-														<td>${rows.NgayPhanBien }</td>
-														<td>${rows.TrangThai }</td>
-													</tr>
-												</c:forEach>
+												<sql:query var="dsdaphanbien" dataSource="${con}">
+													select *
+													from ds_baiviet_dagui,ds_baiviet_phanbien,ds_noidung_phanbien
+													where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_phanbien.ID_baiviet_dagui
+													and ds_baiviet_phanbien.ID_baiviet_phanbien=ds_noidung_phanbien.ID_baiviet_phanbien
+													and ds_baiviet_phanbien.username_taikhoan='${sessionScope['loginUser']}'
+													and ds_baiviet_phanbien.trangthai_phanbien='Da Phan Bien'
+												</sql:query>
+												<form method="get" action="DownloadFile_PB">
+													<c:forEach var="row" items="${dsdaphanbien.rows }">
+														<tr>
+															<td>${row.tieude}</td>
+															<td>${row.noidung_phanbien}</td>
+															<td><button type="submit" value="${row.ID_noidung_phanbien}" name="id"  class="btn btn-link">${row.tenfile_phanbien}</button></td>
+															<td>${row.ngayphanbien}</td>
+															<td>${row.trangthai_phanbien}</td>
+														</tr>
+													</c:forEach>
+												</form>
 												</tbody>
 											</table>
 											<!-- <button type="submit" class="btn btn-default navbar-btn col-md-offset-5"><strong>GỬI PHẢN BIỆN</strong></button> -->
