@@ -20,7 +20,10 @@
 			<sql:param value="${param.idnguoiphanbien}" />
         </sql:update>
         <c:if test="${result>=1}">
-            <font size="5" color='green'>Phan Cong Thanh Cong !!!</font>
+        <Center>
+        	<font size="5" color='green'>Phan Cong Thanh Cong !!!</font>
+        </Center>
+            
  
 
         </c:if> 

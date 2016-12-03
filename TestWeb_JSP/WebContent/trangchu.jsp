@@ -6,7 +6,7 @@
                    url="jdbc:mysql://localhost:3306/tapchikhoahoc" user="root" password="123456" />
  
 <sql:query dataSource="${dataSource}" var="categories" scope="session">
-        SELECT * FROM ds_baiviet_duocdang
+        SELECT * FROM ds_noidung_bientap
 </sql:query>
  
 <c:import url="trangchu2.jsp?pageNumber=1"/>

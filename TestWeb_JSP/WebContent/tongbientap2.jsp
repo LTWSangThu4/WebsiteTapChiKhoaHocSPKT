@@ -8,6 +8,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<script>
+            function confirmGo(m,u) {
+                if ( confirm(m) ) {
+                    window.location = u;
+                }
+            }
+     </script>
 	<title>Tạp chí Khoa Học SPKT</title>
 	<!-- Latest compiled and minified CSS & JS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css" >
@@ -225,10 +233,10 @@
 												<th>Tác Giả</th>
 												<th>Tiêu Đề</th>
 												<th>Nội Dung</th>
-												<th>File</th>
+												
 												<th>Ngày Gửi</th>
 												<th>Trạng Thái</th>
-												<th>Action</th>
+												<th colspan="2">Action</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -236,197 +244,24 @@
 											url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
 											<sql:query var="result" sql="select * from ds_baiviet_dagui,taikhoan where taikhoan.Username=ds_baiviet_dagui.username_taikhoan" 
 											dataSource="${con}"/>
-											<form method="get" action="DownloadFile_TBT">
+											
 												<c:forEach var="rows" items="${result.rows }">
 													<tr>
 														<td>${rows.last_name} ${rows.first_name}</td>
 														<td>${rows.tieude }</td>
 														<td>${rows.noidung }</td>
-														<td><button type="submit" value="${rows.ID_baiviet_dagui }" name="id"  class="btn btn-link">${rows.TenFile }</button></td>
+														
 														<td>${rows.ngaygui }</td>
 														<td>${rows.trangthai }</td>
 														<td><a href="xemchitiet.jsp?id=<c:out value="${rows.ID_baiviet_dagui}"/>" >Chi tiết</a></td>
+														<td><a href="javascript:confirmGo('Sure to delete this record?','#?id1=<c:out value="${rows.ID_baiviet_dagui}"/>')">Delete</a></td>
 													</tr>
 												</c:forEach>
-											</form>
+											
 											
 										</tbody>
 									</table>
-									
-									<div class="col-md-4">
-										<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#thongtinbaiviet">Thông tin bài viết</button></a>
-									</div>
-									
-
-									<div class="col-md-8">
-										
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#phancong">Phân công bài viết</button></a>
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dangbai">Đăng Bài</button></a>
-									</div><br><br><br><br>
-									<div class="collapse" id="thongtinbaiviet">
-										<form action="" class="form-horizontal">
-
-											<div class="form-group">
-												<label class="col-md-2">Tác Giả: </label>
-												<p class="col-md-8"> Huyền Hoàng</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Tiêu Đề: </label>
-												<p class="col-md-8">Lập Trình Web</p>
-											</div>
-											
-											<div class="form-group">
-												<label class="col-md-2">Cơ Quan: </label>
-												<p class="col-md-8">Cty.ABC</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Thông Tin Liên Lạc: </label>
-												<p class="col-md-8">C9/10 ap TN1, TPHCM</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Danh Sách Từ Khóa</label>
-												<div class="col-md-8">
-													<textarea class="form-control" id="dstukhoa" rows="10"></textarea>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Người Phản Biện: </label>
-												<p class="col-md-8">Mr. Tùng</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Bài Phản Biện: </label>
-												<p class="col-md-8">Lập Trình Web</p>
-											</div>
-
-											<div class="form-group">
-												<label class="col-md-2">Nội dung phản biện: </label> 
-												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
-									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
-											    
-											</div>
-
-											<div class="form-group">
-												<label class="col-md-2">File đính kèm (nếu có): </label>
-												
-
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">Người Biên Tập: </label>
-												<p class="col-md-8">Mr. Tùng</p>
-											</div>
-
-											<div class="form-group">
-												<label class="col-md-2">Nội dung đã biên tập: </label> 
-												<p class="col-md-8">Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
-									     		Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.</p>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2">File đã biên tập: </label>
-												<div class="col-md-8">
-													<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> filedinhkem.docx</a>
-												</div>
-											</div>
-
-											
-											
-
-										</form>
-									</div>
-									
-									<!-- Modal -->
-									<div class="modal fade" id="dangbai" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-									  <div class="modal-dialog" role="document">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									        <h4 class="modal-title" id="myModalLabel">Thông Báo</h4>
-									      </div>
-									      <div class="modal-body">
-									        <form class="form-horizontal" action="">
-									        	<div class="form-group">
-													<label class="col-md-4">Mục đăng: </label>
-													<div class="col-md-8">
-														<select class="form-control">
-														<option>Khoa học tự nhiên và công nghệ</option>
-														<option>Khoa học xã hội và nhân văn</option>
-														<option>Khoa học giáo dục</option>
-														<option>Khoa học môi trường</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-4">Thời gian đăng: </label>
-													<div class="col-md-8">
-														
-														<input class="form-control" type="date" id="thoigiandang">
-														
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-4">Ghi chú: </label>
-													<div class="col-md-8">
-														<textarea class="form-control" rows="5" placeholder="Nhập ghi chú cho bài viết"></textarea>
-													</div>
-												</div>
-									        </form>
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-									        <a href="tongbientap2.jsp"><button type="button" class="btn btn-primary">Yes</button></a>
-									      </div>
-									    </div>
-									  </div>
-									</div>
-									<!-- Modal -->
-									<div class="modal fade" id="phancong" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-									  <div class="modal-dialog" role="document">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									        <h4 class="modal-title" id="myModalLabel">Gửi Bài Cho PB và BTV</h4>
-									      </div>
-									      <div class="modal-body">
-									        <form class="form-horizontal" action="">
-									        	<div class="form-group">
-													<label class="col-md-4">Bài Viết: </label>
-													<p class="col-md-8">Lập Trình Web</p>
-												</div>
-												<div class="form-group">
-													<label class="col-md-4">File Bài Viết: </label>
-													<div class="col-md-8">
-														<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> 101conchodom.docx</a>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-4">Người Phản Biện: </label>
-													<div class="col-md-8">
-														<select class="form-control">
-														<option>Thanh Tùng</option>
-														<option>Đinh Sa</option>
-														<option>Sino</option>
-													</select>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-4">Người Biên Tập: </label>
-													<div class="col-md-8">
-														<select class="form-control">
-														<option>Sino</option>
-														<option>Đinh Sa</option>
-														<option>Thanh Tùng</option>
-													</select>
-													</div>
-												</div>
-									        </form>
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-									        <a href="tongbientap2.jsp"><button type="button" class="btn btn-primary">Yes</button></a>
-									      </div>
-									    </div>
-									  </div>
-									</div>
-									
+								
 								</div>
 							</div>
 						</div>

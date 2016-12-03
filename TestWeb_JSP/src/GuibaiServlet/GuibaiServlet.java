@@ -97,7 +97,7 @@ public class GuibaiServlet extends HttpServlet {
  
             // constructs SQL statement
             String sql = "INSERT INTO ds_baiviet_dagui (tieude, noidung, file, tenfile, dstukhoa, anh, ngaygui, trangthai, username_taikhoan) "
-            		+ "values (?, ?, ?, ?, ?, ?, CURDATE(), 'Da Gui', '"+user+"')";
+            		+ "values (?, ?, ?, ?, ?, ?, CURDATE(), 'Chưa Được Đăng', '"+user+"')";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, tieude);
             statement.setString(2, noidung);

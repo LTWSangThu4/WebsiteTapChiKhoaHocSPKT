@@ -339,13 +339,13 @@
 											<div class="form-group">
 												<label class="col-sm-4">Tiêu Đề Mới: </label>
 												<div class="col-sm-8">
-													<p class="form-control-static"><c:out value="${tieude_bientap}"/></p>
+													<p class="form-control-static"><c:out value="${row.tieude_bientap}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4">Nội Dung Mới: </label>
 												<div class="col-sm-8">
-													<p class="form-control-static"><c:out value="${noidung_bientap}"/></p>
+													<p class="form-control-static"><c:out value="${row.noidung_bientap}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
@@ -416,12 +416,7 @@
 														</select>
 													</div>
 												</div>
-												<div class="form-group">
-													<label class="col-md-4">Ghi chú: </label>
-													<div class="col-md-8">
-														<textarea name="ghichu" class="form-control" rows="5" placeholder="Nhập ghi chú cho bài viết"></textarea>
-													</div>
-												</div>
+												
 												<div class="form-group">
 													<div class="col-md-4"></div>
 													<div class="col-md-8">
@@ -477,6 +472,7 @@
 												<div class="col-md-4"></div>
 												<div class="col-md-8">
 													<button type="submit" class="btn btn-primary">Giao bài</button>
+													
 												</div>
 											</div>
 
@@ -523,12 +519,20 @@
 														</select>
 													</div>
 												</div>
+												
+												<div class="form-group">
+													<label class="col-md-4">Ghi chú: </label>
+													<div class="col-md-8">
+														<textarea name="ghichu" class="form-control" rows="5" placeholder="Nhập ghi chú cho bài viết"></textarea>
+													</div>
+												</div>
 									
 											</c:forEach>
 											<div class="form-group">
 												<div class="col-md-4"></div>
 												<div class="col-md-8">
 													<button type="submit" class="btn btn-primary">Giao bài</button>
+													
 												</div>
 											</div>
 

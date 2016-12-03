@@ -557,7 +557,7 @@
 									 
 									<c:choose>
 									    <c:when test="${a==0}">
-									        <c:set var="numberOfPages" value="6" scope="session"/>   
+									        <c:set var="numberOfPages" value="1" scope="session"/>   
 									    </c:when>
 									 
 									    <c:when test="${b>a}">
