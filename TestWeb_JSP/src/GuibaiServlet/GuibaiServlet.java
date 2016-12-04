@@ -96,8 +96,8 @@ public class GuibaiServlet extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // constructs SQL statement
-            String sql = "INSERT INTO ds_baiviet_dagui (tieude, noidung, file, tenfile, dstukhoa, anh, ngaygui, trangthai, username_taikhoan) "
-            		+ "values (?, ?, ?, ?, ?, ?, CURDATE(), 'Chưa Được Đăng', '"+user+"')";
+            String sql = "INSERT INTO ds_baiviet_dagui (tieude, noidung, file, tenfile, dstukhoa, anh, ngaygui, trangthai, username_taikhoan, phancong_PB, phancong_BT) "
+            		+ "values (?, ?, ?, ?, ?, ?, CURDATE(), '0', '"+user+"', '0', '0')";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, tieude);
             statement.setString(2, noidung);

@@ -218,7 +218,7 @@
 									<h3 class="panel-title">Thông tin chi tiết</h3>
 								</div>
 								<div class="panel-body">
-								<div class="col-sm-6">
+							
 									<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
 					          				           url="jdbc:mysql://localhost/tapchikhoahoc"
 					                          		   user="root"  password="123456"/>
@@ -228,54 +228,74 @@
 										and ds_baiviet_dagui.ID_baiviet_dagui=?
 										<sql:param value="${param.id}" />					    
 									</sql:query>
-									<form method="get" action="DownloadFile_TBT">
+						<div class="col-sm-10">
+						<!-- CHi tiết -->
+									<div class="col-sm-7">
+									<form class="form-horizontal" method="get" action="DownloadFile_TBT">
 										<c:forEach var="row" items="${baivietdagui.rows}">
 											<div class="form-group">
-												<label class="col-sm-4">Tên Tác Giả: </label>
+												<label class="col-sm-4 control-label">Tên Tác Giả: </label>
 												<div class="col-sm-8">
 													<p class="form-control-static"><c:out value="${row.last_name} ${row.first_name}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Tiêu Đề: </label>
+												<label class="col-sm-4 control-label">Tiêu Đề: </label>
 												<div class="col-sm-8">
 													<p class="form-control-static"><c:out value="${row.tieude}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Nội Dung: </label>
+												<label class="col-sm-4 control-label">Nội Dung: </label>
 												<div class="col-sm-8">
 													<p class="form-control-static"><c:out value="${row.noidung}"/></p>
 												</div>
 											</div>
-											<div class="form-group">
-												<label class="col-sm-4">File: </label>
-												<div class="col-sm-8">
+											
+											<div class="form-group" >	  													  
+												<label class="col-sm-4 control-label">File</label>
+												<div class="col-sm-8" >
 													<button type="submit" value="${row.ID_baiviet_dagui }" name="id"  class="btn btn-link">${row.TenFile }</button>
-												</div>
+												</div>														    											  								 
 											</div>
+											
+											
 											<div class="form-group">
-												<label class="col-sm-4">DS Từ Khóa: </label>
+												<label class="col-sm-4 control-label">DS Từ Khóa: </label>
 												<div class="col-sm-8">
 													<p class="form-control-static"><c:out value="${row.dstukhoa}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Ngày Gửi: </label>
+												<label class="col-sm-4 control-label">Ngày Gửi: </label>
 												<div class="col-sm-8">
 													<p class="form-control-static"><c:out value="${row.ngaygui}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Trạng Thái: </label>
+												<label class="col-sm-4 control-label">Trạng Thái: </label>
 												<div class="col-sm-8">
-													<p class="form-control-static"><c:out value="${row.trangthai}"/></p>
+													<p class="form-control-static"> <font color="red"><c:out value="${row.trangthai}"/></font></p>
 												</div>
 											</div>
-											<p>____________________________________________________________________________________________________________</p>
+											
+											
 											
 										</c:forEach>
 									</form>
+									</div>
+						<!-- ảnh bìa -->
+									<div class="col-sm-5">
+										<div class="form-group">
+												<label class="col-sm-4 control-label">Ảnh Bìa </label>
+												<div class="col-sm-8">
+													<img src="GetAnhTG?id_tg=<c:out value="${param.id}"/>" height="150px" width="150px" alt="ProfilePic">
+												</div>
+											</div>
+									</div>
+									<p>____________________________________________________________________________________________________________</p>
+								
+								
 									<sql:query dataSource="${dbsource}" var="baivietphanbien">
 										SELECT * from ds_baiviet_phanbien,ds_noidung_phanbien,taikhoan,ds_baiviet_dagui
 										where ds_baiviet_phanbien.username_taikhoan=taikhoan.Username
@@ -284,36 +304,48 @@
 										and ds_baiviet_dagui.ID_baiviet_dagui=?
 										<sql:param value="${param.id}" />					    
 									</sql:query>
-									<form method="get" action="DownloadFile_TBT">
+									
+									<div class="col-sm-7">
+									<form class="form-horizontal" method="get" action="DownloadFile_TBT">
 										<c:forEach var="row" items="${baivietphanbien.rows}">
 											<div class="form-group">
-												<label class="col-sm-4">Tên Phản Biện: </label>
+												<label class="col-sm-4 control-label">Tên Phản Biện: </label>
 												<div class="col-sm-8">
 													<p class="form-control-static"><c:out value="${row.last_name} ${row.first_name}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Ngày Giao: </label>
+												<label class="col-sm-4 control-label">Ngày Giao: </label>
 												<div class="col-sm-8">
 													<p class="form-control-static"><c:out value="${row.ngaygiaophanbien}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Nội Dung: </label>
+												<label class="col-sm-4 control-label">Nội Dung: </label>
 												<div class="col-sm-8">
 													<p class="form-control-static"><c:out value="${row.noidung_phanbien}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Ngày Phản Biện: </label>
+												<label class="col-sm-4 control-label">Ngày Phản Biện: </label>
 												<div class="col-sm-8">
 													<p class="form-control-static"><c:out value="${row.ngayphanbien}"/></p>
 												</div>
 											</div>
-											<p>____________________________________________________________________________________________________________</p>
+											
 											
 										</c:forEach>
 									</form>
+									</div>
+									
+									<div class="col-sm-5">
+										
+									</div>
+									<p>____________________________________________________________________________________________________________</p>
+										
+									
+								<div class="col-sm-7">
+									
 									<sql:query dataSource="${dbsource}" var="baivietbientap">
 										SELECT * from ds_baiviet_bientap,ds_noidung_bientap,taikhoan,ds_baiviet_dagui
 										where ds_baiviet_bientap.username_taikhoan=taikhoan.Username
@@ -322,57 +354,68 @@
 										and ds_baiviet_dagui.ID_baiviet_dagui=?
 										<sql:param value="${param.id}" />					    
 									</sql:query>
-									<form method="get" action="DownloadFile_TBT">
-										<c:forEach var="row" items="${baivietbientap.rows}">
+									<form class="form-horizontal">
+										<c:forEach var="rows" items="${baivietbientap.rows}">
 											<div class="form-group">
-												<label class="col-sm-4">Tên Biên Tập: </label>
+												<label class="col-sm-4 control-label">Tên Biên Tập: </label>
 												<div class="col-sm-8">
-													<p class="form-control-static"><c:out value="${row.last_name} ${row.first_name}"/></p>
+													<p class="form-control-static"><c:out value="${rows.last_name} ${rows.first_name}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Ngày Giao: </label>
+												<label class="col-sm-4 control-label">Ngày Giao: </label>
 												<div class="col-sm-8">
-													<p class="form-control-static"><c:out value="${row.ngaygiaobientap}"/></p>
+													<p class="form-control-static"><c:out value="${rows.ngaygiaobientap}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Tiêu Đề Mới: </label>
+												<label class="col-sm-4 control-label">Tiêu Đề Mới: </label>
 												<div class="col-sm-8">
-													<p class="form-control-static"><c:out value="${row.tieude_bientap}"/></p>
+													<p class="form-control-static"><c:out value="${rows.tieude_bientap}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Nội Dung Mới: </label>
+												<label class="col-sm-4 control-label">Nội Dung Mới: </label>
 												<div class="col-sm-8">
-													<p class="form-control-static"><c:out value="${row.noidung_bientap}"/></p>
+													<p class="form-control-static"><c:out value="${rows.noidung_bientap}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">File: </label>
+												<label class="col-sm-4 control-label">File: </label>
 												<div class="col-sm-8">
-													<button type="submit" value="${row.ID_noidung_bientap}" name="id"  class="btn btn-link">${row.tenfile_bientap }</button>
+													<a onclick="window.open('Read_TBT?id=${rows.ID_noidung_bientap}',
+													 '_blank', 'location=yes,height=600,width=600,scrollbars=yes,status=yes' );" 
+													 class="btn btn-link"><c:out value="${rows.tenfile_PDF}"/></a>	
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">DS Từ Khóa: </label>
+												<label class="col-sm-4 control-label">DS Từ Khóa: </label>
 												<div class="col-sm-8">
-													<p class="form-control-static"><c:out value="${row.dstukhoa_bientap}"/></p>
+													<p class="form-control-static"><c:out value="${rows.dstukhoa_bientap}"/></p>
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-sm-4">Ngày Biên Tập: </label>
+												<label class="col-sm-4 control-label">Ngày Biên Tập: </label>
 												<div class="col-sm-8">
-													<p class="form-control-static"><c:out value="${row.ngaybientap}"/></p>
+													<p class="form-control-static"><c:out value="${rows.ngaybientap}"/></p>
 												</div>
-											</div>
-											
+											</div>																						
 										</c:forEach>
 									</form>
-									</div>
-									<div class="col-sm-4">
-							
-									</div>
+								</div>
+						<!-- ảnh bìa -->
+								<div class="col-sm-5">
+									<c:forEach var="row2" items="${baivietbientap.rows}">
+											<div class="form-group">
+													<label class="col-sm-4 control-label">Ảnh Bìa </label>
+													<div class="col-sm-8">
+														<img src="GetAnhBT?id_bt=<c:out value="${row2.ID_noidung_bientap}"/>" height="150px" width="150px" alt="ProfilePic">
+													</div>
+												</div>
+									</c:forEach>
+								</div>	
+							</div>
+									
 									<div class="col-sm-2">
 										<button class="btn btn-primary" data-toggle="modal" data-target="#dangbai">ĐĂNG BÀI VIẾT</button><br>
 										<br>

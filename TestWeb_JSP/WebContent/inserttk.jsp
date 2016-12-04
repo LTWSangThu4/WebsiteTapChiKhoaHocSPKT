@@ -239,7 +239,13 @@
 													<div class="form-group">
 														<label class="col-sm-4 control-label" for="email">Quyền</label>
 															<div class="col-sm-5">
-																<input class="form-control" type="number" value="" name="MaQuyen"/>
+																<select class="form-control" name="MaQuyen">														
+																<option value="0">Admin</option>
+																<option value="1">TBT</option>
+																<option value="2">BTV</option>
+																<option value="3">PB</option>
+																<option value="4">TG</option>																														
+																</select>																	
 															</div> 
 													</div>
 								

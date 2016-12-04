@@ -255,14 +255,16 @@
 														<div class="col-md-4">
 															<div class="col-sm-12 col-md-12">
 													    	<div class="thumbnail">
-													      		<a href="xemnoidung.jsp"><img src="images/tin3.jpg" alt="..."></a>
+													      		<a href="xemnoidung.jsp"><img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" 
+													      		 style="border-width:3px;height:140px;width:100px;"></a>
+													      		 <Center>
 													     			<ul class="caption">
-													        			<a href="xemnoidung.jsp"><c:out value="${row.tieude}"/></a>
-																	        <p><c:out value="${row.noidung}"/></p>
-													        
+													        			<a href="xemnoidung.jsp"><c:out value="${row.tieude_bientap}"/></a>
+																	     <p><c:out value="${row.noidung_bientap}"/></p>												        
 													      			</ul>
-													    	</div>
-													  	</div>
+													      		</Center>
+														    	</div>
+														  	</div>
 														</div>
 													
 									        </c:forEach>
@@ -313,8 +315,8 @@
 														    <img class="media-object" src="images/2.jpg" alt="...">
 														  </a>
 														  <div class="media-body">
-														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude}"/></a></h4>
-														    <c:out value="${rows.noidung}"/>
+														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude_bientap}"/></a></h4>
+														    <c:out value="${rows.noidung_bientap}"/>
 														  </div>
 														</div>
 																		
@@ -328,8 +330,8 @@
 														    <img class="media-object" src="images/2.jpg" alt="...">
 														  </a>
 														  <div class="media-body">
-														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude}"/></a></h4>
-														    <c:out value="${rows.noidung}"/>
+														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude_bientap}"/></a></h4>
+														    <c:out value="${rows.noidung_bientap}"/>
 														  </div>
 														</div>
 																		

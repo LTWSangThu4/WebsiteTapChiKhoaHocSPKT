@@ -58,15 +58,20 @@ public class GuibaiBienTap extends HttpServlet {
         // input stream of the upload file picture
         InputStream inputanh = null; //input picture
         InputStream inputFile=null; //input file
+        InputStream inputFile_pdf=null; //input file
         //get file
         Part anhbia=request.getPart("anhbia"); 
         Part filePart = request.getPart("file_bientap");
+        Part filePart_pdf = request.getPart("file_bientap_PDF");
         
         //get file's name
 	   	String fileName = extractFileName(filePart);
-	   	if (fileName != null && fileName.length() > 0) {
+		String fileName_pdf = extractFileName(filePart_pdf);
+		
+	   	if (fileName != null && fileName.length() > 0 && fileName_pdf!=null && fileName_pdf.length()>0) {
             // File data
 	   		inputFile = filePart.getInputStream();
+	   		inputFile_pdf = filePart_pdf.getInputStream();
          }
 	   	//get picture's name............
        
@@ -80,6 +85,10 @@ public class GuibaiBienTap extends HttpServlet {
             System.out.println(anhbia.getName());
             System.out.println(anhbia.getSize());
             System.out.println(anhbia.getContentType());
+            
+            System.out.println(filePart_pdf.getName());
+            System.out.println(filePart_pdf.getSize());
+            System.out.println(filePart_pdf.getContentType());
              
             // obtains input stream of the upload file
             inputanh  = anhbia.getInputStream();   
@@ -94,19 +103,22 @@ public class GuibaiBienTap extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // constructs SQL statement
-            String sql = "INSERT INTO ds_noidung_bientap(tieude_bientap, noidung_bientap, file_bientap, tenfile_bientap, dstukhoa_bientap, anh_bientap, ngaybientap, ID_baiviet_bientap) "
-            		+ "values (?, ?, ?, ?, ?, ?, CURDATE(), ?)";
+            String sql = "INSERT INTO ds_noidung_bientap(tieude_bientap, noidung_bientap, file_bientap, tenfile_bientap, File_PDF, tenfile_PDF, dstukhoa_bientap, anh_bientap, ngaybientap, ID_baiviet_bientap) "
+            		+ "values (?, ?, ?, ?, ?, ?, ?, ?, CURDATE(), ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, tieude);
             statement.setString(2, noidung);
             statement.setString(4, fileName);
-            statement.setString(5, dstukhoa);
-            statement.setString(7, id_baiviet_bientap);
+            statement.setString(6, fileName_pdf);
+            statement.setString(7, dstukhoa);
+            statement.setString(9, id_baiviet_bientap);
              
-            if (inputanh != null && inputFile !=null) {
+            if (inputanh != null && inputFile !=null && inputFile_pdf!=null ) {
                 // fetches input stream of the upload file for the blob column
                 statement.setBlob(3, inputFile);
-                statement.setBlob(6,  inputanh);
+                statement.setBlob(5, inputFile_pdf);
+                statement.setBlob(8,  inputanh);
+                
             }
  
             String updatetrangthai="update ds_baiviet_bientap "

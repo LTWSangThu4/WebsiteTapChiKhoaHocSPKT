@@ -227,41 +227,147 @@
 									<h3 class="panel-title">Quản Lý Bài Viết</h3>
 								</div>
 								<div class="panel-body">
-									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>Tác Giả</th>
-												<th>Tiêu Đề</th>
-												<th>Nội Dung</th>
-												
-												<th>Ngày Gửi</th>
-												<th>Trạng Thái</th>
-												<th colspan="2">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+								 <!-- Nav tabs -->
+									  <ul class="nav nav-tabs">
+									    <li class="active"><a href="#dschuaphancong" data-toggle="tab">Danh Sách Bài Chưa Phân công</a></li>
+									    <li><a href="#dsdaphancong" data-toggle="tab">Danh Sách Bài Đã Phân công</a></li>
+									    <li><a href="#dsdadang" data-toggle="tab">Danh Sách Bài Đã Đăng</a></li>
+									  </ul>
+									  
+								<!-- kết nối DB -->
+									  <sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
 											url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
-											<sql:query var="result" sql="select * from ds_baiviet_dagui,taikhoan where taikhoan.Username=ds_baiviet_dagui.username_taikhoan" 
+										<!--ds chưa đc phân công -->
+											<sql:query var="result" sql="select * from ds_baiviet_dagui,taikhoan 
+											where taikhoan.Username=ds_baiviet_dagui.username_taikhoan 											
+											and (phancong_BT='0' or phancong_PB='0')" 
 											dataSource="${con}"/>
-											
-												<c:forEach var="rows" items="${result.rows }">
+										<!-- ds dc phân công -->			
+											<sql:query var="result1" sql="select * from ds_baiviet_dagui,
+											 taikhoan, ds_baiviet_bientap, ds_baiviet_phanbien
+											 where taikhoan.Username=ds_baiviet_dagui.username_taikhoan 
+											 and ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_bientap.ID_baiviet_dagui
+											 and ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_phanbien.ID_baiviet_dagui									
+											 and trangthai='1'" 
+											dataSource="${con}"/>
+										<!-- ds dc đăng -->			
+											<sql:query var="result2" sql="select * from ds_baiviet_dagui,
+											taikhoan,ds_noidung_bientap, ds_baiviet_bientap
+											 where taikhoan.Username=ds_baiviet_dagui.username_taikhoan 
+											 and ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_bientap.ID_baiviet_dagui
+											 and ds_baiviet_bientap.ID_baiviet_bientap=ds_noidung_bientap.ID_baiviet_bientap
+											 and trangthai_duocdang ='1'" 
+											dataSource="${con}"/>
+								<!-- tab -->
+								<div class="tab-content">
+								<!-- tab chưa phân công -->
+									  	<div class="tab-pane fade in active" id="dschuaphancong">
+									  		<table class="table table-bordered table-hover">
+												<thead>
 													<tr>
-														<td>${rows.last_name} ${rows.first_name}</td>
-														<td>${rows.tieude }</td>
-														<td>${rows.noidung }</td>
+														<th>Tác Giả</th>
+														<th>Tiêu Đề</th>
+														<th>Nội Dung</th>
 														
-														<td>${rows.ngaygui }</td>
-														<td>${rows.trangthai }</td>
-														<td><a href="xemchitiet.jsp?id=<c:out value="${rows.ID_baiviet_dagui}"/>" >Chi tiết</a></td>
-														<td><a href="javascript:confirmGo('Sure to delete this record?','#?id1=<c:out value="${rows.ID_baiviet_dagui}"/>')">Delete</a></td>
+														<th>Ngày Gửi</th>
+														<th>Trạng Thái</th>
+														<th colspan="2">Action</th>
 													</tr>
-												</c:forEach>
+												</thead>
+												<tbody>
+													
+													
+														<c:forEach var="rows" items="${result.rows }">
+															<tr>
+																<td>${rows.last_name} ${rows.first_name}</td>
+																<td>${rows.tieude }</td>
+																<td>${rows.noidung }</td>
+																
+																<td>${rows.ngaygui }</td>
+																<td>${rows.trangthai }</td>
+																<td><a href="xemchitiet.jsp?id=<c:out value="${rows.ID_baiviet_dagui}"/>" >Chi tiết</a></td>
+																<td><a href="javascript:confirmGo('Sure to delete this record?','#?id1=<c:out value="${rows.ID_baiviet_dagui}"/>')">Delete</a></td>
+															</tr>
+														</c:forEach>
+													
+													
+												</tbody>
+											</table>
+									  	</div>
+									  
+									  <!-- tab được phân công -->
+									  	<div class="tab-pane fade" id="dsdaphancong">
+									  		<table class="table table-bordered table-hover">
+												<thead>
+													<tr>
+														<th>Tác Giả</th>
+														<th>Tiêu Đề</th>
+														<th>Nội Dung</th>
+														<th>Ngày Giao BT</th>
+														<th>Ngày Giao PB</th>
+														<th>Ngày Gửi</th>
+														<th>Trạng Thái</th>
+														<th colspan="2">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													
+													
+														<c:forEach var="rows1" items="${result1.rows }">
+															<tr>
+																<td>${rows1.last_name} ${rows1.first_name}</td>
+																<td>${rows1.tieude }</td>
+																<td>${rows1.noidung }</td>
+																<td>${rows1.ngaygiaobientap }</td>
+																<td>${rows1.ngaygiaophanbien }</td>
+																<td>${rows1.ngaygui }</td>
+																<td>${rows1.trangthai }</td>
+																<td><a href="xemchitiet.jsp?id=<c:out value="${rows1.ID_baiviet_dagui}"/>" >Chi tiết</a></td>
+																<td><a href="javascript:confirmGo('Sure to delete this record?','#?id1=<c:out value="${rows.ID_baiviet_dagui}"/>')">Delete</a></td>
+															</tr>
+														</c:forEach>
+													
+													
+												</tbody>
+											</table>
+									  	</div>
+									  <!-- tab đã đăng -->
+										<div class="tab-pane fade" id="dsdadang">
+											<table class="table table-bordered table-hover">
+												<thead>
+													<tr>
+														<th>Tác Giả</th>
+														<th>Tiêu Đề</th>
+														<th>Nội Dung</th>
+														
+														<th>Ngày Gửi</th>
+														<th>Ngày Đăng</th>
+														<th>Trạng Thái</th>
+														<th colspan="2">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													
+													
+														<c:forEach var="row2" items="${result2.rows }">
+															<tr>
+																<td>${row2.last_name} ${row2.first_name}</td>
+																<td>${row2.tieude_bientap }</td>
+																<td>${row2.noidung_bientap }</td>
+																
+																<td>${row2.ngaygui }</td>
+																<td>${row2.NgayDang }</td>
+																<td>${row2.trangthai }</td>
+																<td><a href="xemchitiet.jsp?id=<c:out value="${row2.ID_baiviet_dagui}"/>" >Chi tiết</a></td>
+																<td><a href="javascript:confirmGo('Sure to delete this record?','#?id1=<c:out value="${row1.ID_baiviet_dagui}"/>')">Delete</a></td>
+															</tr>
+														</c:forEach>
+													
+													
+												</tbody>
+											</table>
 											
-											
-										</tbody>
-									</table>
-								
+										</div>
 								</div>
 							</div>
 						</div>

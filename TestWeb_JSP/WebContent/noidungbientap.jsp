@@ -256,15 +256,22 @@
 												</div>
 		
 												<div class="form-group">
-													<label class="col-md-3">File đính kèm: </label>
+													<label class="col-md-3">File Word: </label>
 													<div class="col-md-7">
 														<input class="form-control" type="file" id="file" name="file_bientap">
 													</div>
 												</div>
-		
-												<div class="col-md-offset-3">
-													<button type="submit" id="guibientap" class="btn btn-primary">Gửi Bài Biên Tập</button>
+												
+												<div class="form-group">
+													<label class="col-md-3">File PDF: </label>
+													<div class="col-md-7">
+														<input class="form-control" type="file" id="file_pdf" name="file_bientap_PDF">
+													</div>
 												</div>
+		
+												<Center>
+													<button type="submit" id="guibientap" class="btn btn-primary ">Gửi Bài Biên Tập</button>
+												</Center>
 											</c:forEach>
 										</div>
 										<div class="col-md-4">
@@ -321,6 +328,9 @@
 														return false;
 													
 													if(!validateText("file"))
+														return false;
+													
+													if(!validateText("file_pdf"))
 														return false;
 													
 													$("form#FormBienTap").submit();

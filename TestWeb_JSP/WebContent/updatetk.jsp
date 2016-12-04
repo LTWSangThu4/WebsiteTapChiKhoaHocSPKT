@@ -241,9 +241,20 @@
 									                    <tr>
 									                        <td><input type="hidden" value="${param.id}" name="id"/>
 									                        	<c:out value="${row.Username}"/></td>									                      
-									                        <td><c:out value="${row.regdate}" /></td>								                       
-									                        <td><input type="text" value="${row.MaQuyen}" name="maquyen"/></td>
-									                        <td><input type="text" value="${row.trangthaihoatdong}" name="tthd"/></td>
+									                        <td><c:out value="${row.regdate}" /></td>	
+									                        
+									                        <td> <select class="form-control" name="maquyen">														
+																<option value="0">Admin</option>
+																<option value="1">TBT</option>
+																<option value="2">BTV</option>
+																<option value="3">PB</option>
+																<option value="4">TG</option>																														
+																</select></td>	
+																	
+															 <td> <select class="form-control" name="tthd">															
+																<option value="0">Khóa</option>
+																<option value="1">Hoạt Động</option>																													
+																</select></td>					                       								                       								                       
 									                    </tr>
 									                    
 									                </c:forEach>

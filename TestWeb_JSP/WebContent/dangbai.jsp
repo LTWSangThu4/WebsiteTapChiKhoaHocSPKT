@@ -36,7 +36,7 @@
         	<c:when test="${result>=1}">
         	
         		<sql:update dataSource="${dbsource}" var="result1">	
-		           UPDATE ds_baiviet_dagui SET trangthai ="Đã Đăng"
+		           UPDATE ds_baiviet_dagui SET trangthai ='2'
 	               WHERE ID_baiviet_dagui='${param.idbaiviet}'                
 	       		 </sql:update>
 	       		 

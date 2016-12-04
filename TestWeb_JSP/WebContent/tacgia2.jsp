@@ -350,8 +350,10 @@
 													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
 													<sql:query dataSource="${con}" var="result">
 														select *
-														from taikhoan,ds_baiviet_dagui
-														where taikhoan.Username=ds_baiviet_dagui.username_taikhoan and taikhoan.Username='${sessionScope['loginUser']}'
+														from taikhoan,ds_baiviet_dagui, trangthai_tg
+														where taikhoan.Username=ds_baiviet_dagui.username_taikhoan 
+														and trangthai_tg.ma_trangthai=ds_baiviet_dagui.trangthai
+														and taikhoan.Username='${sessionScope['loginUser']}'
 													</sql:query>
 													<form method="get" action="DownloadFile_TBT">
 													<c:forEach var="rows" items="${result.rows }">
@@ -360,7 +362,7 @@
 															<td>${rows.noidung }</td>
 															<td><button type="submit" value="${rows.ID_baiviet_dagui }" name="id"  class="btn btn-link">${rows.TenFile }</button></td>
 															<td>${rows.dstukhoa }</td>
-															<td>${rows.trangthai }</td>
+															<td>${rows.Ten_TrangThai }</td>
 														</tr>
 													</c:forEach>
 													</form>

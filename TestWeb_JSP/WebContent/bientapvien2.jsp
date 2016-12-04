@@ -234,6 +234,7 @@
 														<th>Tiêu Đề</th>
 														<th>Nội Dung</th>
 														<th>File</th>
+														<th>Ảnh Bìa</th>
 														<th>Ngày Giao</th>
 														<th>Trạng Thái</th>
 														<th>Action</th>
@@ -249,18 +250,22 @@
 													and ds_baiviet_bientap.username_taikhoan='${sessionScope['loginUser']}'
 													and ds_baiviet_bientap.trangthai_bientap='Chua Bien Tap'
 												</sql:query>
-												<form method="get" action="DownloadFile_TBT">
+												
 													<c:forEach var="row" items="${dschuabientap.rows}">
 														<tr>
 															<td>${row.tieude}</td>
 															<td>${row.noidung}</td>
-															<td><button type="submit" value="${row.ID_baiviet_dagui}" name="id"  class="btn btn-link">${row.TenFile}</button></td>
+															<form method="get" action="DownloadFile_TBT">
+																<td><button type="submit" value="${row.ID_baiviet_dagui}" name="id"  class="btn btn-link">${row.TenFile}</button></td>
+															</form>
+															
+															<td><a onclick="window.open('xemanh.jsp?id=${row.ID_baiviet_dagui}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes' );" class="btn btn-link">Xem</a></td>							
 															<td>${row.ngaygiaobientap}</td>
 															<td>${row.trangthai_bientap}</td>
 															<td><a href="noidungbientap.jsp?id=<c:out value="${row.ID_baiviet_dagui}"/>" >Biên Tập</a></td>
 														</tr>
 													</c:forEach>
-												</form>
+												
 												</tbody>
 											</table>
 											
@@ -271,7 +276,8 @@
 													<tr>
 														<th>Tiêu Đề</th>
 														<th>Nội Dung</th>
-														<th>File</th>
+														<th>File Docx</th>
+														<th>File PDF</th>
 														<th>DS Từ Khóa</th>
 														<th>Ngày Biên Tập</th>
 														<th>Trạng thái</th>
@@ -286,18 +292,23 @@
 													and ds_baiviet_bientap.username_taikhoan='${sessionScope['loginUser']}'
 													and ds_baiviet_bientap.trangthai_bientap='Da Bien Tap'
 												</sql:query>
-												<form method="get" action="DownloadFile_BTV">
+												
 													<c:forEach var="row" items="${dsdabientap.rows }">
 														<tr>
 															<td>${row.tieude_bientap}</td>
 															<td>${row.noidung_bientap}</td>
+															<form method="get" action="DownloadFile_BTV">
 															<td><button type="submit" value="${row.ID_noidung_bientap}" name="id"  class="btn btn-link">${row.tenfile_bientap}</button></td>
+															</form>
+															<form method="get" action="DownloadFile_BTV2">
+															<td><button type="submit" value="${row.ID_noidung_bientap}" name="id"  class="btn btn-link">${row.tenfile_PDF}</button></td>
+															</form>
 															<td>${row.dstukhoa_bientap}</td>
 															<td>${row.ngaybientap}</td>
 															<td>${row.trangthai_bientap}</td>
 														</tr>
 													</c:forEach>
-												</form>
+												
 												</tbody>
 											</table>
 											
