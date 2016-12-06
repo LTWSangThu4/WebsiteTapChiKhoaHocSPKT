@@ -519,29 +519,35 @@
 												</div>																									
 									        </c:forEach>
 									
-										<form class="form-horizontal col-md-offset-1" role="form">
-										  <div class="form-group">
-										    <label class="col-sm-3 control-label">Đánh GIá:</label>
-										    <div class="col-sm-9">
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star-empty "></p>
-	
-										    </div>
-										  </div>
-										 
-										</form>
-									
-								<!--Comment-->
-									<div class="input-group col-sm-6 col-md-offset-1">
-								      <input type="text" class="form-control" placeholder="Comment...">
-								      <span class="input-group-btn">
-								        <button class="btn btn-default" type="button">Gửi</button>
-								      </span>
-								    </div>
-								<!--end-->
+									<p>______________________________________________________________________________</p>
+									<h3>BÌNH LUẬN VÀ ĐÁNH GIÁ</h3>
+										<br>
+										
+										<sql:query dataSource="${dataSource}" var="ketqua">
+												select *
+												from taikhoan,comment,ds_noidung_bientap
+												where taikhoan.Username=comment.username_nguoi_comment
+												and comment.ID_baiviet=ds_noidung_bientap.ID_noidung_bientap
+												and ds_noidung_bientap.ID_noidung_bientap='${param.id}'
+										</sql:query>
+										<c:forEach var="rows" items="${ketqua.rows}">
+											<h5><strong>${rows.last_name} ${rows.first_name}</strong></h5>
+											${rows.danhgia} <span class="glyphicon glyphicon-star selected" aria-hidden="true"></span>
+											<div class="row">
+												<div class="col-sm-10">
+													<div class="well well-lg">
+														${rows.noidung_comment }
+													</div>
+												</div>
+												<div class="col-sm-2"></div>
+											</div>
+											
+										</c:forEach>
+									<p>______________________________________________________________________________</p>
+									<button class="btn btn-default textcolor" style="background: #0c6b63;" data-toggle="modal" data-target="#myModal">
+											  Đăng Nhập
+											</button>
+									<p>Để lại bình luận về bài viết !!!</p>
 								</div>
 							</div>
 						</div>
