@@ -103,8 +103,8 @@ public class GuibaiBienTap extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // constructs SQL statement
-            String sql = "INSERT INTO ds_noidung_bientap(tieude_bientap, noidung_bientap, file_bientap, tenfile_bientap, File_PDF, tenfile_PDF, dstukhoa_bientap, anh_bientap, ngaybientap, ID_baiviet_bientap) "
-            		+ "values (?, ?, ?, ?, ?, ?, ?, ?, CURDATE(), ?)";
+            String sql = "INSERT INTO ds_noidung_bientap(tieude_bientap, noidung_bientap, file_bientap, tenfile_bientap, File_PDF, tenfile_PDF, dstukhoa_bientap, anh_bientap, ngaybientap, ID_baiviet_bientap, trangthai_duocdang) "
+            		+ "values (?, ?, ?, ?, ?, ?, ?, ?, CURDATE(), ?, '0')";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, tieude);
             statement.setString(2, noidung);

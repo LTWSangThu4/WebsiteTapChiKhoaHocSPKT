@@ -497,29 +497,64 @@
 								<li class="list-group-item" data-id="journal1672"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học tự nhiên và công nghệ</strong></a>
 								  		<ul id="journal1672" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khcn">Bài viết</a></li>
 										</ul>
 								<li class="list-group-item" data-id="journal1673"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học xã hội và nhân văn</strong></a>
 								  		<ul id="journal1673" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khxh">Bài viết</a></li>
 										</ul>
 								 <li class="list-group-item" data-id="journal1674"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học giáo dục</strong></a>
 								  		<ul id="journal1674" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khgd">Bài viết</a></li>
 										</ul>
 								 <li class="list-group-item" data-id="journal1675"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học môi trường</strong></a>
 								  		<ul id="journal1675" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khmt">Bài viết</a></li>
 										</ul>
 								</ul>		
 							</div>
+							
+							<!--Ajax-->	
+						 <script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#khcn').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk1');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khxh').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk2');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khgd').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk3');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khmt').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk4');
+							 });
+							 });
+						</script>
+							
+							
+							
+							
 						<script type="text/javascript">
 						<!--
 							var elm = null;
@@ -537,8 +572,8 @@
 					<!--end cột trái-->
 				<div id="ndtk">
 					<!--cột giữa-->
-						<div class="col-md-7 line">
-			
+						<div class="col-md-7 line">	
+						<div id="tknc">
 				<!-- panel tiêu điểm -->
 							<div class="panel">
 								<div class="panel-heading">
@@ -575,26 +610,21 @@
 									<c:set var="start" value="${pageNumber*rowsPerPage-rowsPerPage}"/>
 									<c:set var="stop" value="${pageNumber*rowsPerPage-1}"/>
 									
-									 		<div class="row">
+									 	<div class="row">
 									        <c:forEach items="${categories.rows}" var="row" begin="${start}" end="${stop}">
-									                
-														<div class="col-md-4">
-															<div class="col-sm-12 col-md-12">
-													    	<div class="thumbnail">
-													      		<a href="xemnoidung.jsp"><img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" 
-													      		 style="border-width:3px;height:140px;width:100px;"></a>
-													      		 <Center>
-													     			<ul class="caption">
-													        			<a href="xemnoidung.jsp"><c:out value="${row.tieude_bientap}"/></a>
-																	     <p><c:out value="${row.noidung_bientap}"/></p>												        
-													      			</ul>
-													      		</Center>
-														    	</div>
-														  	</div>
+									                <div class="col-md-4">
+														<div class="col-sm-11 col-md-11">
+													    	<div class="thumbnail"  >
+													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:130px;width:200px;"></a>								      														      		
+													     		  <div class="caption">
+													        		<h4><a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a></h4>													    										        
+													      		  </div>
+													      		
+														    </div>
 														</div>
-													
+													</div>																							
 									        </c:forEach>
-									 	</div>
+									 	 </div>
 									 <center>
 									    <%--For displaying Previous link --%>
 									    <c:if test="${pageNumber gt 1}">
@@ -617,7 +647,7 @@
 									    </center>								
 									</div>
 
-								</div>
+								</div>							
 						<!--end panel tiêu điểm-->
 						
 						<!-- panel bào viết mới -->
@@ -637,12 +667,12 @@
 											 <c:forEach items="${categorie.rows}" var="rows" begin="${begin1}" end="${stop1}">	
 										        	
 										                <div class="media">
-														  <a class="pull-left" href="xemnoidung.jsp">
+														  <a class="pull-left" href="xulyxembai.jsp?id=${rows.ID_noidung_bientap }">
 														    <img class="media-object" src="images/2.jpg" alt="...">
 														  </a>
 														  <div class="media-body">
-														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude_bientap}"/></a></h4>
-														    <c:out value="${rows.noidung_bientap}"/>
+														    <h5 class="media-heading"><a href="xulyxembai.jsp?id=${rows.ID_noidung_bientap }"><c:out value="${rows.tieude_bientap}"/></a></h5>
+														    
 														  </div>
 														</div>
 																		
@@ -652,12 +682,12 @@
 											 <c:forEach items="${categorie.rows}" var="rows">	
 										        	
 										                <div class="media">
-														  <a class="pull-left" href="xemnoidung.jsp">
+														  <a class="pull-left" href="xulyxembai.jsp?id=${rows.ID_noidung_bientap }">
 														    <img class="media-object" src="images/2.jpg" alt="...">
 														  </a>
 														  <div class="media-body">
-														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude_bientap}"/></a></h4>
-														    <c:out value="${rows.noidung_bientap}"/>
+														    <h5 class="media-heading"><a href="xulyxembai.jsp?id=${rows.ID_noidung_bientap }"><c:out value="${rows.tieude_bientap}"/></a></h5>
+														    
 														  </div>
 														</div>
 																		
@@ -667,7 +697,8 @@
 																	 
 									</div>
 								</div>
-						<!--end panel-->
+							<!--end panel-->
+							</div>
 						</div>
 				<!--end cột giữa-->
 

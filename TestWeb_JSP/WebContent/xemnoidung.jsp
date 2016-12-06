@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -456,42 +458,53 @@
 									<h3 class="panel-title"><strong>TẠP CHÍ</strong></h3>
 								</div>
 								<div class="panel-body">
-									<div class="text-center">
-										<strong>NGHIÊN CỨU LÍ LUẬN</strong>
-									</div>
-									<div class="text-justify">
-
-										1. Mạc Văn Trang. Bạo lực học đường nhìn từ khía cạnh tâm lí 
-										     Tóm tắt: Bài viết phân tích các vấn đề về bạo lực học đường dưới góc nhìn từ khía cạnh tâm lí học. Theo tác giả, hành vi bạo lực học đường nói chung là hành vi của một cá nhân hay nhóm học sinh cố ý dùng sức mạnh để tác động đến cá nhân hay nhóm học sinh khác, gây cho họ những tổn thương về thể xác, tâm lí… Vì vậy, các nhà giáo dục cần nhận diện các loại hành vi bạo lực học đường với tính chất và mức độ tâm lí nghiêm trọng khác nhau để có giải pháp xử lí phù hợp.
-										     Từ khóa: Bạo lực học đường; tâm lí; hành vi bạo lực.
-										2. Thái Văn Thành. Mô hình nhân cách Trưởng bộ môn trường đại học trước bối cảnh đổi mới căn bản, toàn diện giáo dục và đào tạo
-										     Tóm tắt: Bộ môn là đơn vị chuyên môn về đào tạo, khoa học và công nghệ của trường đại học, chịu trách nhiệm về học thuật trong các hoạt động đào tạo, khoa học và công nghệ. Trưởng bộ môn có vai trò to lớn trong việc xây dựng, phát triển bộ môn đáp ứng yêu cầu nâng cao chất lượng đào tạo, nghiên cứu khoa học, góp phần thực hiện thành công sự nghiệp đổi mới giáo dục đại học. Bài viết bàn về mô hình nhân cách Trưởng bộ môn trường đại học. Trong bài, tác giả phân tích rõ mô hình nhân cách Trưởng bộ môn trường đại học gồm các đặc trưng: Nhà giáo, nhà khoa học, nhà quản lí, lãnh đạo, nhà hoạt động xã hội và cung ứng dịch vụ giáo dục, khoa học, công nghệ cho cộng đồng và là nhà hội nhập quốc tế về giáo dục đại học.
-										     Từ khóa: Mô hình nhân cách; trưởng bộ môn; bộ môn; trường đại học. 
-										3. Hoàng Hòa Bình. Năng lực và ứng dụng kết quả nghiên cứu năng lực vào xây dựng chương trình môn học, đổi mới mô hình sách giáo khoa, phương pháp dạy học và đánh giá kết quả học tập của học sinh
-										     Tóm tắt: Năng lực là thuộc tính cá nhân được hình thành, phát triển nhờ tố chất sẵn có và quá trình học tập, rèn luyện cho phép con người thực hiện thành công một loại hoạt động nhất định, đạt kết quả mong muốn trong những điều kiện cụ thể. Hai đặc trưng cơ bản của năng lực là: 1/ Được bộc lộ qua hoạt động; 2/ Đảm bảo hoạt động có hiệu quả, đạt kết quả mong muốn. Bài viết trình bày một số vấn đề lí luận về năng lực và ứng dụng kết quả nghiên cứu năng lực vào xây dựng chương trình môn học, biên soạn sách giáo khoa, đổi mới phương pháp dạy học, đánh giá kết quả học tập của học sinh. 
-										     Từ khóa: Năng lực;chương trình môn học; sách giáo khoa; phương pháp dạy học; đánh giá kết quả học tập.
-										
-									</div><br>
-
-									<span class="glyphicon glyphicon-file" aria-hidden="true"></span><a href=""> filedinhkem.docx</a>
-									<br><br>
-									<form class="form-horizontal" role="form">
-									  <div class="form-group">
-									    <label class="col-sm-2 control-label">Đánh GIá:</label>
-									    <div class="col-sm-10">
-									      <p class="form-control-static glyphicon glyphicon-star "></p>
-									      <p class="form-control-static glyphicon glyphicon-star "></p>
-									      <p class="form-control-static glyphicon glyphicon-star "></p>
-									      <p class="form-control-static glyphicon glyphicon-star "></p>
-									      <p class="form-control-static glyphicon glyphicon-star-empty "></p>
-
-									    </div>
-									  </div>
-									 
-									</form>
+								<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+                  				 url="jdbc:mysql://localhost:3306/tapchikhoahoc" user="root" password="123456" />
+ 
+								<sql:query dataSource="${dataSource}" var="rs" >
+								        SELECT * FROM ds_noidung_bientap
+								        Where ID_noidung_bientap='${param.id}'
+								</sql:query>
+									
+										 <c:forEach items="${rs.rows}" var="row">	
+										 					                
+									           <div class="row">									           	
+												  <div class="col-sm-6 col-md-4 col-md-offset-2">
+												 
+												    <div class="thumbnail">
+												      <img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" alt="...">
+												      <div class="caption">
+												        <h2><font color="orange"><c:out value="${row.tieude_bientap}"/></font></h2>
+												        <p><c:out value="${row.noidung_bientap}"/></p>
+												        <p><a href="Read_TBT?id=${param.id } " target="_blank" class="btn btn-info" role="button">Xem</a> 
+												        <a href="DownloadFile_BTV?id=${param.id }" class="btn btn-default" role="button">Download</a></p>
+												      </div>
+												    </div>
+												  </div>
+												 <p><font color="green"><Strong>Ngày đăng:</Strong></font> <c:out value="${row.NgayDang }"/></p>									
+												 <p> <font color="green"><Strong>Lĩnh vực:</Strong></font> <c:out value="${row.danhmuc }"/></p>
+												  
+												</div>																									
+									        </c:forEach>
+									
+										<form class="form-horizontal col-md-offset-1" role="form">
+										  <div class="form-group">
+										    <label class="col-sm-3 control-label">Đánh GIá:</label>
+										    <div class="col-sm-9">
+										      <p class="form-control-static glyphicon glyphicon-star "></p>
+										      <p class="form-control-static glyphicon glyphicon-star "></p>
+										      <p class="form-control-static glyphicon glyphicon-star "></p>
+										      <p class="form-control-static glyphicon glyphicon-star "></p>
+										      <p class="form-control-static glyphicon glyphicon-star-empty "></p>
+	
+										    </div>
+										  </div>
+										 
+										</form>
+									
 								<!--Comment-->
-									<div class="input-group">
-								      <input type="text" class="form-control" placeholder="Hãy viết gì đó...">
+									<div class="input-group col-sm-6 col-md-offset-1">
+								      <input type="text" class="form-control" placeholder="Comment...">
 								      <span class="input-group-btn">
 								        <button class="btn btn-default" type="button">Gửi</button>
 								      </span>

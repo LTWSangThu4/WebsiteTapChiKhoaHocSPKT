@@ -287,9 +287,10 @@
 												<tbody>
 												<sql:query var="dsdabientap" dataSource="${con}">
 													select *
-													from ds_baiviet_bientap,ds_noidung_bientap
+													from ds_baiviet_bientap,ds_noidung_bientap, trangthai_tg
 													where ds_baiviet_bientap.ID_baiviet_bientap=ds_noidung_bientap.ID_baiviet_bientap
 													and ds_baiviet_bientap.username_taikhoan='${sessionScope['loginUser']}'
+													and ds_noidung_bientap.trangthai_duocdang=trangthai_tg.ma_trangthai
 													and ds_baiviet_bientap.trangthai_bientap='Da Bien Tap'
 												</sql:query>
 												
@@ -305,7 +306,7 @@
 															</form>
 															<td>${row.dstukhoa_bientap}</td>
 															<td>${row.ngaybientap}</td>
-															<td>${row.trangthai_bientap}</td>
+															<td>${row.Ten_TrangThai}</td>
 														</tr>
 													</c:forEach>
 												

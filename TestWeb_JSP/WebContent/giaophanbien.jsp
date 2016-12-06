@@ -34,7 +34,7 @@
 				
 	 		<!-- cập nhật trạng thái xử lý cho tác giải -->
 		        <sql:update dataSource="${dbsource}" var="result1">
-			         UPDATE ds_baiviet_dagui SET trangthai='1'
+			        UPDATE ds_baiviet_dagui SET trangthai='1'
 			        WHERE ID_baiviet_dagui=?		        					
 					<sql:param value="${param.idbaiviet}" />
 				</sql:update>
@@ -46,6 +46,13 @@
 		        	username_taikhoan=?
 		        	WHERE ID_baiviet_dagui=?		        	
 					<sql:param value="${param.idnguoiphanbien}" />				
+					<sql:param value="${param.idbaiviet}" />
+				</sql:update>
+				
+				<!-- cập nhật trạng thái xử lý cho tác giải -->
+		        <sql:update dataSource="${dbsource}" var="result1">
+			        UPDATE ds_baiviet_dagui SET trangthai='1'
+			        WHERE ID_baiviet_dagui=?		        					
 					<sql:param value="${param.idbaiviet}" />
 				</sql:update>
 				

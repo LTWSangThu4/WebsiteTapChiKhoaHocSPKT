@@ -7,6 +7,7 @@
  
 <sql:query dataSource="${dataSource}" var="categories" scope="session">
         SELECT * FROM ds_noidung_bientap
+        Where trangthai_duocdang='2'
 </sql:query>
  
 <c:import url="dispresult.jsp?pageNumber=1"/>

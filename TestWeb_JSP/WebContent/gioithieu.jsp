@@ -533,7 +533,7 @@
 					<!--end cột trái-->
 				<div id="nd2-canlay" >
 					<!--cột giữa-->
-						<div class="col-md-7 line">
+						<div class="col-md-7 line" id="nd">
 							<div class="panel" id="ndgt-canlay">
 								<div class="panel-heading">
 									<h3 class="panel-title"><strong>Giới Thiệu</strong></h3>

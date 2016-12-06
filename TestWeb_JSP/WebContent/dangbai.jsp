@@ -25,15 +25,19 @@
  		<c:forEach var="row" items="${laydb.rows}">
  		
 	        <sql:update dataSource="${dbsource}" var="result">	
-	           UPDATE ds_noidung_bientap SET trangthai_duocdang ="1", danhmuc=?,  NgayDang= CURDATE()
-               WHERE ID_noidung_bientap='${row.ID_noidung_bientap}'       
-	        
+	           UPDATE ds_noidung_bientap SET trangthai_duocdang ="2", danhmuc=?,  NgayDang= CURDATE()
+               WHERE ID_noidung_bientap='${row.ID_noidung_bientap}'             
 	         <sql:param value="${param.danhmuc}" />
+	        </sql:update>
+	        
+	        <sql:update dataSource="${dbsource}" var="result1">		          
+	           UPDATE ds_noidung_phanbien SET trangthai_duocdang ="2"
+               WHERE ID_noidung_phanbien='${row.ID_noidung_phanbien}'  	        
 	        </sql:update>
 	        
         </c:forEach>
         <c:choose>
-        	<c:when test="${result>=1}">
+        	<c:when test="${result>=1 && result1>=1 }">
         	
         		<sql:update dataSource="${dbsource}" var="result1">	
 		           UPDATE ds_baiviet_dagui SET trangthai ='2'
