@@ -493,29 +493,60 @@
 								<li class="list-group-item" data-id="journal1672"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học tự nhiên và công nghệ</strong></a>
 								  		<ul id="journal1672" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khcn">Bài viết</a></li>
 										</ul>
 								<li class="list-group-item" data-id="journal1673"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học xã hội và nhân văn</strong></a>
 								  		<ul id="journal1673" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khxh">Bài viết</a></li>
 										</ul>
 								 <li class="list-group-item" data-id="journal1674"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học giáo dục</strong></a>
 								  		<ul id="journal1674" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khgd">Bài viết</a></li>
 										</ul>
 								 <li class="list-group-item" data-id="journal1675"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học môi trường</strong></a>
 								  		<ul id="journal1675" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khmt">Bài viết</a></li>
 										</ul>
 								</ul>		
 							</div>
+							
+							<!--Ajax-->	
+						 <script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#khcn').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk1');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khxh').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk2');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khgd').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk3');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khmt').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk4');
+							 });
+							 });
+						</script>
 						<script type="text/javascript">
 						<!--
 							var elm = null;
@@ -534,12 +565,13 @@
 				<div id="nd2-canlay" >
 					<!--cột giữa-->
 						<div class="col-md-7 line" id="nd">
+						<div id="tknc">
 							<div class="panel" id="ndgt-canlay">
 								<div class="panel-heading">
 									<h3 class="panel-title"><strong>Giới Thiệu</strong></h3>
 								</div>
 								<div class="panel-body">
-									<div class="jumbotron">
+									
 										<strong>Trường ĐH Sư Phạm Kỹ Thuật Tp.HCM</strong>
 										<br>Địa chỉ: 1 Võ Văn Ngân, Phường Linh Chiểu, Quận Thủ Đức, Thành phố Hồ Chí Minh.
 										<br>Điện thoại: (+84 - 8) 38968641 - (+84 - 8) 38961333
@@ -547,14 +579,17 @@
 										<br>
 										<br>
 										<strong> Vài Nét Lịch Sử</strong>
-										<h5 class="text-justify">Trường đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh được hình thành và phát triển trên cơ sở Ban Cao đẳng Sư phạm Kỹ thuật - thành lập ngày 05.10.1962. Ngày 21.9.1972, Trường được đổi tên thành Trung tâm Cao đẳng Sư phạm Kỹ thuật Nguyễn Trường Tộ Thủ Đức và được nâng cấp thành Trường đại học Giáo dục Thủ Đức vào năm 1974.
+										<div class="text-justify">
+										Trường đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh được hình thành và phát triển trên cơ sở Ban Cao đẳng Sư phạm Kỹ thuật - thành lập ngày 05.10.1962. Ngày 21.9.1972, Trường được đổi tên thành Trung tâm Cao đẳng Sư phạm Kỹ thuật Nguyễn Trường Tộ Thủ Đức và được nâng cấp thành Trường đại học Giáo dục Thủ Đức vào năm 1974.
 
 										Ngày 27.10.1976, Thủ tướng Chính phủ đã ký quyết định thành lập Trường đại học Sư phạm Kỹ thuật Thủ Đức trên cơ sở Trường đại học Giáo dục Thủ Đức. Năm 1984, Trường đại học Sư phạm Kỹ thuật Thủ Đức hợp nhất với Trường trung học Công nghiệp Thủ Đức và đổi tên thành Trường đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh. Năm 1991, Trường đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh sát nhập thêm Trường Sư phạm Kỹ thuật 5 và phát triển cho đến ngày nay.
 
-										Nằm ở cửa ngõ phía bắc Tp. Hồ Chí Minh, cách trung tâm thành phố khoảng 10 km, tọa lạc tại số 1 Võ Văn Ngân, quận Thủ Đức, Trường đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh tập hợp được các ưu điểm của một cơ sở học tập rộng rãi, khang trang, an toàn, nằm ở ngoại ô nhưng giao thông bằng xe bus vào các khu vực của thành phố, đến sân bay và các vùng lân cận rất thuận tiện.</h5>
+										Nằm ở cửa ngõ phía bắc Tp. Hồ Chí Minh, cách trung tâm thành phố khoảng 10 km, tọa lạc tại số 1 Võ Văn Ngân, quận Thủ Đức, Trường đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh tập hợp được các ưu điểm của một cơ sở học tập rộng rãi, khang trang, an toàn, nằm ở ngoại ô nhưng giao thông bằng xe bus vào các khu vực của thành phố, đến sân bay và các vùng lân cận rất thuận tiện.
+										</div>
 										<br>
-									</div>
+								
 								</div>
+							</div>
 							</div>
 						</div>
 					<!--end cột giữa-->
