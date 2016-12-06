@@ -285,25 +285,6 @@
 									
 									 		<div class="row">
 									        <c:forEach items="${categories.rows}" var="row" begin="${start}" end="${stop}">
-<<<<<<< HEAD
-<<<<<<< HEAD
-									                
-														<div class="col-md-4">
-															<div class="col-sm-12 col-md-12">
-													    	<div class="thumbnail">
-													      		<a href="rating5star.jsp"><img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" 
-													      		 style="border-width:3px;height:140px;width:100px;"></a>
-													      		 <Center>
-													     			<ul class="caption">
-													        			<a href="xemnoidung.jsp"><c:out value="${row.tieude_bientap}"/></a>
-																	     <p><c:out value="${row.noidung_bientap}"/></p>												        
-													      			</ul>
-													      		</Center>
-														    	</div>
-														  	</div>
-=======
-=======
->>>>>>> origin/master
 									                <div class="col-md-4">
 														<div class="col-sm-11 col-md-11">
 													    	<div class="thumbnail"  >
@@ -313,10 +294,6 @@
 													      		  </div>
 													      		
 														    </div>
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 														</div>
 													</div>																							
 										        </c:forEach>

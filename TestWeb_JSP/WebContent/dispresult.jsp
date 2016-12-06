@@ -615,9 +615,11 @@
 									                <div class="col-md-4">
 														<div class="col-sm-11 col-md-11">
 													    	<div class="thumbnail"  >
+													    	<p>Số:<c:out value="${row.NgayDang }"></c:out></p>	
 													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:130px;width:200px;"></a>								      														      		
 													     		  <div class="caption">
-													        		<h4><a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a></h4>													    										        
+													        		<h4><a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a></h4>	
+													        													    										        
 													      		  </div>
 													      		
 														    </div>
