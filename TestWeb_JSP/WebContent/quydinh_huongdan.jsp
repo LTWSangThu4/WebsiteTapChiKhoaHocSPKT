@@ -572,33 +572,43 @@
 									<h3 class="panel-title"><strong>Quy Định</strong></h3>
 								</div>
 								<div class="panel-body ">
-									<div class="jumbotron">
-										<ol>
-										<li>không spam</li>
-										<li>không gửi bài xấu</li>
-										<li>Gửi bài đúng đề tài </li>
-										</ol>
-										<span class="help-block">Áp dụng từ nay tới hết năm</span>
+								<div class="text-justify">
+									<p><strong>QUY ĐỊNH - HƯỚNG DẪN</strong></p>
+										<p><font color="green">-----------------------------------------------------------------------------------------------------------------------------</font></p>
+									<p><strong>THỂ LỆ VIẾT VÀ GỬI BÀI</strong><p>
 									
-									</div>
+									<p><strong>Tạp chí Khoa học trường Đại học Sư phạm Kỹ thuật TP.HCM</strong> nhận đăng các công trình khoa học mới có giá trị về mặt khoa học và thực tiễn trong nghiên cứu khoa học, chuyển giao công nghệ và lao động sản xuất, chưa công bố trong các ấn phẩm khác (kỷ yếu hội nghị hoặc tạp chí có phản biện và có chỉ số xuất bản ISSN, ISBN). Bài viết có thể trình bày bằng Tiếng Việt hoặc Tiếng Anh, khuyến khích viết bằng Tiếng Anh.
+									
+									Tạp chí xuất bản 02 tháng/kỳ và được phát hành rộng rãi trên toàn quốc, trong đó 02-3 số xuất bản Tiếng Anh.</p>
+									
+									<p><strong>YÊU CẦU CHUNG</strong></p>
+									
+									<p>Bài viết được hành văn rõ ràng, súc tích, cách dùng thuật ngữ khoa học và đơn vị đo lường hợp pháp do nhà nước ban hành hoặc đã dùng thống nhất trong chuyên môn hẹp. Bài viết được phân rõ phần mục, tiểu mục. Các công thức viết rõ theo ký hiệu thông dụng.
+									Mỗi bài viết dài không quá 8 trang trên khổ giấy A4 (210x297mm) gồm cả hình vẽ, bảng biểu, đồ thì và tài liệu tham khảo. Phông chữ: Times New Roman (Unicode), cỡ chữ: 12pt.
+									Bài báo chia làm 02 cột, mỗi cột rộng 7.75cm, độ rộng giữa hai cột 0.5cm theo định dạng bài báo mẫu trên website: http://tapchikhgdkt.hcmute.edu.vn/.
+									Căn lề: trên: 1.5cm; dưới: 1.5cm; trái: 2.5cm; phải: 2cm.
+									Tên bài báo, tóm tắt bài báo được trình bày bằng 2 ngôn ngữ tiếng Việt và tiếng Anh, nêu được nội dung chính, đóng góp mới của công trình. Phần tóm tắt (tiếng Anh – tiếng Việt) được viết ở đầu bài báo, ngay dưới tên tác giả, có độ dài khoảng 150-250 từ; liệt kê đủ từ 5 từ khóa, cách nhau bởi dấu (;)
+									Tài liệu tham khảo được đặt ở cuối bài và chỉ ghi những tài liệu được trích dẫn trong bài báo và được xếp theo trình tự trích dẫn trong bài và cần ghi theo thứ tự:<br>
+									<ul>
+									<li style="text-align: left;">Nếu là tạp chí: Số thứ tự, tên tác giả, tên tạp chí, tập số, trang, (năm).</li>									
+									<li style="text-align: left;">Nếu là sách: Số thứ tự , tên tác giả, tên sách, trang, nhà xuất bản, lần và năm xuất bản.</li>
+									<li style="text-align: left;">Nếu là luận án, luận văn: Tên tác giả; tên luận án, luận văn; cơ quan chủ quan và năm bảo vệ</li>
+									<li style="text-align: left;">Nếu là kỷ yếu hội nghị, hội thảo: Tên tác giả; Tên bài báo; Đơn vị tổ chức; địa điểm; năm; trang.</li>
+									<li style="text-align: left;">Các chữ nước ngoài khác hệ chữ La tinh thì phiên âm theo quy tắc thông dụng sang chữ La tinh.</li>
+									</ul>
+									
+									Mỗi bài gửi đến tòa soạn gồm 01 bản in và 01 bản mềm (gửi kèm theo đĩa hoặc qua email). Tòa soạn chỉ nhận những bài được trình bày rõ ràng, hình vẽ đủ lớn và rõ.
+									Các công trình thuộc đề tài nghiên cứu có Cơ quan quản lý cần kèm theo giấy xác nhận cho phép công bố của cơ quan.<br>
+									Để tiện liên hệ người viết cần ghi rõ: Họ tên, học hàm, học vị, chuyên ngành, điện thoại, fax, email, địa chỉ và chữ ký của tác giả vào cuối bài.
+									Thời hạn gửi bài, chậm nhất 06 tuần trước mỗi kỳ xuất bản.</p>
+									
+									<strong>BAN BIÊN TẬP</strong>
+								</div>
+								<a href="Download">>>Định dạng bài mẫu</a>
 								</div>
 							</div><!--end quy dinh-->
-						<!--huong dan-->
-							<div class="panel" id="ndqd-canlay">
-								<div class="panel-heading">
-								<h3 class="panel-title"><strong>Hướng Dẫn</strong></h3>
-								</div>
-								<div class="panel-body">
-									<div class="jumbotron" >
-										<h5 class="text-justify">
-										đi thắng tới cây xăng rẽ trái <br>
-										đi lui tới cây câu rẽ lên <br>
-										----> tới trường rồi ^^ <br>
-										</h5>
-									</div>
-								</div>
-							</div>
-							</div>	
+					
+						</div>	
 						</div>
 					<!--end cột giữa-->
 
