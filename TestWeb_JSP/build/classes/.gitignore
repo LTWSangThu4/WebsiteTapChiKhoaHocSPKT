@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /DownloadFile_BTV/
 /DownloadFile_PB/
 /DownloadFile_TBT/
@@ -17,6 +18,14 @@
 /Read_TBT/
 /ShowImage/
 /Comment/
+=======
+/ReadExcel/
+/OutPutExcel/
+/UpImage/
+/GuibaiBienTap/
+/GuibaiPhanBien/
+/Download/
+>>>>>>> origin/master
 =======
 /ReadExcel/
 /OutPutExcel/

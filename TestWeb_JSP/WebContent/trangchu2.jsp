@@ -286,6 +286,7 @@
 									 		<div class="row">
 									        <c:forEach items="${categories.rows}" var="row" begin="${start}" end="${stop}">
 <<<<<<< HEAD
+<<<<<<< HEAD
 									                
 														<div class="col-md-4">
 															<div class="col-sm-12 col-md-12">
@@ -301,6 +302,8 @@
 														    	</div>
 														  	</div>
 =======
+=======
+>>>>>>> origin/master
 									                <div class="col-md-4">
 														<div class="col-sm-11 col-md-11">
 													    	<div class="thumbnail"  >
@@ -310,6 +313,9 @@
 													      		  </div>
 													      		
 														    </div>
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 														</div>
 													</div>																							
