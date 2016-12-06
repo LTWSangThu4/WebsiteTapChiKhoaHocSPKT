@@ -574,7 +574,7 @@
 								<div class="panel-body ">
 								<div class="text-justify">
 									<p><strong>QUY ĐỊNH - HƯỚNG DẪN</strong></p>
-										<p><font color="green">-----------------------------------------------------------------------------------------------------------------------------</font></p>
+										<p><font color="silver">____________________________________________________________________________</font></p>
 									<p><strong>THỂ LỆ VIẾT VÀ GỬI BÀI</strong><p>
 									
 									<p><strong>Tạp chí Khoa học trường Đại học Sư phạm Kỹ thuật TP.HCM</strong> nhận đăng các công trình khoa học mới có giá trị về mặt khoa học và thực tiễn trong nghiên cứu khoa học, chuyển giao công nghệ và lao động sản xuất, chưa công bố trong các ấn phẩm khác (kỷ yếu hội nghị hoặc tạp chí có phản biện và có chỉ số xuất bản ISSN, ISBN). Bài viết có thể trình bày bằng Tiếng Việt hoặc Tiếng Anh, khuyến khích viết bằng Tiếng Anh.

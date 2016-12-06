@@ -574,7 +574,7 @@
 																	
 									<div class="text-justify">
 										<p><strong>GIỚI THIỆU</strong></p>
-										<p><font color="green">-----------------------------------------------------------------------------------------------------------------------------</font></p>
+										<p><font color="silver">____________________________________________________________________________</font></p>
 										<p><strong><font color="blue">Giới thiệu về tạp chí</font></strong></p>
 											<p>Tạp chí Khoa học  – một tạp chí chuyên ngành về giáo dục kỹ thuật, niềm mơ ước của những người làm công tác giảng dạy, nghiên cứu trong lĩnh vực này, Tạp chí Khoa học Giáo dục Kỹ thuật thuộc Bộ Giáo dục và Đào tạo đã ra ấn bản số đầu tiên – 01/2006 vào tháng 8 năm 2006 (theo giấy phép xuất bản số 158/GP-BVHTT ngày 01 tháng 12 năm 2005 và được cấp lại giấy phép 475/GP-BTTTT ngày 4 tháng 12 năm 2013) với kỳ hạn 03 tháng một kỳ.</p>
 											

@@ -253,8 +253,62 @@
 									<h3 class="panel-title"><strong>Tiêu Điểm</strong></h3>
 								</div>
 								<div class="panel-body">
+									<div class="row">
+										<div  class="col-md-12	">
+											<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+											  <!-- Indicators -->
+											  <ol class="carousel-indicators">
+											    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+											    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+											    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+											    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+											  </ol>
+											
+											  <!-- Wrapper for slides -->
+											  <div class="carousel-inner">
+											    <div class="item ">
+											      <img src="images/ba1.jpg" alt="...">
+											      <div class="carousel-caption">
+											        ...
+											      </div>
+											    </div>
+											    <div class="item active">
+											      <img src="images/ba2.jpg" alt="...">
+											      <div class="carousel-caption">
+											        ...
+											      </div>
+											    </div>
+											    <div class="item">
+											      <img src="images/ba3.jpg" alt="...">
+											      <div class="carousel-caption">
+											        ...
+											      </div>
+											    </div>
+											    <div class="item">
+											      <img src="images/ba4.jpg" alt="...">
+											      <div class="carousel-caption">
+											        ...
+											      </div>
+											    </div>
+											  </div>
+											
+											  <!-- Controls -->
+											  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+											    <span class="glyphicon glyphicon-chevron-left"></span>
+											  </a>
+											  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+											    <span class="glyphicon glyphicon-chevron-right"></span>
+											  </a>
+											</div>
+										</div>
+									</div>
+									<br>
+									<br>
+									<br>							
+									<p><font color="silver">____________________________________________________________________________</font></p>
+									<br>
 									<c:set var="categories" value="${sessionScope.categories}" />
-									<c:set var="rowsPerPage" value="6" />
+									<c:set var="rowsPerPage" value="3" />
 									<c:set var="pageNumber" value="${param.pageNumber}"/>
 									<c:set var="a">
 									    <fmt:formatNumber value="${categories.rowCount/rowsPerPage}" maxFractionDigits="0"/>
@@ -283,21 +337,23 @@
 									<c:set var="start" value="${pageNumber*rowsPerPage-rowsPerPage}"/>
 									<c:set var="stop" value="${pageNumber*rowsPerPage-1}"/>
 									
-									 		<div class="row">
+									 	<div class="row">
 									        <c:forEach items="${categories.rows}" var="row" begin="${start}" end="${stop}">
-									                <div class="col-md-4">
-														<div class="col-sm-11 col-md-11">
-													    	<div class="thumbnail"  >
-													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:130px;width:200px;"></a>								      														      		
-													     		  <div class="caption">
-													        		<h4><a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a></h4>														    										        
-													      		  </div>
-													      		
-														    </div>
+									                <div class="col-md-4" >
+														<div class="col-sm-11 col-md-11" >
+													    	<div class="thumbnail aa" >
+													    	<em><font color="silver">Số:<c:out value="${row.NgayDang }"></c:out></font></em>
+													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }" class="thumbnail">
+													      		<img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:160px;width:155px;">
+													      		</a>
+													      	</div>								      														      		
+													     		  <Center>
+													        		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a>										        												    										        
+													      		  </Center>									      		
 														</div>
 													</div>																							
-										        </c:forEach>
-										 	 </div>
+									        </c:forEach>
+									 	 </div>
 									 <center>
 									    <%--For displaying Previous link --%>
 									    <c:if test="${pageNumber gt 1}">
@@ -320,7 +376,7 @@
 									    </center>								
 									</div>
 
-								</div>
+								</div>	
 						<!--end panel tiêu điểm-->
 						
 						<!-- panel bào viết mới -->
@@ -334,7 +390,7 @@
 										<c:set var="numberOfrow" value="${categorie.rowCount-1}" />
 														
 										<c:set var="stop1" value="${numberOfrow}"/>
-										<c:set var="begin1" value="${rowsPerPage1-2}"/>
+										<c:set var="begin1" value="${stop1-2}"/>
 										<c:choose>
 											<c:when test="${stop1 gt 4 }">							
 											 <c:forEach items="${categorie.rows}" var="rows" begin="${begin1}" end="${stop1}">	

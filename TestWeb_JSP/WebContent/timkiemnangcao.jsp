@@ -37,15 +37,17 @@
 								</sql:query>
 										<div class="row">
 									        <c:forEach items="${rs.rows}" var="row">
-									                <div class="col-md-4">
-														<div class="col-sm-11 col-md-11">
-													    	<div class="thumbnail"  >
-													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:130px;width:200px;"></a>								      														      		
-													     		  <div class="caption">
-													        		<h4><a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a></h4>													    										        
-													      		  </div>
-													      		
-														    </div>
+									                <div class="col-md-4" >
+														<div class="col-sm-11 col-md-11" >
+													    	<div class="thumbnail aa" >
+													    	<em><font color="silver">Số:<c:out value="${row.NgayDang }"></c:out></font></em>
+													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }" class="thumbnail">
+													      		<img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:160px;width:155px;">
+													      		</a>
+													      	</div>								      														      		
+													     		  <Center>
+													        		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a>										        												    										        
+													      		  </Center>									      		
 														</div>
 													</div>																							
 									        </c:forEach>
@@ -76,15 +78,17 @@
 								</sql:query>
 										<div class="row">
 									        <c:forEach items="${rs.rows}" var="row">
-									                <div class="col-md-4">
-														<div class="col-sm-11 col-md-11">
-													    	<div class="thumbnail"  >
-													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:130px;width:200px;"></a>								      														      		
-													     		  <div class="caption">
-													        		<h4><a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a></h4>													    										        
-													      		  </div>
-													      		
-														    </div>
+									                <div class="col-md-4" >
+														<div class="col-sm-11 col-md-11" >
+													    	<div class="thumbnail aa" >
+													    	<em><font color="silver">Số:<c:out value="${row.NgayDang }"></c:out></font></em>
+													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }" class="thumbnail">
+													      		<img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:160px;width:155px;">
+													      		</a>
+													      	</div>								      														      		
+													     		  <Center>
+													        		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a>										        												    										        
+													      		  </Center>									      		
 														</div>
 													</div>																							
 									        </c:forEach>
@@ -115,17 +119,19 @@
 								</sql:query>
 										<div class="row">
 									        <c:forEach items="${rs.rows}" var="row">
-									                <div class="col-md-4">
-														<div class="col-sm-11 col-md-11">
-													    	<div class="thumbnail"  >
-													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:130px;width:200px;"></a>								      														      		
-													     		  <div class="caption">
-													        		<h4><a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a></h4>													    										        
-													      		  </div>
-													      		
-														    </div>
+									                <div class="col-md-4" >
+														<div class="col-sm-11 col-md-11" >
+													    	<div class="thumbnail aa" >
+													    	<em><font color="silver">Số:<c:out value="${row.NgayDang }"></c:out></font></em>
+													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }" class="thumbnail">
+													      		<img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:160px;width:155px;">
+													      		</a>
+													      	</div>								      														      		
+													     		  <Center>
+													        		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a>										        												    										        
+													      		  </Center>									      		
 														</div>
-													</div>																							
+													</div>																						
 									        </c:forEach>
 									 	 </div>														
 								<!--end-->
@@ -154,17 +160,19 @@
 								</sql:query>
 										<div class="row">
 									        <c:forEach items="${rs.rows}" var="row">
-									                <div class="col-md-4">
-														<div class="col-sm-11 col-md-11">
-													    	<div class="thumbnail"  >
-													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:130px;width:200px;"></a>								      														      		
-													     		  <div class="caption">
-													        		<h4><a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a></h4>													    										        
-													      		  </div>
-													      		
-														    </div>
+									                <div class="col-md-4" >
+														<div class="col-sm-11 col-md-11" >
+													    	<div class="thumbnail aa" >
+													    	<em><font color="silver">Số:<c:out value="${row.NgayDang }"></c:out></font></em>
+													      		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }" class="thumbnail">
+													      		<img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:160px;width:155px;">
+													      		</a>
+													      	</div>								      														      		
+													     		  <Center>
+													        		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a>										        												    										        
+													      		  </Center>									      		
 														</div>
-													</div>																							
+													</div>																						
 									        </c:forEach>
 									 	 </div>														
 								<!--end-->
