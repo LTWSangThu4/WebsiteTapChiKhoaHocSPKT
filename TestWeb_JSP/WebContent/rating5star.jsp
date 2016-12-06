@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,6 +16,12 @@
 	<script src="js/bootstrap.min.js" ></script>
     <script src="js/angular.min.js"></script>
     <script src="js/jquery.validate.js"></script>
+    <style type="text/css">
+	    span {
+	    font-size:30px;
+	    color:#f5f5f5;
+	}
+    </style>
 </head>
 <body>
 <div class="container">
@@ -156,7 +163,7 @@
 			</div>
 <!--endhead-->
 <!--Main-->
-			<div id="Main">
+			<div id="Main" >
 					<div class="row">
 						<!--cột trái-->
 						<div class="col-md-2">
@@ -169,63 +176,31 @@
 								
 								<ul class="list-group"> 
 								<li class="list-group-item" data-id="journal1672"> 
-								  <a href="" class="list-group-item"><strong>Khoa học tự nhiên và công nghệ</strong></a>
+								  <a href="#" class="list-group-item"><strong>Khoa học tự nhiên và công nghệ</strong></a>
 								  		<ul id="journal1672" style="display: none;">
-											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="" style="font-weight:normal" id="khcn">Bài viết</a></li>
+											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
 										</ul>
 								<li class="list-group-item" data-id="journal1673"> 
-								  <a href="" class="list-group-item"><strong>Khoa học xã hội và nhân văn</strong></a>
+								  <a href="#" class="list-group-item"><strong>Khoa học xã hội và nhân văn</strong></a>
 								  		<ul id="journal1673" style="display: none;">
-											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="" style="font-weight:normal" id="khxh">Bài viết</a></li>
+											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
 										</ul>
 								 <li class="list-group-item" data-id="journal1674"> 
-								  <a href="" class="list-group-item"><strong>Khoa học giáo dục</strong></a>
+								  <a href="#" class="list-group-item"><strong>Khoa học giáo dục</strong></a>
 								  		<ul id="journal1674" style="display: none;">
-											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="" style="font-weight:normal" id="khgd">Bài viết</a></li>
+											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
 										</ul>
 								 <li class="list-group-item" data-id="journal1675"> 
-								  <a href="" class="list-group-item"><strong>Khoa học môi trường</strong></a>
+								  <a href="#" class="list-group-item"><strong>Khoa học môi trường</strong></a>
 								  		<ul id="journal1675" style="display: none;">
-											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="" style="font-weight:normal" id="khmt">Bài viết</a></li>
+											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
 										</ul>
 								</ul>		
 							</div>
-							
-							
-							<!--Ajax-->	
-						 <script type="text/javascript">
-							 $(document).ready(function() {
-							 $('#khcn').click(function(e) {
-							 e.preventDefault();
-							 $('#nd').load('timkiemnangcao.jsp #ndtk1');
-							 });
-							 });
-
-							 $(document).ready(function() {
-							 $('#khxh').click(function(e) {
-							 e.preventDefault();
-							 $('#nd').load('timkiemnangcao.jsp #ndtk2');
-							 });
-							 });
-
-							 $(document).ready(function() {
-							 $('#khgd').click(function(e) {
-							 e.preventDefault();
-							 $('#nd').load('timkiemnangcao.jsp #ndtk3');
-							 });
-							 });
-
-							 $(document).ready(function() {
-							 $('#khmt').click(function(e) {
-							 e.preventDefault();
-							 $('#nd').load('timkiemnangcao.jsp #ndtk4');
-							 });
-							 });
-						</script>
 						<script type="text/javascript">
 						<!--
 							var elm = null;
@@ -241,70 +216,136 @@
 
 						</div>
 					<!--end cột trái-->
-
+					
 					<!--cột giữa-->
 						<div class="col-md-7 line" id="nd">
+							<!-- panel tiêu điểm -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title"><strong>TẠP CHÍ</strong></h3>
+									<h3 class="panel-title"><strong>Tiêu Điểm</strong></h3>
 								</div>
 								<div class="panel-body">
-								<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
-                  				 url="jdbc:mysql://localhost:3306/tapchikhoahoc" user="root" password="123456" />
- 
-								<sql:query dataSource="${dataSource}" var="rs" >
-								        SELECT * FROM ds_noidung_bientap
-								        Where ID_noidung_bientap='${param.id}'
+								<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+								<sql:query dataSource="${con}" var="result">
+										select *
+										from taikhoan,comment
+										where taikhoan.Username=comment.username_nguoi_comment 
 								</sql:query>
+								<c:forEach var="rows" items="${result.rows}">
+									<div class="panel">
+										<div class="panel-heading">
+											<p align="left">${rows.last_name} ${rows.first_name}</p>
+											<p align="right">
+												${rows.danhgia} sao
+											</p>
+										</div>
+										<div class="panel-body">
+											${rows.noidung_comment }
+										</div>
+									</div>
+								</c:forEach>
 									
-										 <c:forEach items="${rs.rows}" var="row">									                
-									           <div class="row">									           	
-												  <div class="col-sm-6 col-md-4 col-md-offset-2">
-												 
-												    <div class="thumbnail">
-												      <img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" alt="...">
-												      <div class="caption">
-												        <h2><font color="orange"><c:out value="${row.tieude_bientap}"/></font></h2>
-												        <p><c:out value="${row.noidung_bientap}"/></p>
-												        <p><a href="Read_TBT?id=${param.id } " target="_blank" class="btn btn-info" role="button">Xem</a> 
-												        <a href="DownloadFile_BTV?id=${param.id }" class="btn btn-default" role="button">Download</a></p>
-												      </div>
-												    </div>
-												  </div>
-												 <p><font color="green"><Strong>Ngày đăng:</Strong></font> <c:out value="${row.NgayDang }"/></p>									
-												 <p> <font color="green"><Strong>Lĩnh vực:</Strong></font> <c:out value="${row.danhmuc }"/></p>
-												  
-												</div>																									
-									        </c:forEach>
+									<form method="post" action="Comment" class="form-horizontal">
+										<div class="form-group">
+											<label for="danhgia" class="col-sm-2">Đánh Giá</label>
+											<div class="col-sm-10">
+												<div class="rating">
+													
+													<span class="star" id="1">&#9733;</span> 
+													<span class="star" id="2">&#9733;</span> 
+													<span class="star" id="3">&#9733;</span> 
+													<span class="star" id="4">&#9733;</span> 
+													<span class="star" id="5">&#9733;</span> 
+													
+													<script type="text/javascript">
+													$('.star').click(function(){
+													    $('.star').addClass('selected');
+													    
+													    var count = $(this).attr('id'); 
+													    $('.numberstar').attr('value',count)
+													    for (var i=0; i<count-1; i++){        
+													        $('.star').eq(i).removeClass('selected');
+													    }
+													});
+													</script>
+												</div>
+											</div>
+										</div>
+										<div class="form-group" hidden="">
+											<input class="numberstar" name="danhgia" value="">
+										</div>
+										<div class="form-group">
+											<label for="noidung_comment" class="col-sm-2">Bình Luận</label>
+											<div class="col-sm-10">
+												<textarea  class="form-control" name="noidung_comment" rows="5" placeholder="Nhập nội dung bình luận"></textarea>
+											</div>
+										</div>
+										<div class="col-sm-offset-2">
+											<button type="submit" id="comment" class="btn btn-primary">Bình Luận</button>
+										</div>
 									
-										<form class="form-horizontal col-md-offset-1" role="form">
-										  <div class="form-group">
-										    <label class="col-sm-3 control-label">Đánh GIá:</label>
-										    <div class="col-sm-9">
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star-empty "></p>
-	
-										    </div>
-										  </div>
-										 
-										</form>
-									
-								<!--Comment-->
-									<div class="input-group col-sm-6 col-md-offset-1">
-								      <input type="text" class="form-control" placeholder="Comment...">
-								      <span class="input-group-btn">
-								        <button class="btn btn-default" type="button">Gửi</button>
-								      </span>
-								    </div>
-								<!--end-->
+									</form>
+									<div class="col-sm-offset-2">
+										<font color='green'><%=request.getAttribute("Message")%></font>
+							   		</div>
+																	
 								</div>
+
 							</div>
+						<!--end panel tiêu điểm-->
+						
+						<!-- panel bào viết mới -->
+								<div class="panel">
+									<div class="panel-heading">
+										<h3 class="panel-title"><strong>Bài Viết Mới</strong></h3>
+									</div>
+									<div class="panel-body">
+									
+										<c:set var="categorie" value="${sessionScope.categories}" />
+										<c:set var="numberOfrow" value="${categorie.rowCount-1}" />
+														
+										<c:set var="stop1" value="${numberOfrow}"/>
+										<c:set var="begin1" value="${rowsPerPage1-2}"/>
+										<c:choose>
+											<c:when test="${stop1 gt 4 }">							
+											 <c:forEach items="${categorie.rows}" var="rows" begin="${begin1}" end="${stop1}">	
+										        	
+										                <div class="media">
+														  <a class="pull-left" href="xemnoidung.jsp">
+														    <img class="media-object" src="images/2.jpg" alt="...">
+														  </a>
+														  <div class="media-body">
+														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude_bientap}"/></a></h4>
+														    <c:out value="${rows.noidung_bientap}"/>
+														  </div>
+														</div>
+																		
+										        </c:forEach>
+										</c:when>
+										<c:otherwise>
+											 <c:forEach items="${categorie.rows}" var="rows">	
+										        	
+										                <div class="media">
+														  <a class="pull-left" href="xemnoidung.jsp">
+														    <img class="media-object" src="images/2.jpg" alt="...">
+														  </a>
+														  <div class="media-body">
+														    <h4 class="media-heading"><a href="xemnoidung.jsp"><c:out value="${rows.tieude_bientap}"/></a></h4>
+														    <c:out value="${rows.noidung_bientap}"/>
+														  </div>
+														</div>
+																		
+										        </c:forEach>
+										</c:otherwise>
+										</c:choose>
+																	 
+									</div>
+								</div>
+							<!--end panel-->
 						</div>
 					<!--end cột giữa-->
-					
+
 					<!--Ajax-->	
 						 <script type="text/javascript">
 							 $(document).ready(function() {
