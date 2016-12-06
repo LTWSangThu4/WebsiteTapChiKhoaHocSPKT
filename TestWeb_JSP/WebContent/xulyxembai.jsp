@@ -9,13 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-			
 			<c:choose>
 				<c:when test="${not empty sessionScope['loginUser']}">
-					<c:redirect url="ketquatimkiem2.jsp?id=${param.id}"/>
+					<c:redirect url="xemnoidung2.jsp?id=${param.id }"/>
 				</c:when>
 				<c:otherwise>
-					<c:redirect url="ketquatimkiem.jsp?id=${param.id}"/>
+					<c:redirect url="xemnoidung.jsp?id=${param.id }"/>
 				</c:otherwise>
 			</c:choose>
 </body>

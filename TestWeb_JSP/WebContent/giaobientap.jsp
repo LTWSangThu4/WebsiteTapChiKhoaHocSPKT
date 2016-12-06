@@ -53,6 +53,13 @@
 					<sql:param value="${param.idbaiviet}" />
 				</sql:update>
 				
+				<!-- cập nhật trạng thái xử lý cho tác giải -->
+	        	<sql:update dataSource="${dbsource}" var="result1">
+		         	UPDATE ds_baiviet_dagui SET trangthai='1'
+		        	WHERE ID_baiviet_dagui=?		        					
+					<sql:param value="${param.idbaiviet}" />
+				</sql:update>
+				
 				 <sql:update dataSource="${dbsource}" var="count1">
 		            DELETE FROM ds_noidung_bientap
 		            WHERE ID_baiviet_bientap='${row.ID_baiviet_bientap}'

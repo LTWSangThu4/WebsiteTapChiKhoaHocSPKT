@@ -493,29 +493,60 @@
 								<li class="list-group-item" data-id="journal1672"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học tự nhiên và công nghệ</strong></a>
 								  		<ul id="journal1672" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khcn">Bài viết</a></li>
 										</ul>
 								<li class="list-group-item" data-id="journal1673"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học xã hội và nhân văn</strong></a>
 								  		<ul id="journal1673" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khxh">Bài viết</a></li>
 										</ul>
 								 <li class="list-group-item" data-id="journal1674"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học giáo dục</strong></a>
 								  		<ul id="journal1674" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khgd">Bài viết</a></li>
 										</ul>
 								 <li class="list-group-item" data-id="journal1675"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học môi trường</strong></a>
 								  		<ul id="journal1675" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khmt">Bài viết</a></li>
 										</ul>
 								</ul>		
 							</div>
+							
+							<!--Ajax-->	
+						 <script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#khcn').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk1');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khxh').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk2');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khgd').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk3');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khmt').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk4');
+							 });
+							 });
+						</script>
 						<script type="text/javascript">
 						<!--
 							var elm = null;
@@ -534,6 +565,7 @@
 				<div  id="nd2-canlay">
 					<!--cột giữa-->
 						<div class="col-md-7 line">
+						<div id="tknc">
 							<div class="panel" id="ndlh-canlay">
 								<div class="panel-heading">
 									<h3 class="panel-title"><strong>Liên Hệ</strong></h3>
@@ -543,39 +575,40 @@
 										<address>
 										  <strong>Đinh Sa</strong><br>
 										  34-Phan Chu Trinh-P.Hiệp Phú- Q9- Tp.HCM<br>
-										  <abbr title="Phone">SDT:</abbr> 0166.680.7064 <br>
-										  <abbr>Email:</strong><abbr>
-										  <a href="mailto:#">Kaioshin95@gmail.com</a>
+										  SDT: 0166.680.7064 <br>
+										  Email: Kaioshin95@gmail.com
+										  
 										</address>
 									
 										<address>
 										  <strong>SINO</strong><br>
 										  54- Hoc Mon-Q9<br>
-										  <abbr title="Phone">SDT:</abbr> 099.221.334 <br>
-										  <abbr>Email:</strong><abbr>
-										  <a href="mailto:#">Sino@gmail.com</a>
+										  SDT: 099.221.334 <br>
+										  Email: Sino@gmail.com
+										  
 										  
 										</address>
 
 										<address>
 										  <strong>Thanh Tùng</strong><br>
 										  Linh Chiểu- Q9- Tp.HCM<br>
-										  <abbr title="Phone">SDT:</abbr> 093.112.334 <br>
-										  <abbr>Email:</strong><abbr>
-										  <a href="mailto:#">Ximui@gmail.com</a>
+										  SDT: 093.112.334 <br>
+										  Email: Ximui@gmail.com
+										  
 										</address>
 
 										<address>
 										  <strong>Hoàng Huyền</strong><br>
 										  Q9- Tp.HCM<br>
-										  <abbr title="Phone">SDT:</abbr> 0163.729.413 <br>
-										  <abbr>Email:</strong><abbr>
-										  <a href="mailto:#">HuyenHoang@gmail.com</a>
+										  SDT: 0163.729.413 <br>
+										  Email: HuyenHoang@gmail.com
+										  
 										</address>
 										
 									</div><!--a-->
 									
 								</div>
+							</div>
 							</div>
 						</div>
 					<!--end cột giữa-->

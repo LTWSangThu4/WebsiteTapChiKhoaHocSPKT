@@ -247,7 +247,8 @@
 															reader.readAsDataURL(f.files[0]);
 														}
 														</script>						          		
-									          			<img id="img" src="GetImage"  class="img-rounded" style="border-width:3px;height:140px;width:100px;"/>	          						          									
+									          			<img id="img" src="GetImage"  
+									          			class="img-rounded" style="border-color:Navy;border-width:1px;border-style:Dashed;height:140px;width:120px;"/>	          						          									
 									          			<br>
 									          			<br>
 														<form method="post" action="FileUploadDBServlet" enctype="multipart/form-data">													

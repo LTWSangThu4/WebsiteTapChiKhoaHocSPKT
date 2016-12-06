@@ -272,14 +272,6 @@
 													<p class="form-control-static"><c:out value="${row.ngaygui}"/></p>
 												</div>
 											</div>
-											<div class="form-group">
-												<label class="col-sm-4 control-label">Trạng Thái: </label>
-												<div class="col-sm-8">
-													<p class="form-control-static"> <font color="red"><c:out value="${row.trangthai}"/></font></p>
-												</div>
-											</div>
-											
-											
 											
 										</c:forEach>
 									</form>

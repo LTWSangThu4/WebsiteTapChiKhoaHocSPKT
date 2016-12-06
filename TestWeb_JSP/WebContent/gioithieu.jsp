@@ -493,29 +493,60 @@
 								<li class="list-group-item" data-id="journal1672"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học tự nhiên và công nghệ</strong></a>
 								  		<ul id="journal1672" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khcn">Bài viết</a></li>
 										</ul>
 								<li class="list-group-item" data-id="journal1673"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học xã hội và nhân văn</strong></a>
 								  		<ul id="journal1673" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khxh">Bài viết</a></li>
 										</ul>
 								 <li class="list-group-item" data-id="journal1674"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học giáo dục</strong></a>
 								  		<ul id="journal1674" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khgd">Bài viết</a></li>
 										</ul>
 								 <li class="list-group-item" data-id="journal1675"> 
 								  <a href="#" class="list-group-item"><strong>Khoa học môi trường</strong></a>
 								  		<ul id="journal1675" style="display: none;">
-											<li><a href="#" style="font-weight:normal">Ban biên tập</a></li>
-											<li><a href="#" style="font-weight:normal">Bài viết</a></li>
+											<li><a href="" style="font-weight:normal">Ban biên tập</a></li>
+											<li><a href="" style="font-weight:normal" id="khmt">Bài viết</a></li>
 										</ul>
 								</ul>		
 							</div>
+							
+							<!--Ajax-->	
+						 <script type="text/javascript">
+							 $(document).ready(function() {
+							 $('#khcn').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk1');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khxh').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk2');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khgd').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk3');
+							 });
+							 });
+
+							 $(document).ready(function() {
+							 $('#khmt').click(function(e) {
+							 e.preventDefault();
+							 $('#tknc').load('timkiemnangcao.jsp #ndtk4');
+							 });
+							 });
+						</script>
 						<script type="text/javascript">
 						<!--
 							var elm = null;
@@ -533,28 +564,36 @@
 					<!--end cột trái-->
 				<div id="nd2-canlay" >
 					<!--cột giữa-->
-						<div class="col-md-7 line">
+						<div class="col-md-7 line" id="nd">
+						<div id="tknc">
 							<div class="panel" id="ndgt-canlay">
 								<div class="panel-heading">
 									<h3 class="panel-title"><strong>Giới Thiệu</strong></h3>
 								</div>
 								<div class="panel-body">
-									<div class="jumbotron">
-										<strong>Trường ĐH Sư Phạm Kỹ Thuật Tp.HCM</strong>
-										<br>Địa chỉ: 1 Võ Văn Ngân, Phường Linh Chiểu, Quận Thủ Đức, Thành phố Hồ Chí Minh.
-										<br>Điện thoại: (+84 - 8) 38968641 - (+84 - 8) 38961333
-										<br>E-mail: ic@hcmute.edu.vn
-										<br>
-										<br>
-										<strong> Vài Nét Lịch Sử</strong>
-										<h5 class="text-justify">Trường đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh được hình thành và phát triển trên cơ sở Ban Cao đẳng Sư phạm Kỹ thuật - thành lập ngày 05.10.1962. Ngày 21.9.1972, Trường được đổi tên thành Trung tâm Cao đẳng Sư phạm Kỹ thuật Nguyễn Trường Tộ Thủ Đức và được nâng cấp thành Trường đại học Giáo dục Thủ Đức vào năm 1974.
-
-										Ngày 27.10.1976, Thủ tướng Chính phủ đã ký quyết định thành lập Trường đại học Sư phạm Kỹ thuật Thủ Đức trên cơ sở Trường đại học Giáo dục Thủ Đức. Năm 1984, Trường đại học Sư phạm Kỹ thuật Thủ Đức hợp nhất với Trường trung học Công nghiệp Thủ Đức và đổi tên thành Trường đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh. Năm 1991, Trường đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh sát nhập thêm Trường Sư phạm Kỹ thuật 5 và phát triển cho đến ngày nay.
-
-										Nằm ở cửa ngõ phía bắc Tp. Hồ Chí Minh, cách trung tâm thành phố khoảng 10 km, tọa lạc tại số 1 Võ Văn Ngân, quận Thủ Đức, Trường đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh tập hợp được các ưu điểm của một cơ sở học tập rộng rãi, khang trang, an toàn, nằm ở ngoại ô nhưng giao thông bằng xe bus vào các khu vực của thành phố, đến sân bay và các vùng lân cận rất thuận tiện.</h5>
-										<br>
+																	
+									<div class="text-justify">
+										<p><strong>GIỚI THIỆU</strong></p>
+										<p><font color="green">-----------------------------------------------------------------------------------------------------------------------------</font></p>
+										<p><strong><font color="blue">Giới thiệu về tạp chí</font></strong></p>
+											<p>Tạp chí Khoa học  – một tạp chí chuyên ngành về giáo dục kỹ thuật, niềm mơ ước của những người làm công tác giảng dạy, nghiên cứu trong lĩnh vực này, Tạp chí Khoa học Giáo dục Kỹ thuật thuộc Bộ Giáo dục và Đào tạo đã ra ấn bản số đầu tiên – 01/2006 vào tháng 8 năm 2006 (theo giấy phép xuất bản số 158/GP-BVHTT ngày 01 tháng 12 năm 2005 và được cấp lại giấy phép 475/GP-BTTTT ngày 4 tháng 12 năm 2013) với kỳ hạn 03 tháng một kỳ.</p>
+											
+											<p>Tôn chỉ, mục đích hoạt động của tạp chí: Là diễn đàn trao đổi về chiến lược đào tạo nguồn nhân lực, phương pháp dạy nghề, phương tiện giảng dạy kỹ thuật phục vụ cho nhu cầu công nghiệp hóa, hiện đại hóa đất nước. Công bố và phổ biến các công trình nghiên cứu khoa học thuộc lĩnh vực khoa học công nghệ và giáo dục kỹ thuật, giáo dục chuyên nghiệp trong và ngoài nước.</p>
+											
+											<p>Tạp chí dày 100-120 trang, khổ 21 x 29,7 cm, ngôn ngữ thể hiện bằng tiếng Việt. Tạp chí sẽ được phát hành rộng rãi trên cả nước. Đây là tạp chí chung của ngành, là tạp chí có phản biện và tính điểm công trình cho các bài được đăng, Hội Đồng Chức Danh Giáo Sư Nhà Nước xem xét tính điểm.</p>
+											
+											<p>Chúng tôi xin trân trọng giới thiệu và kính mời quý vị đón đọc. Rất hoan nghênh sự cộng tác bài vở và ý kiến đóng góp quí báu của quý vị để tạp chí ngày càng hoàn thiện hơn.</p>
+											
+											<p>Mọi thông tin liên hệ theo địa chỉ sau:<br>
+											<strong>TẠP CHÍ KHOA HỌC<br>
+											TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP.HCM<br>
+											SỐ 01, VÕ VĂN NGÂN,  QUẬN THỦ ĐỨC, TP.HCM<br>
+											ĐIỆN THOẠI: 08 3722 1223 (8430) – 0938.938.566 (Mr. Lợi)<br>
+											EMAIL: tapchikhgdkt@hcmute.edu.vn</strong></p>
 									</div>
+																	
 								</div>
+							</div>
 							</div>
 						</div>
 					<!--end cột giữa-->

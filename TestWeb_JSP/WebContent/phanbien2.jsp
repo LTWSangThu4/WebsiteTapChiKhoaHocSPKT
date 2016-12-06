@@ -277,10 +277,11 @@
 												<tbody>
 												<sql:query var="dsdaphanbien" dataSource="${con}">
 													select *
-													from ds_baiviet_dagui,ds_baiviet_phanbien,ds_noidung_phanbien
+													from ds_baiviet_dagui,ds_baiviet_phanbien,ds_noidung_phanbien, trangthai_tg
 													where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_phanbien.ID_baiviet_dagui
 													and ds_baiviet_phanbien.ID_baiviet_phanbien=ds_noidung_phanbien.ID_baiviet_phanbien
 													and ds_baiviet_phanbien.username_taikhoan='${sessionScope['loginUser']}'
+													and ds_noidung_phanbien.trangthai_duocdang=trangthai_tg.ma_trangthai
 													and ds_baiviet_phanbien.trangthai_phanbien='Da Phan Bien'
 												</sql:query>
 												<form method="get" action="DownloadFile_PB">
@@ -290,7 +291,7 @@
 															<td>${row.noidung_phanbien}</td>
 															<td><button type="submit" value="${row.ID_noidung_phanbien}" name="id"  class="btn btn-link">${row.tenfile_phanbien}</button></td>
 															<td>${row.ngayphanbien}</td>
-															<td>${row.trangthai_phanbien}</td>
+															<td>${row.Ten_TrangThai}</td>
 														</tr>
 													</c:forEach>
 												</form>

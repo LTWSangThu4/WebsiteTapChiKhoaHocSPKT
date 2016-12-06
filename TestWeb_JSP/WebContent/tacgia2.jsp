@@ -324,12 +324,13 @@
 												}
 											</script>
 												<div class="col-md-4">
-													<img id="img"  class="img-rounded" style="border-width:3px;height:140px;width:100px;"/>
+													<img id="img"  class="img-rounded" 
+													style="border-color:Navy;border-width:1px;border-style:Dashed;height:140px;width:120px;"/>
 													<br>
 													<br>
 													<label>Ảnh Bìa</label>
 													<input id="f" type="file" name="anhbia" onchange="file_change(this)" style="display: none" />
-													<input class="btn btn-default" type="button" value="Chọn ảnh" onclick="document.getElementById('f').click()" />														    
+													<input class="btn btn-default" type="button" value="Chọn" onclick="document.getElementById('f').click()" />														    
 												</div>
 											</form>
 											<!--end cot ảnh bìa-->

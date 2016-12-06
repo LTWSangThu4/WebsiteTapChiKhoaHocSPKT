@@ -84,8 +84,8 @@ public class GuiBaiPhanBien extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // constructs SQL statement
-            String sql = "INSERT INTO ds_noidung_phanbien(noidung_phanbien, file_phanbien, tenfile_phanbien, ngayphanbien, ID_baiviet_phanbien) "
-            		+ "values (?, ?, ?, CURDATE(), ?)";
+            String sql = "INSERT INTO ds_noidung_phanbien(noidung_phanbien, file_phanbien, tenfile_phanbien, ngayphanbien, trangthai_duocdang, ID_baiviet_phanbien) "
+            		+ "values (?, ?, ?, CURDATE(),'0', ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, noidung_phanbien);
             statement.setString(3, fileName);
