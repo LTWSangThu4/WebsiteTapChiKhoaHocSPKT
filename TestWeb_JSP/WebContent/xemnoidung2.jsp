@@ -15,6 +15,12 @@
 	<script src="js/bootstrap.min.js" ></script>
     <script src="js/angular.min.js"></script>
     <script src="js/jquery.validate.js"></script>
+    <style type="text/css">
+	    span {
+	    font-size:30px;
+	    color:#f5f5f5;
+	}
+    </style>
 </head>
 <body>
 <div class="container">
@@ -277,29 +283,93 @@
 												</div>																									
 									        </c:forEach>
 									
-										<form class="form-horizontal col-md-offset-1" role="form">
-										  <div class="form-group">
-										    <label class="col-sm-3 control-label">Đánh GIá:</label>
-										    <div class="col-sm-9">
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star "></p>
-										      <p class="form-control-static glyphicon glyphicon-star-empty "></p>
-	
-										    </div>
-										  </div>
-										 
-										</form>
-									
-								<!--Comment-->
-									<div class="input-group col-sm-6 col-md-offset-1">
-								      <input type="text" class="form-control" placeholder="Comment...">
-								      <span class="input-group-btn">
-								        <button class="btn btn-default" type="button">Gửi</button>
-								      </span>
-								    </div>
-								<!--end-->
+										<p>______________________________________________________________________________</p>
+										<h3>BÌNH LUẬN VÀ ĐÁNH GIÁ</h3>
+										<br>
+
+										<sql:query dataSource="${dataSource}" var="ketqua">
+												select *
+												from taikhoan,comment,ds_noidung_bientap
+												where taikhoan.Username=comment.username_nguoi_comment
+												and comment.ID_baiviet=ds_noidung_bientap.ID_noidung_bientap
+												and ds_noidung_bientap.ID_noidung_bientap='${param.id}'
+										</sql:query>
+										<c:forEach var="rows" items="${ketqua.rows}">
+											<h5><strong>${rows.last_name} ${rows.first_name}</strong></h5>
+											${rows.danhgia} <span style="font-size: 15px" class="glyphicon glyphicon-star selected" aria-hidden="true"></span>
+											<div class="row">
+												<div class="col-sm-10">
+													<div class="well well-lg">
+														${rows.noidung_comment }
+													</div>
+												</div>
+												<div class="col-sm-2"></div>
+											</div>
+											
+										</c:forEach>
+										<p>______________________________________________________________________________</p>
+										<h3>VIẾT BÌNH LUẬN CỦA BẠN</h3>
+										<br>
+											<form action="insert_comment.jsp" method="post" class="form-horizontal">
+												<div class="form-group">
+														<label class="col-sm-2">Đánh Giá</label>
+														<div class="col-sm-10">
+															<div class="rating">
+																
+																<span class="star" id="1">&#9733;</span> 
+																<span class="star" id="2">&#9733;</span> 
+																<span class="star" id="3">&#9733;</span> 
+																<span class="star" id="4">&#9733;</span> 
+																<span class="star" id="5">&#9733;</span> 
+																
+																<script type="text/javascript">
+																$('.star').click(function(){
+																    $('.star').addClass('selected');
+																    
+																    var count = $(this).attr('id'); 
+																    $('.numberstar').attr('value',count)
+																    for (var i=0; i<count-1; i++){        
+																        $('.star').eq(i).removeClass('selected');
+																    }
+																});
+																</script>
+															</div>
+															
+														</div>
+													</div>
+													<div class="form-group" hidden="">
+														<div class="col-sm-10" hidden="">
+															<input class="numberstar" name="danhgia" value="6">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-sm-2">Bình Luận</label>
+														<div class="col-sm-10">
+															<textarea  class="form-control" name="noidung_comment" rows="5" placeholder="Nhập nội dung bình luận"></textarea>
+														</div>
+													</div>
+													<div class="form-group" hidden="">
+														<label class="col-sm-2">ID</label>
+														<div class="col-sm-10">
+															<input class="form-control" name="ID_baiviet" value="${param.id}">
+														</div>
+													</div>
+													<div class="form-group" hidden="">
+														<label class="col-sm-2">Người Bình Luận</label>
+														<div class="col-sm-10">
+															<input class="form-control" name="username_nguoi_comment" value="${sessionScope['loginUser']}">
+														</div>
+													</div>
+													<div class="col-sm-offset-2">
+														<button type="submit" class="btn btn-primary">Bình Luận</button>
+													</div>
+											</form>
+											
+											<br>
+											<div class="col-sm-offset-2">
+												<font color='green'><%=request.getAttribute("Message")%></font>
+									   		</div>
 								</div>
 							</div>
 						</div>
