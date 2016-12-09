@@ -56,6 +56,10 @@ public class GuibaiServlet extends HttpServlet {
         String tieude = request.getParameter("tieude");
         String noidung = request.getParameter("noidung");
         String dstukhoa = request.getParameter("dstukhoa");
+        String tentg = request.getParameter("tentacgia");
+        String coquan = request.getParameter("coquan");
+        String linhvuc = request.getParameter("danhmuc");
+        String ttll = request.getParameter("ttll");
         
         // input stream of the upload file picture
         InputStream inputanh = null; //input picture
@@ -96,13 +100,18 @@ public class GuibaiServlet extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // constructs SQL statement
-            String sql = "INSERT INTO ds_baiviet_dagui (tieude, noidung, file, tenfile, dstukhoa, anh, ngaygui, trangthai, username_taikhoan, phancong_PB, phancong_BT) "
-            		+ "values (?, ?, ?, ?, ?, ?, CURDATE(), '0', '"+user+"', '0', '0')";
+            String sql = "INSERT INTO ds_baiviet_dagui (tieude, noidung, file, tenfile, dstukhoa, anh,"
+            		+ " ngaygui, trangthai, username_taikhoan, phancong_PB, phancong_BT, tentacgia, coquan, linhvuc, thongtinlienlacs) "
+            		+ "values (?, ?, ?, ?, ?, ?, CURDATE(), '0', '"+user+"', '0', '0', ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, tieude);
             statement.setString(2, noidung);
             statement.setString(4, fileName);
             statement.setString(5, dstukhoa);
+            statement.setString(7, tentg);
+            statement.setString(8, coquan);
+            statement.setString(9, linhvuc);
+            statement.setString(10, ttll);
              
             if (inputanh != null && inputFile !=null) {
                 // fetches input stream of the upload file for the blob column

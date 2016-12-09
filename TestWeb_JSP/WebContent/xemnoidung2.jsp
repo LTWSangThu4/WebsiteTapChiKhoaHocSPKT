@@ -61,11 +61,11 @@
 						<div class="row">
 							
 								<div class="col-md-12">
-									<form class="navbar-form navbar-right" role="search">
+									<form class="navbar-form navbar-right" role="search" method="post" action="xulytimkiem.jsp">
 								  		<div class="form-group">
-								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
+								    		<input type="text" name="key" value="" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<button  type="submit" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button>
 									</form>
 									<!--Ajax-->	
 									  <script type="text/javascript">
@@ -92,39 +92,51 @@
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								        <h4 class="modal-title" id="myModalLabel">Tìm Kiếm Nâng Cao</h4>
 								      </div>
+								      <form id="FormTimKiemNangCao" method="post" class="form-horizontal" action="xulytimkiem.jsp">
 								      <div class="modal-body">
-								        <form id="FormTimKiemNangCao" method="post" class="form-horizontal" action="">
-
+								      
+								      	<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+                  							 url="${sessionScope['url']}" user="${sessionScope['userdb']}" 
+                  							 password="${sessionScope['passdb']}" />
+								        <sql:query dataSource="${dataSource}" var="result">
+											select *
+											from ds_baiviet_dagui
+										</sql:query>
+										
+										<sql:query dataSource="${dataSource}" var="result2">
+											select *
+											from ds_noidung_bientap
+										</sql:query>
+								        
+								        
 											<div class="form-group">
-												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo: </label>
+												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo Tác Giả: </label>
 												<div class="col-sm-5">
-													<select class="form-control">
-														<option>Bài Viết</option>
-														<option>Tác Giả</option>
-														<option>Lĩnh Vực</option>
+													<select class="form-control" name="key">																												
+														<c:forEach var="row1" items="${result.rows }">															
+															<option value="${row1.username_taikhoan }"><c:out value="${row1.tentacgia }"/></option>
+														</c:forEach>													
 													</select>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="ThoiGian">Thời Gian: </label>
 												<div class="col-sm-5">
-													<input type="date" class="form-control" id="thoigian" name="thoigian">
+													<select class="form-control" name="date">																													
+														<c:forEach var="row2" items="${result2.rows }">	
+															<option value="${row2.NgayDang }"><c:out value="${row2.NgayDang }"/></option>
+														</c:forEach>													
+													</select>
 												</div>
 											</div>
 
-											<div class="form-group">
-												<label class="col-sm-4 control-label" for="NoiDung">Nội Dung: </label>
-												<div class="col-sm-5">
-													<textarea class="form-control" rows="3"></textarea>
-												</div>
-											</div>
 											
-										</form>
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <button type="submit" class="btn btn-primary">TÌM</button>
 								      </div>
+								      </form>
 								    </div>
 								  </div>
 								</div>
@@ -259,30 +271,45 @@
                   				 url="jdbc:mysql://localhost:3306/tapchikhoahoc" user="root" password="123456" />
  
 								<sql:query dataSource="${dataSource}" var="rs" >
-								        SELECT * FROM ds_noidung_bientap
-								        Where ID_noidung_bientap='${param.id}'
+								        SELECT * FROM ds_noidung_bientap, ds_baiviet_dagui, ds_baiviet_bientap
+								        Where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_bientap.ID_baiviet_dagui
+								        and ds_baiviet_bientap.ID_baiviet_bientap=ds_noidung_bientap.ID_baiviet_bientap
+								        and ID_noidung_bientap='${param.id}'
+								        
 								</sql:query>
 									
-										 <c:forEach items="${rs.rows}" var="row">									                
+										 <c:forEach items="${rs.rows}" var="row">	
+										 					                
 									           <div class="row">									           	
-												  <div class="col-sm-6 col-md-4 col-md-offset-2">
+												  <div class="col-sm-6 col-md-4 col-md-offset-1">
 												 
+												    <div class="thumbnail aa">
 												    <div class="thumbnail">
-												      <img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" alt="...">
-												      <div class="caption">
-												        <h2><font color="orange"><c:out value="${row.tieude_bientap}"/></font></h2>
-												        <p><c:out value="${row.noidung_bientap}"/></p>
-												        <p><a href="Read_TBT?id=${param.id } " target="_blank" class="btn btn-info" role="button">Xem</a> 
-												        <a href="DownloadFile_BTV?id=${param.id }" class="btn btn-default" role="button">Download</a></p>
+												      <img src="GetAnhBT?id_bt=${row.ID_noidung_bientap }" style="border-width:1px;height:170px;width:155px;">
+												     </div>
+												      <Center>
+												      <div class="caption">											       
+												        <a href="Read_TBT?id=${param.id } " target="_blank" class="btn btn-info" role="button">Xem</a> 
+												        <a href="DownloadFile_BTV?id=${param.id }" class="btn btn-default" role="button">Download</a>
 												      </div>
+												      </Center>
 												    </div>
+													  
+													    	
+								
 												  </div>
-												 <p><font color="green"><Strong>Ngày đăng:</Strong></font> <c:out value="${row.NgayDang }"/></p>									
-												 <p> <font color="green"><Strong>Lĩnh vực:</Strong></font> <c:out value="${row.danhmuc }"/></p>
-												  
+												  <div class="col-md-offset-6">
+												  	 <p><font color="green"><Strong>Tiêu đề:</Strong></font> <c:out value="${row.tieude_bientap}"/></p>
+												  	 <p><font color="green"><Strong>Ngày đăng:</Strong></font> <c:out value="${row.NgayDang }"/></p>
+												  	 <p><font color="green"><Strong>Tác Giả:</Strong></font> <c:out value="${row.tentacgia }"/></p>
+												  	 <p> <font color="green"><Strong>Lĩnh vực:</Strong></font> <c:out value="${row.danhmuc }"/></p>
+													 																						 
+													 <p><font color="green"><Strong>Tóm tắt:</Strong></font> <c:out value="${row.noidung_bientap}"/></p>
+												  </div>
 												</div>																									
 									        </c:forEach>
-									
+										<br>
+										<br>
 										<p>______________________________________________________________________________</p>
 										<h3>BÌNH LUẬN VÀ ĐÁNH GIÁ</h3>
 										<br>

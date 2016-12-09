@@ -54,18 +54,18 @@
 						<div class="row">
 							
 								<div class="col-md-12">
-									<form class="navbar-form navbar-right" role="search">
+									<form class="navbar-form navbar-right" role="search" method="post" action="xulytimkiem.jsp">
 								  		<div class="form-group">
-								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
+								    		<input type="text" name="key" value="" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<button  type="submit" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button>
 									</form>
 									<!--Ajax-->	
 									  <script type="text/javascript">
 										 $(document).ready(function() {
 										 $('#tim').click(function(e) {
 										 e.preventDefault();
-										 $('#nd').load('ketquatimkiem.jsp #ndtk-canlay');
+										 $('#ndtk').load('ketquatimkiem.jsp #ndtk-canlay');
 										 });
 										 });
 									</script>
@@ -85,39 +85,51 @@
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								        <h4 class="modal-title" id="myModalLabel">Tìm Kiếm Nâng Cao</h4>
 								      </div>
+								      <form id="FormTimKiemNangCao" method="post" class="form-horizontal" action="xulytimkiem.jsp">
 								      <div class="modal-body">
-								        <form id="FormTimKiemNangCao" method="post" class="form-horizontal" action="">
-
+								      
+								      	<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+                  							 url="${sessionScope['url']}" user="${sessionScope['userdb']}" 
+                  							 password="${sessionScope['passdb']}" />
+								        <sql:query dataSource="${dataSource}" var="result">
+											select *
+											from ds_baiviet_dagui
+										</sql:query>
+										
+										<sql:query dataSource="${dataSource}" var="result2">
+											select *
+											from ds_noidung_bientap
+										</sql:query>
+								        
+								        
 											<div class="form-group">
-												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo: </label>
+												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo Tác Giả: </label>
 												<div class="col-sm-5">
-													<select class="form-control">
-														<option>Bài Viết</option>
-														<option>Tác Giả</option>
-														<option>Lĩnh Vực</option>
+													<select class="form-control" name="key">																												
+														<c:forEach var="row1" items="${result.rows }">															
+															<option value="${row1.username_taikhoan }"><c:out value="${row1.tentacgia }"/></option>
+														</c:forEach>													
 													</select>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="ThoiGian">Thời Gian: </label>
 												<div class="col-sm-5">
-													<input type="date" class="form-control" id="thoigian" name="thoigian">
+													<select class="form-control" name="date">																													
+														<c:forEach var="row2" items="${result2.rows }">	
+															<option value="${row2.NgayDang }"><c:out value="${row2.NgayDang }"/></option>
+														</c:forEach>													
+													</select>
 												</div>
 											</div>
 
-											<div class="form-group">
-												<label class="col-sm-4 control-label" for="NoiDung">Nội Dung: </label>
-												<div class="col-sm-5">
-													<textarea class="form-control" rows="3"></textarea>
-												</div>
-											</div>
 											
-										</form>
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <button type="submit" class="btn btn-primary">TÌM</button>
 								      </div>
+								      </form>
 								    </div>
 								  </div>
 								</div>
@@ -235,6 +247,17 @@
 															</div>
 														</div>
 														<div class="form-group">
+															<label for="tieude" class="col-sm-2">Lĩnh Vực</label>
+															<div class="col-sm-10">
+																<select class="form-control" name="danhmuc">
+																<option value="Khoa hoc tu nhien va cong nghe">Khoa học tự nhiên và công nghệ</option>
+																<option value="Khoa hoc xa hoi va nhan van">Khoa học xã hội và nhân văn</option>
+																<option value="Khoa hoc giao duc">Khoa học giáo dục</option>
+																<option value="Khoa hoc moi truong">Khoa học môi trường</option>
+														</select>
+															</div>
+														</div>
+														<div class="form-group">
 															<label for="tieude" class="col-sm-2">Nội Dung</label>
 															<div class="col-sm-10">
 																<input type="text" value="" class="form-control" id="noidung" name="noidung" placeholder="Nhập nội dung">
@@ -244,6 +267,24 @@
 															<label for="noidung" class="col-sm-2">File</label>
 															<div class="col-sm-10">
 																<input type="file" class="form-control" id="file" name="file">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="tieude" class="col-sm-2">Tác Giả</label>
+															<div class="col-sm-10">
+																<input type="text" value="" class="form-control" id="tacgia" name="tentacgia" placeholder="Tên các tác giả">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="tieude" class="col-sm-2">Cơ Quan</label>
+															<div class="col-sm-10">
+																<input type="text" value="" class="form-control" id="coquan" name="coquan" placeholder="Nhập cơ quan">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="tieude" class="col-sm-2">Thông tin liên lạc</label>
+															<div class="col-sm-10">
+																<input type="text" value="" class="form-control" id="ttlc" name="ttll" placeholder="Nhập thông tin">
 															</div>
 														</div>
 														<div class="form-group">
@@ -301,7 +342,18 @@
 																	
 																	if(!validateText("file"))
 																		return false;
-
+																	
+																	if(!validateText("tacgia"))
+																		return false;
+																	
+																	if(!validateText("coquan"))
+																		return false;
+																	
+																	if(!validateText("ttlc"))
+																		return false;
+																	
+																	if(!validateText("dstukhoa"))
+																		return false;
 																	
 																	$("form#FormGuiBai").submit();
 																});
@@ -334,8 +386,12 @@
 												</div>
 											</form>
 											<!--end cot ảnh bìa-->
-											</div>
+											</div >
+												<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
 											<div class="tab-pane fade" id="dsbaidaviet">
+											 <div class="tab-content">
+											  <div class="tab-pane fade in active" id="dsbaiviet1">
 												<table class="table table-bordered table-hover">
 													<thead>
 														<tr>
@@ -344,11 +400,11 @@
 															<th>File</th>
 															<th>DS Từ Khóa</th>
 															<th>Trạng Thái</th>
+															<th>Nhận Xét PB</th>
 														</tr>
 													</thead>
 													<tbody>
-													<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+												
 													<sql:query dataSource="${con}" var="result">
 														select *
 														from taikhoan,ds_baiviet_dagui, trangthai_tg
@@ -364,11 +420,59 @@
 															<td><button type="submit" value="${rows.ID_baiviet_dagui }" name="id"  class="btn btn-link">${rows.TenFile }</button></td>
 															<td>${rows.dstukhoa }</td>
 															<td>${rows.Ten_TrangThai }</td>
+															<td><a  class="glyphicon glyphicon-eye-open detailX" data-id="${rows.ID_baiviet_dagui}"  data-toggle="tab" href="#xempb"></a></td>
 														</tr>
 													</c:forEach>
 													</form>
 													</tbody>
 												</table>
+												</div>
+												
+												<script type="text/javascript">
+													$(document).ready(function(){
+														$(".detailX").click(function(){
+															var id = $(this).attr("data-id");
+															$.post('LayThongTin',{id:id},function(response){
+																var x = response.noidungabc;
+																$('#txtTenPB').text(response.ngpb);
+																$('#txtNoiDung').text(response.noidungpb);
+																$('#txtNgayPB').text(response.ngaypb);
+															});
+														});
+													});
+												</script>
+												
+										<!-- tab xem phản biện -->		
+												 <div class="tab-pane fade" id="xempb">
+					
+													<form class="form-horizontal" method="get" action="DownloadFile_TBT">
+														
+															<div class="form-group">
+																<label class="col-sm-4 control-label">Tên Người Phản Biện: </label>
+																<div class="col-sm-8">
+																	<p type="text" id="txtTenPB" class="form-control-static"></p>
+																</div>
+															</div>
+															
+															<div class="form-group">
+																<label class="col-sm-4 control-label">Nội Dung: </label>
+																<div class="col-sm-8">
+																	<p type="text" id="txtNoiDung" class="form-control-static"></p>
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-sm-4 control-label">Ngày Phản Biện: </label>
+																<div class="col-sm-8">
+																	<p type="text" id="txtNgayPB" class="form-control-static"></p>
+																</div>
+															</div>																									
+														<Center><a href="#dsbaiviet1" class="btn btn-default glyphicon glyphicon-arrow-left " data-toggle="tab"></a></Center>
+													</form>
+													
+												 </div>
+												 </div>
+									<!-- end xem pb -->			 
+												 
 											</div>
 										</div>
 									</div>

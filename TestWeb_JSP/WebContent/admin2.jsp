@@ -64,13 +64,22 @@
 						<div class="row">
 							
 								<div class="col-md-12">
-									<form class="navbar-form navbar-right" role="search">
+									<form class="navbar-form navbar-right" role="search" method="post" action="xulytimkiem.jsp">
 								  		<div class="form-group">
-								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
+								    		<input type="text" name="key" value="" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<button  type="submit" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button>
 									</form>
-									
+									<!--Ajax-->	
+									  <script type="text/javascript">
+										 $(document).ready(function() {
+										 $('#tim').click(function(e) {
+										 e.preventDefault();
+										 $('#ndtk').load('ketquatimkiem.jsp #ndtk-canlay');
+										 });
+										 });
+									</script>
+				  				<!--endAjax-->
 								</div>
 						</div><!--end search-->
 						<div class="row">
@@ -86,53 +95,55 @@
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								        <h4 class="modal-title" id="myModalLabel">Tìm Kiếm Nâng Cao</h4>
 								      </div>
+								      <form id="FormTimKiemNangCao" method="post" class="form-horizontal" action="xulytimkiem.jsp">
 								      <div class="modal-body">
-								        <form id="FormTimKiemNangCao" method="post" class="form-horizontal" action="">
-
+								      
+								      	<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+                  							 url="${sessionScope['url']}" user="${sessionScope['userdb']}" 
+                  							 password="${sessionScope['passdb']}" />
+								        <sql:query dataSource="${dataSource}" var="result">
+											select *
+											from ds_baiviet_dagui
+										</sql:query>
+										
+										<sql:query dataSource="${dataSource}" var="result2">
+											select *
+											from ds_noidung_bientap
+										</sql:query>
+								        
+								        
 											<div class="form-group">
-												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo: </label>
+												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo Tác Giả: </label>
 												<div class="col-sm-5">
-													<select class="form-control">
-														<option>Bài Viết</option>
-														<option>Tác Giả</option>
-														<option>Lĩnh Vực</option>
+													<select class="form-control" name="key">																												
+														<c:forEach var="row1" items="${result.rows }">															
+															<option value="${row1.username_taikhoan }"><c:out value="${row1.tentacgia }"/></option>
+														</c:forEach>													
 													</select>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="ThoiGian">Thời Gian: </label>
 												<div class="col-sm-5">
-													<input type="date" class="form-control" id="thoigian" name="thoigian">
+													<select class="form-control" name="date">																													
+														<c:forEach var="row2" items="${result2.rows }">	
+															<option value="${row2.NgayDang }"><c:out value="${row2.NgayDang }"/></option>
+														</c:forEach>													
+													</select>
 												</div>
 											</div>
 
-											<div class="form-group">
-												<label class="col-sm-4 control-label" for="NoiDung">Nội Dung: </label>
-												<div class="col-sm-5">
-													<textarea class="form-control" rows="3"></textarea>
-												</div>
-											</div>
 											
-										</form>
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <button type="submit" class="btn btn-primary">TÌM</button>
 								      </div>
+								      </form>
 								    </div>
 								  </div>
 								</div>
 							</div>
-							<!--Ajax-->	
-									  <script type="text/javascript">
-										 $(document).ready(function() {
-										 $('#tim').click(function(e) {
-										 e.preventDefault();
-										 $('#nd').load('ketquatimkiem.jsp #ndtk-canlay');
-										 });
-										 });
-									</script>
-				  				<!--endAjax-->
 						</div>
 					</div><!--end Cột login-siging-->
 				</div><!--end row logo--><br>
@@ -240,7 +251,7 @@
 									                    <th>Ngày DK</th>
 									                    <th>Quyền</th>
 									                    <th>Trạng Thái</th>
-									                    <th colspan="2">Action</th>
+									                    <th colspan="1">Action</th>
 									                </tr>
 									                <c:forEach var="row" items="${result.rows}">
 									                    <tr>
@@ -248,8 +259,8 @@
 									                        <td><c:out value="${row.regdate}"/></td>
 									                        <td><c:out value="${row.TenQuyen}"/></td>
 									                        <td><c:out value="${row.tentrangthai }"/></td>
-									                        <td><a href="updatetk.jsp?id=<c:out value="${row.id}"/>" >Sửa</a></td>
-                        									<td><a href="javascript:confirmGo('Sure to delete this record?','deletedb.jsp?id=<c:out value="${row.id}"/>')">Delete</a></td>
+									                        <td><a class="glyphicon glyphicon-edit" href="updatetk.jsp?id=<c:out value="${row.id}"/>" /></td>
+                        									<!--<td><a href="javascript:confirmGo('Sure to delete this record?','deletedb.jsp?id=<c:out value="${row.id}"/>')">Delete</a></td>-->
 									                    </tr>
 									                </c:forEach>     
 											</table>

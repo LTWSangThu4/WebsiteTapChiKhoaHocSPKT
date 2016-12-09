@@ -2,8 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+			
+			<c:set scope="session"
+            var="url"
+            value="jdbc:mysql://localhost/tapchikhoahoc"/>
+            <c:set scope="session"
+            var="userdb"
+            value="root"/>
+            <c:set scope="session"
+            var="passdb"
+            value="123456"/>	
+            		
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
-                   url="jdbc:mysql://localhost:3306/tapchikhoahoc" user="root" password="123456" />
+                   url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
  
 <sql:query dataSource="${dataSource}" var="categories" scope="session">
         SELECT * FROM ds_noidung_bientap
@@ -11,3 +22,4 @@
 </sql:query>
  
 <c:import url="dispresult.jsp?pageNumber=1"/>
+

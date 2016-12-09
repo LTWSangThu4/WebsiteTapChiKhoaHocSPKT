@@ -1,6 +1,6 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -55,18 +55,18 @@
 						<div class="row">
 							
 								<div class="col-md-12">
-									<form class="navbar-form navbar-right" role="search">
+									<form class="navbar-form navbar-right" role="search" method="post" action="xulytimkiem.jsp">
 								  		<div class="form-group">
-								    		<input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
+								    		<input type="text" name="key" value="" class="form-control" placeholder="Nhập từ khóa tìm kiếm...">
 								 		</div>
-								  		<a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button></a>
+								  		<button  type="submit" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button>
 									</form>
 									<!--Ajax-->	
 									  <script type="text/javascript">
 										 $(document).ready(function() {
 										 $('#tim').click(function(e) {
 										 e.preventDefault();
-										 $('#nd').load('ketquatimkiem.jsp #ndtk-canlay');
+										 $('#ndtk').load('ketquatimkiem.jsp #ndtk-canlay');
 										 });
 										 });
 									</script>
@@ -86,39 +86,51 @@
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								        <h4 class="modal-title" id="myModalLabel">Tìm Kiếm Nâng Cao</h4>
 								      </div>
+								      <form id="FormTimKiemNangCao" method="post" class="form-horizontal" action="xulytimkiem.jsp">
 								      <div class="modal-body">
-								        <form id="FormTimKiemNangCao" method="post" class="form-horizontal" action="">
-
+								      
+								      	<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+                  							 url="${sessionScope['url']}" user="${sessionScope['userdb']}" 
+                  							 password="${sessionScope['passdb']}" />
+								        <sql:query dataSource="${dataSource}" var="result">
+											select *
+											from ds_baiviet_dagui
+										</sql:query>
+										
+										<sql:query dataSource="${dataSource}" var="result2">
+											select *
+											from ds_noidung_bientap
+										</sql:query>
+								        
+								        
 											<div class="form-group">
-												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo: </label>
+												<label class="col-sm-4 control-label" for="TimKiemTheo">Tìm Kiếm Theo Tác Giả: </label>
 												<div class="col-sm-5">
-													<select class="form-control">
-														<option>Bài Viết</option>
-														<option>Tác Giả</option>
-														<option>Lĩnh Vực</option>
+													<select class="form-control" name="key">																												
+														<c:forEach var="row1" items="${result.rows }">															
+															<option value="${row1.username_taikhoan }"><c:out value="${row1.tentacgia }"/></option>
+														</c:forEach>													
 													</select>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 control-label" for="ThoiGian">Thời Gian: </label>
 												<div class="col-sm-5">
-													<input type="date" class="form-control" id="thoigian" name="thoigian">
+													<select class="form-control" name="date">																													
+														<c:forEach var="row2" items="${result2.rows }">	
+															<option value="${row2.NgayDang }"><c:out value="${row2.NgayDang }"/></option>
+														</c:forEach>													
+													</select>
 												</div>
 											</div>
 
-											<div class="form-group">
-												<label class="col-sm-4 control-label" for="NoiDung">Nội Dung: </label>
-												<div class="col-sm-5">
-													<textarea class="form-control" rows="3"></textarea>
-												</div>
-											</div>
 											
-										</form>
 								      </div>
 								      <div class="modal-footer">
 								        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-								       <a href="xulytimkiem.jsp"><button type="button" class="btn btn-primary">TÌM</button></a> 
+								       <button type="submit" class="btn btn-primary">TÌM</button>
 								      </div>
+								      </form>
 								    </div>
 								  </div>
 								</div>
@@ -237,6 +249,7 @@
 														<th>Ảnh Bìa</th>
 														<th>Ngày Giao</th>
 														<th>Trạng Thái</th>
+														<th>Ghi Chú</th>
 														<th>Action</th>
 													</tr>
 												</thead>
@@ -262,6 +275,7 @@
 															<td><a onclick="window.open('xemanh.jsp?id=${row.ID_baiviet_dagui}', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes' );" class="btn btn-link">Xem</a></td>							
 															<td>${row.ngaygiaobientap}</td>
 															<td>${row.trangthai_bientap}</td>
+															<td>${row.ghichu_TBT}</td>
 															<td><a href="noidungbientap.jsp?id=<c:out value="${row.ID_baiviet_dagui}"/>" >Biên Tập</a></td>
 														</tr>
 													</c:forEach>

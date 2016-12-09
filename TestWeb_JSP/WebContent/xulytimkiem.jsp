@@ -12,10 +12,10 @@
 			
 			<c:choose>
 				<c:when test="${not empty sessionScope['loginUser']}">
-					<c:redirect url="ketquatimkiem2.jsp?id=${param.id}"/>
+					<c:redirect url="ketquatimkiem2.jsp?keys=${param.key}&date=${param.date } "/>
 				</c:when>
 				<c:otherwise>
-					<c:redirect url="ketquatimkiem.jsp?id=${param.id}"/>
+					<c:redirect url="ketquatimkiem.jsp?keys=${param.key }&date=${param.date }"/>
 				</c:otherwise>
 			</c:choose>
 </body>
