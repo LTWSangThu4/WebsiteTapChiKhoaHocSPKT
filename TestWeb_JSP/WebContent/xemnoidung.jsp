@@ -15,6 +15,12 @@
 	<script src="js/bootstrap.min.js" ></script>
     <script src="js/angular.min.js"></script>
     <script src="js/jquery.validate.js"></script>
+    <style type="text/css">
+	    span {
+	    font-size:30px;
+	    color:#f5f5f5;
+	}
+    </style>
 </head>
 <body>
 <div class="container">
@@ -550,30 +556,87 @@
 											<br>
 											
 											<sql:query dataSource="${dataSource}" var="ketqua">
-													select *
-													from taikhoan,comment,ds_noidung_bientap
-													where taikhoan.Username=comment.username_nguoi_comment
-													and comment.ID_baiviet=ds_noidung_bientap.ID_noidung_bientap
-													and ds_noidung_bientap.ID_noidung_bientap='${param.id}'
-											</sql:query>
-											<c:forEach var="rows" items="${ketqua.rows}">
-												<h5><strong>${rows.last_name} ${rows.first_name}</strong></h5>
-												${rows.danhgia} <span class="glyphicon glyphicon-star selected" aria-hidden="true"></span>
-												<div class="row">
-													<div class="col-sm-10">
-														<div class="well well-lg">
-															${rows.noidung_comment }
+												select *
+												from comment,ds_noidung_bientap
+												where comment.ID_baiviet=ds_noidung_bientap.ID_noidung_bientap
+												and ds_noidung_bientap.ID_noidung_bientap='${param.id}'
+										</sql:query>
+										<c:forEach var="rows" items="${ketqua.rows}">
+											<h5><strong>${rows.username_nguoi_comment}</strong></h5>
+											${rows.danhgia} <span style="font-size: 15px" class="glyphicon glyphicon-star selected" aria-hidden="true"></span>
+											<div class="row">
+												<div class="col-sm-10">
+													<div class="well well-lg">
+														${rows.noidung_comment }
+													</div>
+												</div>
+												<div class="col-sm-2"></div>
+											</div>
+											
+										</c:forEach>
+										<p>______________________________________________________________________________</p>
+										<h3>VIẾT BÌNH LUẬN CỦA BẠN</h3>
+										<br>
+											<form action="insert_comment.jsp" method="post" class="form-horizontal">
+												<div class="form-group">
+														<label class="col-sm-2">Đánh Giá</label>
+														<div class="col-sm-10">
+															<div class="rating">
+																
+																<span class="star" id="1">&#9733;</span> 
+																<span class="star" id="2">&#9733;</span> 
+																<span class="star" id="3">&#9733;</span> 
+																<span class="star" id="4">&#9733;</span> 
+																<span class="star" id="5">&#9733;</span> 
+																
+																<script type="text/javascript">
+																$('.star').click(function(){
+																    $('.star').addClass('selected');
+																    
+																    var count = $(this).attr('id'); 
+																    $('.numberstar').attr('value',count)
+																    for (var i=0; i<count-1; i++){        
+																        $('.star').eq(i).removeClass('selected');
+																    }
+																});
+																</script>
+															</div>
+															
 														</div>
 													</div>
-													<div class="col-sm-2"></div>
-												</div>
-												
-											</c:forEach>
-										<p>______________________________________________________________________________</p>
-										<button class="btn btn-default textcolor" style="background: #0c6b63;" data-toggle="modal" data-target="#myModal">
-												  Đăng Nhập
-												</button>
-										<p>Để lại bình luận về bài viết !!!</p>
+													<div class="form-group" hidden="">
+														<div class="col-sm-10" hidden="">
+															<input class="numberstar" name="danhgia" value="6">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-2">Ký Danh</label>
+														<div class="col-sm-10">
+															<input class="form-control" name="username_nguoi_comment" value="">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-sm-2">Bình Luận</label>
+														<div class="col-sm-10">
+															<textarea  class="form-control" name="noidung_comment" rows="5" placeholder="Nhập nội dung bình luận"></textarea>
+														</div>
+													</div>
+													<div class="form-group" hidden="">
+														<label class="col-sm-2">ID</label>
+														<div class="col-sm-10">
+															<input class="form-control" name="ID_baiviet" value="${param.id}">
+														</div>
+													</div>
+													
+													<div class="col-sm-offset-2">
+														<button type="submit" class="btn btn-primary">Bình Luận</button>
+													</div>
+											</form>
+											
+											<br>
+											<div class="col-sm-offset-2">
+												<font color='green'><%=request.getAttribute("Message")%></font>
+									   		</div>
 								</div>
 							</div>
 						</div>
@@ -619,63 +682,29 @@
 								</div>
 								<div class="panel-body">
 									<marquee scrolldelay="6" scrollamount="2" onmouseover="this.stop()"" onmouseout="this.start()" direction="up" height="300" style="height:300px;"  behavior="" direction="">
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">Nhà Giáo VN</a></h6>
-										    chào mừng ngày nhà giáo việt nam......
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp"> HCMUTE</a></h6>
-										    nhà trường tăng học phí gấp 5 lần......
-										  </div>
-										</div>
-
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
+										<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+													<sql:query dataSource="${con}" var="result">
+														select ID_baiviet,ds_noidung_bientap.tieude_bientap, sum(comment.danhgia)
+														from comment,ds_noidung_bientap
+														where comment.ID_baiviet=ds_noidung_bientap.ID_noidung_bientap
+														group by ID_baiviet,tieude_bientap
+														LIMIT 2
+													</sql:query>
+										<c:forEach items="${result.rows}" var="rows">	
+										        	
+										  	<div class="media">
+												<a class="pull-left" href="xulyxembai.jsp?id=${rows.ID_baiviet }">
+														    <img class="media-object" src="images/3.jpg" alt="...">
+												 </a>
+												<div class="media-body">
+													<h5 class="media-heading"><a href="xulyxembai.jsp?id=${rows.ID_baiviet }"><c:out value="${rows.tieude_bientap}"/></a></h5>
+														    
+												</div>
+											</div>
+																		
+										</c:forEach>
+										
 
 										
 									</marquee>

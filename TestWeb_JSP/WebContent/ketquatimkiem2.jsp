@@ -374,63 +374,29 @@
 								</div>
 								<div class="panel-body">
 									<marquee scrolldelay="6" scrollamount="2" onmouseover="this.stop()"" onmouseout="this.start()" direction="up" height="300" style="height:300px;"  behavior="" direction="">
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">Nhà Giáo VN</a></h6>
-										    chào mừng ngày nhà giáo việt nam......
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<!--continute-->
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp"> HCMUTE</a></h6>
-										    nhà trường tăng học phí gấp 5 lần......
-										  </div>
-										</div>
-
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
-										<div class="media">
-										  <a class="pull-left" href="xemnoidung.jsp">
-										    <img class="media-object" src="images/3.jpg" alt="...">
-										  </a>
-										  <div class="media-body">
-										    <h6 class="media-heading"><a href="xemnoidung.jsp">University</a></h6>
-										    cẩn thận số khi nghe.............
-										  </div>
-										</div>
+										<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
+													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+													<sql:query dataSource="${con}" var="result">
+														select ID_baiviet,ds_noidung_bientap.tieude_bientap, sum(comment.danhgia)
+														from comment,ds_noidung_bientap
+														where comment.ID_baiviet=ds_noidung_bientap.ID_noidung_bientap
+														group by ID_baiviet,tieude_bientap
+														LIMIT 2
+													</sql:query>
+										<c:forEach items="${result.rows}" var="rows">	
+										        	
+										  	<div class="media">
+												<a class="pull-left" href="xulyxembai.jsp?id=${rows.ID_baiviet }">
+														    <img class="media-object" src="images/3.jpg" alt="...">
+												 </a>
+												<div class="media-body">
+													<h5 class="media-heading"><a href="xulyxembai.jsp?id=${rows.ID_baiviet }"><c:out value="${rows.tieude_bientap}"/></a></h5>
+														    
+												</div>
+											</div>
+																		
+										</c:forEach>
+										
 
 										
 									</marquee>
