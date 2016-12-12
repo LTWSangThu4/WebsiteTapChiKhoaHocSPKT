@@ -632,7 +632,7 @@
 														from comment,ds_noidung_bientap
 														where comment.ID_baiviet=ds_noidung_bientap.ID_noidung_bientap
 														group by ID_baiviet,tieude_bientap
-														LIMIT 2
+														LIMIT 4
 													</sql:query>
 										<c:forEach items="${result.rows}" var="rows">	
 										        	

@@ -22,10 +22,10 @@
         //response.sendRedirect("welcome.jsp");
        // out.print("Registration Successfull!"+"<a href='index.jsp'>Go to Login</a>");
     	request.setAttribute("Message", message);
-    	getServletContext().getRequestDispatcher("/xemnoidung.jsp?id="+ID_baiviet+"").forward(request, response);
+    	getServletContext().getRequestDispatcher("/xemnoidung2.jsp?id="+ID_baiviet+"").forward(request, response);
     } else {
     	message = "Lỗi!";
     	request.setAttribute("Message", message);
-    	getServletContext().getRequestDispatcher("/xemnoidung.jsp?id="+ID_baiviet+"").forward(request, response);
+    	getServletContext().getRequestDispatcher("/xemnoidung2.jsp?id="+ID_baiviet+"").forward(request, response);
     }
 %>

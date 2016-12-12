@@ -53,6 +53,7 @@ public class GuibaiServlet extends HttpServlet {
     	HttpSession session = request.getSession();
     	String user= (String) session.getAttribute("loginUser");
     	// gets values of text fields
+    	request.setCharacterEncoding("UTF-8");
         String tieude = request.getParameter("tieude");
         String noidung = request.getParameter("noidung");
         String dstukhoa = request.getParameter("dstukhoa");

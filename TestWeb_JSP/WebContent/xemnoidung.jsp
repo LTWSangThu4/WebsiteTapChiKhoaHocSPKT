@@ -15,12 +15,6 @@
 	<script src="js/bootstrap.min.js" ></script>
     <script src="js/angular.min.js"></script>
     <script src="js/jquery.validate.js"></script>
-    <style type="text/css">
-	    span {
-	    font-size:30px;
-	    color:#f5f5f5;
-	}
-    </style>
 </head>
 <body>
 <div class="container">
@@ -583,11 +577,11 @@
 														<div class="col-sm-10">
 															<div class="rating">
 																
-																<span class="star" id="1">&#9733;</span> 
-																<span class="star" id="2">&#9733;</span> 
-																<span class="star" id="3">&#9733;</span> 
-																<span class="star" id="4">&#9733;</span> 
-																<span class="star" id="5">&#9733;</span> 
+																<span class="star" id="1" style="font-size: 30px">&#9733;</span> 
+																<span class="star" id="2" style="font-size: 30px">&#9733;</span> 
+																<span class="star" id="3" style="font-size: 30px">&#9733;</span> 
+																<span class="star" id="4" style="font-size: 30px">&#9733;</span> 
+																<span class="star" id="5" style="font-size: 30px">&#9733;</span> 
 																
 																<script type="text/javascript">
 																$('.star').click(function(){
@@ -689,7 +683,7 @@
 														from comment,ds_noidung_bientap
 														where comment.ID_baiviet=ds_noidung_bientap.ID_noidung_bientap
 														group by ID_baiviet,tieude_bientap
-														LIMIT 2
+														LIMIT 4
 													</sql:query>
 										<c:forEach items="${result.rows}" var="rows">	
 										        	

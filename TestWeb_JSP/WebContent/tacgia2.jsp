@@ -238,7 +238,7 @@
 										<div class="tab-content">
 											<div class="tab-pane fade in active" id="guibaionline">
 												<!--cot trái-->
-											<form id="FormGuiBai" method="post" class="form-horizontal" action="GuibaiServlet" enctype="multipart/form-data" >
+											<form id="FormGuiBai" method="post" class="form-horizontal" action="GuibaiServlet" enctype="multipart/form-data" accept-charset="UTF-8">
 												<div class="col-md-8">											
 														<div class="form-group">
 															<label for="tieude" class="col-sm-2">Tiêu Đề</label>
