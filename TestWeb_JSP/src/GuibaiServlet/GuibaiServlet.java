@@ -55,6 +55,7 @@ public class GuibaiServlet extends HttpServlet {
         String dbUser = (String) session.getAttribute("userdb");
         String dbPass = (String) session.getAttribute("passdb");
     	// gets values of text fields
+    	request.setCharacterEncoding("UTF-8");
         String tieude = request.getParameter("tieude");
         String noidung = request.getParameter("noidung");
         String dstukhoa = request.getParameter("dstukhoa");
