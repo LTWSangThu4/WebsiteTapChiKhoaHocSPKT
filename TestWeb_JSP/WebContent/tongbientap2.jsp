@@ -364,7 +364,7 @@
 																<td>${row2.ngaygui }</td>
 																<td>${row2.NgayDang }</td>																
 																<td><a href="xemchitiet.jsp?id=<c:out value="${row2.ID_baiviet_dagui}"/>" >Chi tiết</a></td>
-																<td><a href="javascript:confirmGo('Sure to delete this record?','#?id1=<c:out value="${row1.ID_baiviet_dagui}"/>')">Delete</a></td>
+																<td><a href="javascript:confirmGo('Sure to delete this record?','deleteBaiDang.jsp?id1=<c:out value="${row2.ID_noidung_bientap}"/>')">Xóa</a></td>
 															</tr>
 														</c:forEach>
 													

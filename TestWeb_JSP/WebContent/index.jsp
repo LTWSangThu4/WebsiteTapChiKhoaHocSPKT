@@ -5,13 +5,13 @@
 			
 			<c:set scope="session"
             var="url"
-            value="jdbc:mysql://localhost/tapchikhoahoc?useUnicode=true&characterEncoding=UTF-8"/>
+            value="jdbc:mysql://mysql177652-nhom8s4.jelastic.servint.net/tapchikhoahoc?useUnicode=true&characterEncoding=UTF-8"/>
             <c:set scope="session"
             var="userdb"
             value="root"/>
             <c:set scope="session"
             var="passdb"
-            value="123456"/>	
+            value="GZEznx54651"/>	
             		
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
                    url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />

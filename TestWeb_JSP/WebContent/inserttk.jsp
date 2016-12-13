@@ -223,9 +223,9 @@
 								 <form id="FormThem" class="form-horizontal" action="insertdb.jsp" method="post"> 
 									              
 									                <div class="form-group">
-														<label class="col-sm-4 control-label" for="email">Username</label>
+														<label class="col-sm-4 control-label" for="username">Username</label>
 															<div class="col-sm-5">
-																<input class="form-control" type="text" value="" name="Username"/>
+																<input class="form-control" type="text" id="Username" name="Username"/>
 									                        	
 															</div> 
 													</div>
@@ -233,9 +233,16 @@
 													<div class="form-group">
 														<label class="col-sm-4 control-label" for="password">Password</label>
 															<div class="col-sm-5">
-																<input class="form-control"  type="password" value="" name="Password"/>
+																<input type="password" class="form-control" id="password" name="password"/>
 															</div> 
 													</div>
+													
+													<div class="form-group">
+																<label class="col-sm-4 control-label" for="confirm">Confirm PassWord </label> 
+																<div class="col-sm-5">
+																	<input type="password" class="form-control" id="confirm" name="confirm"/>
+																</div>
+															</div>
 													
 													<div class="form-group">
 														<label class="col-sm-4 control-label" for="email">Quyền</label>
@@ -271,10 +278,15 @@
 																		required: true,
 																		minlength: 2
 																	},
-																	Password: {
+																	password: {
 																		required: true,
 																		minlength: 5
 																	},
+																	confirm: {
+																		required: true,
+																		minlength: 5,
+																		equalTo: "#password"
+																},
 																},
 																errorElement: "em",
 																errorPlacement: function ( error, element ) {

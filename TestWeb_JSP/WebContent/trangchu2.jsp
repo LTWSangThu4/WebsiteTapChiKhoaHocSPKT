@@ -284,13 +284,13 @@
 											        ...
 											      </div>
 											    </div>
-											    <div class="item active">
+											    <div class="item">
 											      <img src="images/ba2.jpg" alt="...">
 											      <div class="carousel-caption">
 											        ...
 											      </div>
 											    </div>
-											    <div class="item">
+											    <div class="item active">
 											      <img src="images/ba3.jpg" alt="...">
 											      <div class="carousel-caption">
 											        ...
@@ -315,8 +315,9 @@
 										</div>
 									</div>
 									<br>
-									<br>
-									<br>							
+									<marquee scrolldelay="4" scrollamount="5" direction="left" >
+									<img alt="" src="images/WELCOME.png">
+									</marquee>							
 									<p><font color="silver">____________________________________________________________________________</font></p>
 									<br>
 									<c:set var="categories" value="${sessionScope.categories}" />
@@ -482,7 +483,7 @@
 									<h3 class="panel-title"><strong>Được Đọc nhiều</strong></h3>
 								</div>
 								<div class="panel-body">
-									<marquee scrolldelay="6" scrollamount="2" onmouseover="this.stop()"" onmouseout="this.start()" direction="up" height="300" style="height:300px;"  behavior="" direction="">
+									<marquee scrolldelay="6" scrollamount="2" onmouseover="this.stop()" onmouseout="this.start()" direction="up" height="300" style="height:300px;"  behavior="" direction="">
 										<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
 													url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
 													<sql:query dataSource="${con}" var="result3">

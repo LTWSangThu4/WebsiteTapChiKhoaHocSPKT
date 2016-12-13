@@ -6,7 +6,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
-  String password = request.getParameter("Password");
+  String password = request.getParameter("password");
   String passmd5= MD5.encryptMD5(password);
   request.setAttribute("passwordmd5", passmd5);
  
@@ -17,14 +17,14 @@
         <title>JINSERT Operation</title>
     </head>
     <body>
-        <c:if test="${ empty param.Username or empty param.Password or empty param.MaQuyen}">
+        <c:if test="${ empty param.Username or empty param.password or empty param.MaQuyen}">
             <c:redirect url="inserttk.jsp" >
                 <c:param name="errMsg" value="Vui long nhap lai" />
             </c:redirect>
  
         </c:if>
         <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-                           url=url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
+                           url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
  
  
         <sql:update dataSource="${dbsource}" var="result">

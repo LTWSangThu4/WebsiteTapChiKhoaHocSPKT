@@ -612,13 +612,13 @@
 											        ...
 											      </div>
 											    </div>
-											    <div class="item active">
+											    <div class="item ">
 											      <img src="images/ba2.jpg" alt="...">
 											      <div class="carousel-caption">
 											        ...
 											      </div>
 											    </div>
-											    <div class="item">
+											    <div class="item active">
 											      <img src="images/ba3.jpg" alt="...">
 											      <div class="carousel-caption">
 											        ...
@@ -643,9 +643,11 @@
 											</div>
 										</div>
 									</div>
-									<br>
-									<br>
-									<br>							
+									<br>					
+									<marquee scrolldelay="4" scrollamount="5" direction="left" >
+									<img alt="" src="images/WELCOME.png">
+									</marquee>
+																
 									<p><font color="silver">____________________________________________________________________________</font></p>
 									<br>
 									<c:set var="categories" value="${sessionScope.categories}" />
