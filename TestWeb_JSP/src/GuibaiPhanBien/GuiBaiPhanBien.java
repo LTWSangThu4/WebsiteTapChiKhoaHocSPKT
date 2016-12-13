@@ -47,6 +47,8 @@ public class GuiBaiPhanBien extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException { 
     	
+    	request.setCharacterEncoding("UTF-8");
+    	response.setCharacterEncoding("UTF-8");
     	HttpSession session = request.getSession();
     	String dbURL = (String) session.getAttribute("url");
         String dbUser = (String) session.getAttribute("userdb");

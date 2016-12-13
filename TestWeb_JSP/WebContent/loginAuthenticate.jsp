@@ -4,7 +4,9 @@
 <%@ page import ="MD5.MD5" %>
 
 
- <% 
+ <%
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
   String password = request.getParameter("pass");
   String passmd5= MD5.encryptMD5(password);
   request.setAttribute("passwordmd5", passmd5);

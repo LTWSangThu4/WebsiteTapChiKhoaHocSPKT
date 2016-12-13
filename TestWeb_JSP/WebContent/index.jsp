@@ -5,7 +5,7 @@
 			
 			<c:set scope="session"
             var="url"
-            value="jdbc:mysql://localhost/tapchikhoahoc"/>
+            value="jdbc:mysql://localhost/tapchikhoahoc?useUnicode=true&characterEncoding=UTF-8"/>
             <c:set scope="session"
             var="userdb"
             value="root"/>

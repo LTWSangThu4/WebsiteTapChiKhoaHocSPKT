@@ -25,7 +25,11 @@ import com.mysql.cj.fabric.xmlrpc.base.Value;
 public class GetAnhBT extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException,
       ServletException {
-    Blob photo = null;
+	  
+	request.setCharacterEncoding("UTF-8");
+  	response.setCharacterEncoding("UTF-8");
+    
+  	Blob photo = null;
     Connection conn = null;
     Statement stmt = null;
     ResultSet rs = null;

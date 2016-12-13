@@ -25,7 +25,10 @@ public class UpImage extends HttpServlet {
      
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        // gets session User
+    	
+    	request.setCharacterEncoding("UTF-8");
+    	response.setCharacterEncoding("UTF-8");
+    	// gets session User
     	HttpSession session = request.getSession();
     	String user= (String) session.getAttribute("loginUser");
     	

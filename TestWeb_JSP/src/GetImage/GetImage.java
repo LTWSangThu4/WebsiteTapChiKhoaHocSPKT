@@ -25,6 +25,10 @@ import com.mysql.cj.fabric.xmlrpc.base.Value;
 public class GetImage extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException,
       ServletException {
+	  
+	request.setCharacterEncoding("UTF-8");
+  	response.setCharacterEncoding("UTF-8");
+  	
     Blob photo = null;
     Connection conn = null;
     Statement stmt = null;

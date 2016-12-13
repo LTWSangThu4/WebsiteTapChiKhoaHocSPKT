@@ -3,16 +3,18 @@
 <%@ page import ="java.sql.*" %>
 
 <%
-    request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
 	String message = null;
     String noidung_comment = request.getParameter("noidung_comment");    
     int danhgia = 6 - Integer.parseInt(request.getParameter("danhgia"));
     String ID_baiviet = request.getParameter("ID_baiviet");
     String username_nguoi_comment = request.getParameter("username_nguoi_comment");
-
+    String dbURL = (String) session.getAttribute("url");
+    String dbUser = (String) session.getAttribute("userdb");
+    String dbPass = (String) session.getAttribute("passdb");
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tapchikhoahoc",
-            "root", "123456");
+    Connection con = DriverManager.getConnection(dbURL, dbUser, dbPass);
     Statement st = con.createStatement();
     //ResultSet rs;
     int i = st.executeUpdate("insert into comment(noidung_comment, danhgia, ID_baiviet, username_nguoi_comment) values ('"+ noidung_comment +"','"+ danhgia +"','"+ ID_baiviet +"','"+ username_nguoi_comment +"')");

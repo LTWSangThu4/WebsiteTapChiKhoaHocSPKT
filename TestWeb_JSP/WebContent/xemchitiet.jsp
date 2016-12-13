@@ -235,9 +235,8 @@
 					          				           url="${sessionScope['url']}"
 					                          		   user="${sessionScope['userdb']}"  password="${sessionScope['passdb']}"/>
 					                <sql:query dataSource="${dbsource}" var="baivietdagui">
-										SELECT * from ds_baiviet_dagui,taikhoan
-										where ds_baiviet_dagui.username_taikhoan=taikhoan.Username
-										and ds_baiviet_dagui.ID_baiviet_dagui=?
+										SELECT * from ds_baiviet_dagui
+										where ds_baiviet_dagui.ID_baiviet_dagui=?
 										<sql:param value="${param.id}" />					    
 									</sql:query>
 						<div class="col-sm-10">

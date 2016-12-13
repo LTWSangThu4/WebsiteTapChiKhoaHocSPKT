@@ -4,7 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ page import ="MD5.MD5" %>
 
-<% 
+<%
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
   //old password
   String password = request.getParameter("oldpassword");
   String passmd5= MD5.encryptMD5(password);

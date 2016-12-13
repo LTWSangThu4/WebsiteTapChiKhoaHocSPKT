@@ -34,7 +34,10 @@ public class DownloadFile_BTV2 extends HttpServlet {
      
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        // get upload id from URL's parameters
+        
+    	request.setCharacterEncoding("UTF-8");
+    	response.setCharacterEncoding("UTF-8");
+    	// get upload id from URL's parameters
     	HttpSession session = request.getSession();
     	String dbURL = (String) session.getAttribute("url");
         String dbUser = (String) session.getAttribute("userdb");

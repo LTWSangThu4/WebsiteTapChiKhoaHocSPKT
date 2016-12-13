@@ -3,7 +3,8 @@
 <%@ page import ="java.sql.*" %>
 
 <%
-    request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
 	String message = null;
     String noidung_comment = request.getParameter("noidung_comment");    
     int danhgia = 6 - Integer.parseInt(request.getParameter("danhgia"));

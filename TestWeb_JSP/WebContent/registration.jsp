@@ -4,6 +4,8 @@
 <%@ page import ="MD5.MD5" %>
 
 <%
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
 	String dbURL = (String) session.getAttribute("url");
 	String dbUser = (String) session.getAttribute("userdb");
 	String dbPass = (String) session.getAttribute("passdb");
