@@ -14,9 +14,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
-import com.sun.javafx.collections.MappingChange.Map;
+//import com.sun.javafx.collections.MappingChange.Map;
 
 /**
  * Servlet implementation class LayThongTin
@@ -26,11 +27,13 @@ public class LayThongTin extends HttpServlet {
 	
        
 	 // database connection settings
-	    private String dbURL = "jdbc:mysql://localhost:3306/tapchikhoahoc";
-	    private String dbUser = "root";
-	    private String dbPass = "123456";
+	   
 	   
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+    	String dbURL = (String) session.getAttribute("url");
+        String dbUser = (String) session.getAttribute("userdb");
+        String dbPass = (String) session.getAttribute("passdb");
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");		
 		Connection conn = null; 		

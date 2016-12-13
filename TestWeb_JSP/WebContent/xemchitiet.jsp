@@ -328,7 +328,7 @@
 									</sql:query>
 									
 									<div class="col-sm-7">
-									<form class="form-horizontal" method="get" action="DownloadFile_TBT">
+									<form class="form-horizontal" method="get" action="DownloadFile_PB">
 										<c:forEach var="row" items="${baivietphanbien.rows}">
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Tên Phản Biện: </label>
@@ -346,6 +346,12 @@
 												<label class="col-sm-4 control-label">Nội Dung: </label>
 												<div class="col-sm-8">
 													<p class="form-control-static"><c:out value="${row.noidung_phanbien}"/></p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4 control-label">File: </label>
+												<div class="col-sm-8">
+													<button type="submit" value="${row.ID_noidung_phanbien}" name="id"  class="btn btn-link">${row.tenfile_phanbien}</button>
 												</div>
 											</div>
 											<div class="form-group">

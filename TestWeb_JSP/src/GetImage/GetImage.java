@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
+//import javax.websocket.Session;
 
 import com.mysql.cj.fabric.xmlrpc.base.Value;
 
@@ -33,13 +33,17 @@ public class GetImage extends HttpServlet {
     HttpSession session = request.getSession();
     String user= (String) session.getAttribute("loginUser");
     
+   
+    String dbURL = (String) session.getAttribute("url");
+    String dbUser = (String) session.getAttribute("userdb");
+    String dbPass = (String) session.getAttribute("passdb");
+    
     String query = "select anh_dai_dien from taikhoan where  Username = '"+user+"' ";
     ServletOutputStream out = response.getOutputStream();
 
     try {
-      conn = getMySqlConnection();
-      //PreparedStatement statement = conn.prepareStatement(query);
-      //statement.setString(1, user1);
+    	DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
     } catch (Exception e) {
       response.setContentType("text/html");
       out.println("<html><head><title>Person Photo</title></head>");

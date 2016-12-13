@@ -22,9 +22,7 @@ import javax.servlet.http.Part;
 public class GuibaiBienTap extends HttpServlet {
      
     // database connection settings
-    private String dbURL = "jdbc:mysql://localhost:3306/tapchikhoahoc";
-    private String dbUser = "root";
-    private String dbPass = "123456";
+   
     
     //get only File's name
     private String extractFileName(Part part) {
@@ -48,7 +46,10 @@ public class GuibaiBienTap extends HttpServlet {
     }
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException { 
-    	
+    	HttpSession session = request.getSession();
+    	String dbURL = (String) session.getAttribute("url");
+        String dbUser = (String) session.getAttribute("userdb");
+        String dbPass = (String) session.getAttribute("passdb");
     	// gets values of text fields
         String id_baiviet_bientap = request.getParameter("id_baiviet_bientap");
         String tieude = request.getParameter("tieude_bientap");

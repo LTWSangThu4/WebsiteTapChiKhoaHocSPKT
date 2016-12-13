@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
+//import javax.websocket.Session;
 
 import com.mysql.cj.fabric.xmlrpc.base.Value;
 
@@ -29,7 +29,10 @@ public class GetAnhTG extends HttpServlet {
     Connection conn = null;
     Statement stmt = null;
     ResultSet rs = null;
-    // gets session User
+    HttpSession session = request.getSession();
+    String dbURL = (String) session.getAttribute("url");
+    String dbUser = (String) session.getAttribute("userdb");
+    String dbPass = (String) session.getAttribute("passdb");
    
     String id_tg= request.getParameter("id_tg");
     
@@ -37,9 +40,8 @@ public class GetAnhTG extends HttpServlet {
     ServletOutputStream out = response.getOutputStream();
 
     try {
-      conn = getMySqlConnection();
-      //PreparedStatement statement = conn.prepareStatement(query);
-      //statement.setString(1, user1);
+    	DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
     } catch (Exception e) {
       response.setContentType("text/html");
       out.println("<html><head><title>Person Photo</title></head>");
@@ -89,22 +91,7 @@ public class GetAnhTG extends HttpServlet {
     }
   }
 
-  private String getAttribute(String string) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-public static Connection getMySqlConnection() throws Exception {
-    String driver = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/tapchikhoahoc";
-    String username = "root";
-    String password = "123456";
-
-    Class.forName(driver);
-    Connection conn = DriverManager.getConnection(url, username, password);
-    return conn;
-  }
-
+ 
   
 }
 

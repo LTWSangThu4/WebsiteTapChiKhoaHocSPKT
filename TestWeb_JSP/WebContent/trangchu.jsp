@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
-                   url="jdbc:mysql://localhost:3306/tapchikhoahoc" user="root" password="123456" />
+                   url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
  
 <sql:query dataSource="${dataSource}" var="categories" scope="session">
         SELECT * FROM ds_noidung_bientap

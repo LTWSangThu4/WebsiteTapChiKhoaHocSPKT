@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
  
 /**
  * A servlet that retrieves a file from MySQL database and lets the client
@@ -29,14 +30,14 @@ public class Download extends HttpServlet {
     private static final int BUFFER_SIZE = 4096;   
      
     // database connection settings
-    private String dbURL = "jdbc:mysql://localhost:3306/tapchikhoahoc";
-    private String dbUser = "root";
-    private String dbPass = "123456";
+    
      
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        // get upload id from URL's parameters
-             
+    	HttpSession session = request.getSession();
+    	String dbURL = (String) session.getAttribute("url");
+        String dbUser = (String) session.getAttribute("userdb");
+        String dbPass = (String) session.getAttribute("passdb");
         Connection conn = null; // connection to the database
          
         try {

@@ -248,7 +248,7 @@
 									  
 								<!-- kết nối DB -->
 									  <sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-											url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+											url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
 										<!--ds chưa đc phân công -->
 											<sql:query var="result" sql="select * from ds_baiviet_dagui,taikhoan 
 											where taikhoan.Username=ds_baiviet_dagui.username_taikhoan 											
@@ -281,7 +281,7 @@
 														<th>Tiêu Đề</th>
 														<th>Nội Dung</th>														
 														<th>Ngày Gửi</th>													
-														<th colspan="2">Action</th>
+														<th colspan="1">Action</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -295,7 +295,7 @@
 																<td>${rows.ngaygui }</td>
 																
 																<td><a href="xemchitiet.jsp?id=<c:out value="${rows.ID_baiviet_dagui}"/>" >Chi tiết</a></td>
-																<td><a href="javascript:confirmGo('Sure to delete this record?','#?id1=<c:out value="${rows.ID_baiviet_dagui}"/>')">Delete</a></td>
+																
 															</tr>
 														</c:forEach>
 													
@@ -316,7 +316,7 @@
 														<th>Ngày Giao PB</th>														
 														<th>Trạng Thái BT</th>
 														<th>Trạng Thái PB</th>
-														<th colspan="2">Action</th>
+														<th colspan="1">Action</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -332,7 +332,7 @@
 																<td>${rows1.trangthai_bientap }</td>
 																<td>${rows1.trangthai_phanbien }</td>
 																<td><a href="xemchitiet.jsp?id=<c:out value="${rows1.ID_baiviet_dagui}"/>" >Chi tiết</a></td>
-																<td><a href="javascript:confirmGo('Sure to delete this record?','#?id1=<c:out value="${rows.ID_baiviet_dagui}"/>')">Delete</a></td>
+																
 															</tr>
 														</c:forEach>
 													

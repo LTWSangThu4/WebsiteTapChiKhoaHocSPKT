@@ -26,9 +26,7 @@ import MD5.MD5;
 public class SendServlet extends HttpServlet {
      
     // database connection settings
-    private String dbURL = "jdbc:mysql://localhost:3306/tapchikhoahoc";
-    private String dbUser = "root";
-    private String dbPass = "123456";
+   
     
     //random
     protected String getSaltString() {
@@ -46,7 +44,10 @@ public class SendServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-      
+    	HttpSession session = request.getSession();
+    	String dbURL = (String) session.getAttribute("url");
+        String dbUser = (String) session.getAttribute("userdb");
+        String dbPass = (String) session.getAttribute("passdb");
     	String Email = request.getParameter("email");
     	Connection conn = null;
     	String message = null;

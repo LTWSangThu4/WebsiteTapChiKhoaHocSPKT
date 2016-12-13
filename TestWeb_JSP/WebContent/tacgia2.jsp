@@ -388,7 +388,7 @@
 											<!--end cot ảnh bìa-->
 											</div >
 												<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+													url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
 											<div class="tab-pane fade" id="dsbaidaviet">
 											 <div class="tab-content">
 											  <div class="tab-pane fade in active" id="dsbaiviet1">

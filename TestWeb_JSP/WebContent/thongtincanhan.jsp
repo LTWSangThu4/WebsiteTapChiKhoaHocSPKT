@@ -1,5 +1,5 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -61,16 +61,7 @@
 								 		</div>
 								  		<button  type="submit" class="btn btn-primary textcolor" style="background: #0c6b63;">TÌM</button>
 									</form>
-									<!--Ajax-->	
-									  <script type="text/javascript">
-										 $(document).ready(function() {
-										 $('#tim').click(function(e) {
-										 e.preventDefault();
-										 $('#ndtk').load('ketquatimkiem.jsp #ndtk-canlay');
-										 });
-										 });
-									</script>
-				  				<!--endAjax-->
+									
 								</div>
 						</div><!--end search-->
 						<div class="row">
@@ -233,14 +224,15 @@
 									<div class="panel-body">
 									<c:choose>
 										<c:when test="${not empty sessionScope['loginUser']}">
-									      <s:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-									                       url="jdbc:mysql://localhost:3306/tapchikhoahoc"
-									                       user="root" password="123456"/>
-									                       
-										 <s:query dataSource="${ds}" var="selectQ">
-									        select * from TaiKhoan
+										
+									      <sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
+                  							 url="${sessionScope['url']}" user="${sessionScope['userdb']}" 
+                  							 password="${sessionScope['passdb']}" />
+                  							 								                       
+										 <sql:query dataSource="${ds}" var="selectQ">
+									        select * from taikhoan
 									        where Username='${sessionScope['loginUser']}'
-									      </s:query>
+									      </sql:query>
 									 
 									      <c:forEach items="${selectQ.rows}" var="r">
 									        <c:choose>

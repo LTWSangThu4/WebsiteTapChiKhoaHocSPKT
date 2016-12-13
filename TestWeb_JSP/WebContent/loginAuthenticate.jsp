@@ -1,6 +1,5 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="s" %>
-<%@ page import ="java.sql.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import ="MD5.MD5" %>
 
@@ -11,24 +10,21 @@
   request.setAttribute("passwordmd5", passmd5);
   %>
    
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Authentication page</title>
-  </head>
-  <body>
+
     <c:if test="${not empty param.uname and not empty param.pass}">
-      <s:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-                       url="jdbc:mysql://localhost:3306/tapchikhoahoc"
-                       user="root" password="123456"/>
- 		
-      <s:query dataSource="${ds}" var="selectQ">
-        select count(*) as kount from TaiKhoan
-        where Username='${param.uname}'
-        and Password='<%=request.getAttribute("passwordmd5")%>'
-        and MaQuyen ='${param.q}' 
-        and Trangthaihoatdong="1"
-      </s:query>
+    
+    	<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+                   url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
+ 
+		<sql:query dataSource="${dataSource}" var="selectQ">
+		       	select count(*) as kount from taikhoan
+		        where Username='${param.uname}'
+		        and Password='<%=request.getAttribute("passwordmd5")%>'
+		        and MaQuyen ='${param.q}' 
+		        and Trangthaihoatdong='1'
+		</sql:query>
+      
+      
  
       <c:forEach items="${selectQ.rows}" var="r">
         <c:choose>
@@ -85,5 +81,4 @@
  
     </c:if>
  
-  </body>
-</html>
+ 

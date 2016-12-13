@@ -22,9 +22,7 @@ import javax.servlet.http.Part;
 public class Comment extends HttpServlet {
      
     // database connection settings
-    private String dbURL = "jdbc:mysql://localhost:3306/tapchikhoahoc";
-    private String dbUser = "root";
-    private String dbPass = "123456";
+   
     
 
     protected void doPost(HttpServletRequest request,
@@ -33,6 +31,10 @@ public class Comment extends HttpServlet {
     	// gets session User
     	HttpSession session = request.getSession();
     	String user= (String) session.getAttribute("loginUser");
+
+    	String dbURL = (String) session.getAttribute("url");
+        String dbUser = (String) session.getAttribute("userdb");
+        String dbPass = (String) session.getAttribute("passdb");
     	// gets values of text fields
         String noidung_comment = request.getParameter("noidung_comment");
         int danhgia = 6 - Integer.parseInt(request.getParameter("danhgia"));
@@ -58,7 +60,7 @@ public class Comment extends HttpServlet {
             // sends the statement to the database server
             int row = statement.executeUpdate();
             if (row > 0) {
-                message = "Đã bình luận!";
+                message = "Ä�Ã£ bÃ¬nh luáº­n!";
             }
         } catch (SQLException ex) {
             message = "ERROR: " + ex.getMessage();

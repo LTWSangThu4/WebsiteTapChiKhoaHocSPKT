@@ -21,8 +21,7 @@
  
         </c:if>
         <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-                           url="jdbc:mysql://localhost/tapchikhoahoc"
-                           user="root"  password="123456"/>
+                          url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
  
  
         <sql:update dataSource="${dbsource}" var="result">

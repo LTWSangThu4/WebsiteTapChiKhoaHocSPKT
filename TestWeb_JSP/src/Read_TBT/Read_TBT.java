@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
  
 /**
  * Servlet implementation class GetDetails
@@ -34,6 +35,10 @@ public class Read_TBT extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          
+    	HttpSession session = request.getSession();
+    	String dbURL = (String) session.getAttribute("url");
+        String dbUser = (String) session.getAttribute("userdb");
+        String dbPass = (String) session.getAttribute("passdb");
        //get ID 
         int Id_file = Integer.parseInt(request.getParameter("id"));
          
@@ -48,7 +53,7 @@ public class Read_TBT extends HttpServlet {
  
            try {
                Class.forName("com.mysql.jdbc.Driver");
-               con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tapchikhoahoc","root","123456");
+               con = DriverManager.getConnection(dbURL, dbUser, dbPass);
           } catch (Exception e) {
                      System.out.println(e);
                      System.exit(0); 

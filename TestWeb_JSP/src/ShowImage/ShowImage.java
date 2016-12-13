@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/GetAnhBia")
 public class ShowImage extends HttpServlet {
@@ -25,17 +26,18 @@ public class ShowImage extends HttpServlet {
     Connection conn = null;
     Statement stmt = null;
     ResultSet rs = null;
-    // gets session User
+    HttpSession session = request.getSession();
    
     String id= request.getParameter("id");
-    
+    String dbURL = (String) session.getAttribute("url");
+    String dbUser = (String) session.getAttribute("userdb");
+    String dbPass = (String) session.getAttribute("passdb");
     String query = "select anh from ds_baiviet_dagui where  ID_baiviet_dagui = "+id;
     ServletOutputStream out = response.getOutputStream();
 
     try {
-      conn = getMySqlConnection();
-      //PreparedStatement statement = conn.prepareStatement(query);
-      //statement.setString(1, user1);
+    	DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
     } catch (Exception e) {
       response.setContentType("text/html");
       out.println("<html><head><title>Person Photo</title></head>");

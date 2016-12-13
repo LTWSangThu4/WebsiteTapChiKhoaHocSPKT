@@ -27,7 +27,7 @@
 								</div>
 								<div class="panel-body">
 								<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
-                  				 url="jdbc:mysql://localhost:3306/tapchikhoahoc" user="root" password="123456" />
+                  				 url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
  
 								<sql:query dataSource="${dataSource}" var="rs" >
 								        SELECT * FROM ds_noidung_bientap
@@ -68,7 +68,7 @@
 								</div>
 								<div class="panel-body">
 								<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
-                  				 url="jdbc:mysql://localhost:3306/tapchikhoahoc" user="root" password="123456" />
+                  				url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
  
 								<sql:query dataSource="${dataSource}" var="rs" >
 								        SELECT * FROM ds_noidung_bientap
@@ -109,7 +109,7 @@
 								</div>
 								<div class="panel-body">
 								<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
-                  				 url="jdbc:mysql://localhost:3306/tapchikhoahoc" user="root" password="123456" />
+                  				 url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
  
 								<sql:query dataSource="${dataSource}" var="rs" >
 								        SELECT * FROM ds_noidung_bientap
@@ -150,7 +150,7 @@
 								</div>
 								<div class="panel-body">
 								<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
-                  				 url="jdbc:mysql://localhost:3306/tapchikhoahoc" user="root" password="123456" />
+                  				 url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
  
 								<sql:query dataSource="${dataSource}" var="rs" >
 								        SELECT * FROM ds_noidung_bientap

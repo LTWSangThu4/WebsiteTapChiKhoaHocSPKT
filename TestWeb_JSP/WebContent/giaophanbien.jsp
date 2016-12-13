@@ -9,8 +9,7 @@
     </head>
     <body>
         <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
-                           url="jdbc:mysql://localhost/tapchikhoahoc"
-                           user="root"  password="123456"/>
+                           url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
  
  		<sql:query dataSource="${dbsource}" var="count">
 			SELECT count(*) as kount, ID_baiviet_phanbien from ds_baiviet_phanbien

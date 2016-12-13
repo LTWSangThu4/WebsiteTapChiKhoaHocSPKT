@@ -232,7 +232,7 @@
 										<!--cot trái-->
 											<div class="col-md-8">
 												<s:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-												url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+												url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
 												<s:query var="thongtin" dataSource="${con}">
 													
 													select ds_baiviet_phanbien.ID_baiviet_phanbien, taikhoan.last_name, taikhoan.first_name, ds_baiviet_dagui.tieude

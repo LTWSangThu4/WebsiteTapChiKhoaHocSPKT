@@ -21,9 +21,7 @@ import javax.servlet.http.Part;
 public class UpImage extends HttpServlet {
      
     // database connection settings
-    private String dbURL = "jdbc:mysql://localhost:3306/tapchikhoahoc";
-    private String dbUser = "root";
-    private String dbPass = "123456";
+   
      
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
@@ -31,6 +29,9 @@ public class UpImage extends HttpServlet {
     	HttpSession session = request.getSession();
     	String user= (String) session.getAttribute("loginUser");
     	
+    	String dbURL = (String) session.getAttribute("url");
+        String dbUser = (String) session.getAttribute("userdb");
+        String dbPass = (String) session.getAttribute("passdb");
         InputStream inputStream = null; // input stream of the upload file
          
         // obtains the upload file part in this multipart request

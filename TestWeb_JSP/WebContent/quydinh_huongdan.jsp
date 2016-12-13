@@ -635,15 +635,15 @@
 								<div class="panel-body">
 									<marquee scrolldelay="6" scrollamount="2" onmouseover="this.stop()"" onmouseout="this.start()" direction="up" height="300" style="height:300px;"  behavior="" direction="">
 										<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-													url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
-													<sql:query dataSource="${con}" var="result">
+													url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
+													<sql:query dataSource="${con}" var="result3">
 														select ID_baiviet,ds_noidung_bientap.tieude_bientap, sum(comment.danhgia)
 														from comment,ds_noidung_bientap
 														where comment.ID_baiviet=ds_noidung_bientap.ID_noidung_bientap
 														group by ID_baiviet,tieude_bientap
-														LIMIT 2
+														LIMIT 4
 													</sql:query>
-										<c:forEach items="${result.rows}" var="rows">	
+										<c:forEach items="${result3.rows}" var="rows">	
 										        	
 										  	<div class="media">
 												<a class="pull-left" href="xulyxembai.jsp?id=${rows.ID_baiviet }">

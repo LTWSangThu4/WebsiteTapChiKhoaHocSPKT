@@ -4,6 +4,9 @@
 <%@ page import ="MD5.MD5" %>
 
 <%
+	String dbURL = (String) session.getAttribute("url");
+	String dbUser = (String) session.getAttribute("userdb");
+	String dbPass = (String) session.getAttribute("passdb");
 	String message = null;
     String ho = request.getParameter("ho");    
     String ten = request.getParameter("ten");
@@ -12,8 +15,7 @@
     String password = request.getParameter("password");
     String passmd5= MD5.encryptMD5(password);
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tapchikhoahoc",
-            "root", "123456");
+    Connection con = DriverManager.getConnection(dbURL, dbUser, dbPass);
     Statement st = con.createStatement();
     //ResultSet rs;
     int i = st.executeUpdate("insert into taikhoan(last_name, first_name, Email, Username, Password, regdate, MaQuyen, Trangthaihoatdong) values ('"+ ho +"','"+ ten +"','"+ email +"','"+ username +"','"+ passmd5 +"', CURDATE(), 4, 1)");

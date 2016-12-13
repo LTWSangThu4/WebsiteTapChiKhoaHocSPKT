@@ -252,7 +252,7 @@
 												</thead>
 												<tbody>
 												<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver" 
-												url="jdbc:mysql://localhost/tapchikhoahoc" user="root" password="123456"/>
+												url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
 												<sql:query var="dschuaphanbien" dataSource="${con}">
 													select *
 													from ds_baiviet_dagui,ds_baiviet_phanbien
