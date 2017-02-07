@@ -384,7 +384,7 @@
 									    </c:forEach>  
 									    <%--For displaying Next link --%>
 									    <c:if test="${pageNumber lt numberOfPages}">
-									        <a href="dispresult.jsp?pageNumber=${pageNumber + 1}">Next</a>
+									        <a href="trangchu2.jsp?pageNumber=${pageNumber + 1}">Next</a>
 									    </c:if>	
 									    </center>								
 									</div>

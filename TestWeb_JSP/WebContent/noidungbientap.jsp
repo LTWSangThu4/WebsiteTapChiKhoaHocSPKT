@@ -87,18 +87,18 @@
 								      <form id="FormTimKiemNangCao" method="post" class="form-horizontal" action="xulytimkiem.jsp">
 								      <div class="modal-body">
 								      
-								      	<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+								      	<s:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
                   							 url="${sessionScope['url']}" user="${sessionScope['userdb']}" 
                   							 password="${sessionScope['passdb']}" />
-								        <sql:query dataSource="${dataSource}" var="result">
+								        <s:query dataSource="${dataSource}" var="result">
 											select *
 											from ds_baiviet_dagui
-										</sql:query>
+										</s:query>
 										
-										<sql:query dataSource="${dataSource}" var="result2">
+										<s:query dataSource="${dataSource}" var="result2">
 											select *
 											from ds_noidung_bientap
-										</sql:query>
+										</s:query>
 								        
 								        
 											<div class="form-group">
