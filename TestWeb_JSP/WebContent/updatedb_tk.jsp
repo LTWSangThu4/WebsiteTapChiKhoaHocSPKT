@@ -17,7 +17,7 @@
                            url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
         <sql:update dataSource="${dbsource}" var="count">
             UPDATE taikhoan SET MaQuyen = ?, Trangthaihoatdong=?
-            WHERE id='${param.id}'
+            WHERE id='<c:out value="${param.id}"/>'
             <sql:param value="${param.maquyen}" />
             <sql:param value="${param.tthd}" />
         </sql:update>

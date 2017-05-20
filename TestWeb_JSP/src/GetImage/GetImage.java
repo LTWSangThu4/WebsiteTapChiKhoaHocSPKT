@@ -31,7 +31,7 @@ public class GetImage extends HttpServlet {
   	
     Blob photo = null;
     Connection conn = null;
-    Statement stmt = null;
+    PreparedStatement stmt = null;
     ResultSet rs = null;
     // gets session User
     HttpSession session = request.getSession();
@@ -42,7 +42,7 @@ public class GetImage extends HttpServlet {
     String dbUser = (String) session.getAttribute("userdb");
     String dbPass = (String) session.getAttribute("passdb");
     
-    String query = "select anh_dai_dien from taikhoan where  Username = '"+user+"' ";
+    String query = "select anh_dai_dien from taikhoan where  Username =?";
     ServletOutputStream out = response.getOutputStream();
 
     try {
@@ -56,8 +56,9 @@ public class GetImage extends HttpServlet {
     }
 
     try {
-      stmt = conn.createStatement();
-      rs = stmt.executeQuery(query);
+    	stmt = conn.prepareStatement(query);
+        stmt.setString(1,user);
+      rs = stmt.executeQuery();
       if (rs.next()) {
         photo = rs.getBlob(1);
       } else {

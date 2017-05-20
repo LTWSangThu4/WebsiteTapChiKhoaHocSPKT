@@ -58,8 +58,10 @@ public class UpImage extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // constructs SQL statement
-            String sql = "UPDATE taikhoan SET anh_dai_dien=? WHERE Username='"+user+"'";
+            String sql = "UPDATE taikhoan SET anh_dai_dien=? WHERE Username=?";
             PreparedStatement statement = conn.prepareStatement(sql);
+            statement = conn.prepareStatement(sql);
+            statement.setString(2,user);
           
              
             if (inputStream != null) {

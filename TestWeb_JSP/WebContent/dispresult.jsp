@@ -53,7 +53,7 @@
 											      </div>
 											      <!--body-->
 											      <div class="modal-body">
-											      	<form id="FormDangNhap" method="post" action="loginAuthenticate.jsp"  class="form-horizontal">
+											      	<form id="FormDangNhap" method="get" action="Login"  class="form-horizontal">
 												      	<label class="radio-inline">
 												      		<input type="radio" name="q"  value="0" checked>  Admin
 												      	</label>
@@ -691,7 +691,8 @@
 													      		</a>
 													      	</div>								      														      		
 													     		  <Center>
-													        		<a href="xulyxembai.jsp?id=${row.ID_noidung_bientap }"><strong><c:out value="${row.tieude_bientap}"/></strong></a>										        												    										        
+													     		 
+													        		<a href="xulyxembai.jsp?id=<c:out value="${row.ID_noidung_bientap }"/>"><strong><c:out value="${row.tieude_bientap}"/></strong></a>										        												    										        
 													      		  </Center>									      		
 														</div>
 													</div>																							

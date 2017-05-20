@@ -21,7 +21,7 @@
                            url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
        	<sql:update dataSource="${dbsource}" var="count1">
             UPDATE taikhoan SET last_name =?, first_name=?, email=?, CoQuan=?, thongtinlienlac=?
-            WHERE Username='${sessionScope['loginUser']}'
+            WHERE Username='<c:out value="${sessionScope['loginUser']}"/>'
             <sql:param value="${param.hocn}" />
             <sql:param value="${param.tencn}" />
             <sql:param value="${param.emailcn}"/>

@@ -17,7 +17,7 @@
                            url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
         <sql:update dataSource="${dbsource}" var="count">
             DELETE FROM ds_noidung_bientap
-            WHERE ID_noidung_bientap='${param.id1}'
+            WHERE ID_noidung_bientap='<c:out value="${param.id1}"/>'
         </sql:update>
         <c:redirect url="tongbientap2.jsp"/>
     </body>

@@ -509,7 +509,7 @@
 								        SELECT * FROM ds_noidung_bientap, ds_baiviet_dagui, ds_baiviet_bientap
 								        Where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_bientap.ID_baiviet_dagui
 								        and ds_baiviet_bientap.ID_baiviet_bientap=ds_noidung_bientap.ID_baiviet_bientap
-								        and ID_noidung_bientap='${param.id}'
+								        and ID_noidung_bientap='<c:out value="${param.id}"/>'
 								        
 								</sql:query>
 									
@@ -553,7 +553,7 @@
 												select *
 												from comment,ds_noidung_bientap
 												where comment.ID_baiviet=ds_noidung_bientap.ID_noidung_bientap
-												and ds_noidung_bientap.ID_noidung_bientap='${param.id}'
+												and ds_noidung_bientap.ID_noidung_bientap='<c:out value="${param.id}"/>'
 										</sql:query>
 										<c:forEach var="rows" items="${ketqua.rows}">
 											<h5><strong>${rows.username_nguoi_comment}</strong></h5>

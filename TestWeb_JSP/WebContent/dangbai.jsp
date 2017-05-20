@@ -21,21 +21,21 @@
             FROM ds_baiviet_bientap,ds_noidung_bientap, ds_baiviet_phanbien, ds_noidung_phanbien
             WHERE ds_baiviet_bientap.ID_baiviet_bientap=ds_noidung_bientap.ID_baiviet_bientap
             and ds_baiviet_phanbien.ID_baiviet_phanbien=ds_noidung_phanbien.ID_baiviet_phanbien
-            and ds_baiviet_bientap.ID_baiviet_dagui='${param.idbaiviet}'
-            and ds_baiviet_phanbien.ID_baiviet_dagui='${param.idbaiviet}'
+            and ds_baiviet_bientap.ID_baiviet_dagui='<c:out value="${param.idbaiviet}"/>'
+            and ds_baiviet_phanbien.ID_baiviet_dagui='<c:out value="${param.idbaiviet}"/>'
  		</sql:query>
  		
  		<c:forEach var="row" items="${laydb.rows}">
  		
 	        <sql:update dataSource="${dbsource}" var="result">	
 	           UPDATE ds_noidung_bientap SET trangthai_duocdang ="2", danhmuc=?,  NgayDang= CURDATE()
-               WHERE ID_noidung_bientap='${row.ID_noidung_bientap}'             
+               WHERE ID_noidung_bientap='<c:out value="${row.ID_noidung_bientap}"/>'             
 	         <sql:param value="${param.danhmuc}" />
 	        </sql:update>
 	        
 	        <sql:update dataSource="${dbsource}" var="result1">		          
 	           UPDATE ds_noidung_phanbien SET trangthai_duocdang ="2"
-               WHERE ID_noidung_phanbien='${row.ID_noidung_phanbien}'  	        
+               WHERE ID_noidung_phanbien='<c:out value="${row.ID_noidung_phanbien}"/>'  	        
 	        </sql:update>
 	        
         </c:forEach>
@@ -44,7 +44,7 @@
         	
         		<sql:update dataSource="${dbsource}" var="result1">	
 		           UPDATE ds_baiviet_dagui SET trangthai ='2'
-	               WHERE ID_baiviet_dagui='${param.idbaiviet}'                
+	               WHERE ID_baiviet_dagui='<c:out value="${param.idbaiviet}"/>'                
 	       		 </sql:update>
 	       		 
         		<Center>

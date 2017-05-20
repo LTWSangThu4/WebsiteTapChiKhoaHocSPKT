@@ -18,7 +18,7 @@
  
  		<sql:query dataSource="${dbsource}" var="count">
 			SELECT count(*) as kount, ID_baiviet_bientap from ds_baiviet_bientap
-			where ID_baiviet_dagui='${param.idbaiviet}'													    
+			where ID_baiviet_dagui='<c:out value="${param.idbaiviet}"/>'													    
 		</sql:query>
 		
 		

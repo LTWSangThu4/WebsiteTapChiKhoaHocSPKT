@@ -17,7 +17,7 @@
                            url="${sessionScope['url']}" user="${sessionScope['userdb']}" password="${sessionScope['passdb']}" />
         <sql:update dataSource="${dbsource}" var="count">
             DELETE FROM taikhoan
-            WHERE id='${param.id}'
+            WHERE id='<c:out value="${param.id}"/>'
         </sql:update>
         <c:redirect url="admin2.jsp"/>
     </body>

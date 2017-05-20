@@ -31,7 +31,7 @@ public class GetAnhTG extends HttpServlet {
     
   	Blob photo = null;
     Connection conn = null;
-    Statement stmt = null;
+    PreparedStatement stmt = null;
     ResultSet rs = null;
     HttpSession session = request.getSession();
     String dbURL = (String) session.getAttribute("url");
@@ -40,7 +40,7 @@ public class GetAnhTG extends HttpServlet {
    
     String id_tg= request.getParameter("id_tg");
     
-    String query = "select anh from ds_baiviet_dagui where  ID_baiviet_dagui = "+id_tg;
+    String query = "select anh from ds_baiviet_dagui where  ID_baiviet_dagui =?";
     ServletOutputStream out = response.getOutputStream();
 
     try {
@@ -54,8 +54,9 @@ public class GetAnhTG extends HttpServlet {
     }
 
     try {
-      stmt = conn.createStatement();
-      rs = stmt.executeQuery(query);
+    	stmt = conn.prepareStatement(query);
+        stmt.setString(1,id_tg);
+      rs = stmt.executeQuery();
       if (rs.next()) {
         photo = rs.getBlob(1);
       } else {

@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +28,7 @@ public class ShowImage extends HttpServlet {
   	
     Blob photo = null;
     Connection conn = null;
-    Statement stmt = null;
+    PreparedStatement stmt = null;
     ResultSet rs = null;
     HttpSession session = request.getSession();
    
@@ -36,7 +36,7 @@ public class ShowImage extends HttpServlet {
     String dbURL = (String) session.getAttribute("url");
     String dbUser = (String) session.getAttribute("userdb");
     String dbPass = (String) session.getAttribute("passdb");
-    String query = "select anh from ds_baiviet_dagui where  ID_baiviet_dagui = "+id;
+    String query = "select anh from ds_baiviet_dagui where  ID_baiviet_dagui =?";
     ServletOutputStream out = response.getOutputStream();
 
     try {
@@ -50,8 +50,9 @@ public class ShowImage extends HttpServlet {
     }
 
     try {
-      stmt = conn.createStatement();
-      rs = stmt.executeQuery(query);
+    	stmt = conn.prepareStatement(query);
+        stmt.setString(1,id);
+      rs = stmt.executeQuery();
       if (rs.next()) {
         photo = rs.getBlob(1);
       } else {

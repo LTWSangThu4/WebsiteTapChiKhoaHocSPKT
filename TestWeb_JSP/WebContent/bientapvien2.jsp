@@ -260,7 +260,7 @@
 													select *
 													from ds_baiviet_dagui,ds_baiviet_bientap
 													where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_bientap.ID_baiviet_dagui
-													and ds_baiviet_bientap.username_taikhoan='${sessionScope['loginUser']}'
+													and ds_baiviet_bientap.username_taikhoan='<c:out value="${sessionScope['loginUser']}"/>'
 													and ds_baiviet_bientap.trangthai_bientap='Chua Bien Tap'
 												</sql:query>
 												
@@ -303,7 +303,7 @@
 													select *
 													from ds_baiviet_bientap,ds_noidung_bientap, trangthai_tg
 													where ds_baiviet_bientap.ID_baiviet_bientap=ds_noidung_bientap.ID_baiviet_bientap
-													and ds_baiviet_bientap.username_taikhoan='${sessionScope['loginUser']}'
+													and ds_baiviet_bientap.username_taikhoan='<c:out value="${sessionScope['loginUser']}"/>'
 													and ds_noidung_bientap.trangthai_duocdang=trangthai_tg.ma_trangthai
 													and ds_baiviet_bientap.trangthai_bientap='Da Bien Tap'
 												</sql:query>

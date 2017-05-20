@@ -31,7 +31,7 @@ public class GetAnhBT extends HttpServlet {
     
   	Blob photo = null;
     Connection conn = null;
-    Statement stmt = null;
+    PreparedStatement stmt = null;
     ResultSet rs = null;
     HttpSession session = request.getSession();
     String dbURL = (String) session.getAttribute("url");
@@ -40,7 +40,8 @@ public class GetAnhBT extends HttpServlet {
    
     String id_bt= request.getParameter("id_bt");
     
-    String query = "select anh_bientap from ds_noidung_bientap where  ID_noidung_bientap ="+id_bt;
+    String query = "select anh_bientap from ds_noidung_bientap where  ID_noidung_bientap =?";
+    
     ServletOutputStream out = response.getOutputStream();
 
     try {
@@ -54,8 +55,9 @@ public class GetAnhBT extends HttpServlet {
     }
 
     try {
-      stmt = conn.createStatement();
-      rs = stmt.executeQuery(query);
+      stmt = conn.prepareStatement(query);
+      stmt.setString(1,id_bt);
+      rs = stmt.executeQuery();
       if (rs.next()) {
         photo = rs.getBlob(1);
       } else {

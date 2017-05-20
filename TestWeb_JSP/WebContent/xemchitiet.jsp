@@ -236,8 +236,8 @@
 					                          		   user="${sessionScope['userdb']}"  password="${sessionScope['passdb']}"/>
 					                <sql:query dataSource="${dbsource}" var="baivietdagui">
 										SELECT * from ds_baiviet_dagui
-										where ds_baiviet_dagui.ID_baiviet_dagui=?
-										<sql:param value="${param.id}" />					    
+										where ds_baiviet_dagui.ID_baiviet_dagui='<c:out value="${param.id }"/>'
+													    
 									</sql:query>
 						<div class="col-sm-10">
 						<!-- CHi tiết -->
@@ -322,8 +322,8 @@
 										where ds_baiviet_phanbien.username_taikhoan=taikhoan.Username
 										and ds_baiviet_phanbien.ID_baiviet_dagui=ds_baiviet_dagui.ID_baiviet_dagui
 										and ds_baiviet_phanbien.ID_baiviet_phanbien=ds_noidung_phanbien.ID_baiviet_phanbien
-										and ds_baiviet_dagui.ID_baiviet_dagui=?
-										<sql:param value="${param.id}" />					    
+										and ds_baiviet_dagui.ID_baiviet_dagui='<c:out value="${param.id }"/>'
+													    
 									</sql:query>
 									
 									<div class="col-sm-7">
@@ -378,8 +378,8 @@
 										where ds_baiviet_bientap.username_taikhoan=taikhoan.Username
 										and ds_baiviet_bientap.ID_baiviet_dagui=ds_baiviet_dagui.ID_baiviet_dagui
 										and ds_baiviet_bientap.ID_baiviet_bientap=ds_noidung_bientap.ID_baiviet_bientap
-										and ds_baiviet_dagui.ID_baiviet_dagui=?
-										<sql:param value="${param.id}" />					    
+										and ds_baiviet_dagui.ID_baiviet_dagui='<c:out value="${param.id }"/>'
+							    
 									</sql:query>
 									<form class="form-horizontal">
 										<c:forEach var="rows" items="${baivietbientap.rows}">

@@ -234,7 +234,7 @@
 										select *
 										from ds_baiviet_dagui,ds_baiviet_bientap
 										where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_bientap.ID_baiviet_dagui
-										and ds_baiviet_dagui.ID_baiviet_dagui='${param.id}'
+										and ds_baiviet_dagui.ID_baiviet_dagui='<c:out value="${param.id}"/>'
 									</s:query>						
 									<form id="FormBienTap" method="post" action="GuibaiBienTap" class="form-horizontal" enctype="multipart/form-data">
 										<div class="col-md-8">

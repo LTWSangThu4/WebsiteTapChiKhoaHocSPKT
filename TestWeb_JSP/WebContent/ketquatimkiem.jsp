@@ -591,7 +591,7 @@
 						
 										<sql:query dataSource="${ds}" var="rs">								 
 										    SELECT *  FROM ds_noidung_bientap
-										    Where dstukhoa_bientap= '${param.keys}'
+										    Where dstukhoa_bientap= '<c:out value="${param.keys}"/>'
 										</sql:query>
 										
 										<sql:query dataSource="${ds}" var="rs2">								 
@@ -601,8 +601,8 @@
 												ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_bientap.ID_baiviet_dagui
 												and ds_baiviet_bientap.ID_baiviet_bientap=ds_noidung_bientap.ID_baiviet_bientap
                                                 and trangthai_duocdang=2												
-												and ds_baiviet_dagui.username_taikhoan='${param.keys }'
-												and NgayDang='${param.date}' 
+												and ds_baiviet_dagui.username_taikhoan='<c:out value="${param.keys }"/>'
+												and NgayDang='<c:out value="${param.date}"/>' 
 										</sql:query>
 									<c:choose>
 							

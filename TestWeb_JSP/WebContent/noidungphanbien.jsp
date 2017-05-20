@@ -239,7 +239,7 @@
 													from ds_baiviet_dagui,ds_baiviet_phanbien,taikhoan
 													where ds_baiviet_dagui.ID_baiviet_dagui=ds_baiviet_phanbien.ID_baiviet_dagui
                                                     and ds_baiviet_phanbien.username_taikhoan=taikhoan.Username
-													and ds_baiviet_dagui.ID_baiviet_dagui='${param.id}'
+													and ds_baiviet_dagui.ID_baiviet_dagui='<c:out value="${param.id}"/>'
 												</s:query>
 												<form id="FormPhanBien" method="post" action="GuiBaiPhanBien" class="form-horizontal" enctype="multipart/form-data">
 													<c:forEach var="row" items="${thongtin.rows}">
