@@ -7,6 +7,9 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
 %>
+<c:choose>
+	<c:when test="${not empty sessionScope['loginUser']and sessionScope['qUser']eq 1}">
+	
 <html>
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -58,10 +61,10 @@
         		</Center>     		
         	</c:otherwise>
         </c:choose>
-        
-           
-        
- 
- 
     </body>
 </html>
+</c:when>
+	<c:otherwise>
+		<c:redirect url="index.jsp"/>
+	</c:otherwise>
+</c:choose>

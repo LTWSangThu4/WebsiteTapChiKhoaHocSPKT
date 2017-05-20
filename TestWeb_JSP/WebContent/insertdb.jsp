@@ -11,6 +11,9 @@
   request.setAttribute("passwordmd5", passmd5);
  
   %>
+  <c:choose>
+	<c:when test="${not empty sessionScope['loginUser']and sessionScope['qUser']eq 0}">
+	
 <html>
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -46,3 +49,8 @@
  
     </body>
 </html>
+</c:when>
+	<c:otherwise>
+		<c:redirect url="index.jsp"/>
+	</c:otherwise>
+</c:choose>

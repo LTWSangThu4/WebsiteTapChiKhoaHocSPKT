@@ -6,6 +6,10 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
 %>
+
+<c:choose>
+	<c:when test="${not empty sessionScope['loginUser']and sessionScope['qUser']eq 1}">
+	
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,3 +26,8 @@
         <c:redirect url="tongbientap2.jsp"/>
     </body>
 </html>
+</c:when>
+	<c:otherwise>
+		<c:redirect url="index.jsp"/>
+	</c:otherwise>
+</c:choose>
